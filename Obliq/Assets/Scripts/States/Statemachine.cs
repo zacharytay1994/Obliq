@@ -29,6 +29,11 @@ public class Statemachine
             current_state_.Execute(owner_);
         }
     }
+
+    public void SetState(State state)
+    {
+        current_state_ = state;
+    }
 }
 
 public abstract class State

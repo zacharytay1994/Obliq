@@ -10,21 +10,18 @@ public class Entity : MonoBehaviour
     float mouse_radius_ = 10.0f;
 
     // entity variables
+    public float unit_scale_per_range_ = 0.2f;
+    float health_ = 20.0f;
     public float attack_damage_ = 5.0f;
     public float attack_range_ = 5.0f;
-    float health_ = 20.0f;
 
     public Statemachine statemachine_;
-
-    // movement & action variables
-    public int action_points_ = 3;
-    int distance_per_point_ = 5;
-    public int point_per_attack_ = 1;
 
     // Start is called before the first frame update
     void Start()
     {
         statemachine_ = new Statemachine(gameObject);
+        statemachine_.SetState(new SomeDefault());
         turn_manager_reference_ = GameObject.Find("World").GetComponent<TurnManager>();
     }
 
@@ -46,15 +43,6 @@ public class Entity : MonoBehaviour
     public bool GetHasMoved()
     {
         return has_moved_;
-    }
-
-    public void ExecuteTurn()
-    {
-        if (Input.GetKeyDown("A"))
-        {
-            statemachine_.ChangeState(new GoodGuyAttack());
-        }
-        statemachine_.Update();
     }
 
     // action functions

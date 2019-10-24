@@ -14,7 +14,7 @@ public class ObliqPathfinding : MonoBehaviour
     // Pathfinding variables
     Path path_;
     int current_waypoint_ = 0;
-    bool reached_end_path_ = false;
+    //bool reached_end_path_ = false;
 
     Seeker seeker_;
     Rigidbody2D rb2D_;
@@ -23,7 +23,7 @@ public class ObliqPathfinding : MonoBehaviour
     {
         seeker_ = GetComponent<Seeker>();
         rb2D_ = GetComponent<Rigidbody2D>();
-        target_ = new Vector2(0.0f, 0.0f);
+        target_ = gameObject.transform.position;
 
         InvokeRepeating("UpdatePath", 0.0f, 1.0f);
     }
@@ -42,7 +42,7 @@ public class ObliqPathfinding : MonoBehaviour
         {
             path_ = path;
             current_waypoint_ = 0;
-            print("completed");
+            //print("completed");
         }
     }
 
@@ -56,12 +56,12 @@ public class ObliqPathfinding : MonoBehaviour
         // if reached end of path
         if (current_waypoint_ >= path_.vectorPath.Count)
         {
-            reached_end_path_ = true;
+            //reached_end_path_ = true;
             return;
         }
         else
         {
-            reached_end_path_ = false;
+            //reached_end_path_ = false;
         }
 
         Vector2 direction_ = ((Vector2)path_.vectorPath[current_waypoint_] - rb2D_.position).normalized;

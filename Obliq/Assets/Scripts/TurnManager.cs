@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class TurnManager : MonoBehaviour
 {
-    float select_threshold_ = 5.0f;
     bool enemy_turn_ = false;
     bool turn_changed_ = false;
-    List<GameObject> enemies_;
-    List<GameObject> goodguys_;
+    List<GameObject> enemies_ = new List<GameObject>();
+    List<GameObject> goodguys_ = new List<GameObject>();
 
     // game turn variables
     GameObject currently_selected_goodguy_;
@@ -30,7 +29,7 @@ public class TurnManager : MonoBehaviour
     void Update()
     {
         // for end player turn
-        if (Input.GetKeyDown("P") && !turn_changed_)
+        if (Input.GetKeyDown(KeyCode.P) && !turn_changed_)
         {
             turn_changed_ = true;
             enemy_turn_ = false;
@@ -40,9 +39,14 @@ public class TurnManager : MonoBehaviour
         if (enemy_turn_)
         {
         }
+        else if (!enemy_turn_)
+        {
+            ExecuteGoodTurn(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+        }
         if (Input.GetMouseButtonDown(0))
         {
             GameObject.Find("Enemy").GetComponent<ObliqPathfinding>().target_ = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            GameObject.Find("GoodGuy").GetComponent<ObliqPathfinding>().target_ = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         }
     }
 
@@ -69,7 +73,7 @@ public class TurnManager : MonoBehaviour
         // if there is a good guy selected
         if (currently_selected_goodguy_ != null)
         {
-
+            currently_selected_goodguy_.GetComponent<GoodGuy>().ExecuteTurn();
         }
     }
 
@@ -96,7 +100,7 @@ public class TurnManager : MonoBehaviour
         {
             foreach (GameObject g in enemies_)
             {
-                if ((Camera.main.ScreenToWorldPoint(Input.mousePosition) - g.transform.position).magnitude < select_threshold_)
+                if (g.GetComponent<Entity>().OnSelect(Camera.main.ScreenToWorldPoint(Input.mousePosition)))
                 {
                     return g;
                 }
@@ -104,7 +108,7 @@ public class TurnManager : MonoBehaviour
 
             foreach (GameObject g in goodguys_)
             {
-                if ((Camera.main.ScreenToWorldPoint(Input.mousePosition) - g.transform.position).magnitude < select_threshold_)
+                if (g.GetComponent<Entity>().OnSelect(Camera.main.ScreenToWorldPoint(Input.mousePosition)))
                 {
                     return g;
                 }
