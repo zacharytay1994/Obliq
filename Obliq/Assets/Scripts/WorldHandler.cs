@@ -13,7 +13,7 @@ public class WorldHandler : MonoBehaviour
         radius_one_ = GameObject.Find("RadiusOne");
         radius_two_ = GameObject.Find("RadiusTwo");
         radius_three = GameObject.Find("RadiusThree");
-        SetMoveRadiusInactive(false);
+        SetMoveRadiusActive(false);
     }
 
     // Update is called once per frame
@@ -22,7 +22,7 @@ public class WorldHandler : MonoBehaviour
         
     }
 
-    public void SetMoveRadiusInactive(bool active)
+    public void SetMoveRadiusActive(bool active)
     {
         radius_one_.SetActive(active);
         radius_two_.SetActive(active);

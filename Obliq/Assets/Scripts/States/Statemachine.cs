@@ -34,6 +34,11 @@ public class Statemachine
     {
         current_state_ = state;
     }
+
+    public State GetState()
+    {
+        return current_state_;
+    }
 }
 
 public abstract class State

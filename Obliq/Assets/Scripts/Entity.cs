@@ -6,23 +6,26 @@ public class Entity : MonoBehaviour
 {
     // reference to turn manager
     public TurnManager turn_manager_reference_;
-    bool has_moved_ = false;
-    float mouse_radius_ = 10.0f;
+    public bool has_moved_ = false;
+    float mouse_radius_ = 1.0f;
 
     // entity variables
     public float unit_scale_per_range_ = 0.2f;
-    float health_ = 20.0f;
+    public float health_ = 20.0f;
     public float attack_damage_ = 5.0f;
     public float attack_range_ = 5.0f;
 
     public Statemachine statemachine_;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         statemachine_ = new Statemachine(gameObject);
         statemachine_.SetState(new SomeDefault());
         turn_manager_reference_ = GameObject.Find("World").GetComponent<TurnManager>();
+    }
+    // Start is called before the first frame update
+    void Start()
+    {
     }
 
     // Update is called once per frame

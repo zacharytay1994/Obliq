@@ -7,14 +7,14 @@ public class ObliqPathfinding : MonoBehaviour
 {
     public Vector2 target_;
 
-    public float speed_ = 200.0f;
-    public float next_waypoint_distance_ = 1.0f;
+    public float speed_ = 400.0f;
+    float next_waypoint_distance_ = 0.3f;
     Quaternion rotation_;
 
     // Pathfinding variables
     Path path_;
     int current_waypoint_ = 0;
-    //bool reached_end_path_ = false;
+    public bool reached_end_path_ = false;
 
     Seeker seeker_;
     Rigidbody2D rb2D_;
@@ -25,7 +25,14 @@ public class ObliqPathfinding : MonoBehaviour
         rb2D_ = GetComponent<Rigidbody2D>();
         target_ = gameObject.transform.position;
 
-        InvokeRepeating("UpdatePath", 0.0f, 1.0f);
+        //InvokeRepeating("UpdatePath", 0.0f, 1.0f);
+    }
+
+    public void StartPath(Vector2 position)
+    {
+        target_ = position;
+        reached_end_path_ = false;
+        UpdatePath();
     }
 
     void UpdatePath()
@@ -42,6 +49,7 @@ public class ObliqPathfinding : MonoBehaviour
         {
             path_ = path;
             current_waypoint_ = 0;
+            reached_end_path_ = false;
             //print("completed");
         }
     }
@@ -54,27 +62,28 @@ public class ObliqPathfinding : MonoBehaviour
             return;
         }
         // if reached end of path
-        if (current_waypoint_ >= path_.vectorPath.Count)
+        if (current_waypoint_ > path_.vectorPath.Count - 1)
         {
-            //reached_end_path_ = true;
+            rb2D_.velocity = Vector2.zero;
+            rb2D_.angularVelocity = 0;
+            reached_end_path_ = true;
             return;
         }
-        else
+
+        if (!reached_end_path_)
         {
-            //reached_end_path_ = false;
-        }
+            Vector2 direction_ = ((Vector2)path_.vectorPath[current_waypoint_] - rb2D_.position).normalized;
+            Vector2 force_ = direction_ * speed_ * Time.deltaTime;
+            rb2D_.AddForce(force_);
 
-        Vector2 direction_ = ((Vector2)path_.vectorPath[current_waypoint_] - rb2D_.position).normalized;
-        Vector2 force_ = direction_ * speed_ * Time.deltaTime;
-        rb2D_.AddForce(force_);
+            //LookAt(path_.vectorPath[current_waypoint_]);
 
-        //LookAt(path_.vectorPath[current_waypoint_]);
+            float distance_ = Vector2.Distance(rb2D_.position, path_.vectorPath[current_waypoint_]);
 
-        float distance_ = Vector2.Distance(rb2D_.position, path_.vectorPath[current_waypoint_]);
-
-        if (distance_ < next_waypoint_distance_)
-        {
-            current_waypoint_++;
+            if (distance_ < next_waypoint_distance_)
+            {
+                current_waypoint_++;
+            }
         }
     }
 }

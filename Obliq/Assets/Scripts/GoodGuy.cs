@@ -12,10 +12,13 @@ public class GoodGuy : MonoBehaviour
     public float distance_per_point_ = 5.0f;
     public int point_per_attack_ = 1;
 
+    public bool is_idle_ = true;
+
     // Start is called before the first frame update
     void Start()
     {
         entity_reference_ = gameObject.GetComponent<Entity>();
+        entity_reference_.statemachine_.SetState(new GoodGuyIdle());
     }
 
     // Update is called once per frame
@@ -26,17 +29,6 @@ public class GoodGuy : MonoBehaviour
 
     public void ExecuteTurn()
     {
-        // change state to attack state
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            entity_reference_.statemachine_.ChangeState(new GoodGuyAttack());
-        }
-        // change state to move state
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            entity_reference_.statemachine_.ChangeState(new GoodGuyMoveSelectState());
-            print("State move");
-        }
         entity_reference_.statemachine_.Update();
     }
 
@@ -59,6 +51,6 @@ public class GoodGuy : MonoBehaviour
 
     void SetMoveRadiusInactive(bool active)
     {
-        GameObject.Find("World").GetComponent<WorldHandler>().SetMoveRadiusInactive(true);
+        GameObject.Find("World").GetComponent<WorldHandler>().SetMoveRadiusActive(true);
     }
 }
