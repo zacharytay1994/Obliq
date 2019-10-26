@@ -12,6 +12,7 @@ public class GoodGuy : MonoBehaviour
     public float distance_per_point_ = 5.0f;
     public int point_per_attack_ = 1;
 
+    // flag for if GoodGuy is in GoodGuyIdleState
     public bool is_idle_ = true;
 
     // Start is called before the first frame update
@@ -49,6 +50,7 @@ public class GoodGuy : MonoBehaviour
         radius_three.size = size_to_set * 3;
     }
 
+    // sets radius circles to be inactive so it is no longer visible
     void SetMoveRadiusInactive(bool active)
     {
         GameObject.Find("World").GetComponent<WorldHandler>().SetMoveRadiusActive(true);

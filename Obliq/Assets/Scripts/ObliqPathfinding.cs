@@ -18,14 +18,13 @@ public class ObliqPathfinding : MonoBehaviour
 
     Seeker seeker_;
     Rigidbody2D rb2D_;
+
     // Start is called before the first frame update
     void Start()
     {
         seeker_ = GetComponent<Seeker>();
         rb2D_ = GetComponent<Rigidbody2D>();
         target_ = gameObject.transform.position;
-
-        //InvokeRepeating("UpdatePath", 0.0f, 1.0f);
     }
 
     public void StartPath(Vector2 position)
@@ -50,7 +49,6 @@ public class ObliqPathfinding : MonoBehaviour
             path_ = path;
             current_waypoint_ = 0;
             reached_end_path_ = false;
-            //print("completed");
         }
     }
 
@@ -75,8 +73,6 @@ public class ObliqPathfinding : MonoBehaviour
             Vector2 direction_ = ((Vector2)path_.vectorPath[current_waypoint_] - rb2D_.position).normalized;
             Vector2 force_ = direction_ * speed_ * Time.deltaTime;
             rb2D_.AddForce(force_);
-
-            //LookAt(path_.vectorPath[current_waypoint_]);
 
             float distance_ = Vector2.Distance(rb2D_.position, path_.vectorPath[current_waypoint_]);
 

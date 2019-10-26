@@ -7,16 +7,14 @@ public class TurnManager : MonoBehaviour
 {
     int round_ = 1;
     bool enemy_turn_ = false;
-    bool turn_changed_ = false;
+
+    // list of entities
     List<GameObject> enemies_ = new List<GameObject>();
     List<GameObject> enemies_done_ = new List<GameObject>();
-    //int enemy_index_ = 0;
-    int enemy_count_ = 0;
     List<GameObject> goodguys_ = new List<GameObject>();
 
     // game turn variables
     GameObject currently_selected_goodguy_;
-    int turn_count_ = 0;
     
     // Start is called before the first frame update
     void Start()
@@ -29,7 +27,6 @@ public class TurnManager : MonoBehaviour
         {
             goodguys_.Add(t.gameObject);
         }
-        enemy_count_ = enemies_.Count;
         GameObject.Find("Round").GetComponent<Text>().text = "Round " + round_.ToString();
         GameObject.Find("Turn").GetComponent<Text>().text = "Player Turn";
     }
@@ -37,24 +34,10 @@ public class TurnManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // for end player turn
-        if (Input.GetKeyDown(KeyCode.P) && !turn_changed_)
-        {
-            turn_changed_ = true;
-            enemy_turn_ = false;
-        }
-
-        // enemy turn update
-        //if (enemy_turn_)
-        //{
-        //}
-        //else if (!enemy_turn_)
-        //{
-        //    ExecuteGoodTurn(Camera.main.ScreenToWorldPoint(Input.mousePosition));
-        //}
+        // process entity updates
         ExecuteTurn(Camera.main.ScreenToWorldPoint(Input.mousePosition));
 
-        // temp debugging
+        // temp debugging - shows entity at mouse click and its health
         GameObject g = GetEntityAtMouse();
         if (g != null)
         {
@@ -117,7 +100,6 @@ public class TurnManager : MonoBehaviour
         // if no more enemies for processing, switch to player turn, and increment turn count
         if (enemies_.Count < 0)
         {
-            turn_count_++;
             enemy_turn_ = false;
             enemies_ = enemies_done_;
             return;
@@ -153,6 +135,8 @@ public class TurnManager : MonoBehaviour
         }
     }
 
+    // misc functions
+    // Gets Enemy of GoodGuy at mouse position on click, return null if none
     public GameObject GetEntityAtMouse()
     {
         if (Input.GetMouseButton(0))
@@ -180,10 +164,10 @@ public class TurnManager : MonoBehaviour
         }
     }
 
-    // misc functions
+    // Gets the nearest good guy to world position, return null if none
     public GameObject GetNearestGoodGuy(Vector2 position)
     {
-        GameObject game_object = new GameObject();
+        GameObject game_object = null;
         float nearest = float.PositiveInfinity;
         foreach (GameObject g in goodguys_)
         {
@@ -197,6 +181,7 @@ public class TurnManager : MonoBehaviour
         return game_object;
     }
 
+    // Gets a random GoodGuy in the world, return null if none
     public GameObject GetRandomGoodGuy()
     {
         if (goodguys_.Count > 0)
