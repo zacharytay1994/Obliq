@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObliqEnemy : MonoBehaviour
+public class Charger : MonoBehaviour
 {
     // enemy variables
     public float move_distance_ = 10.0f;
