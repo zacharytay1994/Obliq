@@ -64,3 +64,51 @@ public class ChargerIdleState : State
     }
     public override void Exit(GameObject owner) { }
 }
+public class GreaterSlimeMoveState : State
+{
+   
+    GameObject closest_obj;
+    Vector2 movement_vector;
+    Vector2 compare_vec;
+    public override void Enter(GameObject owner) {
+
+        closest_obj = owner.GetComponent<Entity>().turn_manager_reference_.GetNearestGoodGuy(owner.transform.position);
+        movement_vector = Vector2.MoveTowards(owner.transform.position, closest_obj.transform.position, 5.0f); //temp magic no
+        Debug.Log(closest_obj);
+        
+    }
+    public override void Execute(GameObject owner) {
+        owner.GetComponent<Rigidbody2D>().AddForce(movement_vector.normalized * 2f);
+        compare_vec = (Vector2)owner.transform.position - (Vector2)closest_obj.GetComponent<Entity>().transform.position;
+
+        if (Vector2.Dot(compare_vec, (Vector2)owner.transform.position - (Vector2)closest_obj.GetComponent<Entity>().transform.position) < 0)
+        {
+            owner.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            owner.GetComponent<Rigidbody2D>().angularVelocity = 0;
+            owner.GetComponent<Entity>().statemachine_.ChangeState(new GreaterSlimeIdleState());
+        }
+    }
+    public override void Exit(GameObject owner) { }
+}
+public class GreaterSlimeAttackState : State
+{
+    public override void Enter(GameObject owner) { }
+    public override void Execute(GameObject owner) { }
+    public override void Exit(GameObject owner) { }
+}
+public class GreaterSlimeIdleState : State
+{
+    public override void Enter(GameObject owner) {
+        
+
+
+    }
+    public override void Execute(GameObject owner) {
+
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            owner.GetComponent<Entity>().statemachine_.ChangeState(new GreaterSlimeMoveState());
+        }
+    }
+    public override void Exit(GameObject owner) { }
+}

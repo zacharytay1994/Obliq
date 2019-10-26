@@ -104,11 +104,15 @@ public class TurnManager : MonoBehaviour
             enemies_ = enemies_done_;
             return;
         }
-        if (ProcessEnemy(enemies_[0]))
+        foreach(GameObject enemy in enemies_)
         {
-            enemies_.Remove(enemies_[0]);
-            enemies_done_.Add(enemies_[0]);
+            if (ProcessEnemy(enemy))
+            {
+                enemies_.Remove(enemy);
+                enemies_done_.Add(enemy);
+            }
         }
+       
     }
 
     bool ProcessEnemy(GameObject g)
@@ -119,6 +123,7 @@ public class TurnManager : MonoBehaviour
             return true;
         }
         // update enemy state machine
+        Debug.Log(g);
         g.GetComponent<Entity>().statemachine_.Update();
         return false;
     }
