@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+using static GF;
+
 public class GoodGuyStates
 {
-    // empty
+    // maybe needed maybe not
 }
 
 public class GoodGuyAttack : State
@@ -16,7 +18,7 @@ public class GoodGuyAttack : State
         if (owner.GetComponent<GoodGuy>().action_points_ <= 0)
         {
             Debug.Log("Entity no longer has AP to attack! Something is wrong.");
-            owner.GetComponent<Entity>().statemachine_.ChangeState(new GoodGuyIdle());
+            ChangeState(owner, new GoodGuyIdle());
         }
     }
 
@@ -38,16 +40,13 @@ public class GoodGuyAttack : State
                     temp.GetComponent<Entity>().TakeDamage(entity_reference.attack_damage_);
                     // subtract ab
                     good_guy_reference.action_points_ -= good_guy_reference.point_per_attack_;
-                    entity_reference.statemachine_.ChangeState(new GoodGuyIdle());
+                    ChangeState(owner, new GoodGuyIdle());
                 }
             }
         }
     }
 
-    public override void Exit(GameObject owner)
-    {
-
-    }
+    public override void Exit(GameObject owner) { }
 }
 
 public class GoodGuyMoveSelectState : State
@@ -62,7 +61,7 @@ public class GoodGuyMoveSelectState : State
         if (owner.GetComponent<GoodGuy>().action_points_ <= 0)
         {
             owner.GetComponent<Entity>().has_moved_ = true;
-            owner.GetComponent<Entity>().statemachine_.ChangeState(new GoodGuyIdle());
+            ChangeState(owner, new GoodGuyIdle());
         }
         // if position if selected
         if (Input.GetMouseButton(0))
@@ -82,20 +81,20 @@ public class GoodGuyMoveSelectState : State
             {
                 owner.GetComponent<GoodGuy>().action_points_ -= 3;
                 owner.GetComponent<ObliqPathfinding>().StartPath(mouse_position);
-                owner.GetComponent<Entity>().statemachine_.ChangeState(new GoodGuyMoveState());
+                ChangeState(owner, new GoodGuyMoveState());
             }
             // if more than 1 points worth away, subtract 2
             else if (distance_away > owner.GetComponent<GoodGuy>().distance_per_point_ * owner.GetComponent<Entity>().unit_scale_per_range_)
             {
                 owner.GetComponent<GoodGuy>().action_points_ -= 2;
                 owner.GetComponent<ObliqPathfinding>().StartPath(mouse_position);
-                owner.GetComponent<Entity>().statemachine_.ChangeState(new GoodGuyMoveState());
+                ChangeState(owner, new GoodGuyMoveState());
             } 
             else if (distance_away < owner.GetComponent<GoodGuy>().distance_per_point_ * owner.GetComponent<Entity>().unit_scale_per_range_)
             {
                 owner.GetComponent<GoodGuy>().action_points_ -= 1;
                 owner.GetComponent<ObliqPathfinding>().StartPath(mouse_position);
-                owner.GetComponent<Entity>().statemachine_.ChangeState(new GoodGuyMoveState());
+                ChangeState(owner, new GoodGuyMoveState());
             }
             // debug ui
             GameObject.Find("GoodGuyAP").GetComponent<Text>().text = owner.GetComponent<GoodGuy>().action_points_.ToString();
@@ -116,7 +115,7 @@ public class GoodGuyMoveState : State
         if (owner.GetComponent<ObliqPathfinding>().reached_end_path_)
         {
             // change state to default state awaiting input for attack or move
-            owner.GetComponent<Entity>().statemachine_.ChangeState(new GoodGuyIdle());
+            ChangeState(owner, new GoodGuyIdle());
         }
     }
     public override void Exit(GameObject owner) { }
@@ -136,7 +135,7 @@ public class GoodGuyIdle : State
     {
         if (Input.GetKeyDown(KeyCode.A))
         {
-            owner.GetComponent<Entity>().statemachine_.ChangeState(new GoodGuyAttack());
+            ChangeState(owner, new GoodGuyAttack());
         }
         // change state to move state
         if (Input.GetKeyDown(KeyCode.M))
@@ -146,11 +145,11 @@ public class GoodGuyIdle : State
                 // debug log
                 Debug.Log("Entity no longer has AP to move!");
                 owner.GetComponent<Entity>().has_moved_ = true;
-                owner.GetComponent<Entity>().statemachine_.ChangeState(new GoodGuyIdle());
+                ChangeState(owner, new GoodGuyIdle());
             }
             else
             {
-                owner.GetComponent<Entity>().statemachine_.ChangeState(new GoodGuyMoveSelectState());
+                ChangeState(owner, new GoodGuyMoveSelectState());
             }
         }
     }

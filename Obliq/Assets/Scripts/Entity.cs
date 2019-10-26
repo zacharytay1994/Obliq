@@ -6,16 +6,18 @@ public class Entity : MonoBehaviour
 {
     // reference to turn manager
     public TurnManager turn_manager_reference_;
+    // instance statemachine
+    public Statemachine statemachine_;
+    // if the entity has finished moving on its turn
     public bool has_moved_ = false;
+    // the mouse radius when selecting entities on mouse click
     float mouse_radius_ = 1.0f;
 
     // entity variables
-    public float unit_scale_per_range_ = 0.2f;
-    public float health_ = 20.0f;
+    public float unit_scale_per_range_ = 0.2f;  // the world size scale
+    public float health_ = 20.0f;               
     public float attack_damage_ = 5.0f;
     public float attack_range_ = 5.0f;
-
-    public Statemachine statemachine_;
 
     private void Awake()
     {
