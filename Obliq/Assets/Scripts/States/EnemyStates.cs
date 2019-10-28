@@ -68,25 +68,19 @@ public class GreaterSlimeMoveState : State
 {
    
     GameObject closest_obj;
-    Vector2 movement_vector;
+    
     Vector2 compare_vec;
     public override void Enter(GameObject owner) {
 
         closest_obj = owner.GetComponent<Entity>().turn_manager_reference_.GetNearestGoodGuy(owner.transform.position);
-        movement_vector = Vector2.MoveTowards(owner.transform.position, closest_obj.transform.position, 5.0f); //temp magic no
+        owner.GetComponent<ObliqPathfinding>().target_ = closest_obj.transform.position;
+       
         Debug.Log(closest_obj);
         
     }
     public override void Execute(GameObject owner) {
-        owner.GetComponent<Rigidbody2D>().AddForce(movement_vector.normalized * 2f);
-        compare_vec = (Vector2)owner.transform.position - (Vector2)closest_obj.GetComponent<Entity>().transform.position;
 
-        if (Vector2.Dot(compare_vec, (Vector2)owner.transform.position - (Vector2)closest_obj.GetComponent<Entity>().transform.position) < 0)
-        {
-            owner.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-            owner.GetComponent<Rigidbody2D>().angularVelocity = 0;
-            owner.GetComponent<Entity>().statemachine_.ChangeState(new GreaterSlimeIdleState());
-        }
+        owner.GetComponent<ObliqPathfinding>().StartPath(owner.GetComponent<ObliqPathfinding>().target_);
     }
     public override void Exit(GameObject owner) { }
 }
