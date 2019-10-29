@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Entity : MonoBehaviour
 {
+    // temp flag for enemy entities
+    public bool start_ = false;
     // reference to turn manager
     public TurnManager turn_manager_reference_;
     // instance statemachine
@@ -54,5 +56,11 @@ public class Entity : MonoBehaviour
     public void TakeDamage(float dmg)
     {
         health_ -= dmg;
+    }
+
+    // misc function
+    public float GetTrueRange()
+    {
+        return attack_range_ * unit_scale_per_range_;
     }
 }

@@ -61,6 +61,13 @@ public class TurnManager : MonoBehaviour
         {
             // switch to enemy turn
             enemy_turn_ = true;
+            // reset good guy variables, has_moved_ etc, temporary fix
+            foreach (GameObject g in goodguys_)
+            {
+                g.GetComponent<ObliqPathfinding>().reached_end_path_ = false;
+                g.GetComponent<Entity>().has_moved_ = false;
+                g.GetComponent<Entity>().statemachine_.ChangeState(new GoodGuyIdle());
+            }
             GameObject.Find("Turn").GetComponent<Text>().text = "Enemy Turn";
             ResetGoodGuyTextBoxes();
             return;
@@ -98,22 +105,30 @@ public class TurnManager : MonoBehaviour
     void ExecuteEnemyTurn()
     {
         // if no more enemies for processing, switch to player turn, and increment turn count
-        if (enemies_.Count < 0)
+        if (enemies_.Count <= 0)
         {
             enemy_turn_ = false;
             enemies_ = enemies_done_;
+            // reset enemy variables, has_moved_ etc
+            foreach (GameObject g in enemies_)
+            {
+                g.GetComponent<ObliqPathfinding>().reached_end_path_ = false;
+                g.GetComponent<Entity>().has_moved_ = false;
+            }
+            GameObject.Find("Turn").GetComponent<Text>().text = "Player Turn";
             return;
         }
+        // remove first enemy in list
         if (ProcessEnemy(enemies_[0]))
         {
-            enemies_.Remove(enemies_[0]);
             enemies_done_.Add(enemies_[0]);
+            enemies_.Remove(enemies_[0]);
         }
     }
 
     bool ProcessEnemy(GameObject g)
     {
-        // if enemy turn has not ended
+        // if enemy turn has ended
         if (g.GetComponent<Entity>().has_moved_)
         {
             return true;
