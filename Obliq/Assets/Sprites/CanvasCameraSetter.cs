@@ -10,7 +10,7 @@ public class CanvasCameraSetter : MonoBehaviour
     void Start()
     {
         current_canvas = GetComponent<Canvas>();
-        current_camera = Camera.main;
+        current_camera = GameObject.FindGameObjectWithTag("GlowCamera").GetComponent<Camera>();
 
     }
 
@@ -22,7 +22,7 @@ public class CanvasCameraSetter : MonoBehaviour
             if (Camera.main != null)
             {
                 current_camera = Camera.main;
-                current_canvas.worldCamera = current_camera;
+                current_canvas.worldCamera = GameObject.FindGameObjectWithTag("GlowCamera").GetComponent<Camera>();
                 Debug.Log("Loading Scene Camera Set!");
             }
             else
