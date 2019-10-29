@@ -60,8 +60,7 @@ public class GoodGuyMoveSelectState : State
         // check if ap left, if none left, turn ends set state to default
         if (owner.GetComponent<GoodGuy>().action_points_ <= 0)
         {
-            owner.GetComponent<Entity>().has_moved_ = true;
-            ChangeState(owner, new GoodGuyIdle());
+            owner.GetComponent<GoodGuy>().EndTurn();
         }
         // if position if selected
         if (Input.GetMouseButton(0))
@@ -128,7 +127,7 @@ public class GoodGuyIdle : State
         owner.GetComponent<GoodGuy>().is_idle_ = true;
         if (owner.GetComponent<GoodGuy>().action_points_ <= 0)
         {
-            owner.GetComponent<Entity>().has_moved_ = true;
+            owner.GetComponent<GoodGuy>().EndTurn();
         }
     }
     public override void Execute(GameObject owner)
@@ -144,8 +143,7 @@ public class GoodGuyIdle : State
             {
                 // debug log
                 Debug.Log("Entity no longer has AP to move!");
-                owner.GetComponent<Entity>().has_moved_ = true;
-                ChangeState(owner, new GoodGuyIdle());
+                owner.GetComponent<GoodGuy>().EndTurn();
             }
             else
             {

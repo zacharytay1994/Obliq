@@ -15,6 +15,7 @@ public class ObliqPathfinding : MonoBehaviour
     Path path_;
     int current_waypoint_ = 0;
     public bool reached_end_path_ = false;
+    public bool path_not_found_ = false;
 
     Seeker seeker_;
     Rigidbody2D rb2D_;
@@ -30,7 +31,6 @@ public class ObliqPathfinding : MonoBehaviour
     public void StartPath(Vector2 position)
     {
         target_ = position;
-        reached_end_path_ = false;
         UpdatePath();
     }
 
@@ -49,6 +49,11 @@ public class ObliqPathfinding : MonoBehaviour
             path_ = path;
             current_waypoint_ = 0;
             reached_end_path_ = false;
+            path_not_found_ = false;
+        }
+        else
+        {
+            path_not_found_ = true;
         }
     }
 
