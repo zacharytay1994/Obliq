@@ -24,7 +24,9 @@ public class AudioManager : MonoBehaviour
             s.Source.volume = s.Volume;
             s.Source.pitch = s.Pitch;
             s.Source.playOnAwake = false;
+
         }
+        DontDestroyOnLoad(gameObject);
     }
 
     public void PlaySound(string name)

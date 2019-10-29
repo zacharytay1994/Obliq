@@ -506,7 +506,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5629044396203773424}
   - component: {fileID: 5629044396203773426}
-  - component: {fileID: 5629044396203773427}
+  - component: {fileID: 2343206309185452838}
   m_Layer: 9
   m_Name: Fadein
   m_TagString: Untagged
@@ -543,7 +543,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5629044396203773425}
   m_CullTransparentMesh: 0
---- !u!114 &5629044396203773427
+--- !u!114 &2343206309185452838
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -557,7 +557,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
