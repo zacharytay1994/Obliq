@@ -69,7 +69,7 @@ public class GreaterSlimeMoveState : State
     Vector2 compare_vec;
     public override void Enter(GameObject owner) {
 
-        closest_obj = owner.GetComponent<Entity>().turn_manager_reference_.GetNearestGoodGuy(owner.transform.position);
+        closest_obj = owner.GetComponent<Entity>().world_handler_reference_.GetNearestGoodGuy(owner.transform.position);
         owner.GetComponent<ObliqPathfinding>().target_ = closest_obj.transform.position;
        
         Debug.Log(closest_obj);
@@ -79,7 +79,10 @@ public class GreaterSlimeMoveState : State
 
         owner.GetComponent<ObliqPathfinding>().StartPath(owner.GetComponent<ObliqPathfinding>().target_);
     }
-    public override void Exit(GameObject owner) { }
+    public override void Exit(GameObject owner) {
+       
+        
+    }
 }
 public class GreaterSlimeAttackState : State
 {

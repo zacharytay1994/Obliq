@@ -142,14 +142,11 @@ public class TurnManager : MonoBehaviour
 
     void ExecuteTurn(Vector2 mouseposition)
     {
-        if (enemy_turn_)
-        {
+       
             ExecuteEnemyTurn();
-        }
-        else
-        {
+       
             ExecuteGoodTurn(mouseposition);
-        }
+        
     }
 
     // misc functions

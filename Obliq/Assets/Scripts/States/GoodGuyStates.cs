@@ -24,10 +24,10 @@ public class GoodGuyAttack : State
 
     public override void Execute(GameObject owner)
     {
-        if (owner.GetComponent<Entity>().turn_manager_reference_ != null)
+        if (owner.GetComponent<Entity>().world_handler_reference_ != null)
         {
-            // if mouse selects something
-            GameObject temp = owner.GetComponent<Entity>().turn_manager_reference_.GetEntityAtMouse();
+          /*  // if mouse selects something
+            GameObject temp = owner.GetComponent<Entity>().world_handler_reference_.GetEntityAtMouse();
             Entity entity_reference = owner.GetComponent<Entity>();
             GoodGuy good_guy_reference = owner.GetComponent<GoodGuy>();
             if (temp != null)
@@ -42,7 +42,7 @@ public class GoodGuyAttack : State
                     good_guy_reference.action_points_ -= good_guy_reference.point_per_attack_;
                     ChangeState(owner, new GoodGuyIdle());
                 }
-            }
+            }*/
         }
     }
 

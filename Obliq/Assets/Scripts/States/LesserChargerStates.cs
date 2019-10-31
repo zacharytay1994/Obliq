@@ -24,7 +24,7 @@ public class LCIdle : State
             if (GC<LesserCharger>(owner).action_points_ > 0)
             {
                 // Get nearest good guy
-                GameObject nearest_good_guy_ = GC<Entity>(owner).turn_manager_reference_.GetNearestGoodGuy((Vector2)owner.transform.position);
+                GameObject nearest_good_guy_ = GC<Entity>(owner).world_handler_reference_.GetNearestGoodGuy((Vector2)owner.transform.position);
                 // if found
                 if (nearest_good_guy_ != null)
                 {
