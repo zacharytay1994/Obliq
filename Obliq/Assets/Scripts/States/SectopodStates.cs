@@ -16,12 +16,13 @@ public class SectopodIdleState : State
     }
     public override void Execute(GameObject owner)
     {
-        closest_obj = owner.GetComponent<Entity>().world_handler_reference_.GetNearestGoodGuy(owner.transform.position);
-        owner.GetComponent<ObliqPathfinding>().target_ = closest_obj.transform.position;
+        closest_obj = GC<Entity>(owner).world_handler_reference_.GetNearestGoodGuy(owner.transform.position);
 
         if ((closest_obj.transform.position - owner.transform.position).magnitude < GC<Entity>(owner).GetTrueRange())// if within range
         {
-            owner.GetComponent<Entity>().statemachine_.ChangeState(new SectopodAttackState());
+            GC<Sectopod>(owner).target_reference_ = closest_obj;
+            GC<ObliqPathfinding>(owner).target_ = closest_obj.transform.position;
+            GC<Entity>(owner).statemachine_.ChangeState(new SectopodAttackState());
         }
 
     }
@@ -33,10 +34,27 @@ public class SectopodAttackState : State
 {
     public override void Enter(GameObject owner)
     {
-        Debug.Log("Attack state");
+        Debug.Log("Sectopod Attack state");
     }
     public override void Execute(GameObject owner)
     {
+        GC<ObliqPathfinding>(owner).target_ = GC<Sectopod>(owner).target_reference_.transform.position;
+
+        if ((GC<Sectopod>(owner).target_reference_.transform.position - owner.transform.position).magnitude < 2.0f) //temp magic no
+        {
+            GC<Sectopod>(owner).target_reference_.GetComponent<Entity>().TakeDamage(1);//temporary hit scan should be projectile
+            Debug.Log(GC<Sectopod>(owner).target_reference_.GetComponent<Entity>().health_);
+            owner.GetComponent<ObliqPathfinding>().StopPath();
+        }
+        else
+        {
+          
+            owner.GetComponent<ObliqPathfinding>().StartPath(owner.GetComponent<ObliqPathfinding>().target_);
+        }
+        if ((GC<Sectopod>(owner).target_reference_.transform.position - owner.transform.position).magnitude > GC<Entity>(owner).GetTrueRange())
+        {
+            ChangeState(owner, new SectopodIdleState());
+        }
     }
     public override void Exit(GameObject owner)
     {
