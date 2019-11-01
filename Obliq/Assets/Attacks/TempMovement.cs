@@ -9,10 +9,11 @@ public class TempMovement : MonoBehaviour
     public float speed_ = 10.0f;
     public Vector2 heading_;
     Vector2 movement_heading_ = new Vector2Int(0, 0);
+    SemiCircleMelee melee_;
     // Start is called before the first frame update
     void Start()
     {
-        
+        melee_ = new SemiCircleMelee(gameObject);
     }
 
     // Update is called once per frame
@@ -54,6 +55,7 @@ public class TempMovement : MonoBehaviour
             movement_heading_.y += 1;
         }
         gameObject.transform.position += (Vector3)((Vector2)movement_heading_.normalized * speed_);
+        melee_.Update();
     }
 
     void UpdateHeadingVector()

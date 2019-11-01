@@ -8,6 +8,7 @@ public class TempEnemy : MonoBehaviour
     float size_ = 20.0f;
     float speed_ = 5.0f;
     int i = 0;
+    bool safety_check_ = true;
 
     // Start is called before the first frame update
     void Start()
@@ -18,12 +19,19 @@ public class TempEnemy : MonoBehaviour
     void Update()
     {
         WalkToPlayer();
-        i++;
-        if (i > 500 && size_ > 1.0f)
+        if (safety_check_)
         {
-            if (size_ > 1.0f)
+            i++;
+        }
+        if (i > 300)
+        {
+            if (gameObject.transform.localScale.x > 1.25f && safety_check_)
             {
                 SplitSelf();
+            }
+            else
+            {
+                safety_check_ = false;
             }
         }
     }
@@ -45,10 +53,10 @@ public class TempEnemy : MonoBehaviour
 
     void Init(float size, float speed, float mass)
     {
-        gameObject.GetComponent<Rigidbody2D>().mass = mass / 2;
+        gameObject.GetComponent<Rigidbody2D>().mass = mass / 2.0f;
         size_ = size;
         speed_ = speed;
-        transform.localScale = new Vector3(size, size, 0.0f);
+        transform.localScale = new Vector3(size, size, 1.0f);
     }
 
     void WalkToPlayer()

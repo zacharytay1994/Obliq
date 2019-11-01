@@ -15,10 +15,10 @@ public class ProjectileHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButton(0))
-        {
-            SpawnProjectile("Grenade", Camera.main.ScreenToWorldPoint(Input.mousePosition));
-        }
+        //if (Input.GetMouseButton(0))
+        //{
+        //    SpawnProjectile("Grenade", Camera.main.ScreenToWorldPoint(Input.mousePosition));
+        //}
     }
 
     void SpawnProjectile(string type, Vector2 position)
