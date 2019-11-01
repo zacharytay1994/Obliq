@@ -379,6 +379,7 @@ GameObject:
   - component: {fileID: 122856194}
   - component: {fileID: 122856193}
   - component: {fileID: 122856192}
+  - component: {fileID: 122856196}
   m_Layer: 9
   m_Name: MenuCanvas
   m_TagString: Untagged
@@ -468,6 +469,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &122856196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 122856191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d779ac4e9ad07ae4d90c0f4cc69ca54b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isButtonClicked: 0
+  animator: {fileID: 0}
+  turnon: 0
 --- !u!1 &136162825
 GameObject:
   m_ObjectHideFlags: 0
@@ -602,7 +618,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -50, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &300282133
@@ -1496,7 +1512,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -109}
+  m_AnchoredPosition: {x: -50.000004, y: -109}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1275181643
@@ -1809,7 +1825,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -229.5, y: -59.4}
+  m_AnchoredPosition: {x: -170.2, y: -63.4}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1553913467
@@ -1824,9 +1840,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb0db2418a947dc42847edaf1161b04f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnParticle: {fileID: 3271322974552329805, guid: fbc34d4bfa23f7940b935a5634a3fec8,
+    type: 3}
   anim: {fileID: 1275181644}
   buttonAnim: {fileID: 1665837990}
-  sceneToLoad: SplashScreen
+  pauseSecondsBeforeLoad: 1.5
+  sceneToLoad: MenuScene
 --- !u!61 &1553913468
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1840,7 +1859,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 68.447556, y: -3.7666664}
+  m_Offset: {x: 30.466629, y: 0.5493851}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1851,7 +1870,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 316.7644, y: 58.82351}
+  m_Size: {x: 347.8386, y: 54.79515}
   m_EdgeRadius: 0
 --- !u!1 &1571319634
 GameObject:
@@ -2385,7 +2404,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -229.5, y: -59.4}
+  m_AnchoredPosition: {x: -261.2, y: -64.4}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1851987948
@@ -2400,9 +2419,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb0db2418a947dc42847edaf1161b04f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnParticle: {fileID: 3271322974552329805, guid: fbc34d4bfa23f7940b935a5634a3fec8,
+    type: 3}
   anim: {fileID: 961473224}
   buttonAnim: {fileID: 1665837990}
-  sceneToLoad: SplashScreen
+  pauseSecondsBeforeLoad: 1.5
+  sceneToLoad: MenuScene
 --- !u!61 &1851987949
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2416,7 +2438,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.89437103, y: -3.7666655}
+  m_Offset: {x: 13.267185, y: 2.5634613}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -2427,7 +2449,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 181.65804, y: 58.82351}
+  m_Size: {x: 161.51617, y: 62.276245}
   m_EdgeRadius: 0
 --- !u!20 &1868495715 stripped
 Camera:
@@ -2469,7 +2491,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -229.5, y: -59.4}
+  m_AnchoredPosition: {x: -261.5, y: -65.7}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1912166629
@@ -2484,8 +2506,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb0db2418a947dc42847edaf1161b04f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnParticle: {fileID: 3271322974552329805, guid: fbc34d4bfa23f7940b935a5634a3fec8,
+    type: 3}
   anim: {fileID: 729945878}
   buttonAnim: {fileID: 1665837990}
+  pauseSecondsBeforeLoad: 1.5
   sceneToLoad: Exit
 --- !u!61 &1912166630
 BoxCollider2D:
@@ -2500,7 +2525,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.89437103, y: -3.7666655}
+  m_Offset: {x: 11.891844, y: 2.5175858}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -2511,7 +2536,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 181.65804, y: 58.82351}
+  m_Size: {x: 143.32407, y: 56.30983}
   m_EdgeRadius: 0
 --- !u!1 &2059975184
 GameObject:
@@ -2802,7 +2827,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -54}
+  m_AnchoredPosition: {x: -50.000004, y: -54}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2091139860

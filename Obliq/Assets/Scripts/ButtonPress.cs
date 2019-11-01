@@ -4,9 +4,19 @@ using UnityEngine;
 
 public class ButtonPress : MonoBehaviour
 {
+    [SerializeField] GameObject spawnParticle;
+    AudioManager _AM;
+
+    [Space(10)]
     [SerializeField] Animator anim;
     [SerializeField] Animator buttonAnim;
+
+    [Space(10)]
+    [SerializeField] float pauseSecondsBeforeLoad;
+    float internaltimer;
     SceneTransitionLoader STM_;
+
+    IsButtonClicked isclicked;
 
     [SerializeField] string sceneToLoad;
     bool isMouseOver;
@@ -14,50 +24,92 @@ public class ButtonPress : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        _AM = FindObjectOfType<AudioManager>();
         STM_ = FindObjectOfType<SceneTransitionLoader>();
+        isclicked = FindObjectOfType<IsButtonClicked>();
+        internaltimer = pauseSecondsBeforeLoad;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        
+        
+
+        if (!isclicked.isButtonClicked)
         {
-            if (isMouseOver)
+            if (Input.GetMouseButtonDown(0))
             {
-                anim.SetBool("IsClicked", true);
-                buttonAnim.SetTrigger("SceneEnd");
-                if (STM_)
+                if (isMouseOver)
                 {
-                    if (sceneToLoad != "Exit")
+                    anim.SetBool("IsClicked", true);
+                    buttonAnim.SetTrigger("SceneEnd");
+                    
+
+                    if (STM_)
                     {
-                        buttonAnim.SetTrigger("SceneEnd");
-                        STM_.load_scene_Asynch(sceneToLoad);
+                        Instantiate(spawnParticle, transform.position, new Quaternion(0, 0, 0, 0));
+                        if (sceneToLoad != "Exit")
+                        {
+                            _AM.PlaySound("WAHH");
+                            buttonAnim.SetTrigger("SceneEnd");
+                            
+                        }
+                        else
+                        {
+                            Application.Quit();
+                        }
                     }
                     else
                     {
-                        Application.Quit();
+                        Debug.Log("No scenemanager in scene. Launch game from splashscreen");
                     }
+
+                    isclicked.isButtonClicked = true;
+                }
+            }
+        }
+        else
+        {
+            if (anim.GetBool("IsClicked"))
+            {
+                if (pauseSecondsBeforeLoad <= 0)
+                {
+                    STM_.load_scene_Asynch(sceneToLoad);
                 }
                 else
                 {
-                    Debug.Log("No scenemanager in scene. Launch game from splashscreen");
+                    pauseSecondsBeforeLoad -= Time.deltaTime;
                 }
             }
         }
     }
 
-    void OnMouseOver()
+    void OnMouseEnter()
     {
-        //If your mouse hovers over the GameObject with the script attached, output this message
-        isMouseOver = true;
-        anim.SetBool("IsHover", isMouseOver);
+        if (isclicked.turnon && !isclicked.isButtonClicked)
+        {
+            
+            //If your mouse hovers over the GameObject with the script attached, output this message
+            _AM.PlaySound("Wahh");
+            isMouseOver = true;
+            anim.SetBool("IsHover", isMouseOver);
+            
+        }
         
     }
 
     void OnMouseExit()
     {
-        //The mouse is no longer hovering over the GameObject so output this message each frame
-        isMouseOver = false;
-        anim.SetBool("IsHover", isMouseOver);
+        if (isclicked.turnon && !isclicked.isButtonClicked)
+        {
+            
+            //The mouse is no longer hovering over the GameObject so output this message each frame
+            isMouseOver = false;
+            anim.SetBool("IsHover", isMouseOver);
+            
+        }
     }
+
+    
 }

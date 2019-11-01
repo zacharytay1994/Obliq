@@ -166,10 +166,10 @@ MonoBehaviour:
   musicVolume: 1
   sfxVolume: 1
   sounds:
-  - name: 
-    clip: {fileID: 0}
-    volume: 0
-    pitch: 0
+  - name: Wahh
+    clip: {fileID: 8300000, guid: 0a80db3045285964f88ee807ce576c51, type: 3}
+    volume: 1
+    pitch: 1
     source: {fileID: 0}
     SoundType: 0
   - name: 
@@ -553,7 +553,7 @@ PrefabInstance:
     - target: {fileID: 734627488603408659, guid: 42bbfa805d47a054d8d1f4412887d620,
         type: 3}
       propertyPath: m_Value
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8930214161788834160, guid: 42bbfa805d47a054d8d1f4412887d620,
         type: 3}
