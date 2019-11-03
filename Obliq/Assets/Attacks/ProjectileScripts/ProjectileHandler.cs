@@ -15,10 +15,10 @@ public class ProjectileHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if (Input.GetMouseButton(0))
-        //{
-        //    SpawnProjectile("Grenade", Camera.main.ScreenToWorldPoint(Input.mousePosition));
-        //}
+        if (Input.GetMouseButtonDown(0))
+        {
+            SpawnProjectile("MockProjectile", Camera.main.ScreenToWorldPoint(Input.mousePosition));
+        }
     }
 
     void SpawnProjectile(string type, Vector2 position)
@@ -26,7 +26,7 @@ public class ProjectileHandler : MonoBehaviour
         GameObject prefab = (GameObject)AssetDatabase.LoadAssetAtPath("Assets/Attacks/Projectiles/" + type + ".prefab", typeof(GameObject));
         GameObject temp = (GameObject)Instantiate(prefab, GameObject.Find("MockPlayer").transform.position, Quaternion.identity);
         // Get projectile interface
-        ProjectileInterface temp_interface = temp.GetComponent<ProjectileInterface>();
-        temp_interface.InitializeProjectile(position);
+        //ProjectileInterface temp_interface = temp.GetComponent<ProjectileInterface>();
+        //temp_interface.InitializeProjectile(position);
     }
 }
