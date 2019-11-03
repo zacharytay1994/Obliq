@@ -32,6 +32,8 @@ public class SectopodIdleState : State
 }
 public class SectopodAttackState : State
 {
+    float attack_rate = 1.0f;
+    float next_damage_time = 0.0f;
     public override void Enter(GameObject owner)
     {
         Debug.Log("Sectopod Attack state");
@@ -42,8 +44,12 @@ public class SectopodAttackState : State
 
         if ((GC<Sectopod>(owner).target_reference_.transform.position - owner.transform.position).magnitude < 2.0f) //temp magic no
         {
-            GC<Sectopod>(owner).target_reference_.GetComponent<Entity>().TakeDamage(1);//temporary hit scan should be projectile
-            Debug.Log(GC<Sectopod>(owner).target_reference_.GetComponent<Entity>().health_);
+            if(Time.time >= next_damage_time)
+            {
+                next_damage_time = Time.time + attack_rate;
+                GC<Sectopod>(owner).target_reference_.GetComponent<Entity>().TakeDamage(1);//temporary hit scan should be projectile
+                Debug.Log(GC<Sectopod>(owner).target_reference_.GetComponent<Entity>().health_);
+            }
             owner.GetComponent<ObliqPathfinding>().StopPath();
         }
         else
