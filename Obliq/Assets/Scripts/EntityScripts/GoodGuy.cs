@@ -29,7 +29,7 @@ public class GoodGuy : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.W))
         {
-            gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 100));
+            gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 50));
         }
     }
 

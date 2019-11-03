@@ -84,16 +84,17 @@ public class SectopodAttackState : State
             }
             owner.GetComponent<ObliqPathfinding>().StopPath();
         }
+        else if ((GC<Sectopod>(owner).target_reference_.transform.position - objective.transform.position).magnitude > GC<Entity>(owner).GetTrueRange())
+        {
+            owner.GetComponent<ObliqPathfinding>().StopPath();
+            GC<Entity>(owner).statemachine_.ChangeState(new SectopodIdleState());
+        }
         else
         {
             GC<Entity>(owner).statemachine_.ChangeState(new SectopodMoveState());
         }
 
-        if ((GC<Sectopod>(owner).target_reference_.transform.position - objective.transform.position).magnitude > GC<Entity>(owner).GetTrueRange())
-        {
-            owner.GetComponent<ObliqPathfinding>().StopPath();
-            GC<Entity>(owner).statemachine_.ChangeState(new SectopodIdleState());
-        }                   
+               
     }
     public override void Exit(GameObject owner)
     {
