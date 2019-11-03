@@ -5,13 +5,20 @@ using UnityEngine;
 public class ProjectileDictionary
 {}
 
+public enum ProjectileForceType
+{
+    Constant,
+    Impulse
+}
+
 public enum ProjectileMovement
 {
     Straight,
     Longitude,
     Lengitude,
     Spiral,
-    Random,
+    RandomStraight,
+    RandomSmooth,
     Flock,
 }
 

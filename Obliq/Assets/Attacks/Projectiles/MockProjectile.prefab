@@ -46,12 +46,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eeb0363ec7ff550499b9f85ee039a8db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed_: 1
-  movement_: 3
-  oscillation_: 0.05
-  amplitude_: 250
-  spiral_speed_: 0
-  centrifugal_: 0
+  speed_: 0
+  force_type_: 0
+  movement_: 5
+  lon_oscillation_: 0.1
+  lon_amplitude_: 500
+  len_oscillation_: 0.1
+  len_amplitude_: 200
+  random_speed_: 300
+  random_range_: 2
+  random_time_: 0.4
+  random_min_angle_: 145
+  random_angle_end_: 70
+  turn_speed_: 100
   target_: 2
   targetted_direction_: {x: 0, y: 0}
   mouse_direction_limit_: 0
