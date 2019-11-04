@@ -46,24 +46,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eeb0363ec7ff550499b9f85ee039a8db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed_: 0
+  speed_: 500
   force_type_: 0
   movement_: 5
-  lon_oscillation_: 0.1
-  lon_amplitude_: 500
-  len_oscillation_: 0.1
-  len_amplitude_: 200
-  random_speed_: 300
-  random_range_: 2
-  random_time_: 0.4
+  local_speed_: 10
+  lon_oscillation_: 0.2
+  len_oscillation_: 0.2
+  random_range_: 3
+  random_time_: 0.2
   random_min_angle_: 145
   random_angle_end_: 70
-  turn_speed_: 100
-  target_: 2
+  turn_speed_: 4
+  target_: 0
   targetted_direction_: {x: 0, y: 0}
   mouse_direction_limit_: 0
   spawn_location_: 1
-  self_offset_: 2
+  self_offset_: 1
+  mouse_self_heading_: 1
+  mouse_offset_: {x: 0, y: 0}
   spawn_style_: 0
   collide_basic_: 0
   collide_effect_: 0

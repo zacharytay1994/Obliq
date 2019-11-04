@@ -11,19 +11,15 @@ public class ImAProjectile : MonoBehaviour
 
     [Header("PROJECTILE MOVEMENT BEHAVIOUR")]
     public ProjectileMovement movement_ = ProjectileMovement.Straight;
+    public float local_speed_ = 0.0f;
     [Header("Wave/Spiral Movement")]
     // amplitude, applicable to longitude and lengitude
     public float lon_oscillation_ = 0.1f;
-    public float lon_amplitude_ = 500.0f;
     public float len_oscillation_ = 0.1f;
-    public float len_amplitude_ = 200.0f;
     float lon_osc_counter_ = 0.0f;
     float len_osc_counter_ = 0.0f;
-    Vector2 old_force_ = new Vector2(0.0f,0.0f);
     // random heading, random length, applicalble to random
     [Header("Random Movement")]
-    [Tooltip("speed between random points")]
-    public float random_speed_ = 300.0f;
     [Tooltip("radius to find new random point")]
     public float random_range_ = 2.0f; // range of selecting random point
     [Tooltip("time in seconds before new random")]
@@ -41,12 +37,21 @@ public class ImAProjectile : MonoBehaviour
     public Vector2 targetted_direction_ = new Vector2(0.0f, 0.0f);
     // mouse direction limit, onlu applicable to MouseDirectionLimit
     public float mouse_direction_limit_ = 0.0f;
+    // for target mouse_point_
+    Vector2 mouse_point_ = new Vector2(0.0f, 0.0f);
+    Vector2 original_direction_ = new Vector2(0.0f, 0.0f);
+    bool stopped_ = false;
 
     // where to spawn the projectile
+    [Header("SPAWN LOCATION")]
     public ProjectileSpawnLocation spawn_location_ = ProjectileSpawnLocation.RelativeSelf;
     // only applicable if RelativeSelf
     public float self_offset_ = 0.0f;
+    [Tooltip("if true, offset relative to self heading, specify mouse_offset_ otherwise")]
+    public bool mouse_self_heading_ = true;
+    public Vector2 mouse_offset_ = new Vector2(0.0f, 0.0f);
 
+    [Header("SPAWN STYLE")]
     public ProjectileSpawnStyle spawn_style_ = ProjectileSpawnStyle.None;
     public OnCollideBasic collide_basic_ = OnCollideBasic.None;
     public OnCollideEffect collide_effect_ = OnCollideEffect.None;
@@ -74,8 +79,16 @@ public class ImAProjectile : MonoBehaviour
         // set movement heading
         switch (target_)
         {
-            case ProjectileTarget.MouseFollow:
             case ProjectileTarget.MousePoint:
+                mouse_point_ = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                movement_heading_ = ((Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition) - (Vector2)gameObject.transform.position).normalized;
+                if (movement_ == ProjectileMovement.Straight)
+                {
+                    original_direction_ = movement_heading_;
+                    rb.velocity += movement_heading_ * speed_;
+                }
+                break;
+            case ProjectileTarget.MouseFollow:
             case ProjectileTarget.MouseDirection:
             case ProjectileTarget.MouseDirectionLimit:
                 movement_heading_ = ((Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition) - (Vector2)gameObject.transform.position).normalized;
@@ -95,7 +108,14 @@ public class ImAProjectile : MonoBehaviour
                 center_point_ = (Vector2)gameObject.transform.position + (movement_heading_ * self_offset_);
                 break;
             case ProjectileSpawnLocation.Mouse:
-                center_point_ = (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                if (mouse_self_heading_)
+                {
+                    center_point_ = (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition) + (movement_heading_ * self_offset_);
+                }
+                else
+                {
+                    center_point_ = (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition) + (mouse_offset_);
+                }
                 break;
         }
         // set projectile at center point
@@ -110,6 +130,22 @@ public class ImAProjectile : MonoBehaviour
         {
             case ProjectileTarget.MouseFollow:
                 movement_heading_ = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - gameObject.transform.position).normalized;
+                break;
+            case ProjectileTarget.MousePoint:
+                if (movement_ == ProjectileMovement.Straight)
+                {
+                    // current heading
+                    Vector2 current_heading = mouse_point_ - (Vector2)transform.position;
+                    if (Vector2.Dot(current_heading, original_direction_) < 0 && !stopped_)
+                    {
+                        rb.velocity -= original_direction_ * speed_;
+                        stopped_ = true;
+                    }
+                }
+                else
+                {
+                    movement_heading_ = (mouse_point_ - (Vector2)gameObject.transform.position).normalized;
+                }
                 break;
         }
         if (force_type_ == ProjectileForceType.Constant)
@@ -146,21 +182,18 @@ public class ImAProjectile : MonoBehaviour
     void StraightMovement()
     {
         // Apply constant force to bullet in straight direction
-        rb.AddForce(movement_heading_ * speed_, ForceMode2D.Force);
+        MoveMovementHeading(0);
     }
 
     void LongitudeMovement()
     {
         lon_osc_counter_ = (lon_osc_counter_ + lon_oscillation_) % 6.284f;
-        // counteract old force
-        rb.AddForce(-old_force_, ForceMode2D.Force);
-        Vector2 new_force = movement_heading_ * lon_amplitude_ * Mathf.Sin(lon_osc_counter_);
+        // counteract old force - 100.0f is there to ensure resultant vector is long enough to use for calculation
+        Vector2 new_force = movement_heading_ * 100.0f * Mathf.Sin(lon_osc_counter_);
         // apply new force
-        rb.AddForce(new_force, ForceMode2D.Force);
-        // update old force
-        old_force_ = new_force;
+        rb.velocity = ((Vector2)rb.velocity + new_force).normalized * local_speed_;
         // move towards target by speed
-        rb.AddForce(movement_heading_ * speed_, ForceMode2D.Force);
+        MoveMovementHeading(0);
     }
 
     void LengitudeMovement()
@@ -168,15 +201,11 @@ public class ImAProjectile : MonoBehaviour
         len_osc_counter_ = (len_osc_counter_ + len_oscillation_) % 6.284f;
         // move perpendicular to center heading
         Vector2 perpendicular_vector = new Vector2(movement_heading_.y, -movement_heading_.x).normalized;
-        // counteract old force
-        rb.AddForce(-old_force_, ForceMode2D.Force);
-        Vector2 new_force = perpendicular_vector * len_amplitude_ * Mathf.Cos(len_osc_counter_);
+        Vector2 new_force = perpendicular_vector * 100.0f * Mathf.Cos(len_osc_counter_);
         // apply new force
-        rb.AddForce(new_force, ForceMode2D.Force);
-        // update old force
-        old_force_ = new_force;
+        rb.velocity = ((Vector2)rb.velocity + new_force).normalized * local_speed_;
         // move towards target by speed
-        rb.AddForce(movement_heading_ * speed_, ForceMode2D.Force);
+        MoveMovementHeading(0);
     }
 
     void SpiralMovement()
@@ -185,15 +214,11 @@ public class ImAProjectile : MonoBehaviour
         len_osc_counter_ = (len_osc_counter_ + len_oscillation_) % 6.284f;
         // move perpendicular to center heading
         Vector2 perpendicular_vector = new Vector2(movement_heading_.y, -movement_heading_.x).normalized;
-        // counteract old force
-        rb.AddForce(-old_force_, ForceMode2D.Force);
-        Vector2 new_force = (perpendicular_vector * len_amplitude_ * Mathf.Cos(len_osc_counter_)) + (movement_heading_ * lon_amplitude_ * Mathf.Sin(lon_osc_counter_));
+        Vector2 new_force = (perpendicular_vector * 100.0f * Mathf.Cos(len_osc_counter_)) + (movement_heading_ * 100.0f * Mathf.Sin(lon_osc_counter_));
         // apply new force
-        rb.AddForce(new_force, ForceMode2D.Force);
-        // update old force
-        old_force_ = new_force;
+        rb.velocity = ((Vector2)rb.velocity + new_force).normalized * local_speed_;
         // move towards target by speed
-        rb.AddForce(movement_heading_ * speed_, ForceMode2D.Force);
+        MoveMovementHeading(0);
     }
 
     void RandomMovementStraight()
@@ -210,13 +235,12 @@ public class ImAProjectile : MonoBehaviour
             random_heading_ = new Vector2((random_heading_.x * Mathf.Cos(random_angle)) + (random_heading_.y * -Mathf.Sin(random_angle)),
                 (random_heading_.x * Mathf.Sin(random_angle) + random_heading_.y * Mathf.Cos(random_angle)));
         }
+        // cancel old velocity heading to keep straight path
+        rb.velocity -= -random_heading_ * Mathf.Min(((Vector2)rb.velocity).magnitude, local_speed_);
         // apply random force
-        rb.AddForce(-old_force_, ForceMode2D.Force);
-        Vector2 new_force = random_heading_ * random_speed_;
-        rb.AddForce(new_force, ForceMode2D.Force);
-        old_force_ = new_force;
+        rb.velocity = ((Vector2)rb.velocity + random_heading_).normalized * local_speed_;
         // move towards target by speed
-        rb.AddForce(movement_heading_ * speed_, ForceMode2D.Force);
+        MoveMovementHeading(0);
     }
 
     void RandomMovementSmooth()
@@ -234,16 +258,41 @@ public class ImAProjectile : MonoBehaviour
                 (random_heading_.x * Mathf.Sin(random_angle) + random_heading_.y * Mathf.Cos(random_angle)));
         }
         // incremental vector
-        Vector2 current_velocity = (Vector2)transform.position + rb.velocity.normalized * random_speed_;
-        Vector2 desired_velocity = (Vector2)transform.position + random_heading_ * random_speed_;
+        Vector2 temp_vel = (Vector2)rb.velocity;
+        temp_vel = temp_vel.normalized;
+        Vector2 current_velocity = (Vector2)transform.position + temp_vel * local_speed_;
+        Vector2 desired_velocity = (Vector2)transform.position + random_heading_ * local_speed_;
         Vector2 steering = (desired_velocity - current_velocity).normalized;
         steering *= turn_speed_;
         // apply random force
-        rb.AddForce(-old_force_, ForceMode2D.Force);
-        Vector2 new_force = rb.velocity.normalized * random_speed_ + steering;
-        rb.AddForce(new_force, ForceMode2D.Force);
-        old_force_ = new_force;
+        Vector2 new_force = temp_vel * local_speed_ + steering;
+        rb.velocity = ((Vector2)rb.velocity + new_force).normalized * local_speed_;
         // move towards target by speed
-        rb.AddForce(movement_heading_ * speed_, ForceMode2D.Force);
+        MoveMovementHeading(0);
+    }
+
+    // General functions
+    void MoveMovementHeading(int forcemode)
+    {
+        if (forcemode == 0)
+        {
+            switch (target_)
+            {
+                case ProjectileTarget.MousePoint:
+                    if (!(movement_ == ProjectileMovement.Straight))
+                    {
+                        rb.AddForce(movement_heading_ * speed_, ForceMode2D.Force);
+                    }
+                    break;
+                case ProjectileTarget.MouseFollow:
+                case ProjectileTarget.MouseDirection:
+                    rb.AddForce(movement_heading_ * speed_, ForceMode2D.Force);
+                    break;
+            }
+        }
+        else
+        {
+            rb.AddForce(movement_heading_ * speed_, ForceMode2D.Impulse);
+        }
     }
 }
