@@ -6,9 +6,12 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] Camera camera_;
     [SerializeField] float player_speed_;
+    Rigidbody2D rb2d_;
+    Vector2 heading_ = new Vector2(0.0f, 0.0f);
     // Start is called before the first frame update
     void Start()
     {
+        rb2d_ = GetComponent<Rigidbody2D>();
         
     }
 
@@ -17,23 +20,42 @@ public class PlayerController : MonoBehaviour
     {
         PlayerFacingDirection();
 
-        
-        if(Input.GetKey(KeyCode.W))
+
+        if (Input.GetKeyDown(KeyCode.W))
         {
-            transform.position+= new Vector3(0.0f, player_speed_, 0.0f);
+            heading_.y += 1;
         }
-        if(Input.GetKey(KeyCode.S))
+        if (Input.GetKeyUp(KeyCode.W))
         {
-            transform.position += new Vector3(0.0f, -player_speed_, 0.0f);
+            heading_.y -= 1;
         }
-        if(Input.GetKey(KeyCode.A))
+        if (Input.GetKeyDown(KeyCode.S))
         {
-            transform.position += new Vector3(-player_speed_, 0.0f, 0.0f);
+            heading_.y -= 1;
         }
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKeyUp(KeyCode.S))
         {
-            transform.position += new Vector3(player_speed_, 0.0f, 0.0f);
+            heading_.y += 1;
         }
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            heading_.x -= 1;
+        }
+        if (Input.GetKeyUp(KeyCode.A))
+        {
+            heading_.x += 1;
+        }
+
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            heading_.x += 1;
+        }
+        if (Input.GetKeyUp(KeyCode.D))
+        {
+            heading_.x -= 1;
+        }
+        rb2d_.AddForce(heading_ * player_speed_, ForceMode2D.Force);
+
     }
 
     float PlayerFacingDirection()
