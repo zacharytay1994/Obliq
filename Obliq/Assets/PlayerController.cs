@@ -20,11 +20,19 @@ public class PlayerController : MonoBehaviour
         
         if(Input.GetKey(KeyCode.W))
         {
-            transform.Translate(0.0f, player_speed_, 0.0f);
+            transform.position+= new Vector3(0.0f, player_speed_, 0.0f);
         }
         if(Input.GetKey(KeyCode.S))
         {
-            transform.Translate(0.0f, player_speed_, 0.0f);
+            transform.position += new Vector3(0.0f, -player_speed_, 0.0f);
+        }
+        if(Input.GetKey(KeyCode.A))
+        {
+            transform.position += new Vector3(-player_speed_, 0.0f, 0.0f);
+        }
+        if (Input.GetKey(KeyCode.D))
+        {
+            transform.position += new Vector3(player_speed_, 0.0f, 0.0f);
         }
     }
 
