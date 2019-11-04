@@ -55,7 +55,7 @@ public class TempMovement : MonoBehaviour
             movement_heading_.y += 1;
         }
         gameObject.transform.position += (Vector3)((Vector2)movement_heading_.normalized * speed_);
-        melee_.Update();
+        //melee_.Update();
     }
 
     void UpdateHeadingVector()

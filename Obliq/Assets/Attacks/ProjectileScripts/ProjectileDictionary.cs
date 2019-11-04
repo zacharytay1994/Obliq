@@ -33,9 +33,9 @@ public enum ProjectileTarget
     MouseFollow,
     MousePoint,
     MouseDirection,
-    MouseDirectionLimit,
-    DirectionShort,
-    DirectionLong,
+    SpecifyDirection,
+    CircularDirection,
+    ConalDirection,
     NearestEnemy
 }
 
@@ -72,7 +72,7 @@ public enum ProjectileSpawnPattern
 
 public enum ProjectileSpawnStyle
 {
-    None,
+    Single,
     Burst,
     Stream
 }

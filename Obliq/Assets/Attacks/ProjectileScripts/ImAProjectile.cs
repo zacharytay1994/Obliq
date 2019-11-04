@@ -1,13 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 public class ImAProjectile : MonoBehaviour
 {
     // Projectile variables basic
     public float speed_ = 5.0f;
     public ProjectileForceType force_type_ = ProjectileForceType.Constant;
+    public bool is_spawned_prefab_ = false;
     Rigidbody2D rb;
+    bool initialized_ = false;
 
     [Header("PROJECTILE MOVEMENT BEHAVIOUR")]
     public ProjectileMovement movement_ = ProjectileMovement.Straight;
@@ -29,18 +32,24 @@ public class ImAProjectile : MonoBehaviour
     public float turn_speed_ = 100.0f;
     Vector2 random_heading_ = new Vector2(0.0f, 0.0f);
     float random_counter_ = 0.0f;
+    
 
     // target to fire at
     [Header("PROJECTILE TARGET SELECT")]
     public ProjectileTarget target_ = ProjectileTarget.MouseDirection;
     // direction to fire at, only applicable to DirectionLong and DirectionShort
-    public Vector2 targetted_direction_ = new Vector2(0.0f, 0.0f);
+    public Vector2 specified_direction_ = new Vector2(0.0f, 0.0f);
+    // if direction should be limited
+    public bool limited_ = false;
     // mouse direction limit, onlu applicable to MouseDirectionLimit
-    public float mouse_direction_limit_ = 0.0f;
+    public float time_limit_ = 0.0f;
+    float limit_counter_ = 0.0f;
     // for target mouse_point_
     Vector2 mouse_point_ = new Vector2(0.0f, 0.0f);
     Vector2 original_direction_ = new Vector2(0.0f, 0.0f);
     bool stopped_ = false;
+    List<ImAProjectile> proj_list_ = new List<ImAProjectile>();
+    public int circle_density_ = 0;
 
     // where to spawn the projectile
     [Header("SPAWN LOCATION")]
@@ -51,19 +60,43 @@ public class ImAProjectile : MonoBehaviour
     public bool mouse_self_heading_ = true;
     public Vector2 mouse_offset_ = new Vector2(0.0f, 0.0f);
 
+    [Header("SPAWNING TRIGGERS")]
+    public bool time_trigger_ = false;
+    public ProjectileSpawnPattern tt_style_ = ProjectileSpawnPattern.Single;
+    public ProjectileSpawnStyle tt_sstyle_ = ProjectileSpawnStyle.Single;
+    public float time_delay_ = 0.0f;
+    public string tt_prefab_ = "";
+    public bool continuous_trigger_ = false;
+    public ProjectileSpawnPattern cont_style_ = ProjectileSpawnPattern.Single;
+    public ProjectileSpawnStyle cont_sstyle_ = ProjectileSpawnStyle.Single;
+    public float time_interval_ = 0.0f;
+    public string cont_prefab_ = "";
+    float interval_counter_ = 0.0f;
+    public bool collide_trigger_ = false;
+    public ProjectileSpawnPattern colt_style_ = ProjectileSpawnPattern.Single;
+    public ProjectileSpawnStyle colt_sstyle_ = ProjectileSpawnStyle.Single;
+    public string colt_prefab_ = "";
+
     [Header("SPAWN STYLE")]
-    public ProjectileSpawnStyle spawn_style_ = ProjectileSpawnStyle.None;
+    public ProjectileSpawnStyle spawn_style_ = ProjectileSpawnStyle.Single;
     public OnCollideBasic collide_basic_ = OnCollideBasic.None;
     public OnCollideEffect collide_effect_ = OnCollideEffect.None;
     public OnCollideSpawn collide_spawn_ = OnCollideSpawn.None;
     public CollideResult collide_result_ = CollideResult.Continue;
     public LocalMovement local_movement_ = LocalMovement.Fixed;
 
+    // debug
+    int debug_counter_ = 0;
+
     // Projectile Variables
-    Vector2 center_point_;
-    Vector2 movement_heading_;
+    Vector2 center_point_ = new Vector2(0.0f, 0.0f);
+    Vector2 movement_heading_ = new Vector2(0.0f, 0.0f);
     // Start is called before the first frame update
     void Start()
+    {
+    }
+
+    public void InitProj()
     {
         // set stuff
         rb = gameObject.GetComponent<Rigidbody2D>();
@@ -90,12 +123,14 @@ public class ImAProjectile : MonoBehaviour
                 break;
             case ProjectileTarget.MouseFollow:
             case ProjectileTarget.MouseDirection:
-            case ProjectileTarget.MouseDirectionLimit:
                 movement_heading_ = ((Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition) - (Vector2)gameObject.transform.position).normalized;
                 break;
-            case ProjectileTarget.DirectionShort:
-            case ProjectileTarget.DirectionLong:
-                movement_heading_ = (targetted_direction_ - (Vector2)gameObject.transform.position).normalized;
+            case ProjectileTarget.SpecifyDirection:
+                movement_heading_ = specified_direction_;
+                break;
+            case ProjectileTarget.CircularDirection:
+                //center_point_ = (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                //InstantiateCircularPrefabs(10);
                 break;
             case ProjectileTarget.NearestEnemy:
                 // to be filled
@@ -120,60 +155,73 @@ public class ImAProjectile : MonoBehaviour
         }
         // set projectile at center point
         transform.position = center_point_;
+        initialized_ = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        // update movement heading based on target
-        switch (target_)
+        if (initialized_)
         {
-            case ProjectileTarget.MouseFollow:
-                movement_heading_ = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - gameObject.transform.position).normalized;
-                break;
-            case ProjectileTarget.MousePoint:
-                if (movement_ == ProjectileMovement.Straight)
-                {
-                    // current heading
-                    Vector2 current_heading = mouse_point_ - (Vector2)transform.position;
-                    if (Vector2.Dot(current_heading, original_direction_) < 0 && !stopped_)
-                    {
-                        rb.velocity -= original_direction_ * speed_;
-                        stopped_ = true;
-                    }
-                }
-                else
-                {
-                    movement_heading_ = (mouse_point_ - (Vector2)gameObject.transform.position).normalized;
-                }
-                break;
-        }
-        if (force_type_ == ProjectileForceType.Constant)
-        {
-            // update movement
-            switch (movement_)
+            // update movement heading based on target
+            switch (target_)
             {
-                case ProjectileMovement.Straight:
-                    StraightMovement();
+                case ProjectileTarget.MouseFollow:
+                    movement_heading_ = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - gameObject.transform.position).normalized;
                     break;
-                case ProjectileMovement.Longitude:
-                    LongitudeMovement();
+                case ProjectileTarget.MousePoint:
+                    if (movement_ == ProjectileMovement.Straight)
+                    {
+                        // current heading
+                        Vector2 current_heading = mouse_point_ - (Vector2)transform.position;
+                        if (Vector2.Dot(current_heading, original_direction_) < 0 && !stopped_)
+                        {
+                            rb.velocity = new Vector3(0.0f, 0.0f, 0.0f);
+                            stopped_ = true;
+                        }
+                    }
+                    else
+                    {
+                        movement_heading_ = (mouse_point_ - (Vector2)gameObject.transform.position).normalized;
+                    }
                     break;
-                case ProjectileMovement.Lengitude:
-                    LengitudeMovement();
-                    break;
-                case ProjectileMovement.Spiral:
-                    SpiralMovement();
-                    break;
-                case ProjectileMovement.RandomStraight:
-                    RandomMovementStraight();
-                    break;
-                case ProjectileMovement.RandomSmooth:
-                    RandomMovementSmooth();
+                case ProjectileTarget.CircularDirection:
+                    debug_counter_++;
+                    if (debug_counter_ > 200)
+                    {
+                        InstantiateCircularPrefabs(10);
+                        debug_counter_ = 0;
+                    }
                     break;
             }
+            if (force_type_ == ProjectileForceType.Constant)
+            {
+                // update movement
+                switch (movement_)
+                {
+                    case ProjectileMovement.Straight:
+                        StraightMovement();
+                        break;
+                    case ProjectileMovement.Longitude:
+                        LongitudeMovement();
+                        break;
+                    case ProjectileMovement.Lengitude:
+                        LengitudeMovement();
+                        break;
+                    case ProjectileMovement.Spiral:
+                        SpiralMovement();
+                        break;
+                    case ProjectileMovement.RandomStraight:
+                        RandomMovementStraight();
+                        break;
+                    case ProjectileMovement.RandomSmooth:
+                        RandomMovementSmooth();
+                        break;
+                }
+            }
+            else if (force_type_ == ProjectileForceType.Impulse) { }
+
         }
-        else if (force_type_ == ProjectileForceType.Impulse) { }
     }
 
     //-------------------------------------------//
@@ -285,14 +333,68 @@ public class ImAProjectile : MonoBehaviour
                     }
                     break;
                 case ProjectileTarget.MouseFollow:
-                case ProjectileTarget.MouseDirection:
                     rb.AddForce(movement_heading_ * speed_, ForceMode2D.Force);
+                    break;
+                case ProjectileTarget.MouseDirection:
+                case ProjectileTarget.SpecifyDirection:
+                    if (!limited_)
+                    {
+                        rb.AddForce(movement_heading_ * speed_, ForceMode2D.Force);
+                    }
+                    else
+                    {
+                        if (!stopped_)
+                        {
+                            if (limit_counter_ < time_limit_)
+                            {
+                                limit_counter_ += Time.deltaTime;
+                                rb.AddForce(movement_heading_ * speed_, ForceMode2D.Force);
+                            }
+                            else
+                            {
+                                // get direction of velocity
+                                float direction_magnitude = Vector2.Dot((Vector2)rb.velocity, movement_heading_);
+                                Vector2 direction_velocity = movement_heading_ * direction_magnitude;
+                                rb.velocity -= direction_velocity;
+                                stopped_ = true;
+                            }
+                        }
+                    }
                     break;
             }
         }
         else
         {
             rb.AddForce(movement_heading_ * speed_, ForceMode2D.Impulse);
+        }
+    }
+
+    void InstantiateCircularPrefabs(int density)
+    {
+        GameObject prefab = (GameObject)AssetDatabase.LoadAssetAtPath("Assets/Attacks/Projectiles/" + "TestPrefabProj" + ".prefab", typeof(GameObject));
+        for (int i = 0; i < density; i++)
+        {
+            GameObject temp = (GameObject)Instantiate(prefab, transform.position, Quaternion.identity);
+            //temp.GetComponent<ImAProjectile>().InitProj();
+            proj_list_.Add(temp.GetComponent<ImAProjectile>());
+        }
+        InitSpawnedProjectiles(density);
+        foreach(ImAProjectile z in proj_list_)
+        {
+            z.InitProj();
+        }
+        proj_list_.Clear();
+    }
+
+    void InitSpawnedProjectiles(int density)
+    {
+        float angle = 6.284f / density;
+        float first_angle = 0.0f;
+        foreach (ImAProjectile i in proj_list_)
+        {
+            // get angle
+            first_angle += angle;
+            i.specified_direction_ = new Vector2((specified_direction_.x * Mathf.Cos(first_angle)) + (specified_direction_.y * -Mathf.Sin(first_angle)), ((specified_direction_.x * Mathf.Sin(first_angle)) + (specified_direction_.y * Mathf.Cos(first_angle))));
         }
     }
 }

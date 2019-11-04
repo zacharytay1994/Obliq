@@ -25,6 +25,7 @@ public class ProjectileHandler : MonoBehaviour
     {
         GameObject prefab = (GameObject)AssetDatabase.LoadAssetAtPath("Assets/Attacks/Projectiles/" + type + ".prefab", typeof(GameObject));
         GameObject temp = (GameObject)Instantiate(prefab, GameObject.Find("MockPlayer").transform.position, Quaternion.identity);
+        temp.GetComponent<ImAProjectile>().InitProj();
         // Get projectile interface
         //ProjectileInterface temp_interface = temp.GetComponent<ProjectileInterface>();
         //temp_interface.InitializeProjectile(position);
