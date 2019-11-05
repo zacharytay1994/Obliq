@@ -46,13 +46,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eeb0363ec7ff550499b9f85ee039a8db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed_: 100
+  speed_: 60
   force_type_: 0
   is_spawned_prefab_: 0
   movement_: 2
-  local_speed_: 10
-  lon_oscillation_: 0.1
-  len_oscillation_: 0.1
+  local_speed_: 5
+  lon_oscillation_: 0.2
+  len_oscillation_: 0.2
   random_range_: 3
   random_time_: 0.2
   random_min_angle_: 145
@@ -61,26 +61,32 @@ MonoBehaviour:
   target_: 3
   specified_direction_: {x: 0, y: 0}
   limited_: 0
-  time_limit_: 1
-  circle_density_: 0
+  time_limit_: 0.5
   spawn_location_: 1
   self_offset_: 1
   mouse_self_heading_: 1
   mouse_offset_: {x: 0, y: 0}
+  local_orientation_: 90
   time_trigger_: 0
   tt_style_: 0
+  tt_density_: 0
   tt_sstyle_: 0
   time_delay_: 0
   tt_prefab_: 
+  time_delay_counter_: 0
   continuous_trigger_: 0
-  cont_style_: 0
+  cont_style_: 1
+  cont_density_: 3
+  conal_angle_: 60
   cont_sstyle_: 0
-  time_interval_: 0
-  cont_prefab_: 
+  time_interval_: 2
+  cont_prefab_: TestPrefabProj
   collide_trigger_: 0
   colt_style_: 0
   colt_sstyle_: 0
   colt_prefab_: 
+  spin_: 0
+  spin_rate_: 0
   spawn_style_: 0
   collide_basic_: 0
   collide_effect_: 0

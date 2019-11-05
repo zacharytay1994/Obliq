@@ -49,7 +49,6 @@ public class ImAProjectile : MonoBehaviour
     Vector2 original_direction_ = new Vector2(0.0f, 0.0f);
     bool stopped_ = false;
     List<ImAProjectile> proj_list_ = new List<ImAProjectile>();
-    public int circle_density_ = 0;
 
     // where to spawn the projectile
     [Header("SPAWN LOCATION")]
@@ -61,21 +60,34 @@ public class ImAProjectile : MonoBehaviour
     public Vector2 mouse_offset_ = new Vector2(0.0f, 0.0f);
 
     [Header("SPAWNING TRIGGERS")]
+    // the local orientation used for spawning projectiles
+    public float local_orientation_ = 0.0f;
+    [Header("Time Trigger")]
     public bool time_trigger_ = false;
     public ProjectileSpawnPattern tt_style_ = ProjectileSpawnPattern.Single;
+    public int tt_density_ = 0;
     public ProjectileSpawnStyle tt_sstyle_ = ProjectileSpawnStyle.Single;
     public float time_delay_ = 0.0f;
     public string tt_prefab_ = "";
+    public float time_delay_counter_ = 0.0f;
+    [Header("Continuous Trigger")]
     public bool continuous_trigger_ = false;
     public ProjectileSpawnPattern cont_style_ = ProjectileSpawnPattern.Single;
+    public int cont_density_ = 0;
+    public float conal_angle_ = 0.0f;
     public ProjectileSpawnStyle cont_sstyle_ = ProjectileSpawnStyle.Single;
     public float time_interval_ = 0.0f;
     public string cont_prefab_ = "";
     float interval_counter_ = 0.0f;
+    [Header("Collide Trigger")]
     public bool collide_trigger_ = false;
     public ProjectileSpawnPattern colt_style_ = ProjectileSpawnPattern.Single;
     public ProjectileSpawnStyle colt_sstyle_ = ProjectileSpawnStyle.Single;
     public string colt_prefab_ = "";
+
+    [Header("TO SPIN OR NOT TO SPIN")]
+    public bool spin_ = false;
+    public float spin_rate_ = 0.0f;
 
     [Header("SPAWN STYLE")]
     public ProjectileSpawnStyle spawn_style_ = ProjectileSpawnStyle.Single;
@@ -186,12 +198,12 @@ public class ImAProjectile : MonoBehaviour
                     }
                     break;
                 case ProjectileTarget.CircularDirection:
-                    debug_counter_++;
-                    if (debug_counter_ > 200)
-                    {
-                        InstantiateCircularPrefabs(10);
-                        debug_counter_ = 0;
-                    }
+                    //debug_counter_++;
+                    //if (debug_counter_ > 200)
+                    //{
+                    //    InstantiateCircularPrefabs(10);
+                    //    debug_counter_ = 0;
+                    //}
                     break;
             }
             if (force_type_ == ProjectileForceType.Constant)
@@ -221,6 +233,56 @@ public class ImAProjectile : MonoBehaviour
             }
             else if (force_type_ == ProjectileForceType.Impulse) { }
 
+            // Process spawning behaviour
+            if (time_trigger_)
+            {
+                if (time_delay_counter_ < time_delay_)
+                {
+                    time_delay_ += Time.deltaTime;
+                }
+                else
+                {
+                    switch (tt_style_)
+                    {
+                        case ProjectileSpawnPattern.Circle:
+                            InstantiateCircularPrefabs(tt_density_, tt_prefab_);
+                            break;
+                    }
+                }
+            }
+            if (continuous_trigger_)
+            {
+                if (interval_counter_ < time_interval_)
+                {
+                    interval_counter_ += Time.deltaTime;
+                }
+                else
+                {
+                    interval_counter_ = 0.0f;
+                    switch (cont_style_)
+                    {
+                        case ProjectileSpawnPattern.Circle:
+                            InstantiateCircularPrefabs(cont_density_, cont_prefab_);
+                            break;
+                        case ProjectileSpawnPattern.Cone:
+                            InstantiateConalPrefabs(cont_density_, conal_angle_, cont_prefab_);
+                            break;
+                    }
+                }
+            }
+            if (collide_trigger_) { }
+
+            // update spinning behaviour
+            if (spin_)
+            {
+                local_orientation_ -= spin_rate_ * Time.deltaTime;
+                local_orientation_ = local_orientation_ > 360.0f ? local_orientation_ - 360.0f : local_orientation_;
+                local_orientation_ = local_orientation_ < 0.0f ? 360.0f - local_orientation_ : local_orientation_;
+            }
+
+            // update rotation
+            float temp_angle = -Mathf.Atan2(rb.velocity.x, rb.velocity.y) * Mathf.Rad2Deg;
+            rb.MoveRotation(temp_angle);
         }
     }
 
@@ -369,16 +431,16 @@ public class ImAProjectile : MonoBehaviour
         }
     }
 
-    void InstantiateCircularPrefabs(int density)
+    void InstantiateCircularPrefabs(int density, string projprefab)
     {
-        GameObject prefab = (GameObject)AssetDatabase.LoadAssetAtPath("Assets/Attacks/Projectiles/" + "TestPrefabProj" + ".prefab", typeof(GameObject));
+        GameObject prefab = (GameObject)AssetDatabase.LoadAssetAtPath("Assets/Attacks/Projectiles/" + projprefab + ".prefab", typeof(GameObject));
         for (int i = 0; i < density; i++)
         {
             GameObject temp = (GameObject)Instantiate(prefab, transform.position, Quaternion.identity);
             //temp.GetComponent<ImAProjectile>().InitProj();
             proj_list_.Add(temp.GetComponent<ImAProjectile>());
         }
-        InitSpawnedProjectiles(density);
+        InitSpawnedCircleProjectiles(density);
         foreach(ImAProjectile z in proj_list_)
         {
             z.InitProj();
@@ -386,15 +448,46 @@ public class ImAProjectile : MonoBehaviour
         proj_list_.Clear();
     }
 
-    void InitSpawnedProjectiles(int density)
+    void InitSpawnedCircleProjectiles(int density)
     {
         float angle = 6.284f / density;
-        float first_angle = 0.0f;
+        float first_angle = local_orientation_ * (3.142f/180.0f);
         foreach (ImAProjectile i in proj_list_)
         {
             // get angle
             first_angle += angle;
             i.specified_direction_ = new Vector2((specified_direction_.x * Mathf.Cos(first_angle)) + (specified_direction_.y * -Mathf.Sin(first_angle)), ((specified_direction_.x * Mathf.Sin(first_angle)) + (specified_direction_.y * Mathf.Cos(first_angle))));
+        }
+    }
+
+    void InstantiateConalPrefabs(int density, float angle, string projprefab)
+    {
+        GameObject prefab = (GameObject)AssetDatabase.LoadAssetAtPath("Assets/Attacks/Projectiles/" + projprefab + ".prefab", typeof(GameObject));
+        for (int i = 0; i < density; i++)
+        {
+            GameObject temp = (GameObject)Instantiate(prefab, transform.position, Quaternion.identity);
+            //temp.GetComponent<ImAProjectile>().InitProj();
+            proj_list_.Add(temp.GetComponent<ImAProjectile>());
+        }
+        InitSpawnedConalPrefabs(density, angle * (3.142f/180.0f));
+        foreach (ImAProjectile z in proj_list_)
+        {
+            z.InitProj();
+        }
+        proj_list_.Clear();
+    }
+
+    void InitSpawnedConalPrefabs(int density, float angle)
+    {
+        float lo_rad = local_orientation_ * (3.142f / 180.0f);
+        Vector2 start_heading = new Vector2((0 * Mathf.Cos(lo_rad - (angle/2))) + (1 * -Mathf.Sin(lo_rad - (angle/2))), ((0 * Mathf.Sin(lo_rad - (angle/2))) + (1 * Mathf.Cos(lo_rad - (angle/2)))));
+        float increment_angle = angle / (float)(density - 1);
+        float temp_angle = 0.0f;
+        // angle to rotate to
+        for (int i = 1; i < density; i++)
+        {
+            temp_angle += increment_angle;
+            proj_list_[i].specified_direction_ = new Vector2((start_heading.x * Mathf.Cos(temp_angle)) + (start_heading.y * -Mathf.Sin(temp_angle)), ((start_heading.x * Mathf.Sin(temp_angle)) + (start_heading.y * Mathf.Cos(temp_angle))));
         }
     }
 }
