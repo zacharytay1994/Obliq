@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+
     [SerializeField] Camera camera_;
-    [SerializeField] float player_speed_;
+    [SerializeField] float player_acceleration_;
     Rigidbody2D rb2d_;
     Vector2 heading_ = new Vector2(0.0f, 0.0f);
+    [SerializeField] float player_max_speed_;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +20,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         PlayerFacingDirection();
 
 
@@ -45,7 +48,6 @@ public class PlayerController : MonoBehaviour
         {
             heading_.x += 1;
         }
-
         if (Input.GetKeyDown(KeyCode.D))
         {
             heading_.x += 1;
@@ -54,7 +56,12 @@ public class PlayerController : MonoBehaviour
         {
             heading_.x -= 1;
         }
-        rb2d_.AddForce(heading_ * player_speed_, ForceMode2D.Force);
+        rb2d_.AddForce(heading_ * player_acceleration_, ForceMode2D.Force);
+        if(rb2d_.velocity.magnitude>player_max_speed_)
+        {
+            rb2d_.velocity = rb2d_.velocity.normalized * player_max_speed_;
+        }
+
 
     }
 
