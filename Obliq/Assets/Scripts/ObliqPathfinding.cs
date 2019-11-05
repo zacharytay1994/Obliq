@@ -56,7 +56,13 @@ public class ObliqPathfinding : MonoBehaviour
             path_not_found_ = true;
         }
     }
-
+    public void StopPath()
+    {
+        rb2D_.velocity = Vector2.zero;
+        rb2D_.angularVelocity = 0;
+        reached_end_path_ = true;
+        return;
+    }
     // Update is called once per frame
     void Update()
     {
