@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class Entity : MonoBehaviour
 {
+    // temp flag for enemy entities
+    public bool start_ = false;
     // reference to turn manager
-    public TurnManager turn_manager_reference_;
+    public WorldHandler world_handler_reference_;
     // instance statemachine
     public Statemachine statemachine_;
     // if the entity has finished moving on its turn
@@ -23,7 +25,8 @@ public class Entity : MonoBehaviour
     {
         statemachine_ = new Statemachine(gameObject);
         statemachine_.SetState(new SomeDefault());
-        turn_manager_reference_ = GameObject.Find("World").GetComponent<TurnManager>();
+        world_handler_reference_ = GameObject.Find("World").GetComponent<WorldHandler>();
+
     }
     // Start is called before the first frame update
     void Start()
@@ -55,4 +58,11 @@ public class Entity : MonoBehaviour
     {
         health_ -= dmg;
     }
+
+    // misc function
+    public float GetTrueRange()
+    {
+        return attack_range_ * unit_scale_per_range_;
+    }
+    
 }

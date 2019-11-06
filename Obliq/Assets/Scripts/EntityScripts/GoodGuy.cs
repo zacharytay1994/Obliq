@@ -9,6 +9,7 @@ public class GoodGuy : MonoBehaviour
 
     // movement & action variables
     public int action_points_ = 3;
+    int original_action_points_;
     public float distance_per_point_ = 5.0f;
     public int point_per_attack_ = 1;
 
@@ -18,6 +19,7 @@ public class GoodGuy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        original_action_points_ = action_points_;
         entity_reference_ = gameObject.GetComponent<Entity>();
         entity_reference_.statemachine_.SetState(new GoodGuyIdle());
     }
@@ -25,7 +27,10 @@ public class GoodGuy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 50));
+        }
     }
 
     public void ExecuteTurn()
@@ -54,5 +59,11 @@ public class GoodGuy : MonoBehaviour
     void SetMoveRadiusInactive(bool active)
     {
         GameObject.Find("World").GetComponent<WorldHandler>().SetMoveRadiusActive(true);
+    }
+
+    public void EndTurn()
+    {
+        entity_reference_.has_moved_ = true;
+        action_points_ = original_action_points_;
     }
 }
