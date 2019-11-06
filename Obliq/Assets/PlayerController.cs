@@ -7,9 +7,9 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] Camera camera_;
     [SerializeField] float player_acceleration_;
+    [SerializeField] float player_decceleration_;
     Rigidbody2D rb2d_;
     Vector2 heading_ = new Vector2(0.0f, 0.0f);
-    [SerializeField] float player_max_speed_;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,48 +21,12 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
 
+    }
+
+    private void FixedUpdate()
+    {
         PlayerFacingDirection();
-
-
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            heading_.y += 1;
-        }
-        if (Input.GetKeyUp(KeyCode.W))
-        {
-            heading_.y -= 1;
-        }
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            heading_.y -= 1;
-        }
-        if (Input.GetKeyUp(KeyCode.S))
-        {
-            heading_.y += 1;
-        }
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            heading_.x -= 1;
-        }
-        if (Input.GetKeyUp(KeyCode.A))
-        {
-            heading_.x += 1;
-        }
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            heading_.x += 1;
-        }
-        if (Input.GetKeyUp(KeyCode.D))
-        {
-            heading_.x -= 1;
-        }
-        rb2d_.AddForce(heading_ * player_acceleration_, ForceMode2D.Force);
-        if(rb2d_.velocity.magnitude>player_max_speed_)
-        {
-            rb2d_.velocity = rb2d_.velocity.normalized * player_max_speed_;
-        }
-
-
+        PlayerMovement();
     }
 
     float PlayerFacingDirection()
@@ -78,5 +42,30 @@ public class PlayerController : MonoBehaviour
     float AngleBetween(Vector2 a, Vector2 b)
     {
         return Mathf.Atan2(a.y-b.y, a.x-b.x )*Mathf.Rad2Deg + 90;
+    }
+
+    void PlayerMovement()
+    {
+        if (Input.GetKey(KeyCode.W))
+        {
+            heading_.y += player_acceleration_;
+        }
+        if (Input.GetKey(KeyCode.S))
+        {
+            heading_.y -= player_acceleration_;
+        }
+        if (Input.GetKey(KeyCode.A))
+        {
+            heading_.x -= player_acceleration_;
+        }
+        if (Input.GetKey(KeyCode.D))
+        {
+            heading_.x += player_acceleration_;
+        }
+
+        heading_.x = heading_.x - ((1 - player_decceleration_) * heading_.x);
+        heading_.y = heading_.y - ((1 - player_decceleration_) * heading_.y);
+
+        rb2d_.velocity = heading_;
     }
 }
