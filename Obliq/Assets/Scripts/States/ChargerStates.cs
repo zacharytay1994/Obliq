@@ -67,7 +67,7 @@ public class ChargerIdleState : State
     {
 
         Debug.Log("Charger Idle");
-        Debug.Log(Time.time - charge_start);
+       // Debug.Log(Time.time - charge_start);
         if (Time.time - charge_start >= 3.0f)
         {
             owner.GetComponent<Entity>().statemachine_.ChangeState(new ChargerMoveState());

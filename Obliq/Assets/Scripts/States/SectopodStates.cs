@@ -74,7 +74,7 @@ public class SectopodAttackState : State
         GameObject objective = GameObject.Find("Entities/Objective");
         GC<ObliqPathfinding>(owner).target_ = GC<Sectopod>(owner).target_reference_.transform.position;
         
-        if ((GC<Sectopod>(owner).target_reference_.transform.position - owner.transform.position).magnitude < 1.5f) //temp magic no
+        if ((GC<Sectopod>(owner).target_reference_.transform.position - owner.transform.position).magnitude < 1.5f) //temp magic no (attack_range)
         {
             if(Time.time >= next_damage_time)
             {
