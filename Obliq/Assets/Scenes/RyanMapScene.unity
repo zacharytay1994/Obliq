@@ -16240,8 +16240,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   camera_: {fileID: 1284642408}
-  player_acceleration_: 10
-  player_max_speed_: 10
+  player_acceleration_: 3
+  player_decceleration_: 0.7
 --- !u!212 &579272844
 SpriteRenderer:
   m_ObjectHideFlags: 0
