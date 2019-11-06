@@ -7,8 +7,8 @@ public class WorldHandler : MonoBehaviour
    // GameObject radius_one_;
    // GameObject radius_two_;
    // GameObject radius_three;
-    List<GameObject> enemies_ = new List<GameObject>();
-    List<GameObject> goodguys_ = new List<GameObject>();
+    public readonly List<GameObject> enemies_ = new List<GameObject>();
+    public readonly List<GameObject> goodguys_ = new List<GameObject>();
     // Start is called before the first frame update
     void Start()
     {

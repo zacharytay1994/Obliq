@@ -27,9 +27,21 @@ public class GoodGuy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKey(KeyCode.W))
         {
-            gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 50));
+            gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 20));
+        }
+        if (Input.GetKey(KeyCode.A))
+        {
+            gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(-20, 0));
+        }
+        if (Input.GetKey(KeyCode.S))
+        {
+            gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, -20));
+        }
+        if (Input.GetKey(KeyCode.D))
+        {
+            gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(20, 0));
         }
     }
 
