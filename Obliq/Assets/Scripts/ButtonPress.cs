@@ -44,7 +44,7 @@ public class ButtonPress : MonoBehaviour
             {
                 if (isMouseOver)
                 {
-                    if (!OptionButton) //Non Option Buttons Code
+                    if (!OptionButton) ////===========================  Non Option Buttons Code  ===========================
                     {
                         anim.SetBool("IsClicked", true);
                         buttonAnim.SetTrigger("SceneEnd");
@@ -71,7 +71,7 @@ public class ButtonPress : MonoBehaviour
 
                         isclicked.isButtonClicked = true;
                     }
-                    else //Option Button Code
+                    else //===========================  Option Button Code  ===========================
                     {
                         if (STM_)
                         {
