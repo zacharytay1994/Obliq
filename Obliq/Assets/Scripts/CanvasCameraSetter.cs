@@ -5,12 +5,13 @@ using UnityEngine;
 public class CanvasCameraSetter : MonoBehaviour
 {
     [SerializeField] Camera current_camera;
+    [SerializeField] string cameraTag;
     Canvas current_canvas;
     // Start is called before the first frame update
     void Start()
     {
         current_canvas = GetComponent<Canvas>();
-        current_camera = GameObject.FindGameObjectWithTag("GlowCamera").GetComponent<Camera>();
+        current_camera = GameObject.FindGameObjectWithTag(cameraTag).GetComponent<Camera>();
 
     }
 
@@ -21,8 +22,8 @@ public class CanvasCameraSetter : MonoBehaviour
         {
             if (Camera.main != null)
             {
-                current_camera = Camera.main;
-                current_canvas.worldCamera = GameObject.FindGameObjectWithTag("GlowCamera").GetComponent<Camera>();
+                current_camera = GameObject.FindGameObjectWithTag(cameraTag).GetComponent<Camera>();
+                current_canvas.worldCamera = GameObject.FindGameObjectWithTag(cameraTag).GetComponent<Camera>();
                 Debug.Log("Loading Scene Camera Set!");
             }
             else
