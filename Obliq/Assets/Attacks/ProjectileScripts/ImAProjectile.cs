@@ -6,96 +6,230 @@ using UnityEditor;
 public class ImAProjectile : MonoBehaviour
 {
     // Projectile variables basic
-    public float speed_ = 5.0f;
-    public ProjectileForceType force_type_ = ProjectileForceType.Constant;
-    public bool is_spawned_prefab_ = false;
+    [SerializeField]
+    float speed_ = 5.0f;
+    [SerializeField]
+    float acceleration_ = 0.0f;
+    [SerializeField]
+    float max_speed_ = 0.0f;
+    [Header("1. ADVANCED SPEED BEHAVIOUR")]
+    [SerializeField]
+    bool custom_speed_ = false;
+    [SerializeField]
+    bool custom_speed_loop_ = false;
+    [SerializeField]
+    float decceleration_ = 0.0f;
+    [SerializeField]
+    float acceleration_time_ = 0.0f;
+    [SerializeField]
+    float decceleration_time_ = 0.0f;
+    float acceleration_counter_ = 0.0f;
+    float decceleration_counter_ = 0.0f;
+    bool accelerating_ = true;
+    [Header("2. FORCE TYPE")]
+    [SerializeField]
+    ProjectileForceType force_type_ = ProjectileForceType.Constant;
     Rigidbody2D rb;
     bool initialized_ = false;
+    [Header("3. LIFETIME BEHAVIOUR")]
+    [SerializeField]
+    bool persistent_ = false;
+    [SerializeField]
+    float lifespan_ = 0.0f;
+    [SerializeField]
+    bool destroy_on_collide_ = false;
+    [SerializeField]
+    LayerMask on_collide_mask_ = 10;
+    [SerializeField]
+    float destroy_countdown_ = 0.0f;
+    bool to_be_destroyed_ = false;
 
-    [Header("PROJECTILE MOVEMENT BEHAVIOUR")]
-    public ProjectileMovement movement_ = ProjectileMovement.Straight;
-    public float local_speed_ = 0.0f;
-    [Header("Wave/Spiral Movement")]
+    [Header("4. PROJECTILE MOVEMENT BEHAVIOUR")]
+    [SerializeField]
+    ProjectileMovement movement_ = ProjectileMovement.Straight;
+    [SerializeField]
+    float local_speed_ = 0.0f;
+    [Header("4.1 Wave/Spiral Movement")]
     // amplitude, applicable to longitude and lengitude
-    public float lon_oscillation_ = 0.1f;
-    public float len_oscillation_ = 0.1f;
+    [SerializeField]
+    bool stable_ = true;
+    [SerializeField]
+    float lon_oscillation_ = 0.1f;
+    [SerializeField]
+    float len_oscillation_ = 0.1f;
     float lon_osc_counter_ = 0.0f;
     float len_osc_counter_ = 0.0f;
     // random heading, random length, applicalble to random
-    [Header("Random Movement")]
+    [Header("4.2 Random Movement")]
     [Tooltip("radius to find new random point")]
-    public float random_range_ = 2.0f; // range of selecting random point
+    [SerializeField]
+    float random_range_ = 2.0f; // range of selecting random point
     [Tooltip("time in seconds before new random")]
-    public float random_time_ = 0.4f; // duration before finding new random
-    public float random_min_angle_ = 145.0f;
-    public float random_angle_end_ = 70;
-    public float turn_speed_ = 100.0f;
+    [SerializeField]
+    float random_time_ = 0.4f; // duration before finding new random
+    [SerializeField]
+    float random_min_angle_ = 145.0f;
+    [SerializeField]
+    float random_angle_end_ = 70;
+    [SerializeField]
+    float turn_speed_ = 100.0f;
     Vector2 random_heading_ = new Vector2(0.0f, 0.0f);
     float random_counter_ = 0.0f;
     
 
     // target to fire at
-    [Header("PROJECTILE TARGET SELECT")]
+    [Header("5. PROJECTILE TARGET SELECT")]
+    [SerializeField]
     public ProjectileTarget target_ = ProjectileTarget.MouseDirection;
     // direction to fire at, only applicable to DirectionLong and DirectionShort
+    [SerializeField]
     public Vector2 specified_direction_ = new Vector2(0.0f, 0.0f);
     // if direction should be limited
-    public bool limited_ = false;
+    [SerializeField]
+    [Tooltip("if the projectile travel distance should be limited")]
+    bool limited_ = false;
     // mouse direction limit, onlu applicable to MouseDirectionLimit
-    public float time_limit_ = 0.0f;
+    [SerializeField]
+    float time_limit_ = 0.0f;
     float limit_counter_ = 0.0f;
     // for target mouse_point_
     Vector2 mouse_point_ = new Vector2(0.0f, 0.0f);
     Vector2 original_direction_ = new Vector2(0.0f, 0.0f);
     bool stopped_ = false;
     List<ImAProjectile> proj_list_ = new List<ImAProjectile>();
+    List<GameObject> go_list_ = new List<GameObject>();
 
     // where to spawn the projectile
-    [Header("SPAWN LOCATION")]
-    public ProjectileSpawnLocation spawn_location_ = ProjectileSpawnLocation.RelativeSelf;
+    [Header("6. SPAWN LOCATION")]
+    [SerializeField]
+    [Tooltip("where the projectile should spawn")]
+    ProjectileSpawnLocation spawn_location_ = ProjectileSpawnLocation.RelativeSelf;
     // only applicable if RelativeSelf
-    public float self_offset_ = 0.0f;
+    [SerializeField]
+    float self_offset_ = 0.0f;
     [Tooltip("if true, offset relative to self heading, specify mouse_offset_ otherwise")]
-    public bool mouse_self_heading_ = true;
-    public Vector2 mouse_offset_ = new Vector2(0.0f, 0.0f);
+    [SerializeField]
+    bool mouse_self_heading_ = true;
+    [SerializeField]
+    Vector2 mouse_offset_ = new Vector2(0.0f, 0.0f);
 
-    [Header("SPAWNING TRIGGERS")]
+    [Header("7. SPAWNING TRIGGERS")]
     // the local orientation used for spawning projectiles
-    public float local_orientation_ = 0.0f;
-    [Header("Time Trigger")]
-    public bool time_trigger_ = false;
-    public ProjectileSpawnPattern tt_style_ = ProjectileSpawnPattern.Single;
-    public int tt_density_ = 0;
-    public ProjectileSpawnStyle tt_sstyle_ = ProjectileSpawnStyle.Single;
-    public float time_delay_ = 0.0f;
-    public string tt_prefab_ = "";
-    public float time_delay_counter_ = 0.0f;
-    [Header("Continuous Trigger")]
-    public bool continuous_trigger_ = false;
-    public ProjectileSpawnPattern cont_style_ = ProjectileSpawnPattern.Single;
-    public int cont_density_ = 0;
-    public float conal_angle_ = 0.0f;
-    public ProjectileSpawnStyle cont_sstyle_ = ProjectileSpawnStyle.Single;
-    public float time_interval_ = 0.0f;
-    public string cont_prefab_ = "";
+    [SerializeField]
+    float local_orientation_ = 0.0f;
+    [SerializeField]
+    bool follow_mouse_ = false;
+    [Header("To Spin or Not To Spin")]
+    [SerializeField]
+    bool spin_ = false;
+    [SerializeField]
+    float spin_rate_ = 0.0f;
+    [Header("7.1 Time Trigger")]
+    [SerializeField]
+    [Tooltip("trigger this spawning effect after a time delay")]
+    bool time_trigger_ = false;
+    [SerializeField]
+    float active_time_ = 0.0f;
+    float active_counter_ = 0.0f;
+    [SerializeField]
+    ProjectileSpawnPattern tt_style_ = ProjectileSpawnPattern.None;
+    [SerializeField]
+    int tt_density_ = 0;
+    [SerializeField]
+    float tt_angle_ = 0.0f;
+    [SerializeField]
+    ProjectileSpawnStyle tt_sstyle_ = ProjectileSpawnStyle.Stream;
+    float tt_stream_counter_ = 0.0f;
+    [SerializeField]
+    float tt_stream_rate_ = 0.0f;
+    bool tt_bursting_ = true;
+    [SerializeField]
+    float tt_burst_rest_timer_ = 0.0f;
+    [SerializeField]
+    float tt_burst_timer_ = 0.0f;
+    float tt_burst_rest_counter_ = 0.0f;
+    float tt_burst_counter_ = 0.0f;
+    [SerializeField]
+    float time_trigger_delay_ = 0.0f;
+    [SerializeField]
+    GameObject tt_prefab_ = null;
+    [SerializeField]
+    [Tooltip("for prefabs that don't have this script attached, define offset here")]
+    float tt_np_offset_ = 0.0f;
+    [SerializeField]
+    [Tooltip("for prefabs that don't have this script attached, define impulse speed here")]
+    float tt_np_speed_ = 0.0f;
+    float time_delay_counter_ = 0.0f;
+    [Header("7.2 Continuous Trigger")]
+    [SerializeField]
+    [Tooltip("trigger this spawning effect at a fixed spawn rate")]
+    bool continuous_trigger_ = false;
+    [SerializeField]
+    ProjectileSpawnPattern cont_style_ = ProjectileSpawnPattern.None;
+    [SerializeField]
+    int cont_density_ = 0;
+    [SerializeField]
+    float cont_angle_ = 0.0f;
+    [SerializeField]
+    ProjectileSpawnStyle cont_sstyle_ = ProjectileSpawnStyle.Stream;
+    float cont_stream_counter_ = 0.0f;
+    [SerializeField]
+    float cont_stream_rate_ = 0.0f;
+    bool cont_bursting_ = true;
+    [SerializeField]
+    float cont_burst_rest_timer_ = 0.0f;
+    [SerializeField]
+    float cont_burst_timer_ = 0.0f;
+    float cont_burst_rest_counter_ = 0.0f;
+    float cont_burst_counter_ = 0.0f;
+    [SerializeField]
+    float time_interval_ = 0.0f;
+    [SerializeField]
+    GameObject cont_prefab_ = null;
+    [SerializeField]
+    [Tooltip("for prefabs that don't have this script attached, define offset here")]
+    float cont_np_offset_ = 0.0f;
+    [SerializeField]
+    [Tooltip("for prefabs that don't have this script attached, define impulse speed here")]
+    float cont_np_speed_ = 0.0f;
     float interval_counter_ = 0.0f;
-    [Header("Collide Trigger")]
-    public bool collide_trigger_ = false;
-    public ProjectileSpawnPattern colt_style_ = ProjectileSpawnPattern.Single;
-    public ProjectileSpawnStyle colt_sstyle_ = ProjectileSpawnStyle.Single;
-    public string colt_prefab_ = "";
-
-    [Header("TO SPIN OR NOT TO SPIN")]
-    public bool spin_ = false;
-    public float spin_rate_ = 0.0f;
-
-    [Header("SPAWN STYLE")]
-    public ProjectileSpawnStyle spawn_style_ = ProjectileSpawnStyle.Single;
-    public OnCollideBasic collide_basic_ = OnCollideBasic.None;
-    public OnCollideEffect collide_effect_ = OnCollideEffect.None;
-    public OnCollideSpawn collide_spawn_ = OnCollideSpawn.None;
-    public CollideResult collide_result_ = CollideResult.Continue;
-    public LocalMovement local_movement_ = LocalMovement.Fixed;
+    [Header("7.3 Collide Trigger")]
+    [SerializeField]
+    [Tooltip("trigger this spawning effect on collision")]
+    bool collide_trigger_ = false;
+    [SerializeField]
+    [Tooltip("specified layer mask to check for collisions")]
+    LayerMask layer_to_collide_ = 10;
+    [SerializeField]
+    float col_active_time_ = 0.0f;
+    float col_active_counter_ = 0.0f;
+    bool collided_ = false;
+    [SerializeField]
+    ProjectileSpawnPattern colt_style_ = ProjectileSpawnPattern.None;
+    [SerializeField]
+    int colt_density_ = 0;
+    [SerializeField]
+    float colt_angle_ = 0.0f;
+    [SerializeField]
+    ProjectileSpawnStyle colt_sstyle_ = ProjectileSpawnStyle.Stream;
+    float colt_stream_counter_ = 0.0f;
+    [SerializeField]
+    float colt_stream_rate_ = 0.0f;
+    bool colt_bursting_ = true;
+    [SerializeField]
+    float colt_burst_rest_timer_ = 0.0f;
+    [SerializeField]
+    float colt_burst_timer_ = 0.0f;
+    float colt_burst_rest_counter_ = 0.0f;
+    float colt_burst_counter_ = 0.0f;
+    [SerializeField]
+    GameObject colt_prefab_ = null;
+    [SerializeField]
+    [Tooltip("for prefabs that don't have this script attached, define offset here")]
+    float colt_np_offset_ = 0.0f;
+    [SerializeField]
+    [Tooltip("for prefabs that don't have this script attached, define impulse speed here")]
+    float colt_np_speed_ = 0.0f;
 
     // debug
     int debug_counter_ = 0;
@@ -140,13 +274,9 @@ public class ImAProjectile : MonoBehaviour
             case ProjectileTarget.SpecifyDirection:
                 movement_heading_ = specified_direction_;
                 break;
-            case ProjectileTarget.CircularDirection:
-                //center_point_ = (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                //InstantiateCircularPrefabs(10);
-                break;
-            case ProjectileTarget.NearestEnemy:
-                // to be filled
-                break;
+            //case ProjectileTarget.NearestEnemy:
+            //    // to be filled
+            //    break;
         }
         // set center point
         switch (spawn_location_)
@@ -168,13 +298,79 @@ public class ImAProjectile : MonoBehaviour
         // set projectile at center point
         transform.position = center_point_;
         initialized_ = true;
+
+        if (force_type_ == ProjectileForceType.Impulse)
+        {
+            rb.AddForce(movement_heading_ * speed_, ForceMode2D.Impulse);
+        }
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (initialized_)
         {
+            // update life
+            if (!persistent_)
+            {
+                if (lifespan_ > 0.0f)
+                {
+                    lifespan_ -= Time.deltaTime;
+                }
+                else
+                {
+                    Destroy(gameObject);
+                }
+            }
+            if (to_be_destroyed_)
+            {
+                if (destroy_countdown_ > 0.0f)
+                {
+                    destroy_countdown_ -= Time.deltaTime;
+                }
+                else
+                {
+                    Destroy(gameObject);
+                }
+            }
+            // update speed - not to be confused with linear drag, this is speed of the 'system'
+            if (!custom_speed_)
+            {
+                speed_ = speed_ < max_speed_ ? speed_ + acceleration_ : max_speed_;
+            }
+            else if (custom_speed_)
+            {
+                if (accelerating_)
+                {
+                    if (acceleration_counter_ < acceleration_time_)
+                    {
+                        acceleration_counter_ += Time.deltaTime;
+                        speed_ = speed_ < max_speed_ ? speed_ + acceleration_ : max_speed_;
+                    }
+                    else
+                    {
+                        accelerating_ = false;
+                        acceleration_counter_ = 0.0f;
+                    }
+                }
+                else
+                {
+                    if (decceleration_counter_ > decceleration_time_)
+                    {
+                        if (custom_speed_loop_)
+                        {
+                            accelerating_ = true;
+                            decceleration_counter_ = 0.0f;
+                        }
+                    }
+                    else
+                    {
+                        decceleration_counter_ += Time.deltaTime;
+                        speed_ = speed_ > 0.0f ? speed_ - decceleration_ : 0.0f;
+                    }
+                }
+            }
+
             // update movement heading based on target
             switch (target_)
             {
@@ -197,80 +393,122 @@ public class ImAProjectile : MonoBehaviour
                         movement_heading_ = (mouse_point_ - (Vector2)gameObject.transform.position).normalized;
                     }
                     break;
-                case ProjectileTarget.CircularDirection:
-                    //debug_counter_++;
-                    //if (debug_counter_ > 200)
-                    //{
-                    //    InstantiateCircularPrefabs(10);
-                    //    debug_counter_ = 0;
-                    //}
+            }
+            // update movement
+            switch (movement_)
+            {
+                case ProjectileMovement.Straight:
+                    StraightMovement();
+                    break;
+                case ProjectileMovement.Longitude:
+                    LongitudeMovement();
+                    break;
+                case ProjectileMovement.Lengitude:
+                    LengitudeMovement();
+                    break;
+                case ProjectileMovement.Spiral:
+                    SpiralMovement();
+                    break;
+                case ProjectileMovement.RandomStraight:
+                    RandomMovementStraight();
+                    break;
+                case ProjectileMovement.RandomSmooth:
+                    RandomMovementSmooth();
                     break;
             }
-            if (force_type_ == ProjectileForceType.Constant)
+
+            if (follow_mouse_)
             {
-                // update movement
-                switch (movement_)
-                {
-                    case ProjectileMovement.Straight:
-                        StraightMovement();
-                        break;
-                    case ProjectileMovement.Longitude:
-                        LongitudeMovement();
-                        break;
-                    case ProjectileMovement.Lengitude:
-                        LengitudeMovement();
-                        break;
-                    case ProjectileMovement.Spiral:
-                        SpiralMovement();
-                        break;
-                    case ProjectileMovement.RandomStraight:
-                        RandomMovementStraight();
-                        break;
-                    case ProjectileMovement.RandomSmooth:
-                        RandomMovementSmooth();
-                        break;
-                }
+                local_orientation_ = GetOrientation();
             }
-            else if (force_type_ == ProjectileForceType.Impulse) { }
 
             // Process spawning behaviour
             if (time_trigger_)
             {
-                if (time_delay_counter_ < time_delay_)
+                if (time_delay_counter_ < time_trigger_delay_)
                 {
-                    time_delay_ += Time.deltaTime;
+                    time_delay_counter_ += Time.deltaTime;
                 }
                 else
                 {
-                    switch (tt_style_)
+                    if (active_counter_ < active_time_)
                     {
-                        case ProjectileSpawnPattern.Circle:
-                            InstantiateCircularPrefabs(tt_density_, tt_prefab_);
-                            break;
+                        switch (tt_style_)
+                        {
+                            case ProjectileSpawnPattern.Circle:
+                                CircularBurstStream(tt_sstyle_, tt_density_, tt_prefab_, ref tt_stream_counter_, ref tt_stream_rate_,
+                                    ref tt_bursting_, ref tt_burst_rest_counter_, tt_burst_rest_timer_, ref tt_burst_counter_, tt_burst_timer_,
+                                    tt_np_offset_, tt_np_speed_);
+                                break;
+                            case ProjectileSpawnPattern.Cone:
+                                ConalBurstStream(tt_sstyle_, tt_density_, tt_angle_, tt_prefab_, ref tt_stream_counter_, ref tt_stream_rate_,
+                                    ref tt_bursting_, ref tt_burst_rest_counter_, tt_burst_rest_timer_, ref tt_burst_counter_, tt_burst_timer_,
+                                    tt_np_offset_, tt_np_speed_);
+                                break;
+                            case ProjectileSpawnPattern.None:
+                                SingularBurstStream(tt_sstyle_, tt_prefab_, ref tt_stream_counter_, ref tt_stream_rate_,
+                                    ref tt_bursting_, ref tt_burst_rest_counter_, tt_burst_rest_timer_, ref tt_burst_counter_, tt_burst_timer_);
+                                break;
+                        }
+                        active_counter_ += Time.deltaTime;
+                    }
+                    else
+                    {
+                        time_trigger_ = false;
                     }
                 }
             }
             if (continuous_trigger_)
             {
-                if (interval_counter_ < time_interval_)
+                switch (cont_style_)
                 {
-                    interval_counter_ += Time.deltaTime;
+                    case ProjectileSpawnPattern.Circle:
+                        CircularBurstStream(cont_sstyle_, cont_density_, cont_prefab_, ref cont_stream_counter_, ref cont_stream_rate_,
+                            ref cont_bursting_, ref cont_burst_rest_counter_, cont_burst_rest_timer_, ref cont_burst_counter_, cont_burst_timer_,
+                            cont_np_offset_, cont_np_speed_);
+                        break;
+                    case ProjectileSpawnPattern.Cone:
+                        ConalBurstStream(cont_sstyle_, cont_density_, cont_angle_, cont_prefab_, ref cont_stream_counter_, ref cont_stream_rate_,
+                            ref cont_bursting_, ref cont_burst_rest_counter_, cont_burst_rest_timer_, ref cont_burst_counter_, cont_burst_timer_,
+                            cont_np_offset_, cont_np_speed_);
+                        break;
+                    case ProjectileSpawnPattern.None:
+                        SingularBurstStream(cont_sstyle_, cont_prefab_, ref cont_stream_counter_, ref cont_stream_rate_,
+                            ref cont_bursting_, ref cont_burst_rest_counter_, cont_burst_rest_timer_, ref cont_burst_counter_, cont_burst_timer_);
+                        break;
                 }
-                else
+            }
+            if (collide_trigger_)
+            {
+                if (collided_)
                 {
-                    interval_counter_ = 0.0f;
-                    switch (cont_style_)
+                    if (col_active_counter_ < col_active_time_)
                     {
-                        case ProjectileSpawnPattern.Circle:
-                            InstantiateCircularPrefabs(cont_density_, cont_prefab_);
-                            break;
-                        case ProjectileSpawnPattern.Cone:
-                            InstantiateConalPrefabs(cont_density_, conal_angle_, cont_prefab_);
-                            break;
+                        switch (colt_style_)
+                        {
+                            case ProjectileSpawnPattern.Circle:
+                                CircularBurstStream(colt_sstyle_, colt_density_, colt_prefab_, ref colt_stream_counter_, ref colt_stream_rate_,
+                                    ref colt_bursting_, ref colt_burst_rest_counter_, colt_burst_rest_timer_, ref colt_burst_counter_, colt_burst_timer_,
+                                    colt_np_offset_, colt_np_speed_);
+                                break;
+                            case ProjectileSpawnPattern.Cone:
+                                ConalBurstStream(colt_sstyle_, colt_density_, colt_angle_, colt_prefab_, ref colt_stream_counter_, ref colt_stream_rate_,
+                                    ref colt_bursting_, ref colt_burst_rest_counter_, colt_burst_rest_timer_, ref colt_burst_counter_, colt_burst_timer_,
+                                    colt_np_offset_, colt_np_speed_);
+                                break;
+                            case ProjectileSpawnPattern.None:
+                                SingularBurstStream(colt_sstyle_, colt_prefab_, ref colt_stream_counter_, ref colt_stream_rate_,
+                                    ref colt_bursting_, ref colt_burst_rest_counter_, colt_burst_rest_timer_, ref colt_burst_counter_, colt_burst_timer_);
+                                break;
+                        }
+                        col_active_counter_ += Time.deltaTime;
+                    }
+                    else
+                    {
+                        collide_trigger_ = false;
                     }
                 }
             }
-            if (collide_trigger_) { }
 
             // update spinning behaviour
             if (spin_)
@@ -292,7 +530,7 @@ public class ImAProjectile : MonoBehaviour
     void StraightMovement()
     {
         // Apply constant force to bullet in straight direction
-        MoveMovementHeading(0);
+        if (force_type_ == ProjectileForceType.Constant) { MoveMovementHeading(); }
     }
 
     void LongitudeMovement()
@@ -301,9 +539,9 @@ public class ImAProjectile : MonoBehaviour
         // counteract old force - 100.0f is there to ensure resultant vector is long enough to use for calculation
         Vector2 new_force = movement_heading_ * 100.0f * Mathf.Sin(lon_osc_counter_);
         // apply new force
-        rb.velocity = ((Vector2)rb.velocity + new_force).normalized * local_speed_;
+        rb.velocity = stable_ ? ((Vector2)rb.velocity + new_force).normalized * local_speed_ : (Vector2)rb.velocity + new_force.normalized * local_speed_;
         // move towards target by speed
-        MoveMovementHeading(0);
+        if (force_type_ == ProjectileForceType.Constant) { MoveMovementHeading(); }
     }
 
     void LengitudeMovement()
@@ -313,9 +551,9 @@ public class ImAProjectile : MonoBehaviour
         Vector2 perpendicular_vector = new Vector2(movement_heading_.y, -movement_heading_.x).normalized;
         Vector2 new_force = perpendicular_vector * 100.0f * Mathf.Cos(len_osc_counter_);
         // apply new force
-        rb.velocity = ((Vector2)rb.velocity + new_force).normalized * local_speed_;
+        rb.velocity = stable_ ? ((Vector2)rb.velocity + new_force).normalized * local_speed_ : (Vector2)rb.velocity + new_force.normalized * local_speed_;
         // move towards target by speed
-        MoveMovementHeading(0);
+        if (force_type_ == ProjectileForceType.Constant) { MoveMovementHeading(); }
     }
 
     void SpiralMovement()
@@ -326,9 +564,9 @@ public class ImAProjectile : MonoBehaviour
         Vector2 perpendicular_vector = new Vector2(movement_heading_.y, -movement_heading_.x).normalized;
         Vector2 new_force = (perpendicular_vector * 100.0f * Mathf.Cos(len_osc_counter_)) + (movement_heading_ * 100.0f * Mathf.Sin(lon_osc_counter_));
         // apply new force
-        rb.velocity = ((Vector2)rb.velocity + new_force).normalized * local_speed_;
+        rb.velocity = stable_ ? ((Vector2)rb.velocity + new_force).normalized * local_speed_ : (Vector2)rb.velocity + new_force.normalized * local_speed_;
         // move towards target by speed
-        MoveMovementHeading(0);
+        if (force_type_ == ProjectileForceType.Constant) { MoveMovementHeading(); }
     }
 
     void RandomMovementStraight()
@@ -350,7 +588,7 @@ public class ImAProjectile : MonoBehaviour
         // apply random force
         rb.velocity = ((Vector2)rb.velocity + random_heading_).normalized * local_speed_;
         // move towards target by speed
-        MoveMovementHeading(0);
+        if (force_type_ == ProjectileForceType.Constant) { MoveMovementHeading(); }
     }
 
     void RandomMovementSmooth()
@@ -378,74 +616,79 @@ public class ImAProjectile : MonoBehaviour
         Vector2 new_force = temp_vel * local_speed_ + steering;
         rb.velocity = ((Vector2)rb.velocity + new_force).normalized * local_speed_;
         // move towards target by speed
-        MoveMovementHeading(0);
+        if (force_type_ == ProjectileForceType.Constant) { MoveMovementHeading(); }
     }
 
     // General functions
-    void MoveMovementHeading(int forcemode)
+    void MoveMovementHeading()
     {
-        if (forcemode == 0)
+        switch (target_)
         {
-            switch (target_)
-            {
-                case ProjectileTarget.MousePoint:
-                    if (!(movement_ == ProjectileMovement.Straight))
-                    {
-                        rb.AddForce(movement_heading_ * speed_, ForceMode2D.Force);
-                    }
-                    break;
-                case ProjectileTarget.MouseFollow:
+            case ProjectileTarget.MousePoint:
+                if (!(movement_ == ProjectileMovement.Straight))
+                {
                     rb.AddForce(movement_heading_ * speed_, ForceMode2D.Force);
-                    break;
-                case ProjectileTarget.MouseDirection:
-                case ProjectileTarget.SpecifyDirection:
-                    if (!limited_)
+                }
+                break;
+            case ProjectileTarget.MouseFollow:
+                rb.AddForce(movement_heading_ * speed_, ForceMode2D.Force);
+                break;
+            case ProjectileTarget.MouseDirection:
+            case ProjectileTarget.SpecifyDirection:
+                if (!limited_)
+                {
+                    rb.AddForce(movement_heading_ * speed_, ForceMode2D.Force);
+                }
+                else
+                {
+                    if (!stopped_)
                     {
-                        rb.AddForce(movement_heading_ * speed_, ForceMode2D.Force);
-                    }
-                    else
-                    {
-                        if (!stopped_)
+                        if (limit_counter_ < time_limit_)
                         {
-                            if (limit_counter_ < time_limit_)
-                            {
-                                limit_counter_ += Time.deltaTime;
-                                rb.AddForce(movement_heading_ * speed_, ForceMode2D.Force);
-                            }
-                            else
-                            {
-                                // get direction of velocity
-                                float direction_magnitude = Vector2.Dot((Vector2)rb.velocity, movement_heading_);
-                                Vector2 direction_velocity = movement_heading_ * direction_magnitude;
-                                rb.velocity -= direction_velocity;
-                                stopped_ = true;
-                            }
+                            limit_counter_ += Time.deltaTime;
+                            rb.AddForce(movement_heading_ * speed_, ForceMode2D.Force);
+                        }
+                        else
+                        {
+                            // get direction of velocity
+                            float direction_magnitude = Vector2.Dot((Vector2)rb.velocity, movement_heading_);
+                            Vector2 direction_velocity = movement_heading_ * direction_magnitude;
+                            rb.velocity -= direction_velocity;
+                            stopped_ = true;
                         }
                     }
-                    break;
-            }
-        }
-        else
-        {
-            rb.AddForce(movement_heading_ * speed_, ForceMode2D.Impulse);
+                }
+                break;
         }
     }
 
-    void InstantiateCircularPrefabs(int density, string projprefab)
+    void InstantiateCircularPrefabs(int density, GameObject projprefab, float offset, float speed)
     {
-        GameObject prefab = (GameObject)AssetDatabase.LoadAssetAtPath("Assets/Attacks/Projectiles/" + projprefab + ".prefab", typeof(GameObject));
-        for (int i = 0; i < density; i++)
+        // if it is a ImAProjectile
+        if (projprefab.GetComponent<ImAProjectile>() != null)
         {
-            GameObject temp = (GameObject)Instantiate(prefab, transform.position, Quaternion.identity);
-            //temp.GetComponent<ImAProjectile>().InitProj();
-            proj_list_.Add(temp.GetComponent<ImAProjectile>());
+            for (int i = 0; i < density; i++)
+            {
+                GameObject temp = (GameObject)Instantiate(projprefab, transform.position, Quaternion.identity);
+                proj_list_.Add(temp.GetComponent<ImAProjectile>());
+            }
+            InitSpawnedCircleProjectiles(density);
+            foreach (ImAProjectile z in proj_list_)
+            {
+                z.InitProj();
+            }
+            proj_list_.Clear();
         }
-        InitSpawnedCircleProjectiles(density);
-        foreach(ImAProjectile z in proj_list_)
+        else
         {
-            z.InitProj();
+            for (int i = 0; i < density; i++)
+            {
+                GameObject temp = (GameObject)Instantiate(projprefab, transform.position, Quaternion.identity);
+                go_list_.Add(temp);
+            }
+            InitNonProjectileCirclePrefab(density, offset, speed);
+            go_list_.Clear();
         }
-        proj_list_.Clear();
     }
 
     void InitSpawnedCircleProjectiles(int density)
@@ -456,38 +699,260 @@ public class ImAProjectile : MonoBehaviour
         {
             // get angle
             first_angle += angle;
+            i.target_ = ProjectileTarget.SpecifyDirection;
             i.specified_direction_ = new Vector2((specified_direction_.x * Mathf.Cos(first_angle)) + (specified_direction_.y * -Mathf.Sin(first_angle)), ((specified_direction_.x * Mathf.Sin(first_angle)) + (specified_direction_.y * Mathf.Cos(first_angle))));
         }
     }
 
-    void InstantiateConalPrefabs(int density, float angle, string projprefab)
+    void InitNonProjectileCirclePrefab(int density, float offset, float speed)
     {
-        GameObject prefab = (GameObject)AssetDatabase.LoadAssetAtPath("Assets/Attacks/Projectiles/" + projprefab + ".prefab", typeof(GameObject));
-        for (int i = 0; i < density; i++)
+        float angle = 6.284f / density;
+        float first_angle = local_orientation_ * (3.142f / 180.0f);
+        foreach (GameObject g in go_list_)
         {
-            GameObject temp = (GameObject)Instantiate(prefab, transform.position, Quaternion.identity);
-            //temp.GetComponent<ImAProjectile>().InitProj();
-            proj_list_.Add(temp.GetComponent<ImAProjectile>());
+            // get angle
+            first_angle += angle;
+            Vector2 direction = new Vector2((specified_direction_.x * Mathf.Cos(first_angle)) + (specified_direction_.y * -Mathf.Sin(first_angle)), ((specified_direction_.x * Mathf.Sin(first_angle)) + (specified_direction_.y * Mathf.Cos(first_angle)))).normalized;
+            g.transform.position = (Vector2)g.transform.position + direction * offset;
+            g.GetComponent<Rigidbody2D>().AddForce(direction * speed, ForceMode2D.Impulse);
         }
-        InitSpawnedConalPrefabs(density, angle * (3.142f/180.0f));
-        foreach (ImAProjectile z in proj_list_)
+    }
+
+    void InstantiateConalPrefabs(int density, float angle, GameObject projprefab, float offset, float speed)
+    {
+        // if it is a ImAProjectile
+        if (projprefab.GetComponent<ImAProjectile>() != null)
         {
-            z.InitProj();
+            for (int i = 0; i < density; i++)
+            {
+                GameObject temp = (GameObject)Instantiate(projprefab, transform.position, Quaternion.identity);
+                proj_list_.Add(temp.GetComponent<ImAProjectile>());
+            }
+            InitSpawnedConalPrefabs(density, angle * (3.142f / 180.0f));
+            foreach (ImAProjectile z in proj_list_)
+            {
+                z.InitProj();
+            }
+            proj_list_.Clear();
         }
-        proj_list_.Clear();
+        else
+        {
+            for (int i = 0; i < density; i++)
+            {
+                GameObject temp = (GameObject)Instantiate(projprefab, transform.position, Quaternion.identity);
+                go_list_.Add(temp);
+            }
+            InitNonProjectileConalPrefabs(density, angle * (3.142f / 180.0f), offset, speed);
+            go_list_.Clear();
+        }
     }
 
     void InitSpawnedConalPrefabs(int density, float angle)
     {
         float lo_rad = local_orientation_ * (3.142f / 180.0f);
-        Vector2 start_heading = new Vector2((0 * Mathf.Cos(lo_rad - (angle/2))) + (1 * -Mathf.Sin(lo_rad - (angle/2))), ((0 * Mathf.Sin(lo_rad - (angle/2))) + (1 * Mathf.Cos(lo_rad - (angle/2)))));
+        Vector2 start_heading = new Vector2();
+        if (follow_mouse_)
+        {
+            Vector2 mouse_direction = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - gameObject.transform.position).normalized;
+            start_heading = new Vector2((mouse_direction.x * Mathf.Cos(-angle / 2) + mouse_direction.y * -Mathf.Sin(-angle / 2)), (mouse_direction.x * Mathf.Sin(-angle / 2) + mouse_direction.y * Mathf.Cos(-angle / 2)));
+        }
+        else
+        {
+            start_heading = new Vector2((0 * Mathf.Cos(lo_rad - (angle / 2))) + (1 * -Mathf.Sin(lo_rad - (angle / 2))), ((0 * Mathf.Sin(lo_rad - (angle / 2))) + (1 * Mathf.Cos(lo_rad - (angle / 2)))));
+        }
         float increment_angle = angle / (float)(density - 1);
         float temp_angle = 0.0f;
         // angle to rotate to
-        for (int i = 1; i < density; i++)
+        for (int i = 0; i < density; i++, temp_angle += increment_angle)
         {
-            temp_angle += increment_angle;
+            proj_list_[i].target_ = ProjectileTarget.SpecifyDirection;
             proj_list_[i].specified_direction_ = new Vector2((start_heading.x * Mathf.Cos(temp_angle)) + (start_heading.y * -Mathf.Sin(temp_angle)), ((start_heading.x * Mathf.Sin(temp_angle)) + (start_heading.y * Mathf.Cos(temp_angle))));
+        }
+    }
+
+    void InitNonProjectileConalPrefabs(int density, float angle, float offset, float speed)
+    {
+        float lo_rad = local_orientation_ * (3.142f / 180.0f);
+        Vector2 start_heading = new Vector2();
+        if (follow_mouse_)
+        {
+            Vector2 mouse_direction = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - gameObject.transform.position).normalized;
+            start_heading = new Vector2((mouse_direction.x * Mathf.Cos(-angle / 2) + mouse_direction.y * -Mathf.Sin(-angle / 2)), (mouse_direction.x * Mathf.Sin(-angle / 2) + mouse_direction.y * Mathf.Cos(-angle / 2)));
+        }
+        else
+        {
+            start_heading = new Vector2((0 * Mathf.Cos(lo_rad - (angle / 2))) + (1 * -Mathf.Sin(lo_rad - (angle / 2))), ((0 * Mathf.Sin(lo_rad - (angle / 2))) + (1 * Mathf.Cos(lo_rad - (angle / 2)))));
+        }
+        
+        float increment_angle = angle / (float)(density - 1);
+        float temp_angle = 0.0f;
+        // angle to rotate to
+        for (int i = 0; i < density; i++, temp_angle += increment_angle)
+        {
+            Vector2 direction = new Vector2((start_heading.x * Mathf.Cos(temp_angle)) + (start_heading.y * -Mathf.Sin(temp_angle)), ((start_heading.x * Mathf.Sin(temp_angle)) + (start_heading.y * Mathf.Cos(temp_angle)))).normalized;
+            go_list_[i].transform.position = (Vector2)go_list_[i].transform.position + direction * offset;
+            go_list_[i].GetComponent<Rigidbody2D>().AddForce(direction * speed, ForceMode2D.Impulse);
+        }
+    }
+
+    void InstantiateNonePattern(GameObject projprefab)
+    {
+        // check if has ImAProjectile
+        GameObject temp = (GameObject)Instantiate(projprefab, transform.position, Quaternion.identity);
+        if (temp.GetComponent<ImAProjectile>() != null)
+        {
+            temp.GetComponent<ImAProjectile>().InitProj();
+        }
+    }
+
+    bool StreamTrigger(ref float counter, float timer)
+    {
+        if (counter < timer)
+        {
+            counter += Time.deltaTime;
+            return false;
+        }
+        else
+        {
+            counter = 0.0f;
+            return true;
+        }
+    }
+
+    bool BurstFlag(ref bool flag, ref float burstrestcounter, float burstresttimer, ref float burstcounter, float bursttimer)
+    {
+        bool result = false;
+        if (flag)
+        {
+            if (burstcounter < bursttimer)
+            {
+                burstcounter += Time.deltaTime;
+                result = true;
+            }
+            else
+            {
+                burstcounter = 0.0f;
+                flag = false;
+            }
+        }
+        else
+        {
+            if (burstrestcounter < burstresttimer)
+            {
+                burstrestcounter += Time.deltaTime;
+                result = false;
+            }
+            else
+            {
+                burstrestcounter = 0.0f;
+                flag = true;
+            }
+        }
+        return result;
+    }
+
+    // Wrappers
+    void CircularBurstStream(ProjectileSpawnStyle style,
+        int density, GameObject prefab,
+        ref float streamcounter, ref float streamrate,
+        ref bool bursting, ref float burstrestcounter, float burstresttimer, ref float burstcounter, float bursttimer,
+        float offset, float speed)
+    {
+        if (style == ProjectileSpawnStyle.Stream)
+        {
+            if (StreamTrigger(ref streamcounter, streamrate))
+            {
+                InstantiateCircularPrefabs(density, prefab, offset, speed);
+            }
+        }
+        else if (style == ProjectileSpawnStyle.Burst)
+        {
+            if (BurstFlag(ref bursting, ref burstrestcounter, burstresttimer, ref burstcounter, bursttimer))
+            {
+                if (StreamTrigger(ref streamcounter, streamrate))
+                {
+                    InstantiateCircularPrefabs(density, prefab, offset, speed);
+                }
+            }
+            else
+            {
+                streamcounter = 0.0f;
+            }
+        }
+    }
+
+    void ConalBurstStream(ProjectileSpawnStyle style,
+        int density, float angle, GameObject prefab,
+        ref float streamcounter, ref float streamrate,
+        ref bool bursting, ref float burstrestcounter, float burstresttimer, ref float burstcounter, float bursttimer,
+        float offset, float speed)
+    {
+        if (style == ProjectileSpawnStyle.Stream)
+        {
+            if (StreamTrigger(ref streamcounter, streamrate))
+            {
+                InstantiateConalPrefabs(density, angle, prefab, offset, speed);
+            }
+        }
+        else if (style == ProjectileSpawnStyle.Burst)
+        {
+            if (BurstFlag(ref bursting, ref burstrestcounter, burstresttimer, ref burstcounter, bursttimer))
+            {
+                if (StreamTrigger(ref streamcounter, streamrate))
+                {
+                    InstantiateConalPrefabs(density, angle, prefab, offset, speed);
+                }
+            }
+            else
+            {
+                streamcounter = 0.0f;
+            }
+        }
+    }
+
+    void SingularBurstStream(ProjectileSpawnStyle style, 
+        GameObject prefab,
+        ref float streamcounter, ref float streamrate,
+        ref bool bursting, ref float burstrestcounter, float burstresttimer, ref float burstcounter, float bursttimer)
+    {
+        if (style == ProjectileSpawnStyle.Stream)
+        {
+            if (StreamTrigger(ref streamcounter, streamrate))
+            {
+                InstantiateNonePattern(prefab);
+            }
+        }
+        else if (style == ProjectileSpawnStyle.Burst)
+        {
+            if (BurstFlag(ref bursting, ref burstrestcounter, burstresttimer, ref burstcounter, bursttimer))
+            {
+                if (StreamTrigger(ref streamcounter, streamrate))
+                {
+                    InstantiateNonePattern(prefab);
+                }
+            }
+            else
+            {
+                streamcounter = 0.0f;
+            }
+        }
+    }
+    float GetOrientation()
+    {
+        float opposite = gameObject.transform.position.x - Camera.main.ScreenToWorldPoint(Input.mousePosition).x;
+        float adjacent = -(gameObject.transform.position.y - Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
+        return Mathf.Atan(opposite / adjacent) * (180.0f / 3.142f);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (layer_to_collide_ == (layer_to_collide_ | (1 << collision.gameObject.layer)))
+        {
+            collided_ = true;
+        }
+        if (on_collide_mask_ == (on_collide_mask_ | (1 << collision.gameObject.layer)))
+        {
+            to_be_destroyed_ = true;
         }
     }
 }

@@ -34,9 +34,7 @@ public enum ProjectileTarget
     MousePoint,
     MouseDirection,
     SpecifyDirection,
-    CircularDirection,
-    ConalDirection,
-    NearestEnemy
+    //NearestEnemy
 }
 
 public enum OnCollideBasic
@@ -65,16 +63,15 @@ public enum CollideTrigger
 
 public enum ProjectileSpawnPattern
 {
-    Single,
+    None,
     Cone,
     Circle
 }
 
 public enum ProjectileSpawnStyle
 {
-    Single,
-    Burst,
-    Stream
+    Stream,
+    Burst
 }
 
 public enum CollideResult
