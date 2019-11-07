@@ -60,7 +60,7 @@ public class Entity : MonoBehaviour
     }
 
     // misc function
-    public float GetTrueRange()
+    public float GetTrueRange() //i'm using this for detection range
     {
         return attack_range_ * unit_scale_per_range_;
     }

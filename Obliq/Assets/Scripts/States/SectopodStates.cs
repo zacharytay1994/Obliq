@@ -11,13 +11,17 @@ public class SectopodStates
 public class SectopodIdleState : State
 {
     GameObject closest_obj;
+
+    Vector2 random_wander;
+    bool first_wander = true;
     public override void Enter(GameObject owner)
     {
+        
     }
     public override void Execute(GameObject owner)
     {
         GameObject objective = GameObject.Find("Entities/Objective");
-       // Debug.Log("sectopod idle");
+           
         closest_obj = GC<Entity>(owner).world_handler_reference_.GetNearestGoodGuy(owner.transform.position);
 
         if ((closest_obj.transform.position - objective.transform.position).magnitude < GC<Entity>(owner).GetTrueRange())// if within range
@@ -25,6 +29,17 @@ public class SectopodIdleState : State
             GC<Sectopod>(owner).target_reference_ = closest_obj;
             GC<ObliqPathfinding>(owner).target_ = closest_obj.transform.position;
             GC<Entity>(owner).statemachine_.ChangeState(new SectopodMoveState());
+        }
+        else if (GC<ObliqPathfinding>(owner).reached_end_path_ || first_wander == true)
+        {
+            first_wander = false;
+            random_wander = new Vector2(Random.Range(objective.transform.position.x - GC<Entity>(owner).GetTrueRange(),
+                objective.transform.position.x + GC<Entity>(owner).GetTrueRange()), Random.Range(objective.transform.position.y - GC<Entity>(owner).GetTrueRange(),
+                objective.transform.position.y + GC<Entity>(owner).GetTrueRange()));
+
+            GC<ObliqPathfinding>(owner).target_ = random_wander;
+            GC<ObliqPathfinding>(owner).StartPath(GC<ObliqPathfinding>(owner).target_);
+
         }
 
     }
@@ -34,20 +49,22 @@ public class SectopodIdleState : State
 }
 public class SectopodMoveState : State
 {
+    float movementBuffer = 1.5f;
     public override void Enter(GameObject owner)
     {
+        owner.GetComponent<ObliqPathfinding>().StopPath();
         owner.GetComponent<ObliqPathfinding>().StartPath(owner.GetComponent<ObliqPathfinding>().target_);
     }
     public override void Execute(GameObject owner)
     {
         GameObject objective = GameObject.Find("Entities/Objective");
         // Debug.Log("Sectopod Moving");
-        if ((GC<ObliqPathfinding>(owner).target_ - (Vector2)GC<Sectopod>(owner).target_reference_.transform.position).magnitude > 1.5)
+        if ((GC<ObliqPathfinding>(owner).target_ - (Vector2)GC<Sectopod>(owner).target_reference_.transform.position).magnitude > movementBuffer) //magic buffer value
         {
             GC<ObliqPathfinding>(owner).target_ = GC<Sectopod>(owner).target_reference_.transform.position;
             owner.GetComponent<ObliqPathfinding>().StartPath(owner.GetComponent<ObliqPathfinding>().target_);
         }
-        if ((GC<Sectopod>(owner).target_reference_.transform.position - owner.transform.position).magnitude < 2.0f) //temp magic no
+        if ((GC<Sectopod>(owner).target_reference_.transform.position - owner.transform.position).magnitude < 2.0f) //temp magic no attack range
         {
             GC<Entity>(owner).statemachine_.ChangeState(new SectopodAttackState());
         }
