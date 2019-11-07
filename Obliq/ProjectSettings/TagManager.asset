@@ -16,7 +16,7 @@ TagManager:
   - 
   - Obstacle
   - GlowUI
-  - 
+  - ProjCollide
   - 
   - 
   - 
@@ -39,6 +39,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Tiles
+    uniqueID: 650806805
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

@@ -60,4 +60,12 @@ public class WorldHandler : MonoBehaviour
         }
         return game_object;
     }
+    public GameObject GetRandomGoodGuy()
+    {
+        if (goodguys_.Count > 0)
+        {
+            return goodguys_[Random.Range(0, goodguys_.Count - 1)];
+        }
+        return null;
+    }
 }

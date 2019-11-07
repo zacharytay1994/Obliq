@@ -17,7 +17,7 @@ public class SectopodIdleState : State
     public override void Execute(GameObject owner)
     {
         GameObject objective = GameObject.Find("Entities/Objective");
-        Debug.Log("sectopod idle");
+       // Debug.Log("sectopod idle");
         closest_obj = GC<Entity>(owner).world_handler_reference_.GetNearestGoodGuy(owner.transform.position);
 
         if ((closest_obj.transform.position - objective.transform.position).magnitude < GC<Entity>(owner).GetTrueRange())// if within range
@@ -41,7 +41,7 @@ public class SectopodMoveState : State
     public override void Execute(GameObject owner)
     {
         GameObject objective = GameObject.Find("Entities/Objective");
-        Debug.Log("Sectopod Moving");
+       // Debug.Log("Sectopod Moving");
 
         if ((GC<Sectopod>(owner).target_reference_.transform.position - owner.transform.position).magnitude < 2.0f) //temp magic no
         {
@@ -74,13 +74,13 @@ public class SectopodAttackState : State
         GameObject objective = GameObject.Find("Entities/Objective");
         GC<ObliqPathfinding>(owner).target_ = GC<Sectopod>(owner).target_reference_.transform.position;
         
-        if ((GC<Sectopod>(owner).target_reference_.transform.position - owner.transform.position).magnitude < 2.0f) //temp magic no
+        if ((GC<Sectopod>(owner).target_reference_.transform.position - owner.transform.position).magnitude < 1.5f) //temp magic no (attack_range)
         {
             if(Time.time >= next_damage_time)
             {
                 next_damage_time = Time.time + attack_rate;
                 GC<Sectopod>(owner).target_reference_.GetComponent<Entity>().TakeDamage(1);//temporary hit scan should be projectile
-                Debug.Log(GC<Sectopod>(owner).target_reference_.GetComponent<Entity>().health_);
+               // Debug.Log(GC<Sectopod>(owner).target_reference_.GetComponent<Entity>().health_ + "SECTOPOD DMG");
             }
             owner.GetComponent<ObliqPathfinding>().StopPath();
         }

@@ -25,7 +25,7 @@ public class ObjectiveController : MonoBehaviour
         {
             Debug.Log("DEAD");
             return defused;
-            //Application.Quit;
+            //Application.Quit(); this is to close to program, does not work when testing with editor i.e pressing the play button 
         }
         if ((GameObject.Find("Entities/GoodGuys/GoodGuy").transform.position - GameObject.Find("Entities/Objective").transform.position).magnitude < 3.0f)
         {
