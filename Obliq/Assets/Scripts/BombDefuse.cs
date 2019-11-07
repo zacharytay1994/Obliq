@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BombDiffuse : MonoBehaviour
+public class BombDefuse : MonoBehaviour
 {
-    bool bomb_diffused_ = false;
+    bool bomb_defused_ = false;
     [SerializeField]
-    float bomb_diffuse_range_ = 0.0f;
+    float bomb_defuse_range_ = 0.0f;
     [SerializeField]
     KeyCode key_code_ = KeyCode.O;
     [SerializeField]
@@ -23,20 +23,20 @@ public class BombDiffuse : MonoBehaviour
         {
             if (Input.GetKeyDown(key_code_))
             {
-                bomb_diffused_ = true;
+                bomb_defused_ = true;
                 Destroy(gameObject);
             }
         } 
     }
 
-    public bool BombDiffused()
+    public bool BombDefused()
     {
-        return bomb_diffused_;
+        return bomb_defused_;
     }
 
     bool PlayerIsWithinRange()
     {
-        if ((gameObject.transform.position - player_.transform.position).magnitude < bomb_diffuse_range_)
+        if ((gameObject.transform.position - player_.transform.position).magnitude < bomb_defuse_range_)
         {
             return true;
         }

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-
     Camera camera_;
     [SerializeField] float player_acceleration_;
     [SerializeField] float player_decceleration_;
@@ -15,6 +14,9 @@ public class PlayerController : MonoBehaviour
     GameObject ball_follow_ = null;
     [SerializeField]
     float ball_offset_ = 0.0f;
+
+    SemiCircleMelee melee_;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +28,7 @@ public class PlayerController : MonoBehaviour
             temp.GetComponent<BallFollowPlayer>().InitBall(ball_offset_, gameObject);
         }
 
+        melee_ = new SemiCircleMelee(gameObject);
     }
 
     // Update is called once per frame
