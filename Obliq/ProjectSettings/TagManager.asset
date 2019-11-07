@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - AugmentManagerObject
+  - GlowCoverCamera
+  - GlowCamera
+  - Enemy
   layers:
   - Default
   - TransparentFX
