@@ -31,14 +31,12 @@ public class PlayerController : MonoBehaviour
         PlayerMovement();
     }
 
-    float PlayerFacingDirection()
+    void PlayerFacingDirection()
     {
         Vector2 mouseLocation = Input.mousePosition;
         mouseLocation = camera_.ScreenToWorldPoint(mouseLocation);
         float angle = AngleBetween(transform.position, mouseLocation);
         transform.rotation = Quaternion.Euler(0, 0, angle);
-
-        return angle;
     }
 
     float AngleBetween(Vector2 a, Vector2 b)
