@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - AugmentManagerObject
+  - GlowCoverCamera
+  - GlowCamera
+  - MainPlayer
   layers:
   - Default
   - TransparentFX

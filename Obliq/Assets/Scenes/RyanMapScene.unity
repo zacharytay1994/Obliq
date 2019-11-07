@@ -16217,12 +16217,11 @@ GameObject:
   - component: {fileID: 579272845}
   - component: {fileID: 579272844}
   - component: {fileID: 579272843}
-  - component: {fileID: 579272846}
   - component: {fileID: 579272847}
   - component: {fileID: 579272848}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: MainPlayer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16239,7 +16238,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9981f7e2aaaa57b428727d53cf5aa77c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera_: {fileID: 0}
   player_acceleration_: 3
   player_decceleration_: 0.7
 --- !u!212 &579272844
@@ -16305,20 +16303,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &579272846
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 579272842}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ceedbbaa4c08174ca683024ba8eef46, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  camera_: {fileID: 0}
-  camera_height_: 1
 --- !u!50 &579272847
 Rigidbody2D:
   serializedVersion: 4
@@ -16336,9 +16320,9 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!61 &579272848
 BoxCollider2D:
