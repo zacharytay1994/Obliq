@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - AugmentManagerObject
+  - GlowCoverCamera
+  - GlowCamera
   layers:
   - Default
   - TransparentFX
@@ -17,7 +19,7 @@ TagManager:
   - Obstacle
   - GlowUI
   - ProjCollide
-  - 
+  - RoomObjects
   - 
   - 
   - 
@@ -47,4 +49,7 @@ TagManager:
     locked: 0
   - name: Glow
     uniqueID: 1381122387
+    locked: 0
+  - name: RoomObjects
+    uniqueID: 1498247621
     locked: 0

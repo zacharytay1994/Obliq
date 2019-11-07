@@ -10,11 +10,21 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float player_decceleration_;
     Rigidbody2D rb2d_;
     Vector2 heading_ = new Vector2(0.0f, 0.0f);
+
+    [SerializeField]
+    GameObject ball_follow_ = null;
+    [SerializeField]
+    float ball_offset_ = 0.0f;
     // Start is called before the first frame update
     void Start()
     {
         rb2d_ = GetComponent<Rigidbody2D>();
         camera_ = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        if (ball_follow_ != null)
+        {
+            GameObject temp = (GameObject)Instantiate(ball_follow_, transform.position, Quaternion.identity);
+            temp.GetComponent<BallFollowPlayer>().InitBall(ball_offset_, gameObject);
+        }
 
     }
 
