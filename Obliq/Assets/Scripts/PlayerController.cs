@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Camera camera_;
     [SerializeField] float player_acceleration_;
     [SerializeField] float player_decceleration_;
+    [SerializeField] float player_rotation_acceleration_;
     Rigidbody2D rb2d_;
     Vector2 heading_ = new Vector2(0.0f, 0.0f);
     // Start is called before the first frame update
@@ -41,7 +42,7 @@ public class PlayerController : MonoBehaviour
 
     float AngleBetween(Vector2 a, Vector2 b)
     {
-        return Mathf.Atan2(a.y-b.y, a.x-b.x )*Mathf.Rad2Deg + 90;
+        return Mathf.Atan2(a.y-b.y, a.x-b.x )*Mathf.Rad2Deg+90;
     }
 
     void PlayerMovement()
