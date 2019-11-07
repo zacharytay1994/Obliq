@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 
-    [SerializeField] Camera camera_;
+    Camera camera_;
     [SerializeField] float player_acceleration_;
     [SerializeField] float player_decceleration_;
     [SerializeField] float player_rotation_acceleration_;
@@ -15,7 +15,8 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb2d_ = GetComponent<Rigidbody2D>();
-        
+        camera_ = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+
     }
 
     // Update is called once per frame
