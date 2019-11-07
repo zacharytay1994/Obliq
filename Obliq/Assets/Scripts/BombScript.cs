@@ -5,10 +5,10 @@ using UnityEngine.UI;
 
 public class BombScript : MonoBehaviour
 {
+    [SerializeField] float bomb_damage_;
     float time_left_ = 3.0f;
     bool stop_timer_ = false;
     bool bomb_explode_ = false;
-    [SerializeField] float bomb_damage_;
     // reference to lists of entities
     public WorldHandler world_handler_reference_;
 
@@ -19,7 +19,7 @@ public class BombScript : MonoBehaviour
         GameObject.Find("BombTimer").GetComponent<Text>().text = time_left_.ToString();
 
         // Display player health
-        GameObject.Find("GoodGuyHealth").GetComponent<Text>().text = GameObject.Find("GoodGuy").GetComponent<Entity>().health_.ToString();
+        GameObject.Find("GoodGuyHealth").GetComponent<Text>().text = "Player health: " + GameObject.Find("Player").GetComponent<Entity>().health_.ToString();
     }
 
     // Update is called once per frame
@@ -29,7 +29,7 @@ public class BombScript : MonoBehaviour
         GameObject.Find("BombTimer").GetComponent<Text>().text = time_left_.ToString();
 
         // Update player health
-        GameObject.Find("GoodGuyHealth").GetComponent<Text>().text = GameObject.Find("GoodGuy").GetComponent<Entity>().health_.ToString();
+        GameObject.Find("GoodGuyHealth").GetComponent<Text>().text = "Player health: " + GameObject.Find("Player").GetComponent<Entity>().health_.ToString();
 
         // When timer should not be stopped, continue to countdown
         if (!stop_timer_)
@@ -66,7 +66,7 @@ public class BombScript : MonoBehaviour
         // Remove bomb after exploding
         else if (bomb_explode_)
         {
-            Destroy(GameObject.Find("Objective"));
+            Destroy(GameObject.Find("Bomb"));
         }
     }
 }
