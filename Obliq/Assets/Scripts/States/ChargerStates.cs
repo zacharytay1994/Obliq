@@ -25,12 +25,13 @@ public class ChargerMoveState : State
         closest_good_guy_position =
             (Vector2)owner.GetComponent<Charger>().target_reference_.transform.position + (to_add * 2.0f); // temp magic number (how far behind target)
         // move charger to position
-        owner.GetComponent<Rigidbody2D>().AddForce(to_add * 3500 * 40);
+        owner.GetComponent<Rigidbody2D>().AddForce(to_add * 10000); //* 40);
         compare_vec = (Vector2)owner.transform.position - closest_good_guy_position;
             
     }
     public override void Execute(GameObject owner)
     {
+        float charge_timer = Time.time;
         Debug.Log("Charger Move");
         // if overshoot the target
         if (Vector2.Dot(compare_vec, (Vector2)owner.transform.position - closest_good_guy_position) < 0)
@@ -39,7 +40,10 @@ public class ChargerMoveState : State
            // owner.GetComponent<Rigidbody2D>().angularVelocity = 0;
             owner.GetComponent<Entity>().statemachine_.ChangeState(new ChargerIdleState());
         }
-      
+        if (GC<Rigidbody2D>(owner).velocity == Vector2.zero || Time.time - charge_timer > 3.0f)
+        {
+            owner.GetComponent<Entity>().statemachine_.ChangeState(new ChargerIdleState()); 
+        }
        /* 
         owner.GetComponent<Entity>().statemachine_.ChangeState(new ChargerIdleState());*/
     }

@@ -41,8 +41,12 @@ public class SectopodMoveState : State
     public override void Execute(GameObject owner)
     {
         GameObject objective = GameObject.Find("Entities/Objective");
-       // Debug.Log("Sectopod Moving");
-
+        // Debug.Log("Sectopod Moving");
+        if ((GC<ObliqPathfinding>(owner).target_ - (Vector2)GC<Sectopod>(owner).target_reference_.transform.position).magnitude > 1.5)
+        {
+            GC<ObliqPathfinding>(owner).target_ = GC<Sectopod>(owner).target_reference_.transform.position;
+            owner.GetComponent<ObliqPathfinding>().StartPath(owner.GetComponent<ObliqPathfinding>().target_);
+        }
         if ((GC<Sectopod>(owner).target_reference_.transform.position - owner.transform.position).magnitude < 2.0f) //temp magic no
         {
             GC<Entity>(owner).statemachine_.ChangeState(new SectopodAttackState());
