@@ -3,13 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-
   tags:
   - AugmentManagerObject
   - GlowCoverCamera
   - GlowCamera
   - MainPlayer
-
   layers:
   - Default
   - TransparentFX
@@ -52,4 +50,7 @@ TagManager:
     locked: 0
   - name: Glow
     uniqueID: 1381122387
+    locked: 0
+  - name: RoomObjects
+    uniqueID: 2691164771
     locked: 0
