@@ -168,7 +168,7 @@ MonoBehaviour:
   sounds:
   - name: Wahh
     clip: {fileID: 8300000, guid: 0a80db3045285964f88ee807ce576c51, type: 3}
-    volume: 1
+    volume: 0.653
     pitch: 1
     source: {fileID: 0}
     SoundType: 0
@@ -202,25 +202,6 @@ Camera:
     type: 3}
   m_PrefabInstance: {fileID: 8469944877132240790}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &605247689 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5629044396372094802, guid: 42bbfa805d47a054d8d1f4412887d620,
-    type: 3}
-  m_PrefabInstance: {fileID: 4589633269647987513}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &605247691
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 605247689}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74b94c99bb28d77498cc36e6908747a2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  current_camera: {fileID: 0}
 --- !u!1 &678330603
 GameObject:
   m_ObjectHideFlags: 0
