@@ -47780,7 +47780,6 @@ Tilemap:
       m_ObjectToInstantiate: {fileID: 0}
       m_TileFlags: 1
       m_ColliderType: 0
-<<<<<<< HEAD
   - first: {x: 8, y: 1, z: 0}
     second:
       m_TileIndex: 6
@@ -47789,27 +47788,16 @@ Tilemap:
       m_TileColorIndex: 0
       m_ObjectToInstantiate: {fileID: 0}
       m_TileFlags: 1
-<<<<<<< HEAD
-  - first: {x: 9, y: 1, z: 0}
-    second:
-      m_TileIndex: 6
-      m_TileSpriteIndex: 5
-=======
   - first: {x: -23, y: -2, z: 0}
     second:
       m_TileIndex: 0
       m_TileSpriteIndex: 0
->>>>>>> b9cdcfb8fb5b613650b46cb67f34e243f3694449
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_ObjectToInstantiate: {fileID: 0}
       m_TileFlags: 1
       m_ColliderType: 0
-<<<<<<< HEAD
-  - first: {x: 10, y: 1, z: 0}
-=======
   - first: {x: -22, y: -2, z: 0}
->>>>>>> b9cdcfb8fb5b613650b46cb67f34e243f3694449
     second:
       m_TileIndex: 6
       m_TileSpriteIndex: 5
