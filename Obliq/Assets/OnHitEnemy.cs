@@ -20,7 +20,7 @@ public class OnHitEnemy : MonoBehaviour
     {
         if(collision.CompareTag("Enemy"))
         {
-            //Resolve damage dealt
+            collision.gameObject.GetComponent<HealthComponent>().TakeDamage(20);
         }
     }
 }

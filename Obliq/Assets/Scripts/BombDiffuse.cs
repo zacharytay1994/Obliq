@@ -24,6 +24,7 @@ public class BombDiffuse : MonoBehaviour
             if (Input.GetKeyDown(key_code_))
             {
                 bomb_diffused_ = true;
+                Debug.Log("Bomb diffused");
                 Destroy(gameObject);
             }
         } 

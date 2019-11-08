@@ -3,13 +3,12 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-
   tags:
   - AugmentManagerObject
   - GlowCoverCamera
   - GlowCamera
   - MainPlayer
-
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -52,4 +51,7 @@ TagManager:
     locked: 0
   - name: Glow
     uniqueID: 1381122387
+    locked: 0
+  - name: UI
+    uniqueID: 3113550457
     locked: 0
