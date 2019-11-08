@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ZTurretOne : MonoBehaviour
+public class InitProjSpawner : MonoBehaviour
 {
     [SerializeField]
     GameObject proj_prefab = null;
