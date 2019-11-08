@@ -16,6 +16,11 @@ public class PlayerController : MonoBehaviour
     GameObject ball_follow_ = null;
     [SerializeField]
     float ball_offset_ = 0.0f;
+
+    [Space(10)]
+    [SerializeField] GameObject strike_zone_;
+    [SerializeField] float attack_duration_;
+   
     // Start is called before the first frame update
     void Start()
     {
@@ -32,13 +37,38 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        ResolveMeleeAttack();
     }
 
     private void FixedUpdate()
     {
         PlayerFacingDirection();
         PlayerMovement();
+    }
+
+    float melee_timer_;
+
+    void ResolveMeleeAttack()
+    {
+        if (strike_zone_.activeInHierarchy)
+        {
+            melee_timer_ -= Time.deltaTime;
+        }
+        if (melee_timer_ <= 0)
+        {
+            strike_zone_.SetActive(false);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            InitiateMeleeAttack();
+        }
+    }
+
+    void InitiateMeleeAttack()
+    {
+        strike_zone_.SetActive(true);
+        melee_timer_ = attack_duration_;
     }
 
     void PlayerFacingDirection()
