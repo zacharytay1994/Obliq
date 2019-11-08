@@ -55,7 +55,7 @@ public class PlayerHeartDisplay : MonoBehaviour
         for (int h = 0; h < full_heart; h++)
         {
             GameObject temp_heart = Instantiate(red_heart_display_, transform);
-            temp_heart.GetComponent<RectTransform>().localPosition = new Vector3((display_size_ / 2 * (num_hearts + 1)) + display_spacing_, -(display_size_ / 2) - display_spacing_, 0);
+            temp_heart.GetComponent<RectTransform>().localPosition = new Vector3((display_size_ + display_spacing_) * (num_hearts + 1), -(display_size_ / 2) - display_spacing_, 0);
             num_hearts++;
         }
         if (health % 2 != 0)
@@ -63,7 +63,7 @@ public class PlayerHeartDisplay : MonoBehaviour
             for (int h = 0; h < 1; h++)
             {
                 GameObject temp_heart = Instantiate(half_heart_display_, transform);
-                temp_heart.GetComponent<RectTransform>().localPosition = new Vector3((display_size_ / 2 * (num_hearts + 1)) + display_spacing_, -(display_size_ / 2) - display_spacing_, 0);
+                temp_heart.GetComponent<RectTransform>().localPosition = new Vector3((display_size_ + display_spacing_) * (num_hearts + 1), -(display_size_ / 2) - display_spacing_, 0);
                 num_hearts++;
             }
         }
@@ -71,7 +71,7 @@ public class PlayerHeartDisplay : MonoBehaviour
         for (int h = 0; h < black_heart; h++)
         {
             GameObject temp_heart = Instantiate(black_heart_display_, transform);
-            temp_heart.GetComponent<RectTransform>().localPosition = new Vector3((display_size_ / 2 * (num_hearts + 1)) + display_spacing_, -(display_size_ / 2) - display_spacing_, 0);
+            temp_heart.GetComponent<RectTransform>().localPosition = new Vector3((display_size_ + display_spacing_) * (num_hearts + 1), -(display_size_ / 2) - display_spacing_, 0);
             num_hearts++;
         }
 
