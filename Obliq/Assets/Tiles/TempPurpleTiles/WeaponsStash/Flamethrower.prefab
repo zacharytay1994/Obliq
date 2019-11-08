@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5998481998734508820}
   - component: {fileID: 2403358589633970366}
   m_Layer: 0
-  m_Name: TurretOneSpawn
+  m_Name: Flamethrower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -80,7 +80,7 @@ MonoBehaviour:
   mouse_self_heading_: 1
   mouse_offset_: {x: 0, y: 0}
   local_orientation_: 0
-  follow_mouse_: 0
+  follow_mouse_: 1
   spin_: 1
   spin_rate_: 50
   time_trigger_: 0
@@ -98,14 +98,14 @@ MonoBehaviour:
   tt_np_speed_: 0
   continuous_trigger_: 1
   cont_style_: 1
-  cont_density_: 5
-  cont_angle_: 40
+  cont_density_: 3
+  cont_angle_: 20
   cont_sstyle_: 0
-  cont_stream_rate_: 0.1
+  cont_stream_rate_: 0.05
   cont_burst_rest_timer_: 0
   cont_burst_timer_: 0
   time_interval_: 0
-  cont_prefab_: {fileID: 5226346963446909659, guid: fbf5cfb53682f1f439760464972d2d47,
+  cont_prefab_: {fileID: 5226346963446909659, guid: 8f0630fe17ff7b44d8c6d38b5ce398f3,
     type: 3}
   cont_np_offset_: 0
   cont_np_speed_: 0
@@ -132,8 +132,8 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5809754552401931580}
-  m_BodyType: 1
-  m_Simulated: 1
+  m_BodyType: 2
+  m_Simulated: 0
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
