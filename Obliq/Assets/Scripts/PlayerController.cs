@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     Camera camera_;
     [SerializeField] float player_acceleration_;
     [SerializeField] float player_decceleration_;
+    [SerializeField] float player_rotation_acceleration_;
     Rigidbody2D rb2d_;
     Vector2 heading_ = new Vector2(0.0f, 0.0f);
 
@@ -40,19 +41,17 @@ public class PlayerController : MonoBehaviour
         PlayerMovement();
     }
 
-    float PlayerFacingDirection()
+    void PlayerFacingDirection()
     {
         Vector2 mouseLocation = Input.mousePosition;
         mouseLocation = camera_.ScreenToWorldPoint(mouseLocation);
         float angle = AngleBetween(transform.position, mouseLocation);
         transform.rotation = Quaternion.Euler(0, 0, angle);
-
-        return angle;
     }
 
     float AngleBetween(Vector2 a, Vector2 b)
     {
-        return Mathf.Atan2(a.y-b.y, a.x-b.x )*Mathf.Rad2Deg + 90;
+        return Mathf.Atan2(a.y-b.y, a.x-b.x )*Mathf.Rad2Deg+90;
     }
 
     void PlayerMovement()
