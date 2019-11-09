@@ -51,10 +51,7 @@ public class LCMove : State
         Debug.Log("LC Entered Move");
     }
     public override void Execute(GameObject owner)
-    {
-
-        Debug.Log(GC<ObliqPathfinding>(owner).target_ + "TARGET");
-        Debug.Log(GC<LesserCharger>(owner).target_reference_.transform.position + "TARGET_Reference");
+    {       
         if ((GC<ObliqPathfinding>(owner).target_ - (Vector2)GC<LesserCharger>(owner).target_reference_.transform.position).magnitude > 1.5)
         {
             GC<ObliqPathfinding>(owner).target_ = GC<LesserCharger>(owner).target_reference_.transform.position;

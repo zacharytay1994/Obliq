@@ -25,7 +25,7 @@ public class Entity : MonoBehaviour
     {
         statemachine_ = new Statemachine(gameObject);
         statemachine_.SetState(new SomeDefault());
-        world_handler_reference_ = GameObject.Find("World").GetComponent<WorldHandler>();
+        world_handler_reference_ = GameObject.Find("World2").GetComponent<WorldHandler>();
 
     }
     // Start is called before the first frame update

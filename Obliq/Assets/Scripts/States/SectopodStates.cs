@@ -20,7 +20,7 @@ public class SectopodIdleState : State
     }
     public override void Execute(GameObject owner)
     {
-        GameObject objective = GameObject.Find("Entities/Objective");
+        GameObject objective = GameObject.Find("Bomb");
            
         closest_obj = GC<Entity>(owner).world_handler_reference_.GetNearestGoodGuy(owner.transform.position);
 

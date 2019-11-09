@@ -48,7 +48,7 @@ public class BombScript : MonoBehaviour
         if ((time_left_ <= 0) && !bomb_explode_)
         {
             // Deal damage to all enemies
-            world_handler_reference_ = GameObject.Find("World").GetComponent<WorldHandler>();
+            world_handler_reference_ = GameObject.Find("World2").GetComponent<WorldHandler>();
 
             foreach (GameObject e in world_handler_reference_.enemies_)
             {

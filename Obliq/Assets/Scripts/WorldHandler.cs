@@ -35,7 +35,11 @@ public class WorldHandler : MonoBehaviour
         foreach(GameObject gameobject in enemies_)
 
         {
-            gameobject.GetComponent<Entity>().statemachine_.Update();
+            if(gameobject != null)
+            {
+                gameobject.GetComponent<Entity>().statemachine_.Update();
+            }
+          
         }
     }
 

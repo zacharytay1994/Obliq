@@ -13,7 +13,7 @@ public class ChargerMoveState : State
     Vector2 compare_vec;
     public override void Enter(GameObject owner)
     {
-        owner.GetComponent<Charger>().target_reference_ = GameObject.Find("World").GetComponent<WorldHandler>().GetRandomGoodGuy();
+        owner.GetComponent<Charger>().target_reference_ = GameObject.Find("World2").GetComponent<WorldHandler>().GetRandomGoodGuy();
         // if target was not found 
         if (owner.GetComponent<Charger>().target_reference_ == null)
         {
@@ -34,6 +34,10 @@ public class ChargerMoveState : State
         float charge_timer = Time.time;
         Debug.Log("Charger Move");
         // if overshoot the target
+        if (GC<Entity>(owner).health_ <= 0 || Input.GetKeyDown(KeyCode.B)) // for testing
+        {
+            GC<Entity>(owner).statemachine_.ChangeState(new ChargerDeadState());
+        }
         if (Vector2.Dot(compare_vec, (Vector2)owner.transform.position - closest_good_guy_position) < 0)
         {
             //owner.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
@@ -72,6 +76,10 @@ public class ChargerIdleState : State
 
         Debug.Log("Charger Idle");
        // Debug.Log(Time.time - charge_start);
+       if (GC<Entity>(owner).health_ <= 0 || Input.GetKeyDown(KeyCode.B)) // for testing
+        {
+            GC<Entity>(owner).statemachine_.ChangeState(new ChargerDeadState());
+        }
         if (Time.time - charge_start >= 3.0f)
         {
            
@@ -89,4 +97,23 @@ public class ChargerIdleState : State
         
     }
     public override void Exit(GameObject owner) { }
+}
+public class ChargerDeadState : State
+{
+    public override void Enter(GameObject owner)
+    {
+        GC<Rigidbody2D>(owner).velocity = Vector2.zero;
+        GC<Rigidbody2D>(owner).angularVelocity = 0;
+    }
+    public override void Execute(GameObject owner)
+    {
+        //insert death anim
+        //destroy obj
+        GC<Entity>(owner).world_handler_reference_.enemies_.Remove(owner);
+        Object.Destroy(owner, 0);
+    }
+    public override void Exit(GameObject owner)
+    {
+
+    }
 }
