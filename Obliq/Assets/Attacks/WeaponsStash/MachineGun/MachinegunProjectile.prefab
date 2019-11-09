@@ -14,8 +14,9 @@ GameObject:
   - component: {fileID: 6051162261677879678}
   - component: {fileID: 235828931358813623}
   - component: {fileID: 7119392443147418798}
+  - component: {fileID: 7164747587921222637}
   m_Layer: 0
-  m_Name: FireProjectile
+  m_Name: ShotgunProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47,7 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eeb0363ec7ff550499b9f85ee039a8db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed_: 5
+  speed_: 50
   acceleration_: 1
   max_speed_: 10
   custom_speed_: 0
@@ -57,13 +58,13 @@ MonoBehaviour:
   decceleration_time_: 0.1
   force_type_: 1
   persistent_: 0
-  lifespan_: 3
+  lifespan_: 0.3
   destroy_on_collide_: 1
   on_collide_mask_:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 2304
   destroy_countdown_: 0
-  movement_: 2
+  movement_: 0
   local_speed_: 1
   stable_: 0
   lon_oscillation_: 0.1
@@ -86,20 +87,20 @@ MonoBehaviour:
   spin_: 0
   spin_rate_: 0
   time_trigger_: 0
-  active_time_: 0
-  tt_style_: 0
-  tt_density_: 0
-  tt_angle_: 0
+  active_time_: 0.1
+  tt_style_: 1
+  tt_density_: 5
+  tt_angle_: 20
   tt_sstyle_: 0
-  tt_stream_rate_: 0
+  tt_stream_rate_: 0.1
   tt_burst_rest_timer_: 0
   tt_burst_timer_: 0
   time_trigger_delay_: 0
   tt_prefab_: {fileID: 0}
   tt_np_offset_: 0
   tt_np_speed_: 0
-  continuous_trigger_: 1
-  cont_style_: 0
+  continuous_trigger_: 0
+  cont_style_: 2
   cont_density_: 1
   cont_angle_: 0
   cont_sstyle_: 0
@@ -107,10 +108,9 @@ MonoBehaviour:
   cont_burst_rest_timer_: 0
   cont_burst_timer_: 0
   time_interval_: 0
-  cont_prefab_: {fileID: 2604821128577617190, guid: b14f95dae67b76a44bd19496a91318af,
-    type: 3}
-  cont_np_offset_: 0
-  cont_np_speed_: 2
+  cont_prefab_: {fileID: 0}
+  cont_np_offset_: 0.5
+  cont_np_speed_: 0
   collide_trigger_: 0
   layer_to_collide_:
     serializedVersion: 2
@@ -145,7 +145,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!58 &6051162261677879678
 CircleCollider2D:
@@ -201,7 +201,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -209,7 +209,7 @@ SpriteRenderer:
   m_Size: {x: 0.2, y: 0.2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!96 &7119392443147418798
@@ -251,7 +251,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 1
+  m_Time: 0.1
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -299,10 +299,10 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 0.21595985, b: 0, a: 1}
-      key1: {r: 1, g: 0.61116797, b: 0.2588235, a: 0}
-      key2: {r: 1, g: 0.8407661, b: 0.45882356, a: 0}
-      key3: {r: 1, g: 0.9661056, b: 0.67058825, a: 0}
+      key0: {r: 0, g: 0.4248581, b: 1, a: 1}
+      key1: {r: 0.2588235, g: 0.9370973, b: 1, a: 0}
+      key2: {r: 0.45882356, g: 1, b: 0.855453, a: 0}
+      key3: {r: 0.67058825, g: 1, b: 0.8755672, a: 0}
       key4: {r: 1, g: 1, b: 1, a: 0}
       key5: {r: 0, g: 0, b: 0, a: 0}
       key6: {r: 0, g: 0, b: 0, a: 0}
@@ -335,3 +335,19 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
+--- !u!114 &7164747587921222637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5226346963446909659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a666b79897ec1f64caea9eb18b4ece5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage_: 1
+  enemy_mask_:
+    serializedVersion: 2
+    m_Bits: 2048

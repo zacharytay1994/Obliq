@@ -32,7 +32,6 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
     }
 
     private void FixedUpdate()
@@ -76,6 +75,7 @@ public class PlayerController : MonoBehaviour
         heading_.x = heading_.x - ((1 - player_decceleration_) * heading_.x);
         heading_.y = heading_.y - ((1 - player_decceleration_) * heading_.y);
 
-        rb2d_.velocity = heading_;
+        //rb2d_.velocity = heading_;
+        rb2d_.AddForce(heading_, ForceMode2D.Force);
     }
 }
