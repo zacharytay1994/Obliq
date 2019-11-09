@@ -16585,6 +16585,7 @@ MonoBehaviour:
   health_: 20
   attack_damage_: 5
   attack_range_: 5
+  detection_range_: 5
 --- !u!114 &579272850
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16831,6 +16832,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8341949636801913811, guid: c00848f1aab097140948b8626059b06d,
+        type: 3}
+      propertyPath: attack_range_
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c00848f1aab097140948b8626059b06d, type: 3}
 --- !u!4 &1345934797 stripped
@@ -16961,6 +16967,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LinearDrag
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5922036526131581509, guid: b061dfd629e8e7f419146dbafd2a3c1a,
+        type: 3}
+      propertyPath: detection_range_
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 5922036526131581509, guid: b061dfd629e8e7f419146dbafd2a3c1a,
+        type: 3}
+      propertyPath: attack_range_
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b061dfd629e8e7f419146dbafd2a3c1a, type: 3}

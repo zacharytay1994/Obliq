@@ -20,7 +20,8 @@ public class Entity : MonoBehaviour
     public float unit_scale_per_range_ = 0.2f;  // the world size scale
     public float health_ = 20.0f;               
     public float attack_damage_ = 5.0f;
-    public float attack_range_ = 5.0f;
+    [SerializeField] public float attack_range_ = 5.0f;
+    [SerializeField]public float detection_range_ = 5.0f;
 
     private void Awake()
     {
@@ -63,7 +64,7 @@ public class Entity : MonoBehaviour
     // misc function
     public float GetTrueRange() //i'm using this for detection range
     {
-        return attack_range_ * unit_scale_per_range_;
+        return detection_range_ * unit_scale_per_range_;
     }
     
 }

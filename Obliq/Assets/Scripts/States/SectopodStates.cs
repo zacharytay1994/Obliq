@@ -25,7 +25,7 @@ public class SectopodIdleState : State
         closest_obj = GC<Entity>(owner).world_handler_reference_.GetNearestGoodGuy(owner.transform.position);
         if (GC<Entity>(owner).health_ <= 0 || Input.GetKeyDown(KeyCode.B)) // for testing
         {
-            GC<Entity>(owner).statemachine_.ChangeState(new ChargerDeadState());
+            GC<Entity>(owner).statemachine_.ChangeState(new SectopodDeadState());
         }
         if ((closest_obj.transform.position - objective.transform.position).magnitude < GC<Entity>(owner).GetTrueRange())// if within range
         {
@@ -71,7 +71,7 @@ public class SectopodMoveState : State
             GC<ObliqPathfinding>(owner).target_ = GC<Sectopod>(owner).target_reference_.transform.position;
             owner.GetComponent<ObliqPathfinding>().StartPath(owner.GetComponent<ObliqPathfinding>().target_);
         }
-        if ((GC<Sectopod>(owner).target_reference_.transform.position - owner.transform.position).magnitude < 5.0f) //temp magic no attack range
+        if ((GC<Sectopod>(owner).target_reference_.transform.position - owner.transform.position).magnitude < GC<Entity>(owner).attack_range_) //temp magic no attack range
         {
             GC<Entity>(owner).statemachine_.ChangeState(new SectopodAttackState());
         }
@@ -105,7 +105,7 @@ public class SectopodAttackState : State
         {
             GC<Entity>(owner).statemachine_.ChangeState(new ChargerDeadState());
         }
-        if ((GC<Sectopod>(owner).target_reference_.transform.position - owner.transform.position).magnitude < 5f) //temp magic no (attack_range)
+        if ((GC<Sectopod>(owner).target_reference_.transform.position - owner.transform.position).magnitude < GC<Entity>(owner).attack_range_) //temp magic no (attack_range)
         {
             if(Time.time >= next_damage_time)
             {

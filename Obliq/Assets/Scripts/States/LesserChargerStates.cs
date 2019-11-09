@@ -30,7 +30,7 @@ public class LCIdle : State
                     GC<Entity>(owner).statemachine_.ChangeState(new LCDead());
                 }
             // if within range
-                if ((GC<LesserCharger>(owner).target_reference_.transform.position - owner.transform.position).magnitude < 1.5f)//temp magic no for attack range
+                if ((GC<LesserCharger>(owner).target_reference_.transform.position - owner.transform.position).magnitude < GC<Entity>(owner).attack_range_)//temp magic no for attack range
                 {
                     // go into attack state
                     ChangeState(owner, new LCAttack());
@@ -59,12 +59,12 @@ public class LCMove : State
         {
             GC<Entity>(owner).statemachine_.ChangeState(new LCDead());
         }
-        if ((GC<ObliqPathfinding>(owner).target_ - (Vector2)GC<LesserCharger>(owner).target_reference_.transform.position).magnitude > 5f)
+        if ((GC<ObliqPathfinding>(owner).target_ - (Vector2)GC<LesserCharger>(owner).target_reference_.transform.position).magnitude > GC<Entity>(owner).attack_range_)
         {
             GC<ObliqPathfinding>(owner).target_ = GC<LesserCharger>(owner).target_reference_.transform.position;
             owner.GetComponent<ObliqPathfinding>().StartPath(owner.GetComponent<ObliqPathfinding>().target_);
         }
-        if ((GC<LesserCharger>(owner).target_reference_.transform.position - owner.transform.position).magnitude < 5f)//temp magic no (attack range)
+        if ((GC<LesserCharger>(owner).target_reference_.transform.position - owner.transform.position).magnitude < GC<Entity>(owner).attack_range_)//temp magic no (attack range)
         {
             // go into attack state
            
@@ -88,7 +88,7 @@ public class LCAttack : State
         {
             GC<Entity>(owner).statemachine_.ChangeState(new LCDead());
         }
-        if ((GC<LesserCharger>(owner).target_reference_.transform.position - owner.transform.position).magnitude > 5f)
+        if ((GC<LesserCharger>(owner).target_reference_.transform.position - owner.transform.position).magnitude > GC<Entity>(owner).attack_range_)
         {
             GC<Entity>(owner).statemachine_.ChangeState(new LCMove());
         }
