@@ -33,10 +33,10 @@ public class WorldHandler : MonoBehaviour
     void Update()
     {
         foreach(GameObject gameobject in enemies_)
-
         {
             if(gameobject != null)
             {
+
                 gameobject.GetComponent<Entity>().statemachine_.Update();
             }
           

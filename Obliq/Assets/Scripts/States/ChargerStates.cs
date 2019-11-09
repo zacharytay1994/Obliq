@@ -109,8 +109,8 @@ public class ChargerDeadState : State
     {
         //insert death anim
         //destroy obj
-        GC<Entity>(owner).world_handler_reference_.enemies_.Remove(owner);
-        Object.Destroy(owner, 0);
+    
+            Object.Destroy(owner, 0);
     }
     public override void Exit(GameObject owner)
     {

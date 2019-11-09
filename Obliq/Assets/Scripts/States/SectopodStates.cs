@@ -23,7 +23,10 @@ public class SectopodIdleState : State
         GameObject objective = GameObject.Find("Bomb");
            
         closest_obj = GC<Entity>(owner).world_handler_reference_.GetNearestGoodGuy(owner.transform.position);
-
+        if (GC<Entity>(owner).health_ <= 0 || Input.GetKeyDown(KeyCode.B)) // for testing
+        {
+            GC<Entity>(owner).statemachine_.ChangeState(new ChargerDeadState());
+        }
         if ((closest_obj.transform.position - objective.transform.position).magnitude < GC<Entity>(owner).GetTrueRange())// if within range
         {
             GC<Sectopod>(owner).target_reference_ = closest_obj;
@@ -59,6 +62,10 @@ public class SectopodMoveState : State
     {
         GameObject objective = GameObject.Find("Entities/Objective");
         // Debug.Log("Sectopod Moving");
+        if (GC<Entity>(owner).health_ <= 0 || Input.GetKeyDown(KeyCode.B)) // for testing
+        {
+            GC<Entity>(owner).statemachine_.ChangeState(new ChargerDeadState());
+        }
         if ((GC<ObliqPathfinding>(owner).target_ - (Vector2)GC<Sectopod>(owner).target_reference_.transform.position).magnitude > movementBuffer) //magic buffer value
         {
             GC<ObliqPathfinding>(owner).target_ = GC<Sectopod>(owner).target_reference_.transform.position;
@@ -94,7 +101,10 @@ public class SectopodAttackState : State
     {
         GameObject objective = GameObject.Find("Entities/Objective");
         GC<ObliqPathfinding>(owner).target_ = GC<Sectopod>(owner).target_reference_.transform.position;
-        
+        if (GC<Entity>(owner).health_ <= 0 || Input.GetKeyDown(KeyCode.B)) // for testing
+        {
+            GC<Entity>(owner).statemachine_.ChangeState(new ChargerDeadState());
+        }
         if ((GC<Sectopod>(owner).target_reference_.transform.position - owner.transform.position).magnitude < 1.5f) //temp magic no (attack_range)
         {
             if(Time.time >= next_damage_time)
@@ -119,5 +129,27 @@ public class SectopodAttackState : State
     }
     public override void Exit(GameObject owner)
     {
+    }
+}
+public class SectopodDeadState : State
+{
+    public override void Enter(GameObject owner)
+    {
+        GC<Rigidbody2D>(owner).velocity = Vector2.zero;
+        GC<Rigidbody2D>(owner).angularVelocity = 0;
+    }
+    public override void Execute(GameObject owner)
+    {
+        //insert death anim
+        //destroy obj
+
+
+        Object.Destroy(owner, 0);
+
+
+    }
+    public override void Exit(GameObject owner)
+    {
+
     }
 }

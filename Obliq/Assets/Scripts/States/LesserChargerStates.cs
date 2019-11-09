@@ -25,8 +25,11 @@ public class LCIdle : State
             {
                 // set target to nearest_good_guy
                 GC<LesserCharger>(owner).target_reference_ = nearest_good_guy_;
-               
-                // if within range
+                if (GC<Entity>(owner).health_ <= 0 || Input.GetKeyDown(KeyCode.B)) // for testing
+                {
+                    GC<Entity>(owner).statemachine_.ChangeState(new LCDead());
+                }
+            // if within range
                 if ((GC<LesserCharger>(owner).target_reference_.transform.position - owner.transform.position).magnitude < 1.5f)//temp magic no for attack range
                 {
                     // go into attack state
@@ -51,7 +54,11 @@ public class LCMove : State
         Debug.Log("LC Entered Move");
     }
     public override void Execute(GameObject owner)
-    {       
+    {
+        if (GC<Entity>(owner).health_ <= 0 || Input.GetKeyDown(KeyCode.B)) // for testing
+        {
+            GC<Entity>(owner).statemachine_.ChangeState(new LCDead());
+        }
         if ((GC<ObliqPathfinding>(owner).target_ - (Vector2)GC<LesserCharger>(owner).target_reference_.transform.position).magnitude > 1.5)
         {
             GC<ObliqPathfinding>(owner).target_ = GC<LesserCharger>(owner).target_reference_.transform.position;
@@ -76,7 +83,10 @@ public class LCAttack : State
         Debug.Log("LC is attacking");
     }
     public override void Execute(GameObject owner) {
-
+        if (GC<Entity>(owner).health_ <= 0 || Input.GetKeyDown(KeyCode.B)) // for testing
+        {
+            GC<Entity>(owner).statemachine_.ChangeState(new LCDead());
+        }
         if ((GC<LesserCharger>(owner).target_reference_.transform.position - owner.transform.position).magnitude > 1.5f)
         {
             GC<Entity>(owner).statemachine_.ChangeState(new LCMove());
@@ -92,4 +102,26 @@ public class LCAttack : State
         
     }
     public override void Exit(GameObject owner) { }
+}
+public class LCDead : State
+{
+    public override void Enter(GameObject owner)
+    {
+        GC<Rigidbody2D>(owner).velocity = Vector2.zero;
+        GC<Rigidbody2D>(owner).angularVelocity = 0;
+    }
+    public override void Execute(GameObject owner)
+    {
+        //insert death anim
+        //destroy obj
+
+       
+            Object.Destroy(owner, 0);
+
+        
+    }
+    public override void Exit(GameObject owner)
+    {
+
+    }
 }
