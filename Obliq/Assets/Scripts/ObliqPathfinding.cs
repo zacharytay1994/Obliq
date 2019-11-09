@@ -7,7 +7,7 @@ public class ObliqPathfinding : MonoBehaviour
 {
     public Vector2 target_;
 
-    public float speed_ = 400.0f;
+    public float speed_ = 500.0f;
     float next_waypoint_distance_ = 0.3f;
     Quaternion rotation_;
 

@@ -52,7 +52,14 @@ public class LCMove : State
     }
     public override void Execute(GameObject owner)
     {
-       
+
+        Debug.Log(GC<ObliqPathfinding>(owner).target_ + "TARGET");
+        Debug.Log(GC<LesserCharger>(owner).target_reference_.transform.position + "TARGET_Reference");
+        if ((GC<ObliqPathfinding>(owner).target_ - (Vector2)GC<LesserCharger>(owner).target_reference_.transform.position).magnitude > 1.5)
+        {
+            GC<ObliqPathfinding>(owner).target_ = GC<LesserCharger>(owner).target_reference_.transform.position;
+            owner.GetComponent<ObliqPathfinding>().StartPath(owner.GetComponent<ObliqPathfinding>().target_);
+        }
         if ((GC<LesserCharger>(owner).target_reference_.transform.position - owner.transform.position).magnitude < 1.5f)//temp magic no (attack range)
         {
             // go into attack state
@@ -71,8 +78,12 @@ public class LCAttack : State
     public override void Enter(GameObject owner) {
         Debug.Log("LC is attacking");
     }
-    public override void Execute(GameObject owner) {   
-        
+    public override void Execute(GameObject owner) {
+
+        if ((GC<LesserCharger>(owner).target_reference_.transform.position - owner.transform.position).magnitude > 1.5f)
+        {
+            GC<Entity>(owner).statemachine_.ChangeState(new LCMove());
+        }
         if (Time.time >= next_damage_time)
         {
             next_damage_time = Time.time + attack_rate;
@@ -81,9 +92,7 @@ public class LCAttack : State
             owner.GetComponent<ObliqPathfinding>().StopPath();
         }
 
-        if((GC<LesserCharger>(owner).target_reference_.transform.position - owner.transform.position).magnitude > 1.5f){
-            GC<Entity>(owner).statemachine_.ChangeState(new LCMove());
-        }
+        
     }
     public override void Exit(GameObject owner) { }
 }
