@@ -60,7 +60,7 @@ public class SectopodMoveState : State
     }
     public override void Execute(GameObject owner)
     {
-        GameObject objective = GameObject.Find("Entities/Objective");
+        GameObject objective = GameObject.Find("Bomb");
         // Debug.Log("Sectopod Moving");
         if (GC<Entity>(owner).health_ <= 0 || Input.GetKeyDown(KeyCode.B)) // for testing
         {
@@ -71,7 +71,7 @@ public class SectopodMoveState : State
             GC<ObliqPathfinding>(owner).target_ = GC<Sectopod>(owner).target_reference_.transform.position;
             owner.GetComponent<ObliqPathfinding>().StartPath(owner.GetComponent<ObliqPathfinding>().target_);
         }
-        if ((GC<Sectopod>(owner).target_reference_.transform.position - owner.transform.position).magnitude < 2.0f) //temp magic no attack range
+        if ((GC<Sectopod>(owner).target_reference_.transform.position - owner.transform.position).magnitude < 5.0f) //temp magic no attack range
         {
             GC<Entity>(owner).statemachine_.ChangeState(new SectopodAttackState());
         }
@@ -99,19 +99,19 @@ public class SectopodAttackState : State
     }
     public override void Execute(GameObject owner)       
     {
-        GameObject objective = GameObject.Find("Entities/Objective");
+        GameObject objective = GameObject.Find("Bomb");
         GC<ObliqPathfinding>(owner).target_ = GC<Sectopod>(owner).target_reference_.transform.position;
         if (GC<Entity>(owner).health_ <= 0 || Input.GetKeyDown(KeyCode.B)) // for testing
         {
             GC<Entity>(owner).statemachine_.ChangeState(new ChargerDeadState());
         }
-        if ((GC<Sectopod>(owner).target_reference_.transform.position - owner.transform.position).magnitude < 1.5f) //temp magic no (attack_range)
+        if ((GC<Sectopod>(owner).target_reference_.transform.position - owner.transform.position).magnitude < 5f) //temp magic no (attack_range)
         {
             if(Time.time >= next_damage_time)
             {
                 next_damage_time = Time.time + attack_rate;
                 GC<Sectopod>(owner).target_reference_.GetComponent<Entity>().TakeDamage(1);//temporary hit scan should be projectile
-               // Debug.Log(GC<Sectopod>(owner).target_reference_.GetComponent<Entity>().health_ + "SECTOPOD DMG");
+                Debug.Log(GC<Sectopod>(owner).target_reference_.GetComponent<Entity>().health_);
             }
             owner.GetComponent<ObliqPathfinding>().StopPath();
         }

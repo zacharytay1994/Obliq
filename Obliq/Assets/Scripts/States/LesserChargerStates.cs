@@ -59,12 +59,12 @@ public class LCMove : State
         {
             GC<Entity>(owner).statemachine_.ChangeState(new LCDead());
         }
-        if ((GC<ObliqPathfinding>(owner).target_ - (Vector2)GC<LesserCharger>(owner).target_reference_.transform.position).magnitude > 1.5)
+        if ((GC<ObliqPathfinding>(owner).target_ - (Vector2)GC<LesserCharger>(owner).target_reference_.transform.position).magnitude > 5f)
         {
             GC<ObliqPathfinding>(owner).target_ = GC<LesserCharger>(owner).target_reference_.transform.position;
             owner.GetComponent<ObliqPathfinding>().StartPath(owner.GetComponent<ObliqPathfinding>().target_);
         }
-        if ((GC<LesserCharger>(owner).target_reference_.transform.position - owner.transform.position).magnitude < 1.5f)//temp magic no (attack range)
+        if ((GC<LesserCharger>(owner).target_reference_.transform.position - owner.transform.position).magnitude < 5f)//temp magic no (attack range)
         {
             // go into attack state
            
@@ -80,22 +80,24 @@ public class LCAttack : State
     float attack_rate = 2.0f;
     float next_damage_time = 0.0f;
     public override void Enter(GameObject owner) {
-        Debug.Log("LC is attacking");
+      
     }
     public override void Execute(GameObject owner) {
+        Debug.Log("LC is attacking");
         if (GC<Entity>(owner).health_ <= 0 || Input.GetKeyDown(KeyCode.B)) // for testing
         {
             GC<Entity>(owner).statemachine_.ChangeState(new LCDead());
         }
-        if ((GC<LesserCharger>(owner).target_reference_.transform.position - owner.transform.position).magnitude > 1.5f)
+        if ((GC<LesserCharger>(owner).target_reference_.transform.position - owner.transform.position).magnitude > 5f)
         {
             GC<Entity>(owner).statemachine_.ChangeState(new LCMove());
         }
         if (Time.time >= next_damage_time)
         {
             next_damage_time = Time.time + attack_rate;
-            GC<LesserCharger>(owner).target_reference_.GetComponent<Entity>().TakeDamage(2);
-            Debug.Log("LC DMG" + GC<LesserCharger>(owner).target_reference_.GetComponent<Entity>().health_);
+            Debug.Log(GC<Entity>(GC<LesserCharger>(owner).target_reference_).health_);
+            GC<Entity>(GC<LesserCharger>(owner).target_reference_).TakeDamage(1);
+           
             owner.GetComponent<ObliqPathfinding>().StopPath();
         }
 
