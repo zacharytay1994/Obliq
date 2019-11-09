@@ -11,8 +11,10 @@ public class ChargerMoveState : State
 {
     Vector2 closest_good_guy_position;
     Vector2 compare_vec;
+    float charge_timer;
     public override void Enter(GameObject owner)
     {
+         charge_timer = Time.time;
         owner.GetComponent<Charger>().target_reference_ = GameObject.Find("World2").GetComponent<WorldHandler>().GetRandomGoodGuy();
         // if target was not found 
         if (owner.GetComponent<Charger>().target_reference_ == null)
@@ -31,7 +33,7 @@ public class ChargerMoveState : State
     }
     public override void Execute(GameObject owner)
     {
-        float charge_timer = Time.time;
+
         Debug.Log("Charger Move");
         // if overshoot the target
         if (GC<Entity>(owner).health_ <= 0 || Input.GetKeyDown(KeyCode.B)) // for testing
@@ -76,10 +78,7 @@ public class ChargerIdleState : State
 
         Debug.Log("Charger Idle");
        // Debug.Log(Time.time - charge_start);
-       if (GC<Entity>(owner).health_ <= 0 || Input.GetKeyDown(KeyCode.B)) // for testing
-        {
-            GC<Entity>(owner).statemachine_.ChangeState(new ChargerDeadState());
-        }
+
         if (Time.time - charge_start >= 3.0f)
         {
            
@@ -94,7 +93,11 @@ public class ChargerIdleState : State
                 GC<Rigidbody2D>(owner).angularVelocity -= 20;
             }*/
         }
-        
+        if (GC<Entity>(owner).health_ <= 0 || Input.GetKeyDown(KeyCode.B)) // for testing
+        {
+            GC<Entity>(owner).statemachine_.ChangeState(new ChargerDeadState());
+        }
+
     }
     public override void Exit(GameObject owner) { }
 }
