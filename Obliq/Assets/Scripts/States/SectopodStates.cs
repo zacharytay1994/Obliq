@@ -64,7 +64,7 @@ public class SectopodMoveState : State
         // Debug.Log("Sectopod Moving");
         if (GC<Entity>(owner).health_ <= 0 || Input.GetKeyDown(KeyCode.B)) // for testing
         {
-            GC<Entity>(owner).statemachine_.ChangeState(new ChargerDeadState());
+            GC<Entity>(owner).statemachine_.ChangeState(new SectopodDeadState());
         }
         if ((GC<ObliqPathfinding>(owner).target_ - (Vector2)GC<Sectopod>(owner).target_reference_.transform.position).magnitude > movementBuffer) //magic buffer value
         {
@@ -103,7 +103,7 @@ public class SectopodAttackState : State
         GC<ObliqPathfinding>(owner).target_ = GC<Sectopod>(owner).target_reference_.transform.position;
         if (GC<Entity>(owner).health_ <= 0 || Input.GetKeyDown(KeyCode.B)) // for testing
         {
-            GC<Entity>(owner).statemachine_.ChangeState(new ChargerDeadState());
+            GC<Entity>(owner).statemachine_.ChangeState(new SectopodDeadState());
         }
         if ((GC<Sectopod>(owner).target_reference_.transform.position - owner.transform.position).magnitude < GC<Entity>(owner).attack_range_) //temp magic no (attack_range)
         {
@@ -141,12 +141,9 @@ public class SectopodDeadState : State
     public override void Execute(GameObject owner)
     {
         //insert death anim
-        //destroy obj
-
-
+        //destroy obj  
+        Debug.Log("Sectopod Dead");
         Object.Destroy(owner, 0);
-
-
     }
     public override void Exit(GameObject owner)
     {

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static GF;
 
 public class Charger : MonoBehaviour
 {
@@ -19,10 +20,18 @@ public class Charger : MonoBehaviour
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
+         if(collision.gameObject.GetComponent<ImAProjectile>() != null){
+            Debug.Log("Enemy hit");
+            GC<Entity>(gameObject).TakeDamage(20); //temp magic no
+        }
         
-          entity_reference_.statemachine_.SetState(new ChargerIdleState());
-                  
-       
+        else
+        {
+            entity_reference_.statemachine_.SetState(new ChargerIdleState());
+
+        }
+
+
     }
     void OnCollisionStay2D(Collision2D collision)
     {

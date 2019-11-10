@@ -112,7 +112,7 @@ public class ChargerDeadState : State
     {
         //insert death anim
         //destroy obj
-    
+        Debug.Log("Charger dead");
             Object.Destroy(owner, 0);
     }
     public override void Exit(GameObject owner)

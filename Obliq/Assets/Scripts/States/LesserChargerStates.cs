@@ -116,11 +116,8 @@ public class LCDead : State
     {
         //insert death anim
         //destroy obj
-
-       
-            Object.Destroy(owner, 0);
-
-        
+        Debug.Log("LC Dead");
+        Object.Destroy(owner, 0);        
     }
     public override void Exit(GameObject owner)
     {
