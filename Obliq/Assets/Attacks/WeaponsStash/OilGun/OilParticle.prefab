@@ -11,9 +11,12 @@ GameObject:
   - component: {fileID: 2604821128577617194}
   - component: {fileID: 2604821128577617195}
   - component: {fileID: 2604821128577617188}
-  - component: {fileID: 3159803525348210139}
+  - component: {fileID: 1737204327906875055}
+  - component: {fileID: -4819183379285187351}
+  - component: {fileID: 3264337038723586858}
+  - component: {fileID: 2888650437711715778}
   m_Layer: 0
-  m_Name: BloodParticle
+  m_Name: OilParticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 2604821128577617190}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -72,7 +75,7 @@ SpriteRenderer:
   m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 1, g: 0.078668885, b: 0, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -90,12 +93,12 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2604821128577617190}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 5
+  m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -103,7 +106,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &3159803525348210139
+--- !u!114 &1737204327906875055
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -112,7 +115,53 @@ MonoBehaviour:
   m_GameObject: {fileID: 2604821128577617190}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bdcd255ff35c06c4a93ecd2012c7ff68, type: 3}
+  m_Script: {fileID: 11500000, guid: aee56a56a8ce569458693b287994f963, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  life_span_: 30
+  persistent_: 0
+  random_life_span_: {x: 30, y: 35}
+--- !u!114 &-4819183379285187351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2604821128577617190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0f4e4e23cf963849bb592cde0df3b27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fire_effect_: {fileID: 5705661621723253877, guid: 24387ac7a9aacf54ea804f7fb9157f1c,
+    type: 3}
+  fire_tolerance_: 0
+--- !u!58 &3264337038723586858
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2604821128577617190}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.1
+--- !u!114 &2888650437711715778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2604821128577617190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0fd2706ccbd0d141af76cca28226686, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  random_size_min_: {x: 3, y: 3}
+  random_size_max_: {x: 5, y: 5}

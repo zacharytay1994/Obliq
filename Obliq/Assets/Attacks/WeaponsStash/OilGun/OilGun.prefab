@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5998481998734508820}
   - component: {fileID: 2403358589633970366}
   m_Layer: 0
-  m_Name: Flamethrower
+  m_Name: OilGun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -103,7 +103,7 @@ MonoBehaviour:
   cont_stream_rate_: 0.05
   cont_burst_rest_timer_: 0
   cont_burst_timer_: 0
-  cont_prefab_: {fileID: 5226346963446909659, guid: 8f0630fe17ff7b44d8c6d38b5ce398f3,
+  cont_prefab_: {fileID: 5226346963446909659, guid: d2ed9c114c75a494c987377f2e896798,
     type: 3}
   cont_np_offset_: 0
   cont_np_speed_: 0

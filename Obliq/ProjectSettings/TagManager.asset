@@ -8,6 +8,7 @@ TagManager:
   - GlowCoverCamera
   - GlowCamera
   - MainPlayer
+  - FireParticle
   layers:
   - Default
   - TransparentFX
@@ -21,7 +22,7 @@ TagManager:
   - GlowUI
   - ProjCollide
   - GruntLayer
-  - 
+  - ParticleLayer
   - 
   - 
   - 
@@ -51,6 +52,12 @@ TagManager:
   - name: Glow
     uniqueID: 1381122387
     locked: 0
+  - name: BelowParticles
+    uniqueID: 1588568129
+    locked: 0
   - name: RoomObjects
     uniqueID: 402003703
+    locked: 0
+  - name: AboveParticles
+    uniqueID: 3513164317
     locked: 0

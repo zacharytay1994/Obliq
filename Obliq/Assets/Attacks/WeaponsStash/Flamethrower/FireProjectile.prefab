@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eeb0363ec7ff550499b9f85ee039a8db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed_: 5
+  speed_: 10
   acceleration_: 1
   max_speed_: 10
   custom_speed_: 0
@@ -59,16 +59,15 @@ MonoBehaviour:
   force_type_: 1
   persistent_: 0
   lifespan_: 3
-  destroy_on_collide_: 1
   on_collide_mask_:
     serializedVersion: 2
     m_Bits: 256
   destroy_countdown_: 0
   movement_: 0
-  local_speed_: 1
+  local_speed_: 2
   stable_: 0
-  lon_oscillation_: 0.1
-  len_oscillation_: 0.1
+  lon_oscillation_: 0.5
+  len_oscillation_: 0.5
   random_range_: 2
   random_time_: 1
   random_min_angle_: 0
@@ -104,11 +103,10 @@ MonoBehaviour:
   cont_density_: 1
   cont_angle_: 0
   cont_sstyle_: 0
-  cont_stream_rate_: 0.05
+  cont_stream_rate_: 0.1
   cont_burst_rest_timer_: 0
   cont_burst_timer_: 0
-  time_interval_: 0
-  cont_prefab_: {fileID: 2604821128577617190, guid: b14f95dae67b76a44bd19496a91318af,
+  cont_prefab_: {fileID: 5705661621723253877, guid: 4e38c87e902721d47a0da09e06c3c105,
     type: 3}
   cont_np_offset_: 0.5
   cont_np_speed_: 0

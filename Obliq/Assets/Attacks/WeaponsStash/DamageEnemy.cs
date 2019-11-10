@@ -27,11 +27,14 @@ public class DamageEnemy : MonoBehaviour
         {
             if (enemy_mask_ == (enemy_mask_ | (1 << collision.gameObject.layer)))
             {
-                collision.gameObject.GetComponent<TempGrunt>().TakeDamage(damage_);
-                // get direction
-                Vector2 direction = ((Vector2)collision.gameObject.transform.position - (Vector2)transform.position).normalized;
-                collision.gameObject.GetComponent<BloodEffect>().DrawBlood(direction);
-                damaged_ = true;
+                if (collision.gameObject.GetComponent<TempGrunt>() != null)
+                {
+                    collision.gameObject.GetComponent<TempGrunt>().TakeDamage(damage_);
+                    // get direction
+                    Vector2 direction = ((Vector2)collision.gameObject.transform.position - (Vector2)transform.position).normalized;
+                    collision.gameObject.GetComponent<BloodEffect>().DrawBlood(direction);
+                    damaged_ = true;
+                }
             }
         }
     }
