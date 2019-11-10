@@ -11,6 +11,7 @@ public class ChargerMoveState : State
 {
     Vector2 closest_good_guy_position;
     Vector2 compare_vec;
+   
     float charge_timer;
     public override void Enter(GameObject owner)
     {
@@ -42,12 +43,16 @@ public class ChargerMoveState : State
         }
         if (Vector2.Dot(compare_vec, (Vector2)owner.transform.position - closest_good_guy_position) < 0)
         {
+
             //owner.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-           // owner.GetComponent<Rigidbody2D>().angularVelocity = 0;
+            // owner.GetComponent<Rigidbody2D>().angularVelocity = 0;
+            GC<Charger>(owner).SpawnLesserChargers();
+
             owner.GetComponent<Entity>().statemachine_.ChangeState(new ChargerIdleState());
         }
         if (GC<Rigidbody2D>(owner).velocity == Vector2.zero || Time.time - charge_timer > 3.0f)
         {
+            GC<Charger>(owner).SpawnLesserChargers();
             owner.GetComponent<Entity>().statemachine_.ChangeState(new ChargerIdleState()); 
         }
        /* 

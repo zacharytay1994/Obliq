@@ -9,6 +9,8 @@ public class Charger : MonoBehaviour
     bool hasCollided = false;
     public float move_distance_ = 10.0f;
     public GameObject target_reference_;
+    public GameObject lesser_charger_reference_;
+    int spawn_buffer = 3;
     // entity reference
     Entity entity_reference_;
 
@@ -25,8 +27,9 @@ public class Charger : MonoBehaviour
             GC<Entity>(gameObject).TakeDamage(20); //temp magic no
         }
         
-        else
+        else if (collision.gameObject.GetComponent<LesserCharger>() == null)
         {
+            SpawnLesserChargers();
             entity_reference_.statemachine_.SetState(new ChargerIdleState());
 
         }
@@ -43,5 +46,15 @@ public class Charger : MonoBehaviour
     void Update()
     {
         
+    }
+    public void SpawnLesserChargers()
+    {
+        GameObject LC1 = Object.Instantiate(lesser_charger_reference_, new Vector2(gameObject.transform.position.x + spawn_buffer, gameObject.transform.position.y),
+           gameObject.transform.rotation);
+        GameObject LC2 = Object.Instantiate(lesser_charger_reference_, new Vector2(gameObject.transform.position.x - spawn_buffer, gameObject.transform.position.y),
+        gameObject.transform.rotation);
+
+        GC<Entity>(gameObject).world_handler_reference_.enemies_.Add(LC1);
+        GC<Entity>(gameObject).world_handler_reference_.enemies_.Add(LC2);
     }
 }
