@@ -69,7 +69,8 @@ MonoBehaviour:
   unit_scale_per_range_: 0.2
   health_: 20
   attack_damage_: 5
-  attack_range_: 5
+  attack_range_: 3
+  detection_range_: 5
 --- !u!50 &6177796453974779592
 Rigidbody2D:
   serializedVersion: 4

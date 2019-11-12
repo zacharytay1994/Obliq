@@ -38,6 +38,7 @@ public class WorldHandler : MonoBehaviour
             {
                 Debug.Log(gameobject);
                 gameobject.GetComponent<Entity>().statemachine_.Update();
+                
             }
           
         }
