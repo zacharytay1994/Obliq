@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: -4389544497857464151}
   - component: {fileID: 7558377437490080930}
   - component: {fileID: 6628754379057080636}
+  - component: {fileID: 8639225413994411257}
   m_Layer: 12
   m_Name: FirePersist
   m_TagString: FireParticle
@@ -4807,3 +4808,20 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.15
+--- !u!114 &8639225413994411257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5705661621723253877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be33f3fa9d292e743bcfb274691c4917, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage_: 2
+  enemy_mask_:
+    serializedVersion: 2
+    m_Bits: 2048
+  damage_interval_: 1

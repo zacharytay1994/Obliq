@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -4819183379285187351}
   - component: {fileID: 3264337038723586858}
   - component: {fileID: 2888650437711715778}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: OilParticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}

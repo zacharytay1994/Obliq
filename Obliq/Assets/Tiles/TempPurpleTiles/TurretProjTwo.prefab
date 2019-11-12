@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1628633300094924396}
   - component: {fileID: 4676754753924627751}
   - component: {fileID: 1177957961199395310}
+  - component: {fileID: 2851805976537282779}
   m_Layer: 0
   m_Name: TurretProjTwo
   m_TagString: Untagged
@@ -57,7 +58,6 @@ MonoBehaviour:
   force_type_: 0
   persistent_: 0
   lifespan_: 3
-  destroy_on_collide_: 1
   on_collide_mask_:
     serializedVersion: 2
     m_Bits: 256
@@ -105,7 +105,6 @@ MonoBehaviour:
   cont_stream_rate_: 0
   cont_burst_rest_timer_: 0
   cont_burst_timer_: 0
-  time_interval_: 0
   cont_prefab_: {fileID: 0}
   cont_np_offset_: 0
   cont_np_speed_: 0
@@ -210,3 +209,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2851805976537282779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6600748117743961730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a666b79897ec1f64caea9eb18b4ece5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage_: 1
+  enemy_mask_:
+    serializedVersion: 2
+    m_Bits: 8192

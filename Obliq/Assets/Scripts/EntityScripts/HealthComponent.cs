@@ -13,6 +13,14 @@ public class HealthComponent : MonoBehaviour
         currentHp_ = maxHp_;
     }
 
+    private void Update()
+    {
+        if (currentHp_<=0)
+        {
+            Destroy(gameObject);
+        }
+    }
+
     public void TakeDamage(int damage)
     {
         currentHp_ -= damage;
