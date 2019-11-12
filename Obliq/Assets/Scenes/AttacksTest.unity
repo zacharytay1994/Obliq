@@ -16218,6 +16218,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ZTurretOne (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3719753849060881182, guid: 37552543be0a01043bb1cb767245473e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3719753849060881171, guid: 37552543be0a01043bb1cb767245473e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -16302,6 +16307,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ZTurretOne (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3719753849060881182, guid: 37552543be0a01043bb1cb767245473e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3719753849060881171, guid: 37552543be0a01043bb1cb767245473e,
         type: 3}
@@ -16580,7 +16590,25 @@ MonoBehaviour:
   recoil_: 5
   recoil_amount_: 4
   recoil_interval_: 0.1
---- !u!114 &579272851
+--- !u!1 &792321688
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 792321691}
+  - component: {fileID: 792321690}
+  - component: {fileID: 792321689}
+  m_Layer: 11
+  m_Name: MockSectopod
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &792321689
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -105549,7 +105577,7 @@ PrefabInstance:
     - target: {fileID: 7862674349831162025, guid: b46ff27c54fc6b147add87599ceaf19a,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 434712922699763752, guid: b46ff27c54fc6b147add87599ceaf19a,
         type: 3}
@@ -105624,6 +105652,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ZTurretOne
+      objectReference: {fileID: 0}
+    - target: {fileID: 3719753849060881182, guid: 37552543be0a01043bb1cb767245473e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3719753849060881171, guid: 37552543be0a01043bb1cb767245473e,
         type: 3}
