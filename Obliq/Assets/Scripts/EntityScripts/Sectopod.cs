@@ -20,6 +20,7 @@ public class Sectopod : MonoBehaviour
         {
             Debug.Log("Enemy hit");
             GC<Entity>(gameObject).TakeDamage(20); //temp magic no
+            
         }
     }
         // Update is called once per frame
