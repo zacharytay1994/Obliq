@@ -3,12 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - AugmentManagerObject
-  - GlowCoverCamera
-  - GlowCamera
-  - MainPlayer
-  - Enemy
+  tags: []
   layers:
   - Default
   - TransparentFX
@@ -18,9 +13,9 @@ TagManager:
   - UI
   - 
   - 
-  - Obstacle
-  - GlowUI
-  - ProjCollide
+  - 
+  - 
+  - 
   - 
   - 
   - 
@@ -43,20 +38,6 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Tiles
-    uniqueID: 650806805
-    locked: 0
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: Glow
-    uniqueID: 1381122387
-    locked: 0
-<<<<<<< HEAD
-  - name: UI
-    uniqueID: 3113550457
-=======
-  - name: RoomObjects
-    uniqueID: 2691164771
->>>>>>> ddbca1c430887f0cda378274b75325a19133d3a6
     locked: 0
