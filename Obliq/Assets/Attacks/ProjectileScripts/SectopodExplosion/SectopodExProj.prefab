@@ -88,17 +88,18 @@ MonoBehaviour:
   follow_mouse_: 0
   spin_: 0
   spin_rate_: 0
-  time_trigger_: 0
+  time_trigger_: 1
   active_time_: 0.1
-  tt_style_: 1
-  tt_density_: 5
+  tt_style_: 2
+  tt_density_: 30
   tt_angle_: 20
   tt_sstyle_: 0
-  tt_stream_rate_: 0.1
+  tt_stream_rate_: 0.05
   tt_burst_rest_timer_: 0
   tt_burst_timer_: 0
-  time_trigger_delay_: 0
-  tt_prefab_: {fileID: 0}
+  time_trigger_delay_: 1.5
+  tt_prefab_: {fileID: 5226346963446909659, guid: db956c4cf49df9e4ea0af370080628f9,
+    type: 3}
   tt_np_offset_: 0
   tt_np_speed_: 0
   continuous_trigger_: 0
@@ -115,16 +116,16 @@ MonoBehaviour:
   collide_trigger_: 1
   layer_to_collide_:
     serializedVersion: 2
-    m_Bits: 8192
-  col_active_time_: 0.5
+    m_Bits: 8448
+  col_active_time_: 0.1
   colt_style_: 2
-  colt_density_: 10
+  colt_density_: 30
   colt_angle_: 0
   colt_sstyle_: 0
-  colt_stream_rate_: 0
+  colt_stream_rate_: 0.05
   colt_burst_rest_timer_: 0
   colt_burst_timer_: 0
-  colt_prefab_: {fileID: 5705661621723253877, guid: 4e38c87e902721d47a0da09e06c3c105,
+  colt_prefab_: {fileID: 5226346963446909659, guid: db956c4cf49df9e4ea0af370080628f9,
     type: 3}
   colt_np_offset_: 1
   colt_np_speed_: 100

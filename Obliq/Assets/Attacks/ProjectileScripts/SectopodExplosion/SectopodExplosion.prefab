@@ -82,7 +82,7 @@ MonoBehaviour:
   mouse_self_heading_: 1
   mouse_offset_: {x: 0, y: 0}
   local_orientation_: 0
-  follow_mouse_: 1
+  follow_mouse_: 0
   spin_: 1
   spin_rate_: 50
   time_trigger_: 0
