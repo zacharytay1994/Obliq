@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 7164747587921222637}
   - component: {fileID: -323119862179744384}
   m_Layer: 0
-  m_Name: MachinegunProjectile
+  m_Name: MachinegunProjectile2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -66,8 +66,6 @@ MonoBehaviour:
   destroy_countdown_: 0
   movement_: 0
   local_speed_: 1
-  random_spread_: 1
-  spread_range_: 0
   stable_: 0
   lon_oscillation_: 0.1
   len_oscillation_: 0.1
