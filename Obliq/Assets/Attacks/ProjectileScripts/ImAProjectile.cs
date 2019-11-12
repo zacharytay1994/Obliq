@@ -408,6 +408,9 @@ public class ImAProjectile : MonoBehaviour
                         movement_heading_ = (mouse_point_ - (Vector2)gameObject.transform.position).normalized;
                     }
                     break;
+                case ProjectileTarget.SpecifyDirection:
+                    movement_heading_ = specified_direction_;
+                    break;
             }
             // update movement
             switch (movement_)
@@ -828,6 +831,7 @@ public class ImAProjectile : MonoBehaviour
         GameObject temp = (GameObject)Instantiate(projprefab, transform.position, Quaternion.identity);
         if (temp.GetComponent<ImAProjectile>() != null)
         {
+            temp.GetComponent<ImAProjectile>().specified_direction_ = specified_direction_;
             temp.GetComponent<ImAProjectile>().InitProj();
         }
     }
