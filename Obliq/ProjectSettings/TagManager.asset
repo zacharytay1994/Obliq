@@ -52,6 +52,11 @@ TagManager:
   - name: Glow
     uniqueID: 1381122387
     locked: 0
+<<<<<<< HEAD
   - name: UI
     uniqueID: 3113550457
+=======
+  - name: RoomObjects
+    uniqueID: 2691164771
+>>>>>>> ddbca1c430887f0cda378274b75325a19133d3a6
     locked: 0
