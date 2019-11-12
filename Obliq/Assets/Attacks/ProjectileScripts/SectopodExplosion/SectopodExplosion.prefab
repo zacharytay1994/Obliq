@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5461622231843674611}
   - component: {fileID: 5998481998734508820}
   - component: {fileID: 2403358589633970366}
-  - component: {fileID: 7748833268660427424}
+  - component: {fileID: 9168569960087203569}
   m_Layer: 0
   m_Name: SectopodExplosion
   m_TagString: Untagged
@@ -162,7 +162,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &7748833268660427424
+--- !u!114 &9168569960087203569
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
