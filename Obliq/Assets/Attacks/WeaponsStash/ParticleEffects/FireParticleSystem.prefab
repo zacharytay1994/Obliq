@@ -868,7 +868,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 10
+      scalar: 7
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -4790,7 +4790,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   persistent_: 0
-  random_life_span_: {x: 1, y: 3}
+  random_life_span_: {x: 1, y: 1.4}
 --- !u!58 &6628754379057080636
 CircleCollider2D:
   m_ObjectHideFlags: 0
