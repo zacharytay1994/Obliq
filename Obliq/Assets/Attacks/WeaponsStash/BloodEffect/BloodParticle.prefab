@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 2604821128577617194}
   - component: {fileID: 2604821128577617195}
   - component: {fileID: 2604821128577617188}
-  - component: {fileID: 2604821128577617189}
+  - component: {fileID: 3159803525348210139}
   m_Layer: 0
-  m_Name: FireParticle
+  m_Name: BloodParticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -68,11 +68,11 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1588568129
+  m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 3ceb4e47c02fa624c8efd6b01f9b0bd7, type: 3}
-  m_Color: {r: 1, g: 0.44313726, b: 0, a: 1}
+  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  m_Color: {r: 1, g: 0.078668885, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -95,7 +95,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 5
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -103,7 +103,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &2604821128577617189
+--- !u!114 &3159803525348210139
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -112,7 +112,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2604821128577617190}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86b5534f888f4004a9bd9e26f954d2fa, type: 3}
+  m_Script: {fileID: 11500000, guid: bdcd255ff35c06c4a93ecd2012c7ff68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  life_span: 1
+  life_span_: 30

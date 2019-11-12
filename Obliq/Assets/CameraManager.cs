@@ -5,7 +5,7 @@ using UnityEngine;
 public class CameraManager : MonoBehaviour
 {
     // Transform of the GameObject you want to shake
-    private float OriginalShakeDuration;
+    private float OriginalShakeDuration = 1.0f;
 
     [SerializeField] public bool TrackMouse;
     [Space(10)]

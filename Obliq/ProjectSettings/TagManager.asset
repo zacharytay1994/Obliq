@@ -3,13 +3,12 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-
   tags:
   - AugmentManagerObject
   - GlowCoverCamera
   - GlowCamera
   - MainPlayer
-
+  - FireParticle
   layers:
   - Default
   - TransparentFX
@@ -22,8 +21,8 @@ TagManager:
   - Obstacle
   - GlowUI
   - ProjCollide
-  - 
-  - 
+  - GruntLayer
+  - ParticleLayer
   - 
   - 
   - 
@@ -52,4 +51,13 @@ TagManager:
     locked: 0
   - name: Glow
     uniqueID: 1381122387
+    locked: 0
+  - name: BelowParticles
+    uniqueID: 1588568129
+    locked: 0
+  - name: RoomObjects
+    uniqueID: 402003703
+    locked: 0
+  - name: AboveParticles
+    uniqueID: 3513164317
     locked: 0
