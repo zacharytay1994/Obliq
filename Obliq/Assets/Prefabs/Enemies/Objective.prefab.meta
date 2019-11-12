@@ -1,6 +1,12 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Obliq/Assets/Prefabs/Enemies/Objective.prefab.meta
 guid: 78e9905c525cab448b282988e3c28156
 PrefabImporter:
+=======
+guid: d383a399dd10386438277c9101c7d541
+folderAsset: yes
+DefaultImporter:
+>>>>>>> master:Obliq/Assets/Attacks/WeaponsStash.meta
   externalObjects: {}
   userData: 
   assetBundleName: 

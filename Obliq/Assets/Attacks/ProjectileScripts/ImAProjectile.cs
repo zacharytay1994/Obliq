@@ -36,8 +36,8 @@ public class ImAProjectile : MonoBehaviour
     bool persistent_ = false;
     [SerializeField]
     float lifespan_ = 0.0f;
-    [SerializeField]
-    bool destroy_on_collide_ = false;
+    //[SerializeField]
+    //bool destroy_on_collide_ = false;
     [SerializeField]
     LayerMask on_collide_mask_ = 10;
     [SerializeField]
@@ -182,8 +182,8 @@ public class ImAProjectile : MonoBehaviour
     float cont_burst_timer_ = 0.0f;
     float cont_burst_rest_counter_ = 0.0f;
     float cont_burst_counter_ = 0.0f;
-    [SerializeField]
-    float time_interval_ = 0.0f;
+    //[SerializeField]
+    //float time_interval_ = 0.0f;
     [SerializeField]
     GameObject cont_prefab_ = null;
     [SerializeField]
@@ -192,7 +192,7 @@ public class ImAProjectile : MonoBehaviour
     [SerializeField]
     [Tooltip("for prefabs that don't have this script attached, define impulse speed here")]
     float cont_np_speed_ = 0.0f;
-    float interval_counter_ = 0.0f;
+    //float interval_counter_ = 0.0f;
     [Header("7.3 Collide Trigger")]
     [SerializeField]
     [Tooltip("trigger this spawning effect on collision")]
@@ -232,7 +232,7 @@ public class ImAProjectile : MonoBehaviour
     float colt_np_speed_ = 0.0f;
 
     // debug
-    int debug_counter_ = 0;
+    //int debug_counter_ = 0;
 
     // Projectile Variables
     Vector2 center_point_ = new Vector2(0.0f, 0.0f);
@@ -520,7 +520,10 @@ public class ImAProjectile : MonoBehaviour
 
             // update rotation
             float temp_angle = -Mathf.Atan2(rb.velocity.x, rb.velocity.y) * Mathf.Rad2Deg;
-            rb.MoveRotation(temp_angle);
+            if (rb.bodyType != RigidbodyType2D.Static)
+            {
+                rb.MoveRotation(temp_angle);
+            }
         }
     }
 

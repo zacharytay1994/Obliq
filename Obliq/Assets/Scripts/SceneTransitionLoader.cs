@@ -90,7 +90,7 @@ public class SceneTransitionLoader : MonoBehaviour
 
             if ((load_progress - displayed_load_progress) > load_bar_speed)
             {
-                displayed_load_progress = displayed_load_progress + (load_progress - displayed_load_progress) * load_bar_speed;
+                displayed_load_progress = displayed_load_progress + (load_progress - displayed_load_progress) * load_bar_speed ;
             }
             else
             {

@@ -685,7 +685,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   current_camera: {fileID: 0}
-  cameraTag: GlowCoverCamera
+  cameraTag: GlowCamera
 --- !u!1 &7916986932137178368
 GameObject:
   m_ObjectHideFlags: 0
