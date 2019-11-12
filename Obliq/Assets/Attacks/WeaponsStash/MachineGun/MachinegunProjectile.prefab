@@ -66,6 +66,8 @@ MonoBehaviour:
   destroy_countdown_: 0
   movement_: 0
   local_speed_: 1
+  random_spread_: 1
+  spread_range_: 0
   stable_: 0
   lon_oscillation_: 0.1
   len_oscillation_: 0.1
