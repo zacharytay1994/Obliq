@@ -16,15 +16,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     float ball_offset_ = 0.0f;
 
-<<<<<<< HEAD
     [Space(10)]
     [SerializeField] GameObject strike_zone_;
     [SerializeField] float attack_duration_;
    
-=======
     SemiCircleMelee melee_;
 
->>>>>>> AustinRealTimePrototype
     // Start is called before the first frame update
     void Start()
     {
