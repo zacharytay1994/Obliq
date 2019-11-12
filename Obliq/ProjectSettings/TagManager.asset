@@ -9,6 +9,9 @@ TagManager:
   - GlowCamera
   - MainPlayer
   - FireParticle
+  - Enemy
+  - Objective
+  - ObjectiveProgress
   layers:
   - Default
   - TransparentFX

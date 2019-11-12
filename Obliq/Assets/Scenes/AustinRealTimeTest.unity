@@ -663,7 +663,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &793349924
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1344,7 +1344,6 @@ MonoBehaviour:
   force_type_: 0
   persistent_: 1
   lifespan_: 0
-  destroy_on_collide_: 0
   on_collide_mask_:
     serializedVersion: 2
     m_Bits: 10
@@ -1392,7 +1391,6 @@ MonoBehaviour:
   cont_stream_rate_: 0
   cont_burst_rest_timer_: 0
   cont_burst_timer_: 0
-  time_interval_: 0
   cont_prefab_: {fileID: 0}
   cont_np_offset_: 0
   cont_np_speed_: 0
@@ -1643,6 +1641,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player_acceleration_: 3
   player_decceleration_: 0.7
+  player_rotation_acceleration_: 0
   ball_follow_: {fileID: 0}
   ball_offset_: 0
 --- !u!1 &1146335431
@@ -1752,7 +1751,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1323821542
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17861,7 +17860,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1358463532
 Transform:
   m_ObjectHideFlags: 0
@@ -17974,6 +17973,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SceneCameras
+      objectReference: {fileID: 0}
+    - target: {fileID: 8469944875350085201, guid: ddaf4ec891c08644396fdaca093c7b2f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8469944875350085214, guid: ddaf4ec891c08644396fdaca093c7b2f,
         type: 3}
