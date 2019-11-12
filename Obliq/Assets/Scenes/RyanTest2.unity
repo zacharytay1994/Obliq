@@ -16387,11 +16387,11 @@ GameObject:
   - component: {fileID: 579272845}
   - component: {fileID: 579272844}
   - component: {fileID: 579272843}
-  - component: {fileID: 579272846}
   - component: {fileID: 579272847}
   - component: {fileID: 579272848}
   - component: {fileID: 579272850}
   - component: {fileID: 579272849}
+  - component: {fileID: 579272846}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -16417,6 +16417,8 @@ MonoBehaviour:
   ball_follow_: {fileID: 1226126166385036793, guid: 93d9302a0337c9e488c308092e3dd0b8,
     type: 3}
   ball_offset_: 2
+  strike_zone_: {fileID: 0}
+  attack_duration_: 0
 --- !u!212 &579272844
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -16475,7 +16477,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 579272842}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.13, y: -13.06, z: -1.5718371}
+  m_LocalPosition: {x: -7.13, y: -13.06, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -16494,7 +16496,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   camera_: {fileID: 0}
-  camera_height_: 1
+  camera_height_: -1
 --- !u!50 &579272847
 Rigidbody2D:
   serializedVersion: 4
@@ -16567,7 +16569,7 @@ MonoBehaviour:
   w2_continuous_recoil_: 0
   w2_recoil_data_: {x: 5, y: 4, z: 0.1}
   w3_switch_: 51
-  weapon_3: {fileID: 5809754552401931580, guid: 4cbd90d08e7db694da18e2012f740fe4,
+  weapon_3: {fileID: 5809754552401931580, guid: 6ea7af6f01d35d24b9d140ed19fa34e0,
     type: 3}
   w3_has_recoil: 1
   w3_continuous_recoil_: 1
@@ -16672,7 +16674,7 @@ PrefabInstance:
     - target: {fileID: 8469944875963345909, guid: ddaf4ec891c08644396fdaca093c7b2f,
         type: 3}
       propertyPath: m_CullingMask.m_Bits
-      value: 6455
+      value: 7479
       objectReference: {fileID: 0}
     - target: {fileID: 8469944875963345909, guid: ddaf4ec891c08644396fdaca093c7b2f,
         type: 3}
