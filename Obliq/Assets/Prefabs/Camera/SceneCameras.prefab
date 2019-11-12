@@ -141,10 +141,11 @@ MonoBehaviour:
   CameraTarget: {x: 0, y: 0, z: 0}
   xoffset: 0
   yoffset: 0
-  TrackingSpeed: 0.3
+  TrackingSpeed: 0.5
   offset: {x: 0, y: 0, z: 0}
   Camera: {fileID: 0}
   CameraPanStrength: 0
+  ShakeCamera: 0
 --- !u!1 &8469944876115857398
 GameObject:
   m_ObjectHideFlags: 0

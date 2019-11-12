@@ -27,7 +27,13 @@ public class Charger : MonoBehaviour
             hasCollided = false;
             entity_reference_.statemachine_.SetState(new ChargerIdleState());        
     }
-   
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if (hasCollided == true)
+            hasCollided = false;
+        entity_reference_.statemachine_.SetState(new ChargerIdleState());
+    }
+
     // Update is called once per frame
     void Update()
     {
