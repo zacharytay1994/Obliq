@@ -30,10 +30,8 @@ public class RaycastAttack : MonoBehaviour
     
     void Start()
     {
-        layerMask = LayerMask.GetMask("Obstacle");
+        layerMask = LayerMask.GetMask("Walls");
        line = gameObject.GetComponent<LineRenderer>();
-      
-      
     }
 
     // Update is called once per frame

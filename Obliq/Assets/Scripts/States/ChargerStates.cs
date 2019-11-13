@@ -16,7 +16,7 @@ public class ChargerMoveState : State
     public override void Enter(GameObject owner)
     {
          charge_timer = Time.time;
-        owner.GetComponent<Charger>().target_reference_ = GameObject.Find("World2").GetComponent<WorldHandler>().GetRandomGoodGuy();
+        owner.GetComponent<Charger>().target_reference_ = GameObject.Find("World").GetComponent<WorldHandler>().GetRandomGoodGuy();
         // if target was not found 
         if (owner.GetComponent<Charger>().target_reference_ == null)
         {
@@ -28,7 +28,7 @@ public class ChargerMoveState : State
         closest_good_guy_position =
             (Vector2)owner.GetComponent<Charger>().target_reference_.transform.position + (to_add * 2.0f); // temp magic number (how far behind target)
         // move charger to position
-        owner.GetComponent<Rigidbody2D>().AddForce(to_add * 10000); //* 40);
+        owner.GetComponent<Rigidbody2D>().AddForce(to_add * 200000); //* 40);
         compare_vec = (Vector2)owner.transform.position - closest_good_guy_position;
             
     }

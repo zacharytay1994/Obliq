@@ -148,7 +148,8 @@ public class SectopodAttackState : State
             if (Time.time >= next_damage_time && laser_aimed)
             {
                 next_damage_time = Time.time + attack_rate;
-                GC<Sectopod>(owner).target_reference_.GetComponent<Entity>().TakeDamage(1);//temporary hit scan should be projectile
+                //GC<Sectopod>(owner).target_reference_.GetComponent<Entity>().TakeDamage(1);//temporary hit scan should be projectile
+                GC<Sectopod>(owner).target_reference_.GetComponent<HealthComponent>().TakeDamage(1);
                 Debug.Log(GC<Sectopod>(owner).target_reference_.GetComponent<Entity>().health_);
                 is_charging = false;
                 laser_aimed = false;

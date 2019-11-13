@@ -13,7 +13,7 @@ public class Sectopod : MonoBehaviour
     {
         entity_reference_ = gameObject.GetComponent<Entity>();
         entity_reference_.statemachine_.SetState(new SectopodIdleState());
-        GetComponent<ImAProjectile>().InitProj();
+        //GetComponent<ImAProjectile>().InitProj();
     }
     void OnCollisionEnter2D(Collision2D collision)
     {

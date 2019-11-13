@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 235828931358813623}
   - component: {fileID: 7119392443147418798}
   - component: {fileID: 7164747587921222637}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: ShotgunProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eeb0363ec7ff550499b9f85ee039a8db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed_: 50
+  speed_: 300
   acceleration_: 1
   max_speed_: 10
   custom_speed_: 0
@@ -59,13 +59,14 @@ MonoBehaviour:
   force_type_: 1
   persistent_: 0
   lifespan_: 0.3
-  destroy_on_collide_: 1
   on_collide_mask_:
     serializedVersion: 2
-    m_Bits: 2304
+    m_Bits: 151552
   destroy_countdown_: 0
   movement_: 0
   local_speed_: 1
+  random_spread_: 0
+  spread_range_: 0
   stable_: 0
   lon_oscillation_: 0.1
   len_oscillation_: 0.1
@@ -107,7 +108,6 @@ MonoBehaviour:
   cont_stream_rate_: 0.05
   cont_burst_rest_timer_: 0
   cont_burst_timer_: 0
-  time_interval_: 0
   cont_prefab_: {fileID: 0}
   cont_np_offset_: 0.5
   cont_np_speed_: 0
@@ -198,8 +198,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1352270105
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -248,8 +248,8 @@ TrailRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1352270105
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_Time: 0.1
   m_Parameters:
@@ -350,4 +350,4 @@ MonoBehaviour:
   damage_: 1
   enemy_mask_:
     serializedVersion: 2
-    m_Bits: 2048
+    m_Bits: 16384

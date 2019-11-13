@@ -39,7 +39,10 @@ public class TempGrunt : MonoBehaviour
         }
         if (health_.currentHp_ <= 0)
         {
-            spawner_.GruntDied();
+            if (spawner_ != null)
+            {
+                spawner_.GruntDied();
+            }
             Destroy(gameObject);
         }
     }

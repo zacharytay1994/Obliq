@@ -16,9 +16,11 @@ GameObject:
   - component: {fileID: 9121467770912038754}
   - component: {fileID: 9121467770912038755}
   - component: {fileID: 9121467770912038756}
+  - component: {fileID: -6263682970674648268}
+  - component: {fileID: 4414589548416025732}
   m_Layer: 0
   m_Name: Charger
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31,8 +33,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9121467770912038757}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.6, y: -1.3, z: 211.90259}
-  m_LocalScale: {x: 3.9166, y: 3.5705, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -129,14 +131,14 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 20
+  m_Mass: 100
   m_LinearDrag: 1.5
   m_AngularDrag: 0.6
   m_GravityScale: 0
-  m_Material: {fileID: 6200000, guid: 533345438721c6242bf231da4e832dea, type: 2}
+  m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!212 &9121467770912038755
 SpriteRenderer:
@@ -176,7 +178,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: 4a0b52b0057db9e4780ad58b63fd1891, type: 3}
   m_Color: {r: 0.0983446, g: 0.8018868, b: 0.78884304, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -200,6 +202,36 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.00000011920929, y: 0}
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.08
+  m_Radius: 0.5
+--- !u!114 &-6263682970674648268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9121467770912038757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b654a9ed45867894d8f8378d03d054a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHp_: 50
+  currentHp_: 50
+--- !u!114 &4414589548416025732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9121467770912038757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ca1db6eea8f46248b204dde08f25267, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blood_: {fileID: 2604821128577617190, guid: 18d365df8345a944695f9ef87dcb1947, type: 3}
+  intensity_: 20
+  splatter_upper_lower: {x: 5, y: 15}
+  angle_range_: 10

@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 7119392443147418798}
   - component: {fileID: 7164747587921222637}
   - component: {fileID: -323119862179744384}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: MachinegunProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -32,7 +32,7 @@ Transform:
   m_GameObject: {fileID: 5226346963446909659}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -62,12 +62,12 @@ MonoBehaviour:
   lifespan_: 3
   on_collide_mask_:
     serializedVersion: 2
-    m_Bits: 16384
+    m_Bits: 147456
   destroy_countdown_: 0
   movement_: 0
   local_speed_: 1
   random_spread_: 1
-  spread_range_: 0
+  spread_range_: 0.1
   stable_: 0
   lon_oscillation_: 0.1
   len_oscillation_: 0.1
@@ -199,10 +199,10 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1352270105
+  m_SortingLayer: 7
   m_SortingOrder: 0
-  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: 4a0b52b0057db9e4780ad58b63fd1891, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -249,8 +249,8 @@ TrailRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1352270105
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_Time: 0.1
   m_Parameters:
@@ -351,7 +351,7 @@ MonoBehaviour:
   damage_: 1
   enemy_mask_:
     serializedVersion: 2
-    m_Bits: 18432
+    m_Bits: 16384
 --- !u!114 &-323119862179744384
 MonoBehaviour:
   m_ObjectHideFlags: 0

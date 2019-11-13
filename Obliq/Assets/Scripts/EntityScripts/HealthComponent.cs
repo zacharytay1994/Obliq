@@ -15,12 +15,14 @@ public class HealthComponent : MonoBehaviour
 
     private void Update()
     {
-
     }
 
     public void TakeDamage(int damage)
     {
-        currentHp_ -= damage;
+        if (currentHp_ > 0)
+        {
+            currentHp_ -= damage;
+        }
     }
 
     public void HealHp(int healing)

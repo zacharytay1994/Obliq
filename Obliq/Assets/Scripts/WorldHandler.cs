@@ -21,11 +21,12 @@ public class WorldHandler : MonoBehaviour
             Debug.Log(t.gameObject);
             enemies_.Add(t.gameObject);
         }
-        foreach (Transform t in GameObject.Find("GoodGuys").transform)
-        {
-            Debug.Log(t.gameObject);
-            goodguys_.Add(t.gameObject);
-        }
+        //foreach (Transform t in GameObject.Find("Player").transform)
+        //{
+        //    Debug.Log(t.gameObject);
+        //    goodguys_.Add(t.gameObject);
+        //}
+        goodguys_.Add(GameObject.Find("Player"));
        // SetMoveRadiusActive(false);
     }
 
@@ -67,10 +68,11 @@ public class WorldHandler : MonoBehaviour
     }
     public GameObject GetRandomGoodGuy()
     {
-        if (goodguys_.Count > 0)
-        {
-            return goodguys_[Random.Range(0, goodguys_.Count - 1)];
-        }
-        return null;
+        //if (goodguys_.Count > 0)
+        //{
+        //    return goodguys_[Random.Range(0, goodguys_.Count - 1)];
+        //}
+        //return null;
+        return goodguys_[0];
     }
 }

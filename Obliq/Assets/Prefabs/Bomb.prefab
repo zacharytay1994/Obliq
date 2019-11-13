@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 31980693848254061}
   - component: {fileID: 31980693848254066}
   - component: {fileID: 1223914322229782732}
-  - component: {fileID: 31980693848254067}
+  - component: {fileID: 7644676478319120867}
   m_Layer: 0
   m_Name: Bomb
   m_TagString: Untagged
@@ -70,9 +70,9 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1498247621
-  m_SortingLayer: 2
+  m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: 4a0b52b0057db9e4780ad58b63fd1891, type: 3}
   m_Color: {r: 0.7169812, g: 0.22997509, b: 0.22997509, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -112,8 +112,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bomb_damage_: 10
+  time_left_: 0
   world_handler_reference_: {fileID: 0}
---- !u!114 &31980693848254067
+--- !u!114 &7644676478319120867
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -122,9 +123,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 31980693848254062}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d617e6a104c71274f8da573deffd04cc, type: 3}
+  m_Script: {fileID: 11500000, guid: 4654e7d1824ac9948a66da34fba45a92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bomb_diffuse_range_: 3
+  bomb_defuse_range_: 4
   key_code_: 111
   player_: {fileID: 0}
+  BombDefusePrefab: {fileID: 0}
+  bomb_defuse_time_: 5

@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 8388271945408527322}
   - component: {fileID: 8388271945408527301}
   - component: {fileID: 4962826380198985163}
+  - component: {fileID: 2361982361374958839}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -74,7 +75,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 402003703
-  m_SortingLayer: 3
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -7343860702648896561, guid: a83ef918e34eed6429478a85dc40ebac,
     type: 3}
@@ -127,7 +128,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!61 &8388271945408527323
 BoxCollider2D:
@@ -233,3 +234,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHp_: 10
   currentHp_: 0
+--- !u!114 &2361982361374958839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8388271945408527297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5ef83c9bc880f84289c2d90a8503c18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  start_: 0
+  world_handler_reference_: {fileID: 0}
+  has_moved_: 0
+  unit_scale_per_range_: 0.2
+  health_: 20
+  attack_damage_: 5
+  attack_range_: 5
+  detection_range_: 5

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 235828931358813623}
   - component: {fileID: 7119392443147418798}
   - component: {fileID: 7164747587921222637}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: FireProjectile2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48,9 +48,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eeb0363ec7ff550499b9f85ee039a8db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed_: 10
+  speed_: 80
   acceleration_: 1
-  max_speed_: 10
+  max_speed_: 80
   custom_speed_: 0
   custom_speed_loop_: 0
   decceleration_: 5
@@ -146,7 +146,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!58 &6051162261677879678
 CircleCollider2D:
@@ -199,8 +199,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1352270105
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -249,8 +249,8 @@ TrailRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1352270105
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_Time: 1
   m_Parameters:
@@ -351,4 +351,4 @@ MonoBehaviour:
   damage_: 1
   enemy_mask_:
     serializedVersion: 2
-    m_Bits: 2048
+    m_Bits: 16384

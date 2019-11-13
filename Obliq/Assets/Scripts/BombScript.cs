@@ -18,23 +18,23 @@ public class BombScript : MonoBehaviour
 void Start()
     {
         // reference to lists of entities
-        world_handler_reference_ = GameObject.Find("World").GetComponent<WorldHandler>();
+        //world_handler_reference_ = GameObject.Find("World").GetComponent<WorldHandler>();
 
-        // Display timer
-        GameObject.Find("BombTimer").GetComponent<Text>().text = "Bomb timer: " + time_left_.ToString();
+        //// Display timer
+        //GameObject.Find("BombTimer").GetComponent<Text>().text = "Bomb timer: " + time_left_.ToString();
 
-        // Display player health
-        GameObject.Find("GoodGuyHP").GetComponent<Text>().text = "Player health: " + GameObject.Find("Player").GetComponent<Entity>().health_.ToString();
+        //// Display player health
+        //GameObject.Find("GoodGuyHP").GetComponent<Text>().text = "Player health: " + GameObject.Find("Player").GetComponent<Entity>().health_.ToString();
     }
 
     // Update is called once per frame
     void Update()
     {
-        // Update timer
-        GameObject.Find("BombTimer").GetComponent<Text>().text = "Bomb timer: " + time_left_.ToString();
+        //// Update timer
+        //GameObject.Find("BombTimer").GetComponent<Text>().text = "Bomb timer: " + time_left_.ToString();
 
-        // Update player health
-        GameObject.Find("GoodGuyHP").GetComponent<Text>().text = "Player health: " + GameObject.Find("Player").GetComponent<Entity>().health_.ToString();
+        //// Update player health
+        //GameObject.Find("GoodGuyHP").GetComponent<Text>().text = "Player health: " + GameObject.Find("Player").GetComponent<Entity>().health_.ToString();
 
         // When timer should not be stopped, continue to countdown
         if (!stop_timer_)
@@ -53,15 +53,16 @@ void Start()
         if ((time_left_ <= 0) && !bomb_explode_)
         {
             // Deal damage to all enemies
-            foreach (GameObject e in GameObject.FindGameObjectsWithTag("Enemy"))
-
-            {
-                e.GetComponent<Entity>().TakeDamage(bomb_damage_);
-            }
-            foreach (GameObject g in GameObject.FindGameObjectsWithTag("Player"))
-            { 
-                g.GetComponent<Entity>().TakeDamage(bomb_damage_);
-            }
+            //foreach (GameObject e in GameObject.FindGameObjectsWithTag("Enemy"))
+            //{
+            //    e.GetComponent<Entity>().TakeDamage(bomb_damage_);
+            //}
+            //foreach (GameObject g in GameObject.FindGameObjectWithTag("MainPlayer"))
+            //{
+            //    //g.GetComponent<Entity>().TakeDamage(bomb_damage_);
+            //    g.GetComponent<HealthComponent>().TakeDamage((int)bomb_damage_);
+            //}
+            GameObject.Find("Player").GetComponent<HealthComponent>().TakeDamage((int)bomb_damage_);
 
             bomb_explode_ = true;
         }
