@@ -61,10 +61,12 @@ MonoBehaviour:
   lifespan_: 3
   on_collide_mask_:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 16384
   destroy_countdown_: 0
   movement_: 0
   local_speed_: 2
+  random_spread_: 0
+  spread_range_: 0
   stable_: 0
   lon_oscillation_: 0.5
   len_oscillation_: 0.5

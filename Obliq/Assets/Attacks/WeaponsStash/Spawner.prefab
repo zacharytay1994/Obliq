@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 434712922699763752}
   - component: {fileID: 2013574147075596947}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Spawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,4 +43,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aaec188e262097f458f838d56b8945e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  max_grunt_count_: 10
   grunt_: {fileID: 2798105615834141751, guid: 35f961e634c9c59499ddf05a9fa3d6b4, type: 3}

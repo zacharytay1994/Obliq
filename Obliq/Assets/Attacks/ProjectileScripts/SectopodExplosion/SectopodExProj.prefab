@@ -49,9 +49,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eeb0363ec7ff550499b9f85ee039a8db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed_: 0
-  acceleration_: 5
-  max_speed_: 50
+  speed_: 5
+  acceleration_: 20
+  max_speed_: 100
   custom_speed_: 1
   custom_speed_loop_: 0
   decceleration_: 50
@@ -59,11 +59,11 @@ MonoBehaviour:
   decceleration_time_: 1
   force_type_: 0
   persistent_: 0
-  lifespan_: 5
+  lifespan_: 3
   on_collide_mask_:
     serializedVersion: 2
-    m_Bits: 0
-  destroy_countdown_: 0
+    m_Bits: 4352
+  destroy_countdown_: 0.1
   movement_: 0
   local_speed_: 1
   random_spread_: 0
@@ -88,7 +88,7 @@ MonoBehaviour:
   follow_mouse_: 0
   spin_: 0
   spin_rate_: 0
-  time_trigger_: 1
+  time_trigger_: 0
   active_time_: 0.1
   tt_style_: 2
   tt_density_: 30
@@ -116,13 +116,13 @@ MonoBehaviour:
   collide_trigger_: 1
   layer_to_collide_:
     serializedVersion: 2
-    m_Bits: 8448
+    m_Bits: 4352
   col_active_time_: 0.1
   colt_style_: 2
-  colt_density_: 30
+  colt_density_: 5
   colt_angle_: 0
   colt_sstyle_: 0
-  colt_stream_rate_: 0.05
+  colt_stream_rate_: 0.07
   colt_burst_rest_timer_: 0
   colt_burst_timer_: 0
   colt_prefab_: {fileID: 5226346963446909659, guid: db956c4cf49df9e4ea0af370080628f9,

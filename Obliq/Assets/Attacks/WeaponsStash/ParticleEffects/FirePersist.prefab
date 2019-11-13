@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7558377437490080930}
   - component: {fileID: 6628754379057080636}
   - component: {fileID: 8639225413994411257}
-  m_Layer: 12
+  m_Layer: 13
   m_Name: FirePersist
   m_TagString: FireParticle
   m_Icon: {fileID: 0}
@@ -29,13 +29,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5705661621723253877}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -2.282868, y: -8.307089, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!198 &5705661621723253879
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -4731,8 +4731,8 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -781802979
-  m_SortingLayer: 4
+  m_SortingLayerID: -1352270105
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_RenderMode: 0
   m_SortMode: 0
