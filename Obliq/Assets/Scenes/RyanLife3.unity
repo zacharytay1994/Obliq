@@ -16250,7 +16250,7 @@ LineRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 402003703
-  m_SortingLayer: 3
+  m_SortingLayer: 0
   m_SortingOrder: 1
   m_Positions:
   - {x: 0, y: 0, z: 0}
@@ -16540,6 +16540,8 @@ MonoBehaviour:
   ball_follow_: {fileID: 1226126166385036793, guid: 93d9302a0337c9e488c308092e3dd0b8,
     type: 3}
   ball_offset_: 2
+  strike_zone_: {fileID: 0}
+  attack_duration_: 0
 --- !u!212 &579272844
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -105618,6 +105620,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Bomb
+      objectReference: {fileID: 0}
+    - target: {fileID: 31980693848254062, guid: eadc497d8fd426e4e80ee1984449d6e9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 31980693848254060, guid: eadc497d8fd426e4e80ee1984449d6e9,
         type: 3}

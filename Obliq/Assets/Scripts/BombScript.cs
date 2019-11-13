@@ -53,9 +53,13 @@ void Start()
         if ((time_left_ <= 0) && !bomb_explode_)
         {
             // Deal damage to all enemies
+            foreach (GameObject e in GameObject.FindGameObjectsWithTag("Enemy"))
+
             {
                 e.GetComponent<Entity>().TakeDamage(bomb_damage_);
             }
+            foreach (GameObject g in GameObject.FindGameObjectsWithTag("Player"))
+            { 
                 g.GetComponent<Entity>().TakeDamage(bomb_damage_);
             }
 
