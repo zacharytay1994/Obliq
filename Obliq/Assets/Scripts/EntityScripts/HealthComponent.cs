@@ -15,10 +15,7 @@ public class HealthComponent : MonoBehaviour
 
     private void Update()
     {
-        if (currentHp_<=0)
-        {
-            Destroy(gameObject);
-        }
+
     }
 
     public void TakeDamage(int damage)

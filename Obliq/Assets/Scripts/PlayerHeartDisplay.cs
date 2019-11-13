@@ -14,6 +14,10 @@ public class PlayerHeartDisplay : MonoBehaviour
     [SerializeField] float display_spacing_;
     float last_hp_= 0.0f;
 
+    private void Awake()
+    {
+        player_health_component_ = GameObject.Find("Player").GetComponent<HealthComponent>();
+    }
 
     // Start is called before the first frame update
     void Start()
