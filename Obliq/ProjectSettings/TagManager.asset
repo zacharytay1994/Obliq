@@ -6,6 +6,9 @@ TagManager:
   tags:
   - FireParticle
   - MainPlayer
+  - ObjectiveProgress
+  - GlowCamera
+  - AugmentManagerObject
   layers:
   - Default
   - TransparentFX
@@ -15,14 +18,14 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - WorldBase
+  - WorldWalls
+  - WorldWallDecor
+  - BottomParticles
+  - RoomObjects
+  - TopParticles
+  - Enemies
+  - Glow
   - 
   - 
   - 
@@ -42,4 +45,13 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: BottomParticles
+    uniqueID: 3789634403
+    locked: 0
+  - name: RoomObjects
+    uniqueID: 833324139
+    locked: 0
+  - name: TopParticles
+    uniqueID: 2942697191
     locked: 0

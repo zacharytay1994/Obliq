@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 2130145248728859981}
   - component: {fileID: 5331610652352403457}
   - component: {fileID: 7157902452978562834}
-  m_Layer: 11
+  m_Layer: 14
   m_Name: MockGrunt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -110,8 +110,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 402003703
-  m_SortingLayer: 3
+  m_SortingLayerID: 833324139
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 0.06913531, g: 1, b: 0, a: 1}
@@ -181,7 +181,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b654a9ed45867894d8f8378d03d054a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp_: 5
+  maxHp_: 3
   currentHp_: 0
 --- !u!114 &7157902452978562834
 MonoBehaviour:
