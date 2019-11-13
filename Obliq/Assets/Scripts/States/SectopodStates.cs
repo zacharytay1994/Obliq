@@ -21,7 +21,7 @@ public class SectopodIdleState : State
     public override void Execute(GameObject owner)
     {
         GameObject objective = GameObject.Find("Bomb");
-           
+        GC<RaycastAttack>(owner).RemoveLine(owner);
         closest_obj = GC<Entity>(owner).world_handler_reference_.GetNearestGoodGuy(owner.transform.position);
         if (GC<Entity>(owner).health_ <= 0 || Input.GetKeyDown(KeyCode.B)) // for testing
         {
@@ -70,16 +70,18 @@ public class SectopodMoveState : State
         }
         if ((GC<ObliqPathfinding>(owner).target_ - (Vector2)GC<Sectopod>(owner).target_reference_.transform.position).magnitude > movementBuffer) //magic buffer value
         {
-           
+            // to move towards a point, buffer is to make the pathfinding less sensitive 
             GC<ObliqPathfinding>(owner).target_ = GC<Sectopod>(owner).target_reference_.transform.position;
             owner.GetComponent<ObliqPathfinding>().StartPath(owner.GetComponent<ObliqPathfinding>().target_);
         }
-        if ((GC<Sectopod>(owner).target_reference_.transform.position - owner.transform.position).magnitude < GC<Entity>(owner).attack_range_) //temp magic no attack range
+        if ((GC<Sectopod>(owner).target_reference_.transform.position - owner.transform.position).magnitude < GC<Entity>(owner).attack_range_)
+        //in range to attack
         {
             GC<Entity>(owner).statemachine_.ChangeState(new SectopodAttackState());
         }
         if ((GC<Sectopod>(owner).target_reference_.transform.position - objective.transform.position).magnitude > GC<Entity>(owner).GetTrueRange())
         {
+            //target out of range 
             owner.GetComponent<ObliqPathfinding>().StopPath();
             GC<Entity>(owner).statemachine_.ChangeState(new SectopodIdleState());
         }
@@ -93,14 +95,21 @@ public class SectopodMoveState : State
 public class SectopodAttackState : State
 {
     float attack_rate = 3.0f; // amt of time to charge
- 
-    float next_damage_time = 0.0f;
 
-    bool is_charging = true;
+    float next_damage_time;
+
+    bool is_charging;
+    bool laser_aimed;
     public override void Enter(GameObject owner)
     {
         Debug.Log("Sectopod Attack state");
-      
+        is_charging = true;
+        laser_aimed = false;
+        if (next_damage_time == 0)
+        {
+            next_damage_time = Time.time + attack_rate;
+
+        }
         owner.GetComponent<ObliqPathfinding>().StartPath(owner.GetComponent<ObliqPathfinding>().target_);
       
         
@@ -113,7 +122,8 @@ public class SectopodAttackState : State
         {
             GC<Entity>(owner).statemachine_.ChangeState(new SectopodDeadState());
         }
-        if ((GC<Sectopod>(owner).target_reference_.transform.position - owner.transform.position).magnitude < GC<Entity>(owner).attack_range_) //temp magic no (attack_range)
+        if ((GC<Sectopod>(owner).target_reference_.transform.position - owner.transform.position).magnitude
+            < GC<Entity>(owner).attack_range_ || laser_aimed) 
         {
             GC<RaycastAttack>(owner).Attack(owner, GC<Sectopod>(owner).target_reference_);
             
@@ -133,15 +143,15 @@ public class SectopodAttackState : State
             {
                 GC<RaycastAttack>(owner).next_line_thicken_time = Time.time + GC<RaycastAttack>(owner).line_thicken_rate_;
                 GC<RaycastAttack>(owner).LineExpand(GC<LineRenderer>(owner), GC<RaycastAttack>(owner).line_thicken_increment_);
-
+                laser_aimed = true;
             }
-            if (Time.time >= next_damage_time)
+            if (Time.time >= next_damage_time && laser_aimed)
             {
                 next_damage_time = Time.time + attack_rate;
                 GC<Sectopod>(owner).target_reference_.GetComponent<Entity>().TakeDamage(1);//temporary hit scan should be projectile
                 Debug.Log(GC<Sectopod>(owner).target_reference_.GetComponent<Entity>().health_);
                 is_charging = false;
-              
+                laser_aimed = false;
             }
 
             owner.GetComponent<ObliqPathfinding>().StopPath();
@@ -149,10 +159,14 @@ public class SectopodAttackState : State
         else if ((GC<Sectopod>(owner).target_reference_.transform.position - objective.transform.position).magnitude > GC<Entity>(owner).GetTrueRange())
         {
             owner.GetComponent<ObliqPathfinding>().StopPath();
+
             GC<Entity>(owner).statemachine_.ChangeState(new SectopodIdleState());
         }
-        else
+        else if(!laser_aimed)
         {
+            GC<LineRenderer>(owner).startWidth = GC<RaycastAttack>(owner).initial_width_;
+            GC<LineRenderer>(owner).endWidth = GC<RaycastAttack>(owner).initial_width_;
+
             GC<Entity>(owner).statemachine_.ChangeState(new SectopodMoveState());
         }
 
