@@ -16394,7 +16394,7 @@ GameObject:
   - component: {fileID: 579272849}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: MainPlayer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16488,7 +16488,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 579272842}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4ceedbbaa4c08174ca683024ba8eef46, type: 3}
   m_Name: 
@@ -16555,11 +16555,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   w1_switch_: 49
-  weapon_1: {fileID: 5809754552401931580, guid: 845deb91a47091a458c93705a6c9a153,
+  weapon_1: {fileID: 5809754552401931580, guid: ecd2c3ffcb489b046978a60b35419ed9,
     type: 3}
   w1_has_recoil: 1
   w1_continuous_recoil_: 1
-  w1_recoil_data_: {x: 5, y: 0, z: 0.1}
+  w1_recoil_data_: {x: 2, y: 0, z: 0.1}
   w2_switch_: 50
   weapon_2: {fileID: 5809754552401931580, guid: b7728200a94839b4b8b567b91359183a,
     type: 3}
@@ -16567,7 +16567,7 @@ MonoBehaviour:
   w2_continuous_recoil_: 0
   w2_recoil_data_: {x: 5, y: 4, z: 0.1}
   w3_switch_: 51
-  weapon_3: {fileID: 5809754552401931580, guid: 4cbd90d08e7db694da18e2012f740fe4,
+  weapon_3: {fileID: 5809754552401931580, guid: 6ea7af6f01d35d24b9d140ed19fa34e0,
     type: 3}
   w3_has_recoil: 1
   w3_continuous_recoil_: 1
@@ -16603,6 +16603,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SceneCameras
+      objectReference: {fileID: 0}
+    - target: {fileID: 8469944875350085201, guid: ddaf4ec891c08644396fdaca093c7b2f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8469944875350085214, guid: ddaf4ec891c08644396fdaca093c7b2f,
         type: 3}
@@ -16678,6 +16683,11 @@ PrefabInstance:
         type: 3}
       propertyPath: orthographic size
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6156152270052550200, guid: ddaf4ec891c08644396fdaca093c7b2f,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ddaf4ec891c08644396fdaca093c7b2f, type: 3}
@@ -105423,7 +105433,7 @@ PrefabInstance:
     - target: {fileID: 7862674349831162025, guid: b46ff27c54fc6b147add87599ceaf19a,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 434712922699763752, guid: b46ff27c54fc6b147add87599ceaf19a,
         type: 3}
