@@ -56,7 +56,6 @@ MonoBehaviour:
   force_type_: 0
   persistent_: 1
   lifespan_: 0
-  destroy_on_collide_: 0
   on_collide_mask_:
     serializedVersion: 2
     m_Bits: 0
@@ -104,7 +103,6 @@ MonoBehaviour:
   cont_stream_rate_: 0.1
   cont_burst_rest_timer_: 0
   cont_burst_timer_: 0
-  time_interval_: 0
   cont_prefab_: {fileID: 6600748117743961730, guid: b6360de89aeed7f4698e70e91950ee57,
     type: 3}
   cont_np_offset_: 0

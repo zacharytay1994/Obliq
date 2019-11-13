@@ -17,6 +17,6 @@ public class CameraFollow : MonoBehaviour
     void Update()
     {
         //camera_.transform.rotation = Quaternion.Euler(Vector3.zero);
-        camera_.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z-camera_height_);
+        camera_.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z+camera_height_);
     }
 }

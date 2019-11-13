@@ -50,6 +50,12 @@ public class ImAProjectile : MonoBehaviour
     [SerializeField]
     float local_speed_ = 0.0f;
     [Header("4.1 Wave/Spiral Movement")]
+    [SerializeField]
+    bool random_spread_ = false;
+    [SerializeField]
+    [Range(0.0f, 1.571f)]
+    float spread_range_ = 0.0f;
+
     // amplitude, applicable to longitude and lengitude
     [SerializeField]
     bool stable_ = true;
@@ -301,7 +307,16 @@ public class ImAProjectile : MonoBehaviour
 
         if (force_type_ == ProjectileForceType.Impulse)
         {
-            rb.AddForce(movement_heading_ * speed_, ForceMode2D.Impulse);
+            Vector2 tempered_movement_heading = movement_heading_;
+            if (random_spread_)
+            {
+                // get random angle
+                float random_angle = Random.Range(-spread_range_, spread_range_);
+                // rotate vector by amount
+                tempered_movement_heading = new Vector2((tempered_movement_heading.x * Mathf.Cos(random_angle) + tempered_movement_heading.x * -Mathf.Sin(random_angle)),
+                    (tempered_movement_heading.y * Mathf.Sin(random_angle) + tempered_movement_heading.y * Mathf.Cos(random_angle)));
+            }
+            rb.AddForce(tempered_movement_heading * speed_, ForceMode2D.Impulse);
         }
     }
 
@@ -392,6 +407,9 @@ public class ImAProjectile : MonoBehaviour
                     {
                         movement_heading_ = (mouse_point_ - (Vector2)gameObject.transform.position).normalized;
                     }
+                    break;
+                case ProjectileTarget.SpecifyDirection:
+                    movement_heading_ = specified_direction_;
                     break;
             }
             // update movement
@@ -625,22 +643,31 @@ public class ImAProjectile : MonoBehaviour
     // General functions
     void MoveMovementHeading()
     {
+        Vector2 tempered_movement_heading = movement_heading_;
+        if (random_spread_)
+        {
+            // get random angle
+            float random_angle = Random.Range(-spread_range_, spread_range_);
+            // rotate vector by amount
+            tempered_movement_heading = new Vector2((tempered_movement_heading.x * Mathf.Cos(random_angle) + tempered_movement_heading.x * -Mathf.Sin(random_angle)),
+                (tempered_movement_heading.y * Mathf.Sin(random_angle) + tempered_movement_heading.y * Mathf.Cos(random_angle)));
+        }
         switch (target_)
         {
             case ProjectileTarget.MousePoint:
                 if (!(movement_ == ProjectileMovement.Straight))
                 {
-                    rb.AddForce(movement_heading_ * speed_, ForceMode2D.Force);
+                    rb.AddForce(tempered_movement_heading * speed_, ForceMode2D.Force);
                 }
                 break;
             case ProjectileTarget.MouseFollow:
-                rb.AddForce(movement_heading_ * speed_, ForceMode2D.Force);
+                rb.AddForce(tempered_movement_heading * speed_, ForceMode2D.Force);
                 break;
             case ProjectileTarget.MouseDirection:
             case ProjectileTarget.SpecifyDirection:
                 if (!limited_)
                 {
-                    rb.AddForce(movement_heading_ * speed_, ForceMode2D.Force);
+                    rb.AddForce(tempered_movement_heading * speed_, ForceMode2D.Force);
                 }
                 else
                 {
@@ -649,13 +676,13 @@ public class ImAProjectile : MonoBehaviour
                         if (limit_counter_ < time_limit_)
                         {
                             limit_counter_ += Time.deltaTime;
-                            rb.AddForce(movement_heading_ * speed_, ForceMode2D.Force);
+                            rb.AddForce(tempered_movement_heading * speed_, ForceMode2D.Force);
                         }
                         else
                         {
                             // get direction of velocity
                             float direction_magnitude = Vector2.Dot((Vector2)rb.velocity, movement_heading_);
-                            Vector2 direction_velocity = movement_heading_ * direction_magnitude;
+                            Vector2 direction_velocity = tempered_movement_heading * direction_magnitude;
                             rb.velocity -= direction_velocity;
                             stopped_ = true;
                         }
@@ -804,6 +831,7 @@ public class ImAProjectile : MonoBehaviour
         GameObject temp = (GameObject)Instantiate(projprefab, transform.position, Quaternion.identity);
         if (temp.GetComponent<ImAProjectile>() != null)
         {
+            temp.GetComponent<ImAProjectile>().specified_direction_ = specified_direction_;
             temp.GetComponent<ImAProjectile>().InitProj();
         }
     }

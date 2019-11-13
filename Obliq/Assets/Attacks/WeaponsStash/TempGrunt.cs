@@ -9,15 +9,16 @@ public class TempGrunt : MonoBehaviour
     [SerializeField]
     float speed_ = 1.0f;
     GameObject target_ = null;
-    [SerializeField]
-    float health_ = 10.0f;
+
+    HealthComponent health_;
     Rigidbody2D rb_;
     SpawningScript spawner_;
     // Start is called before the first frame update
     void Start()
     {
         rb_ = GetComponent<Rigidbody2D>();
-        target_ = GameObject.Find("Player");
+        health_ = GetComponent<HealthComponent>();
+        target_ = GameObject.FindGameObjectWithTag("MainPlayer");
     }
 
     public void AttachSpawner(SpawningScript spawner) 
@@ -36,7 +37,7 @@ public class TempGrunt : MonoBehaviour
                 WalkToTarget(dir_vector.normalized);
             }
         }
-        if (health_ <= 0)
+        if (health_.currentHp_ <= 0)
         {
             spawner_.GruntDied();
             Destroy(gameObject);
@@ -48,8 +49,8 @@ public class TempGrunt : MonoBehaviour
         rb_.AddForce(direction * speed_, ForceMode2D.Force);
     }
 
-    public void TakeDamage(int damage)
-    {
-        health_ -= damage;
-    }
+    //public void TakeDamage(int damage)
+    //{
+    //    health_ -= damage;
+    //}
 }

@@ -11,6 +11,7 @@ public class InitProjSpawner : MonoBehaviour
     {
         GameObject temp = Instantiate(proj_prefab, transform.position, Quaternion.identity);
         temp.GetComponent<ImAProjectile>().InitProj();
+        temp.transform.SetParent(transform);
     }
 
     // Update is called once per frame

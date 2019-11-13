@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: 2798105615834141750}
   - component: {fileID: -4854751461574285594}
   - component: {fileID: 2130145248728859981}
+  - component: {fileID: 5331610652352403457}
+  - component: {fileID: 7157902452978562834}
   m_Layer: 11
   m_Name: MockGrunt
   m_TagString: Untagged
@@ -136,7 +138,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   in_range_: 15
   speed_: 70
-  health_: 3
 --- !u!114 &-4854751461574285594
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,3 +169,33 @@ MonoBehaviour:
   fire_effect_: {fileID: 5705661621723253877, guid: 24387ac7a9aacf54ea804f7fb9157f1c,
     type: 3}
   fire_tolerance_: 6
+--- !u!114 &5331610652352403457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2798105615834141751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b654a9ed45867894d8f8378d03d054a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHp_: 5
+  currentHp_: 0
+--- !u!114 &7157902452978562834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2798105615834141751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a666b79897ec1f64caea9eb18b4ece5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage_: 1
+  enemy_mask_:
+    serializedVersion: 2
+    m_Bits: 8192
