@@ -9,19 +9,28 @@ public class BombScript : MonoBehaviour
     float bomb_damage_;
     [SerializeField]
     float time_left_;
+    float time_left_min_, time_left_sec_;
     bool stop_timer_ = false;
     bool bomb_explode_ = false;
     // reference to lists of entities
     public WorldHandler world_handler_reference_;
+    // Bomb time remaining prefab
+    [SerializeField]
+    Text bomb_time_remaining_text_;
 
-// Start is called before the first frame update
-void Start()
+    // Start is called before the first frame update
+    void Start()
     {
         // reference to lists of entities
         //world_handler_reference_ = GameObject.Find("World").GetComponent<WorldHandler>();
 
         //// Display timer
         //GameObject.Find("BombTimer").GetComponent<Text>().text = "Bomb timer: " + time_left_.ToString();
+
+        // Display bomb time remaining
+        time_left_min_ = (int)time_left_ / 60;
+        time_left_sec_ = (int)time_left_ - (time_left_min_ * 60);
+        bomb_time_remaining_text_.text = string.Format("{0:00}:{1:00}", time_left_min_.ToString().ToString(), time_left_sec_.ToString());
 
         //// Display player health
         //GameObject.Find("GoodGuyHP").GetComponent<Text>().text = "Player health: " + GameObject.Find("Player").GetComponent<Entity>().health_.ToString();
@@ -32,6 +41,11 @@ void Start()
     {
         //// Update timer
         //GameObject.Find("BombTimer").GetComponent<Text>().text = "Bomb timer: " + time_left_.ToString();
+
+        // Display bomb time remaining
+        time_left_min_ = (int)time_left_ / 60;
+        time_left_sec_ = (int)time_left_ - (time_left_min_ * 60);
+        bomb_time_remaining_text_.text = string.Format("{0:00}:{1:00}", time_left_min_.ToString().ToString(), time_left_sec_.ToString());
 
         //// Update player health
         //GameObject.Find("GoodGuyHP").GetComponent<Text>().text = "Player health: " + GameObject.Find("Player").GetComponent<Entity>().health_.ToString();
