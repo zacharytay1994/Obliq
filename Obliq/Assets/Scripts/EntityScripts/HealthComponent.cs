@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class HealthComponent : MonoBehaviour
 {
-    [SerializeField] public int maxHp_;
-    [SerializeField] public int currentHp_;
+    [SerializeField] private int maxHp_;
+    [SerializeField] private int currentHp_;
 
     // Start is called before the first frame update
     void Awake()
@@ -28,5 +28,33 @@ public class HealthComponent : MonoBehaviour
     public void HealHp(int healing)
     {
         currentHp_ += healing;
+    }
+
+    public int getCurrentHp()
+    {
+        return currentHp_;
+    }
+
+    public int getMaxHp()
+    {
+        return maxHp_;
+    }
+
+    public void addMaxHp(int additionalMaxHp)
+    {
+        maxHp_ += additionalMaxHp;
+    }
+
+    public void subtractMaxHp(int negatedMaxHp)
+    {
+        if(negatedMaxHp >= maxHp_)
+        {
+            negatedMaxHp = maxHp_ - 2;
+        }
+        maxHp_ -= negatedMaxHp;
+        if(currentHp_>maxHp_)
+        {
+            currentHp_ = maxHp_;
+        }
     }
 }

@@ -37,7 +37,7 @@ public class TempGrunt : MonoBehaviour
                 WalkToTarget(dir_vector.normalized);
             }
         }
-        if (health_.currentHp_ <= 0)
+        if (health_.getCurrentHp() <= 0)
         {
             if (spawner_ != null)
             {

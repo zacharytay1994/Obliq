@@ -47,7 +47,7 @@ public class Charger : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (health_.currentHp_ <= 0)
+        if (health_.getCurrentHp() <= 0)
         {
             Destroy(gameObject);
         }
