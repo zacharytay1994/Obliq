@@ -351,3 +351,4 @@ MonoBehaviour:
   enemy_mask_:
     serializedVersion: 2
     m_Bits: 16384
+  causes_hit_pause_: 1

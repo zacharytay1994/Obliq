@@ -8,10 +8,14 @@ public class DamageEnemy : MonoBehaviour
     int damage_ = 0;
     [SerializeField]
     LayerMask enemy_mask_ = 0;
+    [SerializeField]
+    bool causes_hit_pause_ = false;
+
+    HitPause hit_pause_;
     // Start is called before the first frame update
     void Start()
     {
-        
+        hit_pause_ = FindObjectOfType<HitPause>();
     }
 
     // Update is called once per frame
@@ -26,6 +30,10 @@ public class DamageEnemy : MonoBehaviour
         {
             if (collision.gameObject.GetComponent<HealthComponent>() != null)
             {
+                if(causes_hit_pause_)
+                {
+                    hit_pause_.Freeze();
+                }
                 collision.gameObject.GetComponent<HealthComponent>().TakeDamage(damage_);
                 // get direction
                 Vector2 direction = ((Vector2)collision.gameObject.transform.position - (Vector2)transform.position).normalized;

@@ -352,6 +352,7 @@ MonoBehaviour:
   enemy_mask_:
     serializedVersion: 2
     m_Bits: 16384
+  causes_hit_pause_: 1
 --- !u!114 &-323119862179744384
 MonoBehaviour:
   m_ObjectHideFlags: 0
