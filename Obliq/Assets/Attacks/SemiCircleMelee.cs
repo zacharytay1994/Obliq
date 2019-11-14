@@ -35,10 +35,10 @@ public class SemiCircleMelee
                     // calculate vector
                     Vector2 force_vector = (c.gameObject.transform.position - owner_.transform.position).normalized;
                     // if in front of player
-                    if (Vector2.Dot(owner_.GetComponent<TempMovement>().heading_, (c.transform.position - owner_.transform.position)) > 0)
-                    {
-                        c.gameObject.GetComponent<Rigidbody2D>().AddForce(force_vector * 30.0f, ForceMode2D.Impulse);
-                    }
+                    //if (Vector2.Dot(owner_.GetComponent<TempMovement>().heading_, (c.transform.position - owner_.transform.position)) > 0)
+                    //{
+                    //    c.gameObject.GetComponent<Rigidbody2D>().AddForce(force_vector * 30.0f, ForceMode2D.Impulse);
+                    //}
                 }
             }
         }
