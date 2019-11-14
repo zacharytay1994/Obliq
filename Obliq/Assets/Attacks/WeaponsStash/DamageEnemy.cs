@@ -32,7 +32,7 @@ public class DamageEnemy : MonoBehaviour
             {
                 if(causes_hit_pause_)
                 {
-                    hit_pause_.Freeze();
+                    hit_pause_.Freeze(damage_);
                 }
                 collision.gameObject.GetComponent<HealthComponent>().TakeDamage(damage_);
                 // get direction
