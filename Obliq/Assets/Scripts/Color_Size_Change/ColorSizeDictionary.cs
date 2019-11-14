@@ -7,5 +7,6 @@ public class ColorSizeDictionary
 
 public enum ScriptPurpose
 {
-    PlayerHealthIndicator
+    PlayerHealthIndicator,
+    BombDefuseProgress
 }
