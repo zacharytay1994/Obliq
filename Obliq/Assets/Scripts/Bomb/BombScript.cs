@@ -16,6 +16,8 @@ public class BombScript : MonoBehaviour
     public WorldHandler world_handler_reference_;
     // Bomb time remaining prefab
     [SerializeField]
+    GameObject bomb_prefab_;
+    [SerializeField]
     Text bomb_time_remaining_text_;
 
     // Start is called before the first frame update
@@ -30,7 +32,8 @@ public class BombScript : MonoBehaviour
         // Display bomb time remaining
         time_left_min_ = (int)time_left_ / 60;
         time_left_sec_ = (int)time_left_ - (time_left_min_ * 60);
-        bomb_time_remaining_text_.text = string.Format("{0:00}:{1:00}", time_left_min_.ToString().ToString(), time_left_sec_.ToString());
+        bomb_time_remaining_text_.text = string.Format
+            (bomb_prefab_.name + "\n" + "{0:00}:{1:00}", time_left_min_.ToString().ToString(), time_left_sec_.ToString());
 
         //// Display player health
         //GameObject.Find("GoodGuyHP").GetComponent<Text>().text = "Player health: " + GameObject.Find("Player").GetComponent<Entity>().health_.ToString();
@@ -45,7 +48,8 @@ public class BombScript : MonoBehaviour
         // Display bomb time remaining
         time_left_min_ = (int)time_left_ / 60;
         time_left_sec_ = (int)time_left_ - (time_left_min_ * 60);
-        bomb_time_remaining_text_.text = string.Format("{0:00}:{1:00}", time_left_min_.ToString().ToString(), time_left_sec_.ToString());
+        bomb_time_remaining_text_.text = string.Format
+            (bomb_prefab_.name + "\n" + "{0:00}:{1:00}", time_left_min_.ToString().ToString(), time_left_sec_.ToString());
 
         //// Update player health
         //GameObject.Find("GoodGuyHP").GetComponent<Text>().text = "Player health: " + GameObject.Find("Player").GetComponent<Entity>().health_.ToString();
