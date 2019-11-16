@@ -352,8 +352,8 @@ MonoBehaviour:
   enemy_mask_:
     serializedVersion: 2
     m_Bits: 16384
-  causes_hit_pause_: 1
-  causes_screen_shake_: 1
+  causes_hit_pause_: 0
+  causes_screen_shake_: 0
   screen_shake_base_duration_: 1
   screen_shake_base_magnitude_: 25
 --- !u!114 &-323119862179744384
