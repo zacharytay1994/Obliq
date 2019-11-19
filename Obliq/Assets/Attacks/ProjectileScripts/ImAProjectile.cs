@@ -125,6 +125,9 @@ public class ImAProjectile : MonoBehaviour
     float local_orientation_ = 0.0f;
     [SerializeField]
     bool follow_mouse_ = false;
+    [SerializeField]
+    public float spawn_delay_ = 0.0f;
+    bool start_spawning_ = false;
     [Header("To Spin or Not To Spin")]
     [SerializeField]
     bool spin_ = false;
@@ -441,7 +444,15 @@ public class ImAProjectile : MonoBehaviour
             }
 
             // Process spawning behaviour
-            if (time_trigger_)
+            if (spawn_delay_ > 0)
+            {
+                spawn_delay_ -= Time.deltaTime;
+            }
+            else
+            {
+                start_spawning_ = true;
+            }
+            if (time_trigger_ && start_spawning_)
             {
                 if (time_delay_counter_ < time_trigger_delay_)
                 {
@@ -476,7 +487,7 @@ public class ImAProjectile : MonoBehaviour
                     }
                 }
             }
-            if (continuous_trigger_)
+            if (continuous_trigger_ && start_spawning_)
             {
                 switch (cont_style_)
                 {
@@ -496,7 +507,7 @@ public class ImAProjectile : MonoBehaviour
                         break;
                 }
             }
-            if (collide_trigger_)
+            if (collide_trigger_ && start_spawning_)
             {
                 if (collided_)
                 {

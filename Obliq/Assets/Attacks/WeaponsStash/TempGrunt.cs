@@ -13,6 +13,8 @@ public class TempGrunt : MonoBehaviour
     HealthComponent health_;
     Rigidbody2D rb_;
     SpawningScript spawner_;
+
+    public Vector2 heading_vector_ = new Vector2(0.0f, 0.0f);
     // Start is called before the first frame update
     void Start()
     {
@@ -29,14 +31,15 @@ public class TempGrunt : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (target_ != null)
-        {
-            Vector2 dir_vector = (Vector2)target_.transform.position - (Vector2)transform.position;
-            if (dir_vector.magnitude < in_range_)
-            {
-                WalkToTarget(dir_vector.normalized);
-            }
-        }
+        //if (target_ != null)
+        //{
+        //    Vector2 dir_vector = (Vector2)target_.transform.position - (Vector2)transform.position;
+        //    if (dir_vector.magnitude < in_range_)
+        //    {
+        //        heading_vector_ = dir_vector.normalized;
+        //        WalkToTarget(heading_vector_);
+        //    }
+        //}
         if (health_.currentHp_ <= 0)
         {
             if (spawner_ != null)
@@ -49,7 +52,10 @@ public class TempGrunt : MonoBehaviour
 
     void WalkToTarget(Vector2 direction)
     {
+        //Vector2 force_to_add = /*direction * speed_ +*/ gameObject.GetComponent<ObliqFlock>().GetFlockingForce();
         rb_.AddForce(direction * speed_, ForceMode2D.Force);
+        //Debug.Log(gameObject.GetComponent<ObliqFlock>().GetFlockingForce());
+        //rb_.AddForce(gameObject.GetComponent<ObliqFlock>().GetFlockingForce(), ForceMode2D.Force);
     }
 
     //public void TakeDamage(int damage)
