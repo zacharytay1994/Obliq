@@ -28,11 +28,11 @@ public class PlayerHeartDisplay : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(player_health_component_.currentHp_!=last_hp_)
+        if(player_health_component_.getCurrentHp()!=last_hp_)
         {
             UpdateHealth();
 
-            last_hp_ = player_health_component_.currentHp_;
+            last_hp_ = player_health_component_.getCurrentHp();
         }
     }
 
@@ -42,18 +42,18 @@ public class PlayerHeartDisplay : MonoBehaviour
         {
             Destroy(transform.GetChild(i).gameObject);
         }
-        int health = player_health_component_.currentHp_;
+        int health = player_health_component_.getCurrentHp();
         int full_heart = 0;
         int black_heart = 0;
         if (health%2 != 0)
         {
             full_heart = (health - 1)/2;
-            black_heart = (player_health_component_.maxHp_ / 2) - (full_heart + 1);
+            black_heart = (player_health_component_.getMaxHp() / 2) - (full_heart + 1);
         }
         else
         {
             full_heart = health / 2;
-            black_heart = (player_health_component_.maxHp_ / 2) - (full_heart);
+            black_heart = (player_health_component_.getMaxHp() / 2) - (full_heart);
         }
         int num_hearts = 0;
         for (int h = 0; h < full_heart; h++)
