@@ -12,16 +12,21 @@ public class ZacsFindPath : MonoBehaviour
     int current_node_num_ = 0;
     Node current_node_ = null;
     [SerializeField]
+    Vector2 random_speed_ = new Vector2(0.0f, 0.0f);
     float pathfinding_strength = 0.0f;
+    
     [SerializeField]
-    float path_update_delay = 1.0f; // temporary fix
+    Vector2 path_update_delay = new Vector2(1.0f, 2.0f); // temporary fix
+    float path_update__delay_counter_ = 0.0f;
     float og_delay = 0.0f;
     // Start is called before the first frame update
     void Start()
     {
         tilemap_reference_ = GameObject.Find("WallTilemap").GetComponent<Tilemap>();
         pathfinding_reference_ = GameObject.Find("Pathfinder").GetComponent<ZacsPathfinding>();
-        og_delay = path_update_delay;
+        og_delay = Random.Range(path_update_delay.x, path_update_delay.y + 1);
+        path_update__delay_counter_ = og_delay;
+        pathfinding_strength = Random.Range(random_speed_.x, random_speed_.y);
 
         if (tilemap_reference_ == null || pathfinding_reference_ == null)
         {
@@ -32,14 +37,14 @@ public class ZacsFindPath : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (path_update_delay > 0.0f)
+        if (path_update__delay_counter_ > 0.0f)
         {
-            path_update_delay -= Time.deltaTime;
+            path_update__delay_counter_ -= Time.deltaTime;
         }
         else
         {
             GetPathToPlayer();
-            path_update_delay = og_delay;
+            path_update__delay_counter_ = og_delay;
         }
         //if (Input.GetKeyDown(KeyCode.F))
         //{
