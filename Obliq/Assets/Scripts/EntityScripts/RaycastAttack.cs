@@ -64,7 +64,7 @@ public class RaycastAttack : MonoBehaviour
             line.SetPosition(0, owner.transform.position);
             line.SetPosition(1, isHit.point);
             Debug.Log("Obstacle");
-            return isHit.collider.gameObject;
+            return null;
         }
        
         if (enemyHit.collider != null)
