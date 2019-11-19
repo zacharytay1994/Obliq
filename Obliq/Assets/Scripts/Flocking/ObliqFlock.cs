@@ -106,6 +106,6 @@ public class ObliqFlock : MonoBehaviour
 
     private void OnDestroy()
     {
-        //flock_handler_.RemoveBoid(this);
+        flock_handler_.RemoveBoid(this);
     }
 }

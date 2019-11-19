@@ -4,14 +4,24 @@ using UnityEngine;
 
 public class ChangeMaterialColor : MonoBehaviour
 {
+    [SerializeField]
+    GameObject health_object_ = null;
     float max_health_;
     float current_health_;
     SpriteRenderer sr;
     // Start is called before the first frame update
     void Start()
     {
-        max_health_ = gameObject.GetComponent<HealthComponent>().maxHp_;
-        current_health_ = gameObject.GetComponent<HealthComponent>().currentHp_;
+        if (health_object_ == null)
+        {
+            max_health_ = gameObject.GetComponent<HealthComponent>().maxHp_;
+            current_health_ = gameObject.GetComponent<HealthComponent>().currentHp_;
+        }
+        else
+        {
+            max_health_ = health_object_.GetComponent<HealthComponent>().maxHp_;
+            current_health_ = health_object_.GetComponent<HealthComponent>().currentHp_;
+        }
         sr = gameObject.GetComponent<SpriteRenderer>();
     }
 
@@ -29,7 +39,14 @@ public class ChangeMaterialColor : MonoBehaviour
 
     float UpdateHpRatio()
     {
-        current_health_ = gameObject.GetComponent<HealthComponent>().currentHp_;
+        if (health_object_ == null)
+        {
+            current_health_ = gameObject.GetComponent<HealthComponent>().currentHp_;
+        }
+        else
+        {
+            current_health_ = health_object_.GetComponent<HealthComponent>().currentHp_;
+        }
         return current_health_ / max_health_;
     }
 }
