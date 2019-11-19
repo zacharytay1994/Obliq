@@ -10,6 +10,7 @@ public class ZacsPathfinding : MonoBehaviour
     List<Node> nodes_to_reset_ = new List<Node>();
     [SerializeField]
     Tilemap tilemap_ = null;
+    [HideInInspector]
     public Vector2Int grid_offset_ = new Vector2Int(0, 0);
 
     private void Start()
