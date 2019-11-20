@@ -90,7 +90,7 @@ public class BombDefuse : MonoBehaviour
 
     bool PlayerIsWithinRange()
     {
-        if ((gameObject.transform.position - player_.transform.position).magnitude < bomb_defuse_range_)
+        if (((Vector2)gameObject.transform.position - (Vector2)player_.transform.position).magnitude < bomb_defuse_range_)
         {
             return true;
         }
