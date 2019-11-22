@@ -12,12 +12,18 @@ EditorBuildSettings:
     path: Assets/Scenes/MenuScene.unity
     guid: 505ef667cb72a2c4197d4d9848c9fe56
   - enabled: 0
-    path: Assets/Scenes/TurnPrototype.unity
+    path: 
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 0
-    path: Assets/Scenes/RyanMapScene.unity
+    path: 
     guid: 5d0d071853e4e8343b6eec044cd3bf5b
   - enabled: 1
     path: Assets/Scenes/FirstPlayablePrototype.unity
     guid: 7b1e72affc3ca7d459cc823d7587e38b
+  - enabled: 1
+    path: Assets/Scenes/ZacsScene.unity
+    guid: 73446f87c0c356b4e8de54c321c0fb9d
+  - enabled: 1
+    path: Assets/Scenes/Prototype2.unity
+    guid: 838aac9614692ad44b89550ed84b8d6b
   m_configObjects: {}

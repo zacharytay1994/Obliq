@@ -1572,7 +1572,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Fire Jedidiah
+  m_text: Hire Jedidiah
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d4d265e293a0b06488c0aa5aa8e1719e, type: 2}
   m_sharedMaterial: {fileID: -2482713616062068163, guid: d4d265e293a0b06488c0aa5aa8e1719e,
@@ -2426,7 +2426,7 @@ MonoBehaviour:
   anim: {fileID: 961473224}
   buttonAnim: {fileID: 1665837990}
   pauseSecondsBeforeLoad: 1.5
-  sceneToLoad: ZacsScene
+  sceneToLoad: Prototype2
   OptionButton: 0
 --- !u!61 &1851987949
 BoxCollider2D:
