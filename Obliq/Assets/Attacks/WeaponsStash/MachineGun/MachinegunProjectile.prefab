@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 7119392443147418798}
   - component: {fileID: 7164747587921222637}
   - component: {fileID: -323119862179744384}
+  - component: {fileID: -3210017494606095120}
   m_Layer: 13
   m_Name: MachinegunProjectile
   m_TagString: Untagged
@@ -352,6 +353,10 @@ MonoBehaviour:
   enemy_mask_:
     serializedVersion: 2
     m_Bits: 16384
+  causes_hit_pause_: 0
+  causes_screen_shake_: 0
+  screen_shake_base_duration_: 1
+  screen_shake_base_magnitude_: 25
 --- !u!114 &-323119862179744384
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -367,3 +372,19 @@ MonoBehaviour:
   fire_effect_: {fileID: 5705661621723253877, guid: 24387ac7a9aacf54ea804f7fb9157f1c,
     type: 3}
   fire_tolerance_: 0
+--- !u!114 &-3210017494606095120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5226346963446909659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ea407ffbf2ba664097cc4dd5c932128, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spark_: {fileID: 2604821128577617190, guid: 21701db7752c6984fa3ade2e8143e40c, type: 3}
+  intensity_: 5
+  splatter_upper_lower: {x: 20, y: 50}
+  angle_range_: 30

@@ -41,7 +41,7 @@ public class ChargerMoveState : State
         {
             GC<Entity>(owner).statemachine_.ChangeState(new ChargerDeadState());
         }
-        if (Vector2.Dot(compare_vec, (Vector2)owner.transform.position - closest_good_guy_position) < 0)
+        if (Vector2.Dot(compare_vec, (Vector2)owner.transform.position - (Vector2)closest_good_guy_position) < 0)
         {
 
             //owner.GetComponent<Rigidbody2D>().velocity = Vector2.zero;

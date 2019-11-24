@@ -77,7 +77,8 @@ public class RaycastAttack : MonoBehaviour
         }
         else
         {
-           
+            line.SetPosition(0, owner.transform.position);
+            line.SetPosition(1, target.transform.position);
             return null;
         }
         

@@ -33,7 +33,7 @@ public class BloodEffect : MonoBehaviour
                 GF.RotateVector(direction, Random.Range(0.0f, -angle_range_)).normalized;
             if (blood_ != null)
             {
-                GameObject temp = Instantiate(blood_, transform.position, Quaternion.identity);
+                GameObject temp = Instantiate(blood_, new Vector3(transform.position.x, transform.position.y, 0.0f), Quaternion.identity);
                 temp.GetComponent<Rigidbody2D>().AddForce(new_vector * Random.Range(splatter_upper_lower.x, splatter_upper_lower.y), ForceMode2D.Impulse);
             }
         }

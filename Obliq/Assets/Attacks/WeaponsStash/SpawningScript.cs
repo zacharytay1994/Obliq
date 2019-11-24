@@ -27,7 +27,7 @@ public class SpawningScript : MonoBehaviour
         {
             if (grunt_count_ < max_grunt_count_)
             {
-                GameObject temp = Instantiate(grunt_, transform.position, Quaternion.identity);
+                GameObject temp = Instantiate(grunt_, new Vector3(transform.position.x, transform.position.y, -1.0f) + new Vector3(Random.Range(0.0f,1.0f), Random.Range(0.0f,1.0f), 0.0f), Quaternion.identity);
                 temp.GetComponent<TempGrunt>().AttachSpawner(this);
                 grunt_count_++;
             }

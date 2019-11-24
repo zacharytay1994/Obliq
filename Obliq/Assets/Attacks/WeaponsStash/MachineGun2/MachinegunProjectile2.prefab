@@ -66,6 +66,8 @@ MonoBehaviour:
   destroy_countdown_: 0
   movement_: 0
   local_speed_: 1
+  random_spread_: 0
+  spread_range_: 0
   stable_: 0
   lon_oscillation_: 0.1
   len_oscillation_: 0.1
@@ -350,6 +352,10 @@ MonoBehaviour:
   enemy_mask_:
     serializedVersion: 2
     m_Bits: 2048
+  causes_hit_pause_: 0
+  causes_screen_shake_: 0
+  screen_shake_base_duration_: 1
+  screen_shake_base_magnitude_: 300
 --- !u!114 &-323119862179744384
 MonoBehaviour:
   m_ObjectHideFlags: 0

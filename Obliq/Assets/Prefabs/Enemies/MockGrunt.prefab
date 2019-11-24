@@ -17,6 +17,10 @@ GameObject:
   - component: {fileID: 2130145248728859981}
   - component: {fileID: 5331610652352403457}
   - component: {fileID: 7157902452978562834}
+  - component: {fileID: -1695331286466119510}
+  - component: {fileID: 2738319545373247785}
+  - component: {fileID: -353334419602199532}
+  - component: {fileID: -1395983616304069071}
   m_Layer: 14
   m_Name: MockGrunt
   m_TagString: Enemy
@@ -32,7 +36,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2798105615834141751}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -92,7 +96,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 3c5436d448308874eabf761196345e0b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -113,8 +117,8 @@ SpriteRenderer:
   m_SortingLayerID: -1840328445
   m_SortingLayer: 5
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 4a0b52b0057db9e4780ad58b63fd1891, type: 3}
-  m_Color: {r: 0.46226418, g: 1, b: 0.8334877, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 8fdbe5e4158cfb44394f6cb1b52046da, type: 3}
+  m_Color: {r: 0.26763314, g: 1, b: 0.066037714, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -137,7 +141,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   in_range_: 15
-  speed_: 70
+  speed_: 160
+  heading_vector_: {x: 0, y: 0}
 --- !u!114 &-4854751461574285594
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,8 +186,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b654a9ed45867894d8f8378d03d054a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp_: 3
+  maxHp_: 6
   currentHp_: 0
+  invincibility_time_: 0
 --- !u!114 &7157902452978562834
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -199,3 +205,63 @@ MonoBehaviour:
   enemy_mask_:
     serializedVersion: 2
     m_Bits: 73728
+  causes_hit_pause_: 0
+  causes_screen_shake_: 0
+  screen_shake_base_duration_: 0
+  screen_shake_base_magnitude_: 0
+--- !u!114 &-1695331286466119510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2798105615834141751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5dd6d5afdef83846b854660d3b18782, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  group_: Grunt
+  seperation_threshold_: 1.5
+  seperation_strength_: 50
+  cohesion_threshold_: 5
+  cohesion_strength_: 35
+--- !u!114 &2738319545373247785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2798105615834141751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a63df80069f1d3044b87fd0ed5157184, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  random_speed_: {x: 140, y: 200}
+  path_update_delay: {x: 1, y: 3}
+--- !u!114 &-353334419602199532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2798105615834141751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 746a03484a06291488a38059bd99b269, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-1395983616304069071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2798105615834141751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d73acfdff9a7efb43abe4d0f8f783111, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health_object_: {fileID: 0}

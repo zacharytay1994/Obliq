@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float attack_duration_;
    
     SemiCircleMelee melee_;
+    public float stored_angle_ = 0.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -44,7 +45,8 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        PlayerFacingDirection();
+        //PlayerFacingDirection();
+        UpdateFacingDirection();
         PlayerMovement();
     }
 
@@ -79,6 +81,13 @@ public class PlayerController : MonoBehaviour
         mouseLocation = camera_.ScreenToWorldPoint(mouseLocation);
         float angle = AngleBetween(transform.position, mouseLocation);
         transform.rotation = Quaternion.Euler(0, 0, angle);
+    }
+
+    void UpdateFacingDirection()
+    {
+        Vector2 mouseLocation = Input.mousePosition;
+        mouseLocation = camera_.ScreenToWorldPoint(mouseLocation);
+        stored_angle_ = AngleBetween(transform.position, mouseLocation);
     }
 
     float AngleBetween(Vector2 a, Vector2 b)

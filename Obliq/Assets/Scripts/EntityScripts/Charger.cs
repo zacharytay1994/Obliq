@@ -50,16 +50,15 @@ public class Charger : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (health_.currentHp_ <= 0)
+        if (health_.getCurrentHp() <= 0)
         {
             Destroy(gameObject);
         }
     }
     public void SpawnLesserChargers()
     {
-
-        GameObject LC1 = Instantiate(lesser_charger_reference_, gameObject.transform.position, gameObject.transform.rotation);
-        GameObject LC2 = Instantiate(lesser_charger_reference_, gameObject.transform.position, gameObject.transform.rotation);
+        GameObject LC1 = Instantiate(lesser_charger_reference_, (Vector2)gameObject.transform.position, gameObject.transform.rotation);
+        GameObject LC2 = Instantiate(lesser_charger_reference_, (Vector2)gameObject.transform.position, gameObject.transform.rotation);
 
     }
 }
