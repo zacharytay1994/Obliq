@@ -57,8 +57,8 @@ public class Charger : MonoBehaviour
     }
     public void SpawnLesserChargers()
     {
-        GameObject LC1 = Instantiate(lesser_charger_reference_, (Vector2)gameObject.transform.position, gameObject.transform.rotation);
-        GameObject LC2 = Instantiate(lesser_charger_reference_, (Vector2)gameObject.transform.position, gameObject.transform.rotation);
+        GameObject LC1 = Instantiate(lesser_charger_reference_, new Vector3(gameObject.transform.position.x - 0.5f, gameObject.transform.position.y, -1.0f), gameObject.transform.rotation);
+        GameObject LC2 = Instantiate(lesser_charger_reference_, new Vector3(gameObject.transform.position.x + 0.5f, gameObject.transform.position.y, -1.0f), gameObject.transform.rotation);
 
     }
 }
