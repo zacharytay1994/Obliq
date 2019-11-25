@@ -4823,5 +4823,5 @@ MonoBehaviour:
   damage_: 2
   enemy_mask_:
     serializedVersion: 2
-    m_Bits: 2048
+    m_Bits: 16384
   damage_interval_: 1

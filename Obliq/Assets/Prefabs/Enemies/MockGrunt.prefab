@@ -141,7 +141,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   in_range_: 15
-  speed_: 70
+  speed_: 160
   heading_vector_: {x: 0, y: 0}
 --- !u!114 &-4854751461574285594
 MonoBehaviour:
@@ -188,6 +188,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHp_: 6
   currentHp_: 0
+  invincibility_time_: 0
 --- !u!114 &7157902452978562834
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -204,6 +205,10 @@ MonoBehaviour:
   enemy_mask_:
     serializedVersion: 2
     m_Bits: 73728
+  causes_hit_pause_: 0
+  causes_screen_shake_: 0
+  screen_shake_base_duration_: 0
+  screen_shake_base_magnitude_: 0
 --- !u!114 &-1695331286466119510
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -233,8 +238,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a63df80069f1d3044b87fd0ed5157184, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pathfinding_strength: 70
-  path_update_delay: 1
+  random_speed_: {x: 140, y: 200}
+  path_update_delay: {x: 1, y: 3}
 --- !u!114 &-353334419602199532
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -259,3 +264,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d73acfdff9a7efb43abe4d0f8f783111, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health_object_: {fileID: 0}

@@ -7,6 +7,7 @@ public class RaycastAttack : MonoBehaviour
 {
     // Start is called before the first frame update
     LayerMask layerMask;
+    LayerMask enemyMask;
     LineRenderer line;
     RaycastHit hit;
     [Tooltip("How often line thickens")]
@@ -31,6 +32,7 @@ public class RaycastAttack : MonoBehaviour
     void Start()
     {
         layerMask = LayerMask.GetMask("Walls");
+        enemyMask = LayerMask.GetMask("Enemies", "Player");
        line = gameObject.GetComponent<LineRenderer>();
     }
 
@@ -45,22 +47,44 @@ public class RaycastAttack : MonoBehaviour
         line.SetPosition(1, owner.transform.position);
         
     }
-    public void Attack(GameObject owner, GameObject target)
+    public GameObject Attack(GameObject owner, GameObject target)
     {
+        
         RaycastHit2D isHit = Physics2D.Raycast(owner.transform.position, ((Vector2)target.transform.position - (Vector2)owner.transform.position).normalized,
             ((Vector2)owner.transform.position - (Vector2)target.transform.position).magnitude, layerMask);
+
+        RaycastHit2D enemyHit = Physics2D.Raycast((Vector2)owner.transform.position + ((owner.GetComponent<CircleCollider2D>().radius + 2.0f) *
+            ((Vector2)target.transform.position - (Vector2)owner.transform.position).normalized), //+ radius of object to avoid self collision 
+            ((Vector2)target.transform.position - (Vector2)owner.transform.position).normalized,
+           ((Vector2)owner.transform.position - (Vector2)target.transform.position).magnitude, enemyMask);
+      
+       
         if (isHit.collider != null)
         {
             line.SetPosition(0, owner.transform.position);
             line.SetPosition(1, isHit.point);
             Debug.Log("Obstacle");
+            return null;
+        }
+       
+        if (enemyHit.collider != null)
+        {
+
+            Debug.Log(enemyHit.collider.gameObject);
+            line.SetPosition(0, owner.transform.position);
+            line.SetPosition(1, enemyHit.point);
+            return enemyHit.collider.gameObject;
         }
         else
-        {           
+        {
             line.SetPosition(0, owner.transform.position);
             line.SetPosition(1, target.transform.position);
-            Debug.Log("tracking");
+            return null;
         }
+        
+        
+        
+
     }
     public void LineExpand(LineRenderer line, float expand_increment)
     {
