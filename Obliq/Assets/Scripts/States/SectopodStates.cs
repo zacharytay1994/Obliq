@@ -90,7 +90,7 @@ public class SectopodMoveState : State
     public override void Execute(GameObject owner)
     {
         GameObject objective = GameObject.Find("Bomb");
-        // Debug.Log("Sectopod Moving");
+        Debug.Log("Sectopod Moving");
         GC<RaycastAttack>(owner).Attack(owner, GC<Sectopod>(owner).target_reference_);
         
         if (GC<Entity>(owner).health_ <= 0 || Input.GetKeyDown(KeyCode.B)) // for testing
