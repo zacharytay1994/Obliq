@@ -26,9 +26,12 @@ public class ChargerMoveState : State
         // find position behind target
         Vector2 to_add = (owner.GetComponent<Charger>().target_reference_.transform.position - owner.transform.position).normalized;
         closest_good_guy_position =
-            (Vector2)owner.GetComponent<Charger>().target_reference_.transform.position + (to_add * 2.0f); // temp magic number (how far behind target)
+            (Vector2)owner.GetComponent<Charger>().target_reference_.transform.position + (to_add * 1.5f); // temp magic number (how far behind target)
         // move charger to position
-        owner.GetComponent<Rigidbody2D>().AddForce(to_add * 200000); //* 40);
+        owner.GetComponent<Rigidbody2D>().AddForce(to_add * 20000); //* 40);
+        owner.GetComponent<LineRenderer>().SetPosition(0, (Vector2)owner.transform.position);
+       
+        owner.GetComponent<LineRenderer>().SetPosition(1, closest_good_guy_position);
         compare_vec = (Vector2)owner.transform.position - closest_good_guy_position;
             
     }
@@ -37,7 +40,8 @@ public class ChargerMoveState : State
 
         Debug.Log("Charger Move");
         // if overshoot the target
-        if (GC<Entity>(owner).health_ <= 0 || Input.GetKeyDown(KeyCode.B)) // for testing
+        owner.GetComponent<LineRenderer>().SetPosition(0, (Vector2)owner.transform.position);
+        if (GC<HealthComponent>(owner).currentHp_ <= 0 || Input.GetKeyDown(KeyCode.B)) // for testing
         {
             GC<Entity>(owner).statemachine_.ChangeState(new ChargerDeadState());
         }
@@ -82,11 +86,26 @@ public class ChargerIdleState : State
     {
 
         Debug.Log("Charger Idle");
-       // Debug.Log(Time.time - charge_start);
-
+        // Debug.Log(Time.time - charge_start);
+        if(GameObject.Find("World").GetComponent<WorldHandler>().GetRandomGoodGuy() != null)
+        {
+            owner.GetComponent<Charger>().target_reference_ = GameObject.Find("World").GetComponent<WorldHandler>().GetRandomGoodGuy();
+            Vector2 to_add = (owner.GetComponent<Charger>().target_reference_.transform.position - owner.transform.position).normalized;
+            Vector2 closest_good_guy_position =
+                (Vector2)owner.GetComponent<Charger>().target_reference_.transform.position + (to_add * 1.5f); // temp magic number (how far behind target)
+            owner.GetComponent<LineRenderer>().SetPosition(0, (Vector2)owner.transform.position);
+            owner.GetComponent<LineRenderer>().SetPosition(1, closest_good_guy_position);
+        }
+        else
+        {
+            owner.GetComponent<LineRenderer>().SetPosition(0, (Vector2)owner.transform.position);
+            owner.GetComponent<LineRenderer>().SetPosition(1, (Vector2)owner.transform.position);
+        }
+        
         if (Time.time - charge_start >= 3.0f)
         {
            
+                                                                                                          // move charger to position
             owner.GetComponent<Entity>().statemachine_.ChangeState(new ChargerMoveState());
         }
         else
@@ -98,7 +117,7 @@ public class ChargerIdleState : State
                 GC<Rigidbody2D>(owner).angularVelocity -= 20;
             }*/
         }
-        if (GC<Entity>(owner).health_ <= 0 || Input.GetKeyDown(KeyCode.B)) // for testing
+        if (GC<HealthComponent>(owner).currentHp_ <= 0 || Input.GetKeyDown(KeyCode.B)) // for testing
         {
             GC<Entity>(owner).statemachine_.ChangeState(new ChargerDeadState());
         }
