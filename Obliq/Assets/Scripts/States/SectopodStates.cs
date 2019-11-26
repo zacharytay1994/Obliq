@@ -30,7 +30,11 @@ public class SectopodIdleState : State
         }
         if(objective != null)
         {
-            if ((closest_obj.transform.position - objective.transform.position).magnitude < GC<Entity>(owner).GetTrueRange())// if within range
+            float numbe = (closest_obj.transform.position - objective.transform.position).magnitude;
+            float number2 = GC<Entity>(owner).GetTrueRange();
+            Debug.Log(numbe);
+            Debug.Log(number2);
+            if (((Vector2)closest_obj.transform.position - (Vector2)objective.transform.position).magnitude < GC<Entity>(owner).GetTrueRange())// if within range
             {
                 GC<Sectopod>(owner).target_reference_ = closest_obj;
                 GC<ObliqPathfinding>(owner).target_ = closest_obj.transform.position;
@@ -50,7 +54,7 @@ public class SectopodIdleState : State
         }
         else
         {
-            if ((closest_obj.transform.position - owner.transform.position).magnitude < GC<Entity>(owner).GetTrueRange())// if within range
+            if (((Vector2)closest_obj.transform.position - (Vector2)owner.transform.position).magnitude < GC<Entity>(owner).GetTrueRange())// if within range
             {
                 GC<Sectopod>(owner).target_reference_ = closest_obj;
                 GC<ObliqPathfinding>(owner).target_ = closest_obj.transform.position;
@@ -97,19 +101,19 @@ public class SectopodMoveState : State
         {
             GC<Entity>(owner).statemachine_.ChangeState(new SectopodDeadState());
         }
-        if ((GC<ObliqPathfinding>(owner).target_ - (Vector2)GC<Sectopod>(owner).target_reference_.transform.position).magnitude > movementBuffer) //magic buffer value
+        if (((Vector2)GC<ObliqPathfinding>(owner).target_ - (Vector2)GC<Sectopod>(owner).target_reference_.transform.position).magnitude > movementBuffer) //magic buffer value
         {
             // to move towards a point, buffer is to make the pathfinding less sensitive 
             GC<ObliqPathfinding>(owner).target_ = GC<Sectopod>(owner).target_reference_.transform.position;
             owner.GetComponent<ObliqPathfinding>().StartPath(owner.GetComponent<ObliqPathfinding>().target_);
         }
-        if ((GC<Sectopod>(owner).target_reference_.transform.position - owner.transform.position).magnitude < GC<Entity>(owner).attack_range_)
+        if (((Vector2)GC<Sectopod>(owner).target_reference_.transform.position - (Vector2)owner.transform.position).magnitude < GC<Entity>(owner).attack_range_)
         //in range to attack
         {
             GC<Entity>(owner).statemachine_.ChangeState(new SectopodAttackState());
         }
         if(objective != null){
-            if ((GC<Sectopod>(owner).target_reference_.transform.position - objective.transform.position).magnitude > GC<Entity>(owner).GetTrueRange())
+            if (((Vector2)GC<Sectopod>(owner).target_reference_.transform.position - (Vector2)objective.transform.position).magnitude > GC<Entity>(owner).GetTrueRange())
             {
                 //target out of range 
                 owner.GetComponent<ObliqPathfinding>().StopPath();
@@ -118,7 +122,7 @@ public class SectopodMoveState : State
         }
         else
         {
-            if ((GC<Sectopod>(owner).target_reference_.transform.position - owner.transform.position).magnitude > GC<Entity>(owner).GetTrueRange())
+            if (((Vector2)GC<Sectopod>(owner).target_reference_.transform.position - (Vector2)owner.transform.position).magnitude > GC<Entity>(owner).GetTrueRange())
             {
                 //target out of range 
                 owner.GetComponent<ObliqPathfinding>().StopPath();
