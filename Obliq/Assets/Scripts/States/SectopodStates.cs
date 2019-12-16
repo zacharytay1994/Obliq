@@ -198,7 +198,12 @@ public class SectopodAttackState : State
                 {
                     /*GC<Sectopod>(owner).target_reference_.GetComponent<HealthComponent>().TakeDamage(1);
                     Debug.Log(GC<Sectopod>(owner).target_reference_.GetComponent<HealthComponent>().currentHp_);*/
-                    GC<RaycastAttack>(owner).Attack(owner, GC<Sectopod>(owner).target_reference_).GetComponent<HealthComponent>().TakeDamage(1);
+                    GameObject object_hit = GC<RaycastAttack>(owner).Attack(owner, GC<Sectopod>(owner).target_reference_);
+                    if(object_hit.GetComponent<BloodEffect>() != null)
+                    {
+                        object_hit.GetComponent<BloodEffect>().DrawBlood(object_hit.transform.position - owner.transform.position);
+                    }
+                    object_hit.GetComponent<HealthComponent>().TakeDamage(1);
                     Debug.Log(GC<RaycastAttack>(owner).Attack(owner, GC<Sectopod>(owner).target_reference_));
                     Debug.Log(GC<RaycastAttack>(owner).Attack(owner, GC<Sectopod>(owner).target_reference_).GetComponent<HealthComponent>().currentHp_);
                 }

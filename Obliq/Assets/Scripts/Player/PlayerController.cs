@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour
     [Space(10)]
     [SerializeField] GameObject strike_zone_;
     [SerializeField] float attack_duration_;
+    [SerializeField] float dash_strength;
+
    
     SemiCircleMelee melee_;
     public float stored_angle_ = 0.0f;
@@ -81,6 +83,7 @@ public class PlayerController : MonoBehaviour
         mouseLocation = camera_.ScreenToWorldPoint(mouseLocation);
         float angle = AngleBetween(transform.position, mouseLocation);
         transform.rotation = Quaternion.Euler(0, 0, angle);
+      
     }
 
     void UpdateFacingDirection()
@@ -97,26 +100,37 @@ public class PlayerController : MonoBehaviour
 
     void PlayerMovement()
     {
-        if (Input.GetKey(KeyCode.W))
+       
+        if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-            heading_.y += player_acceleration_;
+            rb2d_.AddForce(heading_ * dash_strength);
         }
-        if (Input.GetKey(KeyCode.S))
+        else
         {
-            heading_.y -= player_acceleration_;
+            if (Input.GetKey(KeyCode.W))
+            {
+                heading_.y += player_acceleration_;
+            }
+            if (Input.GetKey(KeyCode.S))
+            {
+                heading_.y -= player_acceleration_;
+            }
+            if (Input.GetKey(KeyCode.A))
+            {
+                heading_.x -= player_acceleration_;
+            }
+            if (Input.GetKey(KeyCode.D))
+            {
+                heading_.x += player_acceleration_;
+            }
+
         }
-        if (Input.GetKey(KeyCode.A))
-        {
-            heading_.x -= player_acceleration_;
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            heading_.x += player_acceleration_;
-        }
+
+
 
         heading_.x = heading_.x - ((1 - player_decceleration_) * heading_.x);
         heading_.y = heading_.y - ((1 - player_decceleration_) * heading_.y);
-
+       
         //rb2d_.velocity = heading_;
         rb2d_.AddForce(heading_, ForceMode2D.Force);
     }

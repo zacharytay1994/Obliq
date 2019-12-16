@@ -156,7 +156,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blood_: {fileID: 2604821128577617190, guid: 18d365df8345a944695f9ef87dcb1947, type: 3}
-  intensity_: 20
+  intensity_: 200
   splatter_upper_lower: {x: 5, y: 15}
   angle_range_: 10
 --- !u!114 &2130145248728859981
