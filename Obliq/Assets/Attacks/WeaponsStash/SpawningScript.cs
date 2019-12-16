@@ -9,39 +9,71 @@ public class SpawningScript : MonoBehaviour
     int max_grunt_count_ = 10;
     [SerializeField]
     GameObject grunt_ = null;
-
     [SerializeField]
-    float grunt_spawn_duration_ = 0.0f;
-
-    float grunt_spawn_timer_ = 0;
-        
+    int waves_ = 1;
+    int added_grunt_count_ = 0;
+    [SerializeField]
+    float spawn_interval_ = 5.0f;
+    float spawn_interval_counter_ = 0.0f;
+    [SerializeField]
+    bool per_wave_ = true;
     // Start is called before the first frame update
     void Start()
     {
-
+        spawn_interval_counter_ = spawn_interval_;
     }
 
     // Update is called once per frame
     void Update()
     {
-        SpawnGrunt();
-        if(grunt_spawn_timer_<= grunt_spawn_duration_)
+        if (per_wave_)
         {
-            grunt_spawn_timer_ += Time.timeScale;
-        }   
+            SpawnWave();
+        }
+        else
+        {
+            SpawnGrunt();
+        }
     }
 
     void SpawnGrunt()
     {
         if (grunt_ != null)
         {
-            if (grunt_count_ < max_grunt_count_ && grunt_spawn_timer_>=grunt_spawn_duration_)
+            if (grunt_count_ < max_grunt_count_ && waves_ > 0)
             {
                 GameObject temp = Instantiate(grunt_, new Vector3(transform.position.x, transform.position.y, -1.0f) + new Vector3(Random.Range(0.0f,1.0f), Random.Range(0.0f,1.0f), 0.0f), Quaternion.identity);
                 temp.GetComponent<TempGrunt>().AttachSpawner(this);
                 grunt_count_++;
-                grunt_spawn_timer_ = 0;
+                added_grunt_count_++;
             }
+            if (added_grunt_count_ >= max_grunt_count_)
+            {
+                waves_--;
+                added_grunt_count_ = 0;
+            }
+        }
+    }
+
+    void SpawnWave()
+    {
+        if (spawn_interval_counter_ > spawn_interval_)
+        {
+            spawn_interval_counter_ = 0;
+            if (grunt_ != null && waves_ > 0)
+            {
+                for (int i = 0; i < max_grunt_count_; i++)
+                {
+                    GameObject temp = Instantiate(grunt_, new Vector3(transform.position.x, transform.position.y, -1.0f) + new Vector3(Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f), 0.0f), Quaternion.identity);
+                    temp.GetComponent<TempGrunt>().AttachSpawner(this);
+                }
+            }
+            waves_--;
+        }
+        else
+        {
+            spawn_interval_counter_ += Time.deltaTime;
+            return;
         }
     }
     
