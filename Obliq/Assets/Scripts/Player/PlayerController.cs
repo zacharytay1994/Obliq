@@ -21,6 +21,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float attack_duration_;
     [SerializeField] float dash_strength;
 
+    [SerializeField]float dash_cooldown_; //time in between dash
+
+    float next_dash_time = 0.0f;
    
     SemiCircleMelee melee_;
     public float stored_angle_ = 0.0f;
@@ -101,9 +104,10 @@ public class PlayerController : MonoBehaviour
     void PlayerMovement()
     {
        
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKeyDown(KeyCode.LeftShift) && Time.time >= next_dash_time)
         {
             rb2d_.AddForce(heading_ * dash_strength);
+            next_dash_time = Time.time + dash_cooldown_;
         }
         else
         {
