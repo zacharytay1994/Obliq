@@ -102,7 +102,7 @@ public class ChargerIdleState : State
             owner.GetComponent<LineRenderer>().SetPosition(1, (Vector2)owner.transform.position);
         }
         
-        if (Time.time - charge_start >= 3.0f)
+        if (Time.time - charge_start >= 3.0f)//magic no
         {
            
                                                                                                           // move charger to position
