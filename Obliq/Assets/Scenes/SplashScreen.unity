@@ -130,8 +130,9 @@ GameObject:
   m_Component:
   - component: {fileID: 167108361}
   - component: {fileID: 167108362}
+  - component: {fileID: 167108363}
   m_Layer: 0
-  m_Name: AudioManager
+  m_Name: AllTheManagersLmao
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -196,6 +197,18 @@ MonoBehaviour:
     pitch: 0
     source: {fileID: 0}
     SoundType: 0
+--- !u!114 &167108363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 167108360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8654e2a1b4c143043b4a35db921f9ee7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!20 &604788590 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 8469944876115857394, guid: ddaf4ec891c08644396fdaca093c7b2f,

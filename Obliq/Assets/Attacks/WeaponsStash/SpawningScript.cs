@@ -80,6 +80,6 @@ public class SpawningScript : MonoBehaviour
     public void GruntDied()
     {
         grunt_count_ -= 1;
-        grunt_spawn_timer_ = 0;
+        spawn_interval_counter_ = 0;
     }
 }
