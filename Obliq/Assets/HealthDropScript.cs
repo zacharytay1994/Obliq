@@ -21,6 +21,7 @@ public class HealthDropScript : MonoBehaviour
     {
         GainHealth();
     }
+    
     public void GainHealth()
     {
         int final_heal_amt = heal_amt_;

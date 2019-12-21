@@ -5,15 +5,16 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
-    
-    bool isPaused = false;
+    GameObject player;
+    bool is_Paused_ = false;
     List<GameObject> pauseObjects = new List<GameObject>();
-
+    public bool is_Quitting_ = false;
 
     // Start is called before the first frame update
     void Start()
     {
         GameObject parent = GameObject.Find("PauseCanvas");
+      
         for (int i = 0; i < parent.transform.childCount; i++)
         {
             pauseObjects.Add(parent.transform.GetChild(i).gameObject);
@@ -26,12 +27,17 @@ public class UIManager : MonoBehaviour
     {
 
     }
+    void OnApplicationQuit()
+    {
+        is_Quitting_ = true;
+    }
     public void pauseFunction()
     {
-        if (isPaused == true)
+        if (is_Paused_ == true)
         {
+            
             Time.timeScale = 1;
-            isPaused = false;
+            is_Paused_ = false;
             foreach (GameObject g in pauseObjects)
             {
                 g.SetActive(false);
@@ -40,7 +46,7 @@ public class UIManager : MonoBehaviour
         else
         {
             Time.timeScale = 0;
-            isPaused = true;
+            is_Paused_ = true;
             foreach (GameObject g in pauseObjects)
             {
                 g.SetActive(true);
@@ -49,6 +55,7 @@ public class UIManager : MonoBehaviour
     }
     public void restartFunction()
     {
+        is_Quitting_ = true;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         pauseFunction();
     }

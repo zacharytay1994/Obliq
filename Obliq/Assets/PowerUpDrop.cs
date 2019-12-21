@@ -1,15 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class PowerUpDrop : MonoBehaviour
 {
     [SerializeField] GameObject[] power_up_list_;
-    bool is_quitting = false;
+    UIManager ui_manager_;
     // Start is called before the first frame update
     void Start()
     {
-        
+       ui_manager_ = GameObject.Find("World").GetComponent<UIManager>();
     }
 
     // Update is called once per frame
@@ -17,13 +18,10 @@ public class PowerUpDrop : MonoBehaviour
     {
        
     }
-    void OnApplicationQuit()
-    {
-        is_quitting = true;
-    }
+
     void OnDestroy()
     {
-        if (!is_quitting)
+        if (!ui_manager_.is_Quitting_)
         {
             if (gameObject != null)
             {
