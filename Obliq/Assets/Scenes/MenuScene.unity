@@ -2426,7 +2426,7 @@ MonoBehaviour:
   anim: {fileID: 961473224}
   buttonAnim: {fileID: 1665837990}
   pauseSecondsBeforeLoad: 1.5
-  sceneToLoad: Prototype2
+  sceneToLoad: ZacsScene
   OptionButton: 0
 --- !u!61 &1851987949
 BoxCollider2D:
