@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 2738319545373247785}
   - component: {fileID: -353334419602199532}
   - component: {fileID: -1395983616304069071}
+  - component: {fileID: 5432335805968645032}
   m_Layer: 14
   m_Name: MockGrunt
   m_TagString: Enemy
@@ -265,3 +266,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health_object_: {fileID: 0}
+--- !u!114 &5432335805968645032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2798105615834141751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64047c4e31acf9e4db7dd5b87b1d011a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  power_up_list_:
+  - {fileID: 2813485663529415521, guid: 266e4e2004fb1444fa0c8ee92c89a4f5, type: 3}
+  - {fileID: 2813485663529415521, guid: 266e4e2004fb1444fa0c8ee92c89a4f5, type: 3}
+  - {fileID: 2813485663529415521, guid: 266e4e2004fb1444fa0c8ee92c89a4f5, type: 3}
