@@ -253,6 +253,7 @@ public class ImAProjectile : MonoBehaviour
 
     public void InitProj()
     {
+        cont_stream_counter_ = cont_stream_rate_;
         // set stuff
         rb = gameObject.GetComponent<Rigidbody2D>();
         // random movement stuff

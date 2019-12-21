@@ -240,7 +240,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   random_speed_: {x: 140, y: 200}
-  path_update_delay: {x: 1, y: 3}
+  path_update_delay: {x: 2, y: 6}
 --- !u!114 &-353334419602199532
 MonoBehaviour:
   m_ObjectHideFlags: 0
