@@ -56,9 +56,13 @@ public class ColorChangeScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Difference in colour value
+        Color diff_color_ = end_color_ - start_color_;
+        Color to_change_ = diff_color_ / player_max_health_;
+        
         // For player health indicator
         if (script_purpose_ == ScriptPurpose.PlayerHealthIndicator)
-            UpdateHealth();
+            UpdateHealth(to_change_);
 
         //// For bomb defuse progress
         //if (script_purpose_ == ScriptPurpose.BombDefuseProgress)
@@ -68,9 +72,13 @@ public class ColorChangeScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Difference in colour value
+        Color diff_color_ = end_color_ - start_color_;
+        Color to_change_ = diff_color_ / player_max_health_;
+
         // For player health indicator
         if (script_purpose_ == ScriptPurpose.PlayerHealthIndicator)
-            UpdateHealth();
+            UpdateHealth(to_change_);
 
         //// For bomb defuse progress
         //if (script_purpose_ == ScriptPurpose.BombDefuseProgress)
@@ -82,7 +90,7 @@ public class ColorChangeScript : MonoBehaviour
     // ------------------------------------ //
 
     // Updates player health indicator (PlayerHealthIndicator)
-    void UpdateHealth()
+    void UpdateHealth(Color to_change_)
     {
         // Get player's current/max health
         player_current_health_ = player_health_component_.currentHp_;
@@ -94,6 +102,14 @@ public class ColorChangeScript : MonoBehaviour
         // Change percentage of red and green in player health indicator sprite
         // The higher the health, the higher the value of green
         sprite_renderer_.color = new Color(player_health_loss_, 1 - player_health_loss_, 0f);
+        //sprite_renderer_.color = new Color(start_color_.r + to_change_.r, start_color_.g + to_change_.g, start_color_.b + to_change_.b);
+        //sprite_renderer_.color = start_color_ + (to_change_ * player_health_loss_);
+        /*sprite_renderer_.color = new Color(
+            start_color_.r + (to_change_.r * player_health_loss_ * player_max_health_),
+            start_color_.g + (to_change_.g * player_health_loss_ * player_max_health_),
+            start_color_.b + (to_change_.b * player_health_loss_ * player_max_health_)
+            );*/
+        //sprite_renderer_.color = new Color(start_color_.r / 255, start_color_.g / 255, start_color_.b / 255);
     }
 
     //// Updates bomb color based on progress
