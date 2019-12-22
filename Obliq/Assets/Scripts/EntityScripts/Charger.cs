@@ -11,6 +11,7 @@ public class Charger : MonoBehaviour
     public float move_distance_ = 10.0f;
     public GameObject target_reference_;
     public GameObject lesser_charger_reference_;
+    public Vector2 heading;
     int spawn_buffer = 2;
     LayerMask layerMask;
     // entity reference

@@ -26,11 +26,13 @@ public class DamageEnemy : MonoBehaviour
 
     HitPause hit_pause_;
     CameraManager camera_manager_;
+    DamagePopup damage_popup_manager_;
     // Start is called before the first frame update
     void Start()
     {
         hit_pause_ = FindObjectOfType<HitPause>();
         camera_manager_ = FindObjectOfType<CameraManager>();
+        damage_popup_manager_ = GameObject.Find("World").GetComponent<DamagePopup>();
     }
 
     // Update is called once per frame
@@ -57,11 +59,18 @@ public class DamageEnemy : MonoBehaviour
                 if(Random.Range(1,100) <= crit_chance)
                 {
                     Debug.Log("CRIT");
+                    if (!collision.gameObject.GetComponent<HealthComponent>().isInvincible())
+                    {
+                        damage_popup_manager_.Create(gameObject, damage_ * crit_modifier, true);
+                    }                   
                     collision.gameObject.GetComponent<HealthComponent>().TakeDamage(damage_ * crit_modifier);
                 }
                 else
                 {
-
+                    if (!collision.gameObject.GetComponent<HealthComponent>().isInvincible())
+                    {
+                        damage_popup_manager_.Create(gameObject, damage_, true);
+                    }
                     collision.gameObject.GetComponent<HealthComponent>().TakeDamage(damage_);
                 }             
                 // get direction
