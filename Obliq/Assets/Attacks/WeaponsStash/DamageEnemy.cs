@@ -16,7 +16,12 @@ public class DamageEnemy : MonoBehaviour
     float screen_shake_base_duration_;
     [SerializeField]
     float screen_shake_base_magnitude_;
+    [SerializeField]
+    [Range(1,100)]
+    int crit_chance;
 
+    [SerializeField]
+    int crit_modifier;
 
 
     HitPause hit_pause_;
@@ -49,8 +54,16 @@ public class DamageEnemy : MonoBehaviour
                     hit_pause_.Freeze(damage_);
                 }
 
+                if(Random.Range(1,100) <= crit_chance)
+                {
+                    Debug.Log("CRIT");
+                    collision.gameObject.GetComponent<HealthComponent>().TakeDamage(damage_ * crit_modifier);
+                }
+                else
+                {
 
-                collision.gameObject.GetComponent<HealthComponent>().TakeDamage(damage_);
+                    collision.gameObject.GetComponent<HealthComponent>().TakeDamage(damage_);
+                }             
                 // get direction
                 Vector2 direction = ((Vector2)collision.gameObject.transform.position - (Vector2)transform.position).normalized;
 
