@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 7164747587921222637}
   - component: {fileID: -323119862179744384}
   - component: {fileID: -3210017494606095120}
-  m_Layer: 13
+  m_Layer: 19
   m_Name: MachinegunProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -87,6 +87,7 @@ MonoBehaviour:
   mouse_offset_: {x: 0, y: 0}
   local_orientation_: 0
   follow_mouse_: 0
+  spawn_delay_: 0
   spin_: 0
   spin_rate_: 0
   time_trigger_: 0
