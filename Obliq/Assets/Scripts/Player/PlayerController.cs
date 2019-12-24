@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float player_acceleration_;
     [SerializeField] float player_decceleration_;
     [SerializeField] float player_rotation_acceleration_;
+   
     Rigidbody2D rb2d_;
     Vector2 heading_ = new Vector2(0.0f, 0.0f);
 
@@ -26,7 +27,8 @@ public class PlayerController : MonoBehaviour
     float next_dash_time = 0.0f;
     float dash_start;
     float dash_timer;
-   
+    public float speed_modifier_ = 1; 
+
     SemiCircleMelee melee_;
     public float stored_angle_ = 0.0f;
 
@@ -117,25 +119,22 @@ public class PlayerController : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.W))
             {
-                heading_.y += player_acceleration_;
+                heading_.y += player_acceleration_ * speed_modifier_;
             }
             if (Input.GetKey(KeyCode.S))
             {
-                heading_.y -= player_acceleration_;
+                heading_.y -= player_acceleration_ * speed_modifier_;
             }
             if (Input.GetKey(KeyCode.A))
             {
-                heading_.x -= player_acceleration_;
+                heading_.x -= player_acceleration_ * speed_modifier_;
             }
             if (Input.GetKey(KeyCode.D))
             {
-                heading_.x += player_acceleration_;
+                heading_.x += player_acceleration_* speed_modifier_;
             }
 
         }
-
-
-
         heading_.x = heading_.x - ((1 - player_decceleration_) * heading_.x);
         heading_.y = heading_.y - ((1 - player_decceleration_) * heading_.y);
        

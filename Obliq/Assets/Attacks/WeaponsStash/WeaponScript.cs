@@ -106,4 +106,8 @@ public class WeaponScript : MonoBehaviour
         recoil_amount_ = (int)recoilamount;
         recoil_interval_ = recoilinterval;
     }
+    public GameObject GetWeapon()
+    {
+        return weapon_;
+    }
 }
