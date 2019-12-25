@@ -145,11 +145,13 @@ public class SectopodAttackState : State
 
     bool is_charging;
     bool laser_aimed;
+    DamagePopup damage_popup = GameObject.Find("World").GetComponent<DamagePopup>();
     public override void Enter(GameObject owner)
     {
         Debug.Log("Sectopod Attack state");
         is_charging = true;
         laser_aimed = false;
+        
         if (next_damage_time == 0)
         {
             next_damage_time = Time.time + attack_rate;
@@ -203,9 +205,9 @@ public class SectopodAttackState : State
                     {
                         object_hit.GetComponent<BloodEffect>().DrawBlood(object_hit.transform.position - owner.transform.position);
                     }
-                    object_hit.GetComponent<HealthComponent>().TakeDamage(1);
-                    Debug.Log(GC<RaycastAttack>(owner).Attack(owner, GC<Sectopod>(owner).target_reference_));
-                    Debug.Log(GC<RaycastAttack>(owner).Attack(owner, GC<Sectopod>(owner).target_reference_).GetComponent<HealthComponent>().currentHp_);
+                    damage_popup.Create(object_hit, owner.GetComponent<RaycastAttack>().damage_, false);
+                    object_hit.GetComponent<HealthComponent>().TakeDamage(owner.GetComponent<RaycastAttack>().damage_);
+                    
                 }
 
                 is_charging = false;

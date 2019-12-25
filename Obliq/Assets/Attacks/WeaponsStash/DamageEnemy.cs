@@ -60,7 +60,7 @@ public class DamageEnemy : MonoBehaviour
                     if (Random.Range(1, 100) <= crit_chance)
                     {
                         Debug.Log("CRIT");
-                        if (!collision.gameObject.GetComponent<HealthComponent>().isInvincible())
+                        if (!collision.gameObject.GetComponent<HealthComponent>().isInvincible() && collision.gameObject != GameObject.Find("Player"))
                         {
                             damage_popup_manager_.Create(gameObject, damage_ * crit_modifier, true);
                         }
@@ -68,7 +68,7 @@ public class DamageEnemy : MonoBehaviour
                     }
                     else
                     {
-                        if (!collision.gameObject.GetComponent<HealthComponent>().isInvincible())
+                        if (!collision.gameObject.GetComponent<HealthComponent>().isInvincible() && collision.gameObject != GameObject.Find("Player"))
                         {
                             if (gameObject != null)
                             {

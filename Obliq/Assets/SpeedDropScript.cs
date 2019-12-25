@@ -24,28 +24,28 @@ public class SpeedDropScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GainSpeed();
-        CheckRemoveSpeed();
-    }
-    void GainSpeed()
-    {
         if (player != null)
         {
-            if ((player.transform.position - gameObject.transform.position).magnitude < collision_radius_)
-            {
-                if(is_effecting_ == false)
-                {
-                    effect_begin_time_ = Time.time;
-                    is_effecting_ = true;
-                }
-                if (Time.time - effect_begin_time_ >= effect_delay_time_)
-                {
-                    player.GetComponent<PlayerController>().speed_modifier_ = speed_amt_;
-                    gameObject.GetComponent<SpriteRenderer>().enabled = false;
-                }
-             
-            }
+            GainSpeed();
+            CheckRemoveSpeed();
         }
+    }
+    void GainSpeed()
+    {      
+        if ((player.transform.position - gameObject.transform.position).magnitude < collision_radius_)
+        {
+            if(is_effecting_ == false)
+            {
+                effect_begin_time_ = Time.time;
+                is_effecting_ = true;
+            }
+            if (Time.time - effect_begin_time_ >= effect_delay_time_)
+            {
+                player.GetComponent<PlayerController>().speed_modifier_ = speed_amt_;
+                gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            }
+             
+        }       
     }
     void CheckRemoveSpeed()
     {
