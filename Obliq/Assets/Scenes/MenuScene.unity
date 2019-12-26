@@ -436,7 +436,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 1
-  m_Camera: {fileID: 1868495715}
+  m_Camera: {fileID: 300282134}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -691,6 +691,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ddaf4ec891c08644396fdaca093c7b2f, type: 3}
+--- !u!20 &300282134 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 8469944875963345909, guid: ddaf4ec891c08644396fdaca093c7b2f,
+    type: 3}
+  m_PrefabInstance: {fileID: 300282133}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &585991901
 GameObject:
   m_ObjectHideFlags: 0
@@ -2454,12 +2460,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 161.51617, y: 62.276245}
   m_EdgeRadius: 0
---- !u!20 &1868495715 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 8469944876115857394, guid: ddaf4ec891c08644396fdaca093c7b2f,
-    type: 3}
-  m_PrefabInstance: {fileID: 300282133}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1912166627
 GameObject:
   m_ObjectHideFlags: 0
