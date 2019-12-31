@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 935019833051430964}
   - component: {fileID: 935019833051430965}
   - component: {fileID: 935019833051430970}
-  - component: {fileID: 935019833051430971}
-  m_Layer: 0
+  - component: {fileID: 6793348622032063169}
+  m_Layer: 19
   m_Name: IceParticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -68,8 +68,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1352270105
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 3ceb4e47c02fa624c8efd6b01f9b0bd7, type: 3}
   m_Color: {r: 0.44099998, g: 1, b: 0.99500895, a: 0.57254905}
@@ -103,7 +103,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &935019833051430971
+--- !u!114 &6793348622032063169
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -112,7 +112,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 935019833051430968}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86b5534f888f4004a9bd9e26f954d2fa, type: 3}
+  m_Script: {fileID: 11500000, guid: 621971ef97189c346969a9430cf914de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   life_span: 1
