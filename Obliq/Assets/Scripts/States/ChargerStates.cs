@@ -39,8 +39,15 @@ public class ChargerMoveState : State
     {
 
         Debug.Log("Charger Move");
+        owner.GetComponent<SpriteRenderer>().material.color =
+           Color.Lerp(owner.GetComponent<SpriteRenderer>().material.color, Color.white, Mathf.PingPong(Time.time, 1 * Time.deltaTime));
+        float angle = AngleBetween(owner.transform.position, closest_good_guy_position);       
+        owner.transform.rotation = Quaternion.Lerp(owner.transform.rotation, Quaternion.Euler(0.0f, 0.0f, angle), Mathf.PingPong(Time.time,
+            1 * Time.deltaTime));
         // if overshoot the target
+        
         owner.GetComponent<LineRenderer>().SetPosition(0, (Vector2)owner.transform.position);
+        
         if (GC<HealthComponent>(owner).currentHp_ <= 0 || Input.GetKeyDown(KeyCode.B)) // for testing
         {
             GC<Entity>(owner).statemachine_.ChangeState(new ChargerDeadState());
@@ -65,6 +72,10 @@ public class ChargerMoveState : State
     public override void Exit(GameObject owner) {
 
     }
+    float AngleBetween(Vector2 a, Vector2 b)
+    {
+        return Mathf.Atan2(a.y - b.y, a.x - b.x) * Mathf.Rad2Deg + 90;
+    }
 }
 
 
@@ -78,9 +89,11 @@ public class ChargerAttackState : State
 public class ChargerIdleState : State
 {
     float charge_start = Time.time;
+    int color_no = 0;
     public override void Enter(GameObject owner)
     {
-      
+       
+
     }
     public override void Execute(GameObject owner)
     {
@@ -94,7 +107,15 @@ public class ChargerIdleState : State
             Vector2 closest_good_guy_position =
                 (Vector2)owner.GetComponent<Charger>().target_reference_.transform.position + (to_add * 1.5f); // temp magic number (how far behind target)
             owner.GetComponent<LineRenderer>().SetPosition(0, (Vector2)owner.transform.position);
-            owner.GetComponent<LineRenderer>().SetPosition(1, closest_good_guy_position);
+            owner.GetComponent<LineRenderer>().SetPosition(1, Vector2.Lerp(owner.GetComponent<LineRenderer>().GetPosition(1),closest_good_guy_position, 
+                3 * Time.deltaTime));
+            
+            owner.GetComponent<SpriteRenderer>().material.color = Color.Lerp(owner.GetComponent<SpriteRenderer>().material.color, Color.red, Mathf.PingPong(Time.time, 3 * Time.deltaTime));
+            
+            float angle = AngleBetween(owner.transform.position, closest_good_guy_position);
+            owner.transform.rotation = Quaternion.Lerp(owner.transform.rotation, Quaternion.Euler(0.0f, 0.0f, angle), Mathf.PingPong(Time.time,
+                3 * Time.deltaTime));
+           
         }
         else
         {
@@ -103,9 +124,7 @@ public class ChargerIdleState : State
         }
         
         if (Time.time - charge_start >= 3.0f)//magic no
-        {
-           
-                                                                                                          // move charger to position
+        {                                                                                                         // move charger to position
             owner.GetComponent<Entity>().statemachine_.ChangeState(new ChargerMoveState());
         }
         else
@@ -124,6 +143,10 @@ public class ChargerIdleState : State
 
     }
     public override void Exit(GameObject owner) { }
+    float AngleBetween(Vector2 a, Vector2 b)
+    {
+        return Mathf.Atan2(a.y - b.y, a.x - b.x) * Mathf.Rad2Deg + 90;
+    }
 }
 public class ChargerDeadState : State
 {
