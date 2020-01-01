@@ -48,12 +48,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eeb0363ec7ff550499b9f85ee039a8db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed_: 80
-  acceleration_: 1
-  max_speed_: 80
+  speed_: 50
+  acceleration_: 8
+  max_speed_: 10
   custom_speed_: 0
   custom_speed_loop_: 0
-  decceleration_: 5
+  decceleration_: 0.1
   acceleration_time_: 0.1
   decceleration_time_: 0.1
   force_type_: 1
@@ -301,10 +301,10 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 0.21595985, b: 0, a: 1}
-      key1: {r: 1, g: 0.61116797, b: 0.2588235, a: 0}
-      key2: {r: 1, g: 0.8407661, b: 0.45882356, a: 0}
-      key3: {r: 1, g: 0.9661056, b: 0.67058825, a: 0}
+      key0: {r: 0, g: 1, b: 0.9712162, a: 1}
+      key1: {r: 0.2588235, g: 1, b: 0.94654053, a: 0}
+      key2: {r: 0.45882356, g: 1, b: 0.9493315, a: 0}
+      key3: {r: 0.67058825, g: 1, b: 0.94833195, a: 0}
       key4: {r: 1, g: 1, b: 1, a: 0}
       key5: {r: 0, g: 0, b: 0, a: 0}
       key6: {r: 0, g: 0, b: 0, a: 0}

@@ -11,6 +11,7 @@ public class IceParticleScript : MonoBehaviour
     float random_scale_x_ = 0.0f;
     float random_scale_y_ = 0.0f;
     float random_color_ = 0.0f;
+    float random_alpha_ = 0.0f;
     Rigidbody2D rb;
     // Start is called before the first frame update
     void Start()
@@ -19,9 +20,10 @@ public class IceParticleScript : MonoBehaviour
         random_rotate_direction_ = Random.Range(0, 2);
         random_scale_x_ = Random.Range(0.01f, 0.1f);
         random_scale_y_ = Random.Range(0.01f, 0.1f);
-        //random_color_ = Random.Range(0.0f, 0.5f);
+        random_color_ = Random.Range(0.0f, 0.5f);
+        random_alpha_ = Random.Range(0.3f, 0.8f);
         random_rotate_direction_ = random_rotate_direction_ == 0 ? -1 : 1;
-        gameObject.GetComponent<SpriteRenderer>().color = new Color(1.0f, random_color_, 0.0f);
+        gameObject.GetComponent<SpriteRenderer>().color = new Color(0.0f, random_color_, 8.0f, random_alpha_);
         rb = gameObject.GetComponent<Rigidbody2D>();
         rb.angularVelocity = random_rotate_direction_ * random_rotate_speed_;
         transform.localScale = new Vector3(random_scale_x_, random_scale_y_, 1.0f);
