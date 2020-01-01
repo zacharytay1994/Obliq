@@ -17,7 +17,8 @@ public class DamageEnemy : MonoBehaviour
     [SerializeField]
     float screen_shake_base_magnitude_;
 
-
+    [SerializeField]
+    bool knock_back_ = false;
 
     HitPause hit_pause_;
     CameraManager camera_manager_;
@@ -59,6 +60,10 @@ public class DamageEnemy : MonoBehaviour
                     collision.gameObject.GetComponent<BloodEffect>().DrawBlood(direction);
                 }
 
+                if (knock_back_ && GetComponent<BombKnockback>() != null)
+                {
+                    GetComponent<BombKnockback>().ForcePush();
+                }
 
             }
         }
