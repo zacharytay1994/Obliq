@@ -17,6 +17,9 @@ public class Boss1AI : MonoBehaviour
     [SerializeField]
     public Transform player_;
 
+    [SerializeField]
+    public GameObject wave_pulse_;
+
     public bool is_collided_ = false;
     // Start is called before the first frame update
     void Start()

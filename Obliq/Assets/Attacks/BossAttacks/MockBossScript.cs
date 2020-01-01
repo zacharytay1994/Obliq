@@ -15,7 +15,7 @@ public class MockBossScript : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.P))
         {
-            ZBossAttacks.PulseWave(1.0f, 5, 0.2f, 1.0f, GameObject.Find("MockPlayer").GetComponent<CircleCollider2D>(), gameObject.transform);
+            ZBossAttacks.PulseWave(1.0f, 1, 0.2f, 3.0f, GameObject.Find("MockPlayer").GetComponent<CircleCollider2D>(), gameObject.transform);
         }
     }
 }

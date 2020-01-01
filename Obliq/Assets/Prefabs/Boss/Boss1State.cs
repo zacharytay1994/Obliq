@@ -21,8 +21,6 @@ public class Boss1TeleportingState : State
         int random_location_selection = Random.Range(0, 4);
         owner.transform.position = owner.GetComponent<Boss1AI>().spawn_location_list_[random_location_selection].position;
         owner.transform.rotation = Quaternion.Euler(0, 0, random_location_selection * 90);
-        
-
     }
 
     public override void Execute(GameObject owner)
