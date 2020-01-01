@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FirstBossAttack : MonoBehaviour
+public class DetachBoss : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
