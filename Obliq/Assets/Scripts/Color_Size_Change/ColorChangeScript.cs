@@ -10,9 +10,15 @@ public class ColorChangeScript : MonoBehaviour
     [Header("2. VARIABLES")]
     // Trying to get start/end color to work, don't use yet
     [SerializeField]
-    Color start_color_;
+    Color start_color_ = Color.white;
     [SerializeField]
-    Color end_color_;
+    Color end_color_ = Color.white;
+    [SerializeField]
+    int start_red_;
+    [SerializeField]
+    int start_green_;
+    [SerializeField]
+    int start_blue_;
     //[SerializeField]
     //WorldHandler object_prefab_;
     [Header("3. COMPONENTS (ADD TO SCRIPT WHEN \n NECESSARY)")]
@@ -59,10 +65,15 @@ public class ColorChangeScript : MonoBehaviour
         // Difference in colour value
         Color diff_color_ = end_color_ - start_color_;
         Color to_change_ = diff_color_ / player_max_health_;
-        
+
+        sprite_renderer_.color = start_color_;
+        Debug.Log("gay");
+        Debug.Log("start red: " + start_color_.r);
+        Debug.Log("start green: " + start_color_.g);
+        Debug.Log("start blue: " + start_color_.b);
         // For player health indicator
-        if (script_purpose_ == ScriptPurpose.PlayerHealthIndicator)
-            UpdateHealth(to_change_);
+        //if (script_purpose_ == ScriptPurpose.PlayerHealthIndicator)
+        //UpdateHealth(to_change_);
 
         //// For bomb defuse progress
         //if (script_purpose_ == ScriptPurpose.BombDefuseProgress)
@@ -73,12 +84,12 @@ public class ColorChangeScript : MonoBehaviour
     void Update()
     {
         // Difference in colour value
-        Color diff_color_ = end_color_ - start_color_;
-        Color to_change_ = diff_color_ / player_max_health_;
+        //Color diff_color_ = end_color_ - start_color_;
+        //Color to_change_ = diff_color_ / player_max_health_;
 
         // For player health indicator
-        if (script_purpose_ == ScriptPurpose.PlayerHealthIndicator)
-            UpdateHealth(to_change_);
+        //if (script_purpose_ == ScriptPurpose.PlayerHealthIndicator)
+            //UpdateHealth(to_change_);
 
         //// For bomb defuse progress
         //if (script_purpose_ == ScriptPurpose.BombDefuseProgress)
@@ -101,7 +112,7 @@ public class ColorChangeScript : MonoBehaviour
 
         // Change percentage of red and green in player health indicator sprite
         // The higher the health, the higher the value of green
-        sprite_renderer_.color = new Color(player_health_loss_, 1 - player_health_loss_, 0f);
+        //sprite_renderer_.color = new Color(player_health_loss_, 1 - player_health_loss_, 0f);
         //sprite_renderer_.color = new Color(start_color_.r + to_change_.r, start_color_.g + to_change_.g, start_color_.b + to_change_.b);
         //sprite_renderer_.color = start_color_ + (to_change_ * player_health_loss_);
         /*sprite_renderer_.color = new Color(
@@ -109,7 +120,16 @@ public class ColorChangeScript : MonoBehaviour
             start_color_.g + (to_change_.g * player_health_loss_ * player_max_health_),
             start_color_.b + (to_change_.b * player_health_loss_ * player_max_health_)
             );*/
-        //sprite_renderer_.color = new Color(start_color_.r / 255, start_color_.g / 255, start_color_.b / 255);
+        //sprite_renderer_.color = new Color(start_color_.r, start_color_.g, start_color_.b);
+        //sprite_renderer_.color = new Color(start_red_ / 255, start_green_ / 255, start_blue_ / 255);
+        sprite_renderer_.material.color = start_color_;
+        //sprite_renderer_.color = new Color(end_color_.r, end_color_.g, end_color_.b);
+        Debug.Log("start red: " + start_color_.r);
+        Debug.Log("start green: " + start_color_.g);
+        Debug.Log("start blue: " + start_color_.b);
+        Debug.Log("end red: " + end_color_.r);
+        Debug.Log("end green: " + end_color_.g);
+        Debug.Log("end blue: " + end_color_.b);
     }
 
     //// Updates bomb color based on progress
