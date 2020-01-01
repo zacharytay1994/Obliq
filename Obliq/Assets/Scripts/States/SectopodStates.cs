@@ -32,8 +32,7 @@ public class SectopodIdleState : State
         {
             float numbe = (closest_obj.transform.position - objective.transform.position).magnitude;
             float number2 = GC<Entity>(owner).GetTrueRange();
-            Debug.Log(numbe);
-            Debug.Log(number2);
+           
             if (((Vector2)closest_obj.transform.position - (Vector2)objective.transform.position).magnitude < GC<Entity>(owner).GetTrueRange())// if within range
             {
                 GC<Sectopod>(owner).target_reference_ = closest_obj;
@@ -174,7 +173,7 @@ public class SectopodAttackState : State
         {
             GC<RaycastAttack>(owner).Attack(owner, GC<Sectopod>(owner).target_reference_);
             
-             if(Time.time >=  GC<RaycastAttack> (owner).next_line_thicken_time && !is_charging)
+            if (Time.time >=  GC<RaycastAttack> (owner).next_line_thicken_time && !is_charging)//start charging
             {
                 GC<RaycastAttack>(owner).next_line_contract_time = Time.time + GC<RaycastAttack>(owner).line_contract_rate_;
                 GC<RaycastAttack>(owner).LineContract(GC<LineRenderer>(owner), GC<RaycastAttack>(owner).line_contract_increment_);
@@ -182,6 +181,7 @@ public class SectopodAttackState : State
                 {
                     GC<LineRenderer>(owner).startWidth = GC<RaycastAttack>(owner).initial_width_;
                     GC<LineRenderer>(owner).endWidth = GC<RaycastAttack>(owner).initial_width_;
+                    
 
                     is_charging = true;
                 }
@@ -190,12 +190,13 @@ public class SectopodAttackState : State
             {
                 GC<RaycastAttack>(owner).next_line_thicken_time = Time.time + GC<RaycastAttack>(owner).line_thicken_rate_;
                 GC<RaycastAttack>(owner).LineExpand(GC<LineRenderer>(owner), GC<RaycastAttack>(owner).line_thicken_increment_);
+               // GC<ChargeEffect>(owner).CreateChargeEffect();
                 laser_aimed = true;
             }
             if (Time.time >= next_damage_time && laser_aimed)
             {
                 next_damage_time = Time.time + attack_rate;
-                //GC<Sectopod>(owner).target_reference_.GetComponent<Entity>().TakeDamage(1);//temporary hit scan should be projectile
+                
                 if (GC<RaycastAttack>(owner).Attack(owner, GC<Sectopod>(owner).target_reference_) != null)
                 {
                     /*GC<Sectopod>(owner).target_reference_.GetComponent<HealthComponent>().TakeDamage(1);

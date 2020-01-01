@@ -108,7 +108,7 @@ public class ChargerIdleState : State
                 (Vector2)owner.GetComponent<Charger>().target_reference_.transform.position + (to_add * 1.5f); // temp magic number (how far behind target)
             owner.GetComponent<LineRenderer>().SetPosition(0, (Vector2)owner.transform.position);
             owner.GetComponent<LineRenderer>().SetPosition(1, Vector2.Lerp(owner.GetComponent<LineRenderer>().GetPosition(1),closest_good_guy_position, 
-                3 * Time.deltaTime));
+                1 * Time.deltaTime));
             
             owner.GetComponent<SpriteRenderer>().material.color = Color.Lerp(owner.GetComponent<SpriteRenderer>().material.color, Color.red, Mathf.PingPong(Time.time, 3 * Time.deltaTime));
             
