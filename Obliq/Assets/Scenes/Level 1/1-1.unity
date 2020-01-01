@@ -37835,7 +37835,7 @@ PrefabInstance:
     - target: {fileID: 8469944875963345909, guid: ddaf4ec891c08644396fdaca093c7b2f,
         type: 3}
       propertyPath: m_CullingMask.m_Bits
-      value: 488247
+      value: 1012535
       objectReference: {fileID: 0}
     - target: {fileID: 8469944875963345909, guid: ddaf4ec891c08644396fdaca093c7b2f,
         type: 3}
@@ -39128,7 +39128,7 @@ PrefabInstance:
     - target: {fileID: 2710746636912595028, guid: 30de44655fb90e8418fc0eb58beeaeba,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2710746636912595016, guid: 30de44655fb90e8418fc0eb58beeaeba,
         type: 3}
@@ -39250,6 +39250,26 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1368092825101167840, guid: 30de44655fb90e8418fc0eb58beeaeba,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3584810388779835247, guid: 30de44655fb90e8418fc0eb58beeaeba,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7408686419259075736, guid: 30de44655fb90e8418fc0eb58beeaeba,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1873290546597974482, guid: 30de44655fb90e8418fc0eb58beeaeba,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 30de44655fb90e8418fc0eb58beeaeba, type: 3}
 --- !u!224 &1946277895 stripped
@@ -39309,8 +39329,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   script_purpose_: 0
-  start_color_: {r: 0, g: 0, b: 0, a: 0}
-  end_color_: {r: 0, g: 0, b: 0, a: 0}
+  start_color_: {r: 0, g: 1, b: 0, a: 0}
+  end_color_: {r: 1, g: 0, b: 0, a: 0}
   player_health_component_: {fileID: 0}
   sprite_renderer_: {fileID: 0}
 --- !u!114 &1989557505

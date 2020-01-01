@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2604821128577617194}
   - component: {fileID: 2604821128577617195}
   - component: {fileID: 2604821128577617188}
-  - component: {fileID: 2604821128577617189}
+  - component: {fileID: 5540292177339129543}
   m_Layer: 0
   m_Name: IceParticle
   m_TagString: Untagged
@@ -103,7 +103,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &2604821128577617189
+--- !u!114 &5540292177339129543
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -112,7 +112,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2604821128577617190}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86b5534f888f4004a9bd9e26f954d2fa, type: 3}
+  m_Script: {fileID: 11500000, guid: 727b7bdeac220454681e8961bfe0da59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   life_span: 1

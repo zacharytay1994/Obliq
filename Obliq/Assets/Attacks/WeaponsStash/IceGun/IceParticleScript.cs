@@ -12,6 +12,7 @@ public class IceParticleScript : MonoBehaviour
     float random_scale_y_ = 0.0f;
     float random_color_ = 0.0f;
     Rigidbody2D rb;
+
     // Start is called before the first frame update
     void Start()
     {

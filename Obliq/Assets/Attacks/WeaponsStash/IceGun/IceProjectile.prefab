@@ -109,7 +109,7 @@ MonoBehaviour:
   cont_stream_rate_: 0.04
   cont_burst_rest_timer_: 0
   cont_burst_timer_: 0
-  cont_prefab_: {fileID: 5705661621723253877, guid: 4e38c87e902721d47a0da09e06c3c105,
+  cont_prefab_: {fileID: 5705661621723253877, guid: 86dc601eeb6d8c149b303a3083f5095c,
     type: 3}
   cont_np_offset_: 0
   cont_np_speed_: 0
@@ -222,7 +222,7 @@ TrailRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5226346963446909659}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -301,10 +301,10 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 0.21595985, b: 0, a: 1}
-      key1: {r: 1, g: 0.61116797, b: 0.2588235, a: 0}
-      key2: {r: 1, g: 0.8407661, b: 0.45882356, a: 0}
-      key3: {r: 1, g: 0.9661056, b: 0.67058825, a: 0}
+      key0: {r: 0, g: 1, b: 1, a: 1}
+      key1: {r: 0.2588235, g: 1, b: 1, a: 0}
+      key2: {r: 0.45882356, g: 1, b: 1, a: 0}
+      key3: {r: 0.67058825, g: 1, b: 0.99999994, a: 0}
       key4: {r: 1, g: 1, b: 1, a: 0}
       key5: {r: 0, g: 0, b: 0, a: 0}
       key6: {r: 0, g: 0, b: 0, a: 0}
