@@ -10,7 +10,9 @@ public class AttackExecuter : MonoBehaviour
     bool destroy_ = false;
     Collider2D player_collider_ = null;
 
-    // PULSEWAVE VARIABLES
+    /*_________________________________________________*/
+    // PULSE WAVE VARIABLES
+    /*_________________________________________________*/
     float pulse_rate_ = 0.0f;
     float pulse_rate_counter_ = 0.0f;
     int pulse_amount_ = 0;
@@ -63,6 +65,10 @@ public class AttackExecuter : MonoBehaviour
     }
     List<PulseWavePair> pulse_wave_pairs_ = new List<PulseWavePair>();
 
+    /*_________________________________________________*/
+    // CONAL LASER VARIABLES
+    /*_________________________________________________*/
+
     private void Start()
     {
         
@@ -77,6 +83,8 @@ public class AttackExecuter : MonoBehaviour
                 case "pulsewave":
                     PulseWaveLogic();
                     break;
+                case "conallaser":
+                    break;
             }
         }
     }
@@ -88,6 +96,9 @@ public class AttackExecuter : MonoBehaviour
         initialized_ = true;
     }
 
+    /*_________________________________________________*/
+    // PULSE WAVE FUNCTIONS
+    /*_________________________________________________*/
     public void InitPulse(float pulserate, int pulseamount, float pulsethickness, float pulsespeed)
     {
         pulse_rate_ = pulserate;
@@ -177,5 +188,12 @@ public class AttackExecuter : MonoBehaviour
             temp2.a -= fade_rate;
             p.GetCircle2().GetComponent<SpriteRenderer>().color = temp2;
         }
+    }
+
+    /*_________________________________________________*/
+    // CONAL LASER FUNCTIONS
+    /*_________________________________________________*/
+    public void InitConal(float coneangle, float coneradius, Vector3 direction)
+    {
     }
 }
