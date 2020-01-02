@@ -47,4 +47,32 @@ public class HealthComponent : MonoBehaviour
     {
         currentHp_ += healing;
     }
+
+    public int getCurrentHp()
+    {
+        return currentHp_;
+    }
+
+    public int getMaxHp()
+    {
+        return maxHp_;
+    }
+
+    public void addMaxHp(int additionalMaxHp)
+    {
+        maxHp_ += additionalMaxHp;
+    }
+
+    public void subtractMaxHp(int negatedMaxHp)
+    {
+        if(negatedMaxHp >= maxHp_)
+        {
+            negatedMaxHp = maxHp_ - 2;
+        }
+        maxHp_ -= negatedMaxHp;
+        if(currentHp_>maxHp_)
+        {
+            currentHp_ = maxHp_;
+        }
+    }
 }

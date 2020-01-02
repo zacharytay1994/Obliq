@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 235828931358813623}
   - component: {fileID: 7119392443147418798}
   - component: {fileID: 7164747587921222637}
-  m_Layer: 13
+  m_Layer: 19
   m_Name: ShotgunProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -85,6 +85,7 @@ MonoBehaviour:
   mouse_offset_: {x: 0, y: 0}
   local_orientation_: 0
   follow_mouse_: 0
+  spawn_delay_: 0
   spin_: 0
   spin_rate_: 0
   time_trigger_: 0
@@ -351,3 +352,7 @@ MonoBehaviour:
   enemy_mask_:
     serializedVersion: 2
     m_Bits: 16384
+  causes_hit_pause_: 1
+  causes_screen_shake_: 1
+  screen_shake_base_duration_: 1
+  screen_shake_base_magnitude_: 20
