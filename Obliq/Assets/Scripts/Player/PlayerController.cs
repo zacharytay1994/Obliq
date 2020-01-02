@@ -120,4 +120,14 @@ public class PlayerController : MonoBehaviour
         //rb2d_.velocity = heading_;
         rb2d_.AddForce(heading_, ForceMode2D.Force);
     }
+
+    public float GetAcceleration()
+    {
+        return player_acceleration_;
+    }
+
+    public void SetAcceleration(float acceleration_)
+    {
+        player_acceleration_ = acceleration_;
+    }
 }

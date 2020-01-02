@@ -86,14 +86,14 @@ MonoBehaviour:
   spin_: 1
   spin_rate_: 50
   time_trigger_: 0
-  active_time_: 0
-  tt_style_: 0
-  tt_density_: 0
-  tt_angle_: 0
-  tt_sstyle_: 0
-  tt_stream_rate_: 0
-  tt_burst_rest_timer_: 0
-  tt_burst_timer_: 0
+  active_time_: 1
+  tt_style_: 1
+  tt_density_: 5
+  tt_angle_: 10
+  tt_sstyle_: 1
+  tt_stream_rate_: 0.1
+  tt_burst_rest_timer_: 1
+  tt_burst_timer_: 0.8
   time_trigger_delay_: 0
   tt_prefab_: {fileID: 0}
   tt_np_offset_: 0
@@ -103,7 +103,7 @@ MonoBehaviour:
   cont_density_: 1
   cont_angle_: 0
   cont_sstyle_: 0
-  cont_stream_rate_: 0.5
+  cont_stream_rate_: 0.05
   cont_burst_rest_timer_: 0
   cont_burst_timer_: 0
   cont_prefab_: {fileID: 5226346963446909659, guid: 4ae09c60e159aad4283172a3a0c24b67,
