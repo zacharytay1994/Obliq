@@ -220,7 +220,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   first_display_done_: 0
-  objective_text_: Diffuse Le Bombe
+  objective_text_: Diffuse The Bomb!
   objective_diplay_duration_: 5
 --- !u!222 &5999911754885201320
 CanvasRenderer:

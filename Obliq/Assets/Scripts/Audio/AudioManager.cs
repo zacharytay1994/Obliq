@@ -84,12 +84,13 @@ public class AudioManager : MonoBehaviour
         }
         else
         {
-            s.Source.loop = true;
+            //s.Source.loop = true;
 
             GameObject playedSound = new GameObject();
             playedSound.AddComponent<AudioSource>();
             AudioSource aus = playedSound.GetComponent<AudioSource>();
             aus.clip = s.Clip;
+            aus.loop = true;
             playedSound.AddComponent<DeleteSoundScript>();
 
             Instantiate(playedSound, transform);
@@ -105,13 +106,15 @@ public class AudioManager : MonoBehaviour
         }
         else
         {
-            s.Volume = volume;
-            s.Source.loop = true;
+            //s.Volume = volume;
+            //s.Source.loop = true;
 
             GameObject playedSound = new GameObject();
             playedSound.AddComponent<AudioSource>();
             AudioSource aus = playedSound.GetComponent<AudioSource>();
             aus.clip = s.Clip;
+            aus.loop = true;
+            aus.volume = volume;
             playedSound.AddComponent<DeleteSoundScript>();
 
             Instantiate(playedSound, transform);
@@ -136,6 +139,15 @@ public class AudioManager : MonoBehaviour
             }
         }
 
+    }
+
+    public void StopAllSound()
+    {
+        for(int i = 0; i<transform.childCount;i++)
+        {
+            AudioSource aus = transform.GetChild(i).GetComponent<AudioSource>();
+            aus.Stop();
+        }
     }
 
     public void DestroyInstantiatedSound()
