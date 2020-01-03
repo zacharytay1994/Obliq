@@ -174,10 +174,5 @@ public class TempWeaponSwitch : MonoBehaviour
                 weapon_4_sprite_.color = c;
                 break;
         }
-        else if (Input.GetKeyDown(w4_switch_))
-        {
-            gameObject.GetComponent<WeaponScript>().SetWeapon(weapon_4, w4_has_recoil,
-                w4_continuous_recoil_, w4_recoil_data_.x, w4_recoil_data_.y, w4_recoil_data_.z);
-        }
     }
 }
