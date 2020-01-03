@@ -210,9 +210,8 @@ MonoBehaviour:
   causes_screen_shake_: 0
   screen_shake_base_duration_: 0
   screen_shake_base_magnitude_: 0
-  knock_back_: 0
-  crit_chance: 100
-  crit_modifier: 2
+  crit_chance: 0
+  crit_modifier: 0
 --- !u!114 &-1695331286466119510
 MonoBehaviour:
   m_ObjectHideFlags: 0

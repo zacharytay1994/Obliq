@@ -17,13 +17,13 @@ public class DamageEnemy : MonoBehaviour
     [SerializeField]
     float screen_shake_base_magnitude_;
     [SerializeField]
-    [Range(1,100)]
+    [Range(0,100)]
     int crit_chance;
 
     [SerializeField]
-
-    bool knock_back_ = false;
     int crit_modifier;
+    bool knock_back_ = false;
+   
 
     HitPause hit_pause_;
     CameraManager camera_manager_;
