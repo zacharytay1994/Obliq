@@ -6,9 +6,9 @@ public class Sound
 {
     [SerializeField] private string name;
     [SerializeField] private AudioClip clip;
-    [Range(0f,1f)]
+    [Range(0f,2f)]
     [SerializeField] private float volume;
-    [Range(0f,1f)]
+    [Range(0f,2f)]
     [SerializeField] private float pitch;
     [SerializeField] private AudioSource source;
     [SerializeField] private bool SoundType; // true for music, false for sfx

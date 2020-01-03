@@ -127,7 +127,7 @@ public class ImAProjectile : MonoBehaviour
     bool follow_mouse_ = false;
     [SerializeField]
     public float spawn_delay_ = 0.0f;
-    bool start_spawning_ = false;
+    public bool start_spawning_ = false;
     [Header("To Spin or Not To Spin")]
     [SerializeField]
     bool spin_ = false;

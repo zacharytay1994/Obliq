@@ -361,7 +361,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 259765601}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -450,7 +450,86 @@ Camera:
     type: 3}
   m_PrefabInstance: {fileID: 300282133}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &638887921
+--- !u!1001 &555443043
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8368149323289705684, guid: d6a52d358810250418fb56bcbcb0b0f8,
+        type: 3}
+      propertyPath: m_Name
+      value: StartOfScenePrefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 503581669274482224, guid: d6a52d358810250418fb56bcbcb0b0f8,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -51.451675
+      objectReference: {fileID: 0}
+    - target: {fileID: 503581669274482224, guid: d6a52d358810250418fb56bcbcb0b0f8,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -24.848667
+      objectReference: {fileID: 0}
+    - target: {fileID: 503581669274482224, guid: d6a52d358810250418fb56bcbcb0b0f8,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 91.33146
+      objectReference: {fileID: 0}
+    - target: {fileID: 503581669274482224, guid: d6a52d358810250418fb56bcbcb0b0f8,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 503581669274482224, guid: d6a52d358810250418fb56bcbcb0b0f8,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 503581669274482224, guid: d6a52d358810250418fb56bcbcb0b0f8,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 503581669274482224, guid: d6a52d358810250418fb56bcbcb0b0f8,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 503581669274482224, guid: d6a52d358810250418fb56bcbcb0b0f8,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 503581669274482224, guid: d6a52d358810250418fb56bcbcb0b0f8,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 503581669274482224, guid: d6a52d358810250418fb56bcbcb0b0f8,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 503581669274482224, guid: d6a52d358810250418fb56bcbcb0b0f8,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5315269224413874626, guid: d6a52d358810250418fb56bcbcb0b0f8,
+        type: 3}
+      propertyPath: loop_audio_.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5315269224413874626, guid: d6a52d358810250418fb56bcbcb0b0f8,
+        type: 3}
+      propertyPath: loop_audio_.Array.data[0]
+      value: MenuBGM
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d6a52d358810250418fb56bcbcb0b0f8, type: 3}
+--- !u!1 &585991901
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1015,7 +1094,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -50.000004, y: -109}
+  m_AnchoredPosition: {x: -50, y: -109}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1275181643
@@ -1348,8 +1427,8 @@ MonoBehaviour:
   anim: {fileID: 1275181644}
   buttonAnim: {fileID: 1665837990}
   pauseSecondsBeforeLoad: 1.5
-  sceneToLoad: MenuScene
-  OptionButton: 1
+  sceneToLoad: CreditScene
+  OptionButton: 0
 --- !u!61 &1553913468
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1644,11 +1723,7 @@ MonoBehaviour:
   anim: {fileID: 961473224}
   buttonAnim: {fileID: 1665837990}
   pauseSecondsBeforeLoad: 1.5
-<<<<<<< HEAD
-  sceneToLoad: FirstPlayablePrototype
-=======
   sceneToLoad: ZacsScene
->>>>>>> TristanBranch
   OptionButton: 0
 --- !u!61 &1851987949
 BoxCollider2D:
@@ -1892,7 +1967,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -50.000004, y: -54}
+  m_AnchoredPosition: {x: -50, y: -54}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2091106024
@@ -1918,7 +1993,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2091106024}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []

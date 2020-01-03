@@ -15,7 +15,7 @@ public class ChargerMoveState : State
     float charge_timer;
     public override void Enter(GameObject owner)
     {
-         charge_timer = Time.time;
+        charge_timer = Time.time;
         owner.GetComponent<Charger>().target_reference_ = GameObject.Find("World").GetComponent<WorldHandler>().GetRandomGoodGuy();
         // if target was not found 
         if (owner.GetComponent<Charger>().target_reference_ == null)
