@@ -21,12 +21,9 @@ public class DamageEnemy : MonoBehaviour
     int crit_chance;
 
     [SerializeField]
-<<<<<<< HEAD
-    bool knock_back_ = false;
-=======
-    int crit_modifier;
 
->>>>>>> TristanBranch
+    bool knock_back_ = false;
+    int crit_modifier;
 
     HitPause hit_pause_;
     CameraManager camera_manager_;

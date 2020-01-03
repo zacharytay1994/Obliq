@@ -15,18 +15,15 @@ public class TempWeaponSwitch : MonoBehaviour
     bool w1_continuous_recoil_ = false;
     [SerializeField]
     Vector3 w1_recoil_data_ = new Vector3(0.0f, 0.0f, 0.0f);
-<<<<<<< HEAD
-<<<<<<< HEAD
-    bool lock_state_1_ = false;
-    // weapon 2
-=======
-    bool has_w1_ = false;
 
->>>>>>> TristanBranch
-=======
     bool lock_state_1_ = false;
     // weapon 2
->>>>>>> 4bd8f1db0d717da93e7af33a3b629b89af42276e
+
+
+
+   
+    // weapon 2
+
     [SerializeField]
     KeyCode w2_switch_ = KeyCode.Alpha2;
     [SerializeField]
@@ -37,18 +34,11 @@ public class TempWeaponSwitch : MonoBehaviour
     bool w2_continuous_recoil_ = false;
     [SerializeField]
     Vector3 w2_recoil_data_ = new Vector3(0.0f, 0.0f, 0.0f);
-<<<<<<< HEAD
-<<<<<<< HEAD
-    bool lock_state_2_ = false;
-    // weapon 3
-=======
-    bool has_w2_ = false;
 
->>>>>>> TristanBranch
-=======
     bool lock_state_2_ = false;
+   
     // weapon 3
->>>>>>> 4bd8f1db0d717da93e7af33a3b629b89af42276e
+
     [SerializeField]
     KeyCode w3_switch_ = KeyCode.Alpha3;
     [SerializeField]
@@ -101,7 +91,7 @@ public class TempWeaponSwitch : MonoBehaviour
 
     void SwitchWeapon()
     {
-        if (Input.GetKeyDown(w1_switch_) && has_w1_)
+        if (Input.GetKeyDown(w1_switch_))
         {
             if (lock_state_1_)
             {
@@ -110,7 +100,7 @@ public class TempWeaponSwitch : MonoBehaviour
                 ChangeSelectedGUI(0);
             }
         }
-        else if (Input.GetKeyDown(w2_switch_) && has_w2_)
+        else if (Input.GetKeyDown(w2_switch_))
         {
             if (lock_state_2_)
             {
@@ -119,7 +109,7 @@ public class TempWeaponSwitch : MonoBehaviour
                 ChangeSelectedGUI(1);
             }
         }
-        else if (Input.GetKeyDown(w3_switch_) && has_w3_)
+        else if (Input.GetKeyDown(w3_switch_))
         {
             if (lock_state_3_)
             {

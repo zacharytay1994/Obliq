@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< HEAD:Obliq/Assets/Attacks/BossAttacks.meta
-guid: 7eb1e50b1e49f0d46bb2cd12ce5b7db2
-=======
-guid: 84c446a8dc2f11f47afe3a1b59757b41
->>>>>>> TristanBranch:Obliq/Assets/Prefabs/Enemies/ExperimentalTristanEnemies.meta
+guid: 2f430f66f6d8f344abf658978443ea48
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
