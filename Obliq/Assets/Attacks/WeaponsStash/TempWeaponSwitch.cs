@@ -16,12 +16,17 @@ public class TempWeaponSwitch : MonoBehaviour
     [SerializeField]
     Vector3 w1_recoil_data_ = new Vector3(0.0f, 0.0f, 0.0f);
 <<<<<<< HEAD
+<<<<<<< HEAD
     bool lock_state_1_ = false;
     // weapon 2
 =======
     bool has_w1_ = false;
 
 >>>>>>> TristanBranch
+=======
+    bool lock_state_1_ = false;
+    // weapon 2
+>>>>>>> 4bd8f1db0d717da93e7af33a3b629b89af42276e
     [SerializeField]
     KeyCode w2_switch_ = KeyCode.Alpha2;
     [SerializeField]
@@ -33,12 +38,17 @@ public class TempWeaponSwitch : MonoBehaviour
     [SerializeField]
     Vector3 w2_recoil_data_ = new Vector3(0.0f, 0.0f, 0.0f);
 <<<<<<< HEAD
+<<<<<<< HEAD
     bool lock_state_2_ = false;
     // weapon 3
 =======
     bool has_w2_ = false;
 
 >>>>>>> TristanBranch
+=======
+    bool lock_state_2_ = false;
+    // weapon 3
+>>>>>>> 4bd8f1db0d717da93e7af33a3b629b89af42276e
     [SerializeField]
     KeyCode w3_switch_ = KeyCode.Alpha3;
     [SerializeField]
@@ -49,7 +59,7 @@ public class TempWeaponSwitch : MonoBehaviour
     bool w3_continuous_recoil_ = false;
     [SerializeField]
     Vector3 w3_recoil_data_ = new Vector3(0.0f, 0.0f, 0.0f);
-<<<<<<< HEAD
+
     bool lock_state_3_ = false;
     // weapon 4
     [SerializeField]
@@ -69,9 +79,7 @@ public class TempWeaponSwitch : MonoBehaviour
     SpriteRenderer weapon_2_sprite_;
     SpriteRenderer weapon_3_sprite_;
     SpriteRenderer weapon_4_sprite_;
-=======
-    bool has_w3_ = false;
->>>>>>> TristanBranch
+
 
     // Start is called before the first frame update
     void Start()
