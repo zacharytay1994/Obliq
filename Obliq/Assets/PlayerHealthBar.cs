@@ -36,7 +36,7 @@ public class PlayerHealthBar : MonoBehaviour
     }
     void CheckForDamage()
     {
-        if (player_health_component_.getCurrentHp() < num_healthbar)
+        if (player_health_component_.getCurrentHp() < num_healthbar && num_healthbar >= 0)
         {           
             Destroy(transform.GetChild(num_healthbar - 1).gameObject);
             num_healthbar--;
