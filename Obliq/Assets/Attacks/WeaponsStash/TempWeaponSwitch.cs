@@ -53,7 +53,7 @@ public class TempWeaponSwitch : MonoBehaviour
     bool lock_state_3_ = false;
     // weapon 4
     [SerializeField]
-    KeyCode w4_switch_ = KeyCode.Alpha3;
+    KeyCode w4_switch_ = KeyCode.Alpha4;
     [SerializeField]
     GameObject weapon_4 = null;
     [SerializeField]

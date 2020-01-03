@@ -25,11 +25,14 @@ public class PowerUpDrop : MonoBehaviour
         {
             if (gameObject != null)
             {
-                int power_up_no = Random.Range(0, 3);
-                if (power_up_list_[power_up_no] != null)
+                if (power_up_list_.Length > 0)
                 {
-                    GameObject powerup = Instantiate(power_up_list_[power_up_no]);
-                    powerup.transform.position = gameObject.transform.position;
+                    int power_up_no = Random.Range(0, 3);
+                    if (power_up_list_[power_up_no] != null)
+                    {
+                        GameObject powerup = Instantiate(power_up_list_[power_up_no]);
+                        powerup.transform.position = gameObject.transform.position;
+                    }
                 }
 
             }
