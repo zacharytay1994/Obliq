@@ -98,7 +98,7 @@ public class SceneTransitionLoader : MonoBehaviour
             loading_bar.value = displayed_load_progress;
 
             UpdateProgressText();
-            Debug.Log("Load progress: " + load_progress * 100 + "%");
+            //Debug.Log("Load progress: " + load_progress * 100 + "%");
             yield return null;
         }
 

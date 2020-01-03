@@ -203,34 +203,34 @@ MonoBehaviour:
     pitch: 1
     source: {fileID: 0}
     SoundType: 0
-  - name: 
-    clip: {fileID: 0}
-    volume: 0
-    pitch: 0
+  - name: Shotgun_Shot
+    clip: {fileID: 8300000, guid: d12c1ac5ceb06714c999baf12271edf2, type: 3}
+    volume: 1
+    pitch: 0.29
     source: {fileID: 0}
     SoundType: 0
-  - name: 
-    clip: {fileID: 0}
-    volume: 0
-    pitch: 0
+  - name: Rocket_Launch
+    clip: {fileID: 8300000, guid: 2c76f5e71fcf5d440935213ef8aecf7f, type: 3}
+    volume: 1
+    pitch: 1
     source: {fileID: 0}
     SoundType: 0
-  - name: 
-    clip: {fileID: 0}
-    volume: 0
-    pitch: 0
+  - name: Rocket_Explosion
+    clip: {fileID: 8300000, guid: 0f92607bf1c4a9d47b116f1439e71bdd, type: 3}
+    volume: 1
+    pitch: 1
     source: {fileID: 0}
     SoundType: 0
-  - name: 
-    clip: {fileID: 0}
-    volume: 0
-    pitch: 0
+  - name: Electric_Saw
+    clip: {fileID: 8300000, guid: 303c454f4eceaf34aaf82013c549fc95, type: 3}
+    volume: 1
+    pitch: 1
     source: {fileID: 0}
     SoundType: 0
-  - name: 
-    clip: {fileID: 0}
-    volume: 0
-    pitch: 0
+  - name: Fireball
+    clip: {fileID: 8300000, guid: e3c6743161d8dea4d964ad1820ad4426, type: 3}
+    volume: 1
+    pitch: 0.2
     source: {fileID: 0}
     SoundType: 0
   - name: 
@@ -618,6 +618,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_BlockingObjects
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2516521753748111967, guid: 42bbfa805d47a054d8d1f4412887d620,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 42bbfa805d47a054d8d1f4412887d620, type: 3}

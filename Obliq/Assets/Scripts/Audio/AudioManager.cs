@@ -74,6 +74,30 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    public void PlaySound(string name, float volume, float pitch) // play sound once
+    {
+        Sound s = sounds.Find(sound => sound.Name == name);
+        if (s == null)
+        {
+            NoFoundSound();
+        }
+        else
+        {
+
+            s.Source.loop = false;
+
+            GameObject playedSound = new GameObject();
+            playedSound.AddComponent<AudioSource>();
+            AudioSource aus = playedSound.GetComponent<AudioSource>();
+            aus.clip = s.Clip;
+            aus.volume = volume;
+            aus.pitch = pitch;
+            playedSound.AddComponent<DeleteSoundScript>();
+
+            Instantiate(playedSound, transform);
+        }
+    }
+
 
     public void PlaySoundOnLoop(string name) // play sound on loop
     {

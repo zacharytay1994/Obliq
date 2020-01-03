@@ -356,3 +356,4 @@ MonoBehaviour:
   causes_screen_shake_: 1
   screen_shake_base_duration_: 1
   screen_shake_base_magnitude_: 20
+  knock_back_: 0

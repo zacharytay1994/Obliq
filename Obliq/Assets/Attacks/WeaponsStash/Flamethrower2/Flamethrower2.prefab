@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5461622231843674611}
   - component: {fileID: 5998481998734508820}
   - component: {fileID: 2403358589633970366}
+  - component: {fileID: 6649494516498967650}
   m_Layer: 0
   m_Name: Flamethrower2
   m_TagString: Untagged
@@ -62,6 +63,8 @@ MonoBehaviour:
   destroy_countdown_: 0
   movement_: 0
   local_speed_: 0
+  random_spread_: 0
+  spread_range_: 0
   stable_: 1
   lon_oscillation_: 0.1
   len_oscillation_: 0.1
@@ -80,6 +83,8 @@ MonoBehaviour:
   mouse_offset_: {x: 0, y: 0}
   local_orientation_: 0
   follow_mouse_: 1
+  spawn_delay_: 0
+  start_spawning_: 0
   spin_: 1
   spin_rate_: 50
   time_trigger_: 0
@@ -159,3 +164,16 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &6649494516498967650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5809754552401931580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19bfd87b9c2b6044690bf3fa15cfde15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound_: Fireball
