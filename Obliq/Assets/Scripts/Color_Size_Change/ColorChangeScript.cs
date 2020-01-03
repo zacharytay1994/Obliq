@@ -10,9 +10,9 @@ public class ColorChangeScript : MonoBehaviour
     [Header("2. VARIABLES")]
     // Trying to get start/end color to work, don't use yet
     [SerializeField]
-    Color start_color_;
+    Color start_color_ = Color.white;
     [SerializeField]
-    Color end_color_;
+    Color end_color_ = Color.white;
     //[SerializeField]
     //WorldHandler object_prefab_;
     [Header("3. COMPONENTS (ADD TO SCRIPT WHEN \n NECESSARY)")]
@@ -56,9 +56,13 @@ public class ColorChangeScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Difference in colour value
+        Color diff_color_ = end_color_ - start_color_;
+        Color amount_to_change_ = diff_color_ / player_max_health_;
+
         // For player health indicator
         if (script_purpose_ == ScriptPurpose.PlayerHealthIndicator)
-            UpdateHealth();
+            UpdateHealth(amount_to_change_);
 
         //// For bomb defuse progress
         //if (script_purpose_ == ScriptPurpose.BombDefuseProgress)
@@ -68,9 +72,13 @@ public class ColorChangeScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Difference in colour value
+        Color diff_color_ = end_color_ - start_color_;
+        Color amount_to_change_ = diff_color_ / player_max_health_;
+
         // For player health indicator
         if (script_purpose_ == ScriptPurpose.PlayerHealthIndicator)
-            UpdateHealth();
+            UpdateHealth(amount_to_change_);
 
         //// For bomb defuse progress
         //if (script_purpose_ == ScriptPurpose.BombDefuseProgress)
@@ -82,7 +90,7 @@ public class ColorChangeScript : MonoBehaviour
     // ------------------------------------ //
 
     // Updates player health indicator (PlayerHealthIndicator)
-    void UpdateHealth()
+    void UpdateHealth(Color amount_to_change_)
     {
         // Get player's current/max health
         player_current_health_ = player_health_component_.currentHp_;
@@ -91,9 +99,13 @@ public class ColorChangeScript : MonoBehaviour
         // Calculate how much percent health is lost and change in scale of health indicator
         player_health_loss_ = (player_max_health_ - player_current_health_) / player_max_health_;
 
-        // Change percentage of red and green in player health indicator sprite
-        // The higher the health, the higher the value of green
-        sprite_renderer_.color = new Color(player_health_loss_, 1 - player_health_loss_, 0f);
+        // Change percentage of red/green/blue in player health indicator sprite
+        // The higher the health, the higher the value of red/green/blue
+        sprite_renderer_.color = new Color(
+            start_color_.r + (amount_to_change_.r * player_health_loss_ * player_max_health_),
+            start_color_.g + (amount_to_change_.g * player_health_loss_ * player_max_health_),
+            start_color_.b + (amount_to_change_.b * player_health_loss_ * player_max_health_)
+            );
     }
 
     //// Updates bomb color based on progress
