@@ -37648,6 +37648,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spawner
       objectReference: {fileID: 0}
+    - target: {fileID: 7862674349831162025, guid: b46ff27c54fc6b147add87599ceaf19a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 434712922699763752, guid: b46ff27c54fc6b147add87599ceaf19a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -37701,6 +37706,21 @@ PrefabInstance:
     - target: {fileID: 434712922699763752, guid: b46ff27c54fc6b147add87599ceaf19a,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2013574147075596947, guid: b46ff27c54fc6b147add87599ceaf19a,
+        type: 3}
+      propertyPath: waves_
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2013574147075596947, guid: b46ff27c54fc6b147add87599ceaf19a,
+        type: 3}
+      propertyPath: spawn_interval_
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2013574147075596947, guid: b46ff27c54fc6b147add87599ceaf19a,
+        type: 3}
+      propertyPath: max_grunt_count_
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -37835,7 +37855,7 @@ PrefabInstance:
     - target: {fileID: 8469944875963345909, guid: ddaf4ec891c08644396fdaca093c7b2f,
         type: 3}
       propertyPath: m_CullingMask.m_Bits
-      value: 488247
+      value: 1012535
       objectReference: {fileID: 0}
     - target: {fileID: 8469944875963345909, guid: ddaf4ec891c08644396fdaca093c7b2f,
         type: 3}
@@ -37988,6 +38008,22 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5809754552401931580, guid: 2318608e6738fea46b144f76a34b137e,
         type: 3}
+    - target: {fileID: 8388271945408527322, guid: e2c522e5ec41bb241ae54dc18962a9ef,
+        type: 3}
+      propertyPath: weapon_3
+      value: 
+      objectReference: {fileID: 5809754552401931580, guid: 5ca6cb2c226d3b24a8d5298e367f99c6,
+        type: 3}
+    - target: {fileID: 8388271945408527322, guid: e2c522e5ec41bb241ae54dc18962a9ef,
+        type: 3}
+      propertyPath: w3_continuous_recoil_
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8388271945408527322, guid: e2c522e5ec41bb241ae54dc18962a9ef,
+        type: 3}
+      propertyPath: w3_has_recoil
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8388271945408527301, guid: e2c522e5ec41bb241ae54dc18962a9ef,
         type: 3}
       propertyPath: m_Enabled
@@ -39128,7 +39164,7 @@ PrefabInstance:
     - target: {fileID: 2710746636912595028, guid: 30de44655fb90e8418fc0eb58beeaeba,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2710746636912595016, guid: 30de44655fb90e8418fc0eb58beeaeba,
         type: 3}

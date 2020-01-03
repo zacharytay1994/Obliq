@@ -56,13 +56,14 @@ MonoBehaviour:
   force_type_: 0
   persistent_: 1
   lifespan_: 0
-  destroy_on_collide_: 0
   on_collide_mask_:
     serializedVersion: 2
     m_Bits: 0
   destroy_countdown_: 0
   movement_: 0
   local_speed_: 0
+  random_spread_: 0
+  spread_range_: 0
   stable_: 1
   lon_oscillation_: 0.1
   len_oscillation_: 0.1
@@ -81,6 +82,7 @@ MonoBehaviour:
   mouse_offset_: {x: 0, y: 0}
   local_orientation_: 0
   follow_mouse_: 1
+  spawn_delay_: 0
   spin_: 1
   spin_rate_: 50
   time_trigger_: 0
@@ -104,7 +106,6 @@ MonoBehaviour:
   cont_stream_rate_: 0.05
   cont_burst_rest_timer_: 0
   cont_burst_timer_: 0
-  time_interval_: 0
   cont_prefab_: {fileID: 5226346963446909659, guid: 98c44f7079aea5e4890aef81cc0b4ff6,
     type: 3}
   cont_np_offset_: 0

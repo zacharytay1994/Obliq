@@ -48,9 +48,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eeb0363ec7ff550499b9f85ee039a8db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed_: 80
+  speed_: 20
   acceleration_: 1
-  max_speed_: 80
+  max_speed_: 20
   custom_speed_: 0
   custom_speed_loop_: 0
   decceleration_: 5
@@ -85,6 +85,7 @@ MonoBehaviour:
   mouse_offset_: {x: 0, y: 0}
   local_orientation_: 0
   follow_mouse_: 0
+  spawn_delay_: 0
   spin_: 0
   spin_rate_: 0
   time_trigger_: 0
@@ -105,7 +106,7 @@ MonoBehaviour:
   cont_density_: 1
   cont_angle_: 0
   cont_sstyle_: 0
-  cont_stream_rate_: 0.04
+  cont_stream_rate_: 0.01
   cont_burst_rest_timer_: 0
   cont_burst_timer_: 0
   cont_prefab_: {fileID: 5705661621723253877, guid: 4e38c87e902721d47a0da09e06c3c105,
@@ -255,22 +256,49 @@ TrailRenderer:
   m_Time: 1
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 0.6
+    widthMultiplier: 1
     widthCurve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0
-        value: 0.103603005
-        inSlope: 1.0613511
-        outSlope: 1.0613511
+        time: 0.007167816
+        value: 0
+        inSlope: 3.905972
+        outSlope: 3.905972
         tangentMode: 0
         weightedMode: 0
         inWeight: 0
         outWeight: 1
       - serializedVersion: 3
-        time: 0.26203492
-        value: 1
+        time: 0.021100998
+        value: 0.49166673
+        inSlope: 3.8870158
+        outSlope: 3.8870158
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.2781221
+        outWeight: 0.3022685
+      - serializedVersion: 3
+        time: 0.35445628
+        value: 0.87499756
+        inSlope: -1.1596023
+        outSlope: -1.1596023
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.5061342
+        outWeight: 0.7576698
+      - serializedVersion: 3
+        time: 0.7315708
+        value: 0.083325684
+        inSlope: -1.4301919
+        outSlope: -1.4301919
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.60496145
+      - serializedVersion: 3
+        time: 0.9414256
+        value: 0
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -278,23 +306,14 @@ TrailRenderer:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 0.5935893
-        value: 0.25675672
+        time: 1
+        value: 0
         inSlope: -0.118229575
         outSlope: -0.118229575
         tangentMode: 0
         weightedMode: 0
         inWeight: 0
         outWeight: 1
-      - serializedVersion: 3
-        time: 0.8876994
-        value: 0.02702713
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -352,3 +371,7 @@ MonoBehaviour:
   enemy_mask_:
     serializedVersion: 2
     m_Bits: 16384
+  causes_hit_pause_: 0
+  causes_screen_shake_: 0
+  screen_shake_base_duration_: 0
+  screen_shake_base_magnitude_: 0

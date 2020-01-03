@@ -110,6 +110,7 @@ MonoBehaviour:
   ball_offset_: 2
   strike_zone_: {fileID: 0}
   attack_duration_: 0
+  stored_angle_: 0
 --- !u!50 &8388271945408527300
 Rigidbody2D:
   serializedVersion: 4
@@ -171,7 +172,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weapon_: {fileID: 5809754552401931580, guid: 845deb91a47091a458c93705a6c9a153, type: 3}
   use_mouse_: 1
-  trigger_: 32
+  trigger_: 0
   has_recoil_: 1
   continuous_recoil_: 0
   recoil_: 5
@@ -235,6 +236,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHp_: 10
   currentHp_: 0
+  invincibility_time_: 0
 --- !u!114 &2361982361374958839
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -267,4 +269,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f262c2e64ab7e448880485c04817505, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duration_: 0.05
+  base_duration_: 0.05
