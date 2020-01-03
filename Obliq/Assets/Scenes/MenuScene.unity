@@ -1644,7 +1644,11 @@ MonoBehaviour:
   anim: {fileID: 961473224}
   buttonAnim: {fileID: 1665837990}
   pauseSecondsBeforeLoad: 1.5
+<<<<<<< HEAD
   sceneToLoad: FirstPlayablePrototype
+=======
+  sceneToLoad: ZacsScene
+>>>>>>> TristanBranch
   OptionButton: 0
 --- !u!61 &1851987949
 BoxCollider2D:
