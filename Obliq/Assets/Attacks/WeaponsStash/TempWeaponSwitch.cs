@@ -79,7 +79,7 @@ public class TempWeaponSwitch : MonoBehaviour
 
     void SwitchWeapon()
     {
-        if (Input.GetKeyDown(w1_switch_))
+        if (Input.GetKeyDown(w1_switch_) && has_w1_)
         {
             if (lock_state_1_)
             {
@@ -88,7 +88,7 @@ public class TempWeaponSwitch : MonoBehaviour
                 ChangeSelectedGUI(0);
             }
         }
-        else if (Input.GetKeyDown(w2_switch_))
+        else if (Input.GetKeyDown(w2_switch_) && has_w2_)
         {
             if (lock_state_2_)
             {
@@ -97,7 +97,7 @@ public class TempWeaponSwitch : MonoBehaviour
                 ChangeSelectedGUI(1);
             }
         }
-        else if (Input.GetKeyDown(w3_switch_))
+        else if (Input.GetKeyDown(w3_switch_) && has_w3_)
         {
             if (lock_state_3_)
             {
