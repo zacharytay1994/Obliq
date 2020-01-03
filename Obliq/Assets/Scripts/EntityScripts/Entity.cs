@@ -14,7 +14,7 @@ public class Entity : MonoBehaviour
     public bool has_moved_ = false;
     // the mouse radius when selecting entities on mouse click
     float mouse_radius_ = 1.0f;
- 
+    
 
     // entity variables
     public float unit_scale_per_range_ = 0.2f;  // the world size scale

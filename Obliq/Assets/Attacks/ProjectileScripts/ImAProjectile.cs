@@ -245,7 +245,7 @@ public class ImAProjectile : MonoBehaviour
 
     // Projectile Variables
     Vector2 center_point_ = new Vector2(0.0f, 0.0f);
-    Vector2 movement_heading_ = new Vector2(0.0f, 0.0f);
+    public Vector2 movement_heading_ = new Vector2(0.0f, 0.0f);
     // Start is called before the first frame update
     void Start()
     {
