@@ -34,6 +34,13 @@ public class SpawningScript : MonoBehaviour
         {
             SpawnGrunt();
         }
+        if(gameObject.GetComponent<HealthComponent>() != null)
+        {
+            if (gameObject.GetComponent<HealthComponent>().getCurrentHp() <= 0)
+            {
+                Destroy(gameObject);
+            }
+        }
     }
 
     void SpawnGrunt()

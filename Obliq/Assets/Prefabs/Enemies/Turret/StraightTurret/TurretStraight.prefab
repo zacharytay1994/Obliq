@@ -70,7 +70,7 @@ SpriteRenderer:
   m_SortingLayerID: -1840328445
   m_SortingLayer: 5
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 4a0b52b0057db9e4780ad58b63fd1891, type: 3}
+  m_Sprite: {fileID: 21300000, guid: dc7f54ecb230c98438a4ea17df3614cc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -95,3 +95,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   proj_prefab: {fileID: 5809754552401931580, guid: 2071ff5ca549a6c4ca62f933f5f577cd,
     type: 3}
+  time_delay_: 0

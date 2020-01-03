@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 9041656220963992274}
   - component: {fileID: 3371876433012458454}
   - component: {fileID: 7446402319411497978}
+  - component: {fileID: 646901151000501464}
   m_Layer: 14
   m_Name: Sectopod
   m_TagString: Enemy
@@ -125,7 +126,7 @@ Rigidbody2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9041656220963992277}
   m_BodyType: 0
-  m_Simulated: 1
+  m_Simulated: 0
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 5
@@ -317,3 +318,20 @@ MonoBehaviour:
   next_line_contract_time: 0
   line_contract_increment_: 0.3
   initial_width_: 0.1
+  damage_: 1
+--- !u!114 &646901151000501464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9041656220963992277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ca1db6eea8f46248b204dde08f25267, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blood_: {fileID: 2604821128577617190, guid: 18d365df8345a944695f9ef87dcb1947, type: 3}
+  intensity_: 0
+  splatter_upper_lower: {x: 0, y: 0}
+  angle_range_: 0

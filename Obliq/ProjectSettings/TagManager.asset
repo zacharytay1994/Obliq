@@ -11,6 +11,8 @@ TagManager:
   - AugmentManagerObject
   - Objective
   - Enemy
+  - IceParticle
+  - ShowOnPause
   layers:
   - Default
   - TransparentFX

@@ -96,4 +96,9 @@ public class ZacsFindPath : MonoBehaviour
         Vector2Int offset = pathfinding_reference_.grid_offset_;
         return (Vector2)(GameObject.Find("WallTilemap").GetComponent<Grid>().CellToWorld(new Vector3Int(x + offset.x, y + offset.y, 0)));
     }
+
+    public void SetPathfindingStrength(float strength)
+    {
+        pathfinding_strength = strength;
+    }
 }

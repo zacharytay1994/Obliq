@@ -12,6 +12,7 @@ public class Charger : MonoBehaviour
     public float move_distance_ = 10.0f;
     public GameObject target_reference_;
     public GameObject lesser_charger_reference_;
+    public Vector2 heading;
     int spawn_buffer = 2;
     LayerMask layerMask;
     // entity reference
@@ -29,7 +30,7 @@ public class Charger : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision)
     {
         //if(collision.gameObject.GetComponent<ImAProjectile>() != null){
-        //    Debug.Log("Enemy hit");
+        //    
         //    GC<Entity>(gameObject).TakeDamage(20); //temp magic no
         //}
         
@@ -46,8 +47,8 @@ public class Charger : MonoBehaviour
     {
       
     }
-  
 
+    
     // Update is called once per frame
     void Update()
     {
@@ -60,5 +61,6 @@ public class Charger : MonoBehaviour
     {
         GameObject LC1 = Instantiate(lesser_charger_reference_, new Vector3(gameObject.transform.position.x - 0.5f, gameObject.transform.position.y, -1.0f), gameObject.transform.rotation);
         GameObject LC2 = Instantiate(lesser_charger_reference_, new Vector3(gameObject.transform.position.x + 0.5f, gameObject.transform.position.y, -1.0f), gameObject.transform.rotation);
+
     }
 }

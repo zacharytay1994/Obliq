@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float player_acceleration_;
     [SerializeField] float player_decceleration_;
     [SerializeField] float player_rotation_acceleration_;
+   
     Rigidbody2D rb2d_;
     Vector2 heading_ = new Vector2(0.0f, 0.0f);
 
@@ -19,7 +20,15 @@ public class PlayerController : MonoBehaviour
     [Space(10)]
     [SerializeField] GameObject strike_zone_;
     [SerializeField] float attack_duration_;
-   
+    [SerializeField] float dash_strength;
+
+    [SerializeField]float dash_cooldown_; //time in between dash
+    [SerializeField] float dash_duration_;
+    float next_dash_time = 0.0f;
+    float dash_start;
+    float dash_timer;
+    public float speed_modifier_ = 1; 
+
     SemiCircleMelee melee_;
     public float stored_angle_ = 0.0f;
 
@@ -81,6 +90,7 @@ public class PlayerController : MonoBehaviour
         mouseLocation = camera_.ScreenToWorldPoint(mouseLocation);
         float angle = AngleBetween(transform.position, mouseLocation);
         transform.rotation = Quaternion.Euler(0, 0, angle);
+      
     }
 
     void UpdateFacingDirection()
@@ -97,27 +107,48 @@ public class PlayerController : MonoBehaviour
 
     void PlayerMovement()
     {
-        if (Input.GetKey(KeyCode.W))
+       
+        if (Input.GetKeyDown(KeyCode.LeftShift) && Time.time >= next_dash_time)
         {
-            heading_.y += player_acceleration_;
+            //rb2d_.AddForce(heading_ * (dash_strength * dash_duration_));
+            
+                rb2d_.velocity = (Vector3)((heading_) * dash_strength) * dash_duration_;
+                next_dash_time = Time.time + dash_cooldown_;
         }
-        if (Input.GetKey(KeyCode.S))
+        else
         {
-            heading_.y -= player_acceleration_;
-        }
-        if (Input.GetKey(KeyCode.A))
-        {
-            heading_.x -= player_acceleration_;
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            heading_.x += player_acceleration_;
-        }
+            if (Input.GetKey(KeyCode.W))
+            {
+                heading_.y += player_acceleration_ * speed_modifier_;
+            }
+            if (Input.GetKey(KeyCode.S))
+            {
+                heading_.y -= player_acceleration_ * speed_modifier_;
+            }
+            if (Input.GetKey(KeyCode.A))
+            {
+                heading_.x -= player_acceleration_ * speed_modifier_;
+            }
+            if (Input.GetKey(KeyCode.D))
+            {
+                heading_.x += player_acceleration_* speed_modifier_;
+            }
 
+        }
         heading_.x = heading_.x - ((1 - player_decceleration_) * heading_.x);
         heading_.y = heading_.y - ((1 - player_decceleration_) * heading_.y);
-
+       
         //rb2d_.velocity = heading_;
         rb2d_.AddForce(heading_, ForceMode2D.Force);
+    }
+
+    public float GetAcceleration()
+    {
+        return player_acceleration_;
+    }
+
+    public void SetAcceleration(float acceleration_)
+    {
+        player_acceleration_ = acceleration_;
     }
 }

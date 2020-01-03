@@ -28,6 +28,8 @@ public class RaycastAttack : MonoBehaviour
 
     [Tooltip("Minimum width line will shrink to (should match width set in lineRenderer)")]
     [SerializeField]public float initial_width_; // min width to shrink to 
+
+    [SerializeField] public int damage_;
     
     void Start()
     {

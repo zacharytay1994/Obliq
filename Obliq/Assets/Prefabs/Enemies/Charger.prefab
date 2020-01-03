@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 9121467770912038756}
   - component: {fileID: -6263682970674648268}
   - component: {fileID: 4414589548416025732}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Charger
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -33,7 +33,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9121467770912038757}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -157,7 +157,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 6f426038d31f9234fb6dd7b79f0c304d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -178,7 +178,7 @@ SpriteRenderer:
   m_SortingLayerID: -1840328445
   m_SortingLayer: 5
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 4a0b52b0057db9e4780ad58b63fd1891, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ff22c2cde85be8a41b343c5d068c0739, type: 3}
   m_Color: {r: 0.0983446, g: 0.8018868, b: 0.78884304, a: 1}
   m_FlipX: 0
   m_FlipY: 0
