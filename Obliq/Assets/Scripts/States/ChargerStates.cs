@@ -89,7 +89,6 @@ public class ChargerAttackState : State
 public class ChargerIdleState : State
 {
     float charge_start = Time.time;
-    int color_no = 0;
     public override void Enter(GameObject owner)
     {
        

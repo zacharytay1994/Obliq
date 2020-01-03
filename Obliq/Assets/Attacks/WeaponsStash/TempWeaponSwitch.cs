@@ -14,6 +14,8 @@ public class TempWeaponSwitch : MonoBehaviour
     bool w1_continuous_recoil_ = false;
     [SerializeField]
     Vector3 w1_recoil_data_ = new Vector3(0.0f, 0.0f, 0.0f);
+    bool has_w1_ = false;
+
     [SerializeField]
     KeyCode w2_switch_ = KeyCode.Alpha2;
     [SerializeField]
@@ -24,6 +26,8 @@ public class TempWeaponSwitch : MonoBehaviour
     bool w2_continuous_recoil_ = false;
     [SerializeField]
     Vector3 w2_recoil_data_ = new Vector3(0.0f, 0.0f, 0.0f);
+    bool has_w2_ = false;
+
     [SerializeField]
     KeyCode w3_switch_ = KeyCode.Alpha3;
     [SerializeField]
@@ -34,6 +38,8 @@ public class TempWeaponSwitch : MonoBehaviour
     bool w3_continuous_recoil_ = false;
     [SerializeField]
     Vector3 w3_recoil_data_ = new Vector3(0.0f, 0.0f, 0.0f);
+    bool has_w3_ = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -48,17 +54,17 @@ public class TempWeaponSwitch : MonoBehaviour
 
     void SwitchWeapon()
     {
-        if (Input.GetKeyDown(w1_switch_))
+        if (Input.GetKeyDown(w1_switch_) && has_w1_)
         {
             gameObject.GetComponent<WeaponScript>().SetWeapon(weapon_1, w1_has_recoil, 
                 w1_continuous_recoil_, w1_recoil_data_.x, w1_recoil_data_.y, w1_recoil_data_.z);
         }
-        else if (Input.GetKeyDown(w2_switch_))
+        else if (Input.GetKeyDown(w2_switch_) && has_w2_)
         {
             gameObject.GetComponent<WeaponScript>().SetWeapon(weapon_2, w2_has_recoil,
                 w2_continuous_recoil_, w2_recoil_data_.x, w2_recoil_data_.y, w2_recoil_data_.z);
         }
-        else if (Input.GetKeyDown(w3_switch_))
+        else if (Input.GetKeyDown(w3_switch_) && has_w3_)
         {
             gameObject.GetComponent<WeaponScript>().SetWeapon(weapon_3, w3_has_recoil,
                 w3_continuous_recoil_, w3_recoil_data_.x, w3_recoil_data_.y, w3_recoil_data_.z);
