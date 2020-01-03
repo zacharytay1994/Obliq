@@ -630,7 +630,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
-  m_SortingLayerID: 0
+  m_SortingLayerID: -17940429
   m_SortingOrder: 100
   m_TargetDisplay: 0
 --- !u!114 &5629044396372094799
@@ -685,7 +685,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   current_camera: {fileID: 0}
-  cameraTag: GlowCamera
+  cameraTag: MainCamera
 --- !u!1 &7916986932137178368
 GameObject:
   m_ObjectHideFlags: 0

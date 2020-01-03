@@ -17,6 +17,10 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 5d0d071853e4e8343b6eec044cd3bf5b
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/FirstPlayablePrototype.unity
     guid: 7b1e72affc3ca7d459cc823d7587e38b
@@ -26,4 +30,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level 1/1-1.unity
     guid: b165ba796466d704dadd71e51631eea6
+    path: Assets/Scenes/LevelSelect.unity
+    guid: e5ba37da5b4d2a64a9dd9a83e135361b
+  - enabled: 1
+    path: Assets/Scenes/Prototype2.unity
+    guid: 838aac9614692ad44b89550ed84b8d6b
   m_configObjects: {}
