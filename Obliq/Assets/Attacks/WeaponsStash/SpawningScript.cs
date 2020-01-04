@@ -49,8 +49,14 @@ public class SpawningScript : MonoBehaviour
         {
             if (grunt_count_ < max_grunt_count_ && waves_ > 0)
             {
+                
                 GameObject temp = Instantiate(grunt_, new Vector3(transform.position.x, transform.position.y, -1.0f) + new Vector3(Random.Range(0.0f,1.0f), Random.Range(0.0f,1.0f), 0.0f), Quaternion.identity);
-                temp.GetComponent<TempGrunt>().AttachSpawner(this);
+                temp.transform.SetParent(GameObject.Find("Enemy").transform);
+                if (temp.GetComponent<TempGrunt>() != null)
+                {
+                    temp.GetComponent<TempGrunt>().AttachSpawner(this);
+                }
+                
                 grunt_count_++;
                 added_grunt_count_++;
             }
@@ -72,7 +78,10 @@ public class SpawningScript : MonoBehaviour
                 for (int i = 0; i < max_grunt_count_; i++)
                 {
                     GameObject temp = Instantiate(grunt_, new Vector3(transform.position.x, transform.position.y, -1.0f) + new Vector3(Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f), 0.0f), Quaternion.identity);
-                    temp.GetComponent<TempGrunt>().AttachSpawner(this);
+                    if (temp.GetComponent<TempGrunt>() != null)
+                    {
+                        temp.GetComponent<TempGrunt>().AttachSpawner(this);
+                    }
                 }
             }
             waves_--;
