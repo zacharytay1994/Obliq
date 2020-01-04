@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IceParticleScript : MonoBehaviour
+public class IceParticleScript2 : MonoBehaviour
 {
     [SerializeField]
     float life_span = 1.0f;
