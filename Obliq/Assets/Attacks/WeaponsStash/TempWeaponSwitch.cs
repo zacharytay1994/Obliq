@@ -17,11 +17,7 @@ public class TempWeaponSwitch : MonoBehaviour
     Vector3 w1_recoil_data_ = new Vector3(0.0f, 0.0f, 0.0f);
 
     public bool lock_state_1_ = false;
-    // weapon 2
-
-
-
-   
+    
     // weapon 2
 
     [SerializeField]
@@ -91,6 +87,7 @@ public class TempWeaponSwitch : MonoBehaviour
 
     void SwitchWeapon()
     {
+        
         if (Input.GetKeyDown(w1_switch_))
         {
             if (lock_state_1_)
@@ -152,7 +149,7 @@ public class TempWeaponSwitch : MonoBehaviour
         // set everything to 10% transparency
         Color c = new Color(1.0f, 1.0f, 1.0f, 0.3f);
         Color c_0 = new Color(1.0f, 1.0f, 1.0f, 0.0f);
-        weapon_1_sprite_.color = lock_state_1_ ? c : c_0;
+      //  weapon_1_sprite_.color = lock_state_1_ ? c : c_0;
         weapon_2_sprite_.color = lock_state_2_ ? c : c_0;
         weapon_3_sprite_.color = lock_state_3_ ? c : c_0;
         weapon_4_sprite_.color = lock_state_4_ ? c : c_0;

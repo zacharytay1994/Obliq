@@ -312,6 +312,10 @@ MonoBehaviour:
   ball_offset_: 2
   strike_zone_: {fileID: 0}
   attack_duration_: 0
+  dash_strength: 0.5
+  dash_cooldown_: 2
+  dash_duration_: 1
+  speed_modifier_: 1
   stored_angle_: 0
 --- !u!50 &8388271945408527300
 Rigidbody2D:
@@ -398,18 +402,27 @@ MonoBehaviour:
   w1_has_recoil: 1
   w1_continuous_recoil_: 1
   w1_recoil_data_: {x: 5, y: 0, z: 0.1}
+  lock_state_1_: 0
   w2_switch_: 50
   weapon_2: {fileID: 5809754552401931580, guid: b7728200a94839b4b8b567b91359183a,
     type: 3}
   w2_has_recoil: 1
   w2_continuous_recoil_: 0
   w2_recoil_data_: {x: 5, y: 4, z: 0.1}
+  lock_state_2_: 0
   w3_switch_: 51
   weapon_3: {fileID: 5809754552401931580, guid: 6ea7af6f01d35d24b9d140ed19fa34e0,
     type: 3}
   w3_has_recoil: 1
   w3_continuous_recoil_: 1
   w3_recoil_data_: {x: 5, y: 0, z: 0.1}
+  lock_state_3_: 0
+  w4_switch_: 52
+  weapon_4: {fileID: 0}
+  w4_has_recoil: 0
+  w4_continuous_recoil_: 0
+  w4_recoil_data_: {x: 0, y: 0, z: 0}
+  lock_state_4_: 0
 --- !u!114 &8388271945408527301
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -48,7 +48,7 @@ public class TempGrunt : MonoBehaviour
             {
                 spawner_.GruntDied();
             }
-            point_manager_.AddKillPoints(100, 1);
+           // point_manager_.AddKillPoints(100, 1);
             Destroy(gameObject);
         }
     }
