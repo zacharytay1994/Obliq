@@ -245,10 +245,10 @@ MonoBehaviour:
     pitch: 1
     source: {fileID: 0}
     SoundType: 0
-  - name: 
-    clip: {fileID: 0}
-    volume: 0
-    pitch: 0
+  - name: Hit
+    clip: {fileID: 8300000, guid: 466ca6e9a43894c41b771f59b1db1bcb, type: 3}
+    volume: 1
+    pitch: 1
     source: {fileID: 0}
     SoundType: 0
   - name: 
@@ -269,12 +269,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8654e2a1b4c143043b4a35db921f9ee7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!20 &604788590 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 8469944876115857394, guid: ddaf4ec891c08644396fdaca093c7b2f,
-    type: 3}
-  m_PrefabInstance: {fileID: 8469944877132240790}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &678330603
 GameObject:
   m_ObjectHideFlags: 0
