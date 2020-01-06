@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: -353334419602199532}
   - component: {fileID: -1395983616304069071}
   - component: {fileID: 5432335805968645032}
+  - component: {fileID: 444605166024747844}
   m_Layer: 14
   m_Name: MockGrunt
   m_TagString: Enemy
@@ -284,3 +285,17 @@ MonoBehaviour:
   - {fileID: 2813485663529415521, guid: df778adc9d9ac1c4c940d6555a2fa17a, type: 3}
   - {fileID: 2813485663529415521, guid: df778adc9d9ac1c4c940d6555a2fa17a, type: 3}
   - {fileID: 2813485663529415521, guid: df778adc9d9ac1c4c940d6555a2fa17a, type: 3}
+--- !u!114 &444605166024747844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2798105615834141751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d77c2cebe75a294b8a518022f5327fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound_: Hit
+  layer_: 19
