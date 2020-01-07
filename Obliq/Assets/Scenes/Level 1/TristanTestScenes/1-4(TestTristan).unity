@@ -370,6 +370,21 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2929811780515459429, guid: 4b16e8bc8534dec4b8cc859368f4439e,
+        type: 3}
+      propertyPath: causes_screen_shake_
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2929811780515459429, guid: 4b16e8bc8534dec4b8cc859368f4439e,
+        type: 3}
+      propertyPath: screen_shake_base_duration_
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2929811780515459429, guid: 4b16e8bc8534dec4b8cc859368f4439e,
+        type: 3}
+      propertyPath: screen_shake_base_magnitude_
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b16e8bc8534dec4b8cc859368f4439e, type: 3}
 --- !u!4 &183070784 stripped
