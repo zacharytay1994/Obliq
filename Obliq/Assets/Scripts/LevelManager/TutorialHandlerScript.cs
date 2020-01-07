@@ -6,6 +6,8 @@ public class TutorialHandlerScript : MonoBehaviour
 {
     // Training grunts
     GameObject training_grunt_, training_grunt_2_, training_grunt_3_, player_, portal_;
+    HealthComponent training_grunt_2_health_component_, training_grunt_3_health_component_;
+    int training_grunt_2_max_hp_, training_grunt_3_max_hp_;
 
     // Timer after training grunt dies
     float wait_time_ = 1.0f;
@@ -23,9 +25,13 @@ public class TutorialHandlerScript : MonoBehaviour
         training_grunt_ = GameObject.Find("TrainingGrunt");
 
         training_grunt_2_ = GameObject.Find("TrainingGrunt 2");
+        training_grunt_2_health_component_ = training_grunt_2_.GetComponent<HealthComponent>();
+        training_grunt_2_max_hp_ = training_grunt_2_health_component_.getMaxHp();
         training_grunt_2_.SetActive(false);
 
         training_grunt_3_ = GameObject.Find("TrainingGrunt 3");
+        training_grunt_3_health_component_ = training_grunt_3_.GetComponent<HealthComponent>();
+        training_grunt_3_max_hp_ = training_grunt_3_health_component_.getMaxHp();
         training_grunt_3_.SetActive(false);
 
         player_ = GameObject.Find("Player");
@@ -72,12 +78,16 @@ public class TutorialHandlerScript : MonoBehaviour
         // If near player, slow down by 90%
         if (training_grunt_2_ != null && training_grunt_3_ != null)
         {
+            int training_grunt_2_current_hp_ = training_grunt_2_health_component_.getCurrentHp();
+            int training_grunt_3_current_hp_ = training_grunt_3_health_component_.getCurrentHp();
+
             Vector2 training_grunt_2_dist_ = training_grunt_2_.GetComponent<Transform>().position - player_.GetComponent<Transform>().position;
             Vector2 training_grunt_3_dist_ = training_grunt_3_.GetComponent<Transform>().position - player_.GetComponent<Transform>().position;
 
             training_grunt_2_.GetComponent<Rigidbody2D>().velocity = new Vector2(10, 0);
             training_grunt_3_.GetComponent<Rigidbody2D>().velocity = new Vector2(-10, 0);
 
+            // Slow down within range of player
             if (training_grunt_2_dist_.magnitude < 5.0f)
             {
                 training_grunt_2_.GetComponent<Rigidbody2D>().velocity -= training_grunt_2_.GetComponent<Rigidbody2D>().velocity * 0.9f;
@@ -86,21 +96,17 @@ public class TutorialHandlerScript : MonoBehaviour
             {
                 training_grunt_3_.GetComponent<Rigidbody2D>().velocity -= training_grunt_3_.GetComponent<Rigidbody2D>().velocity * 0.9f;
             }
+
+            // When player damages either training grunts, unfreeze player
+            if (training_grunt_2_current_hp_ < training_grunt_2_max_hp_ || training_grunt_3_current_hp_ < training_grunt_3_max_hp_)
+            {
+                player_.GetComponent<PlayerController>().SetAcceleration(30.0f);
+            }
         }
         else if (training_grunt_2_ == null && training_grunt_3_ == null)
         {
             portal_.SetActive(true);
         }
-
-        // When the training grunts touch, let the player move again
-        if(training_grunt_2_!= null&& training_grunt_3_!=null)
-        {
-            if (training_grunt_2_.GetComponent<CircleCollider2D>().IsTouching(training_grunt_3_.GetComponent<CircleCollider2D>()))
-            {
-                player_.GetComponent<PlayerController>().SetAcceleration(30.0f);
-            }
-        }
-
 
         // Portal
         Vector2 dist_to_portal_ = player_.GetComponent<Transform>().position - portal_.GetComponent<Transform>().position;
