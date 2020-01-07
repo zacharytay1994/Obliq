@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 2929811780515459429}
   - component: {fileID: -6655965732787809711}
   - component: {fileID: 8433824389621773196}
-  m_Layer: 14
+  m_Layer: 20
   m_Name: Charger 1
   m_TagString: Enemy
   m_Icon: {fileID: 0}
