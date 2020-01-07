@@ -241,6 +241,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a63df80069f1d3044b87fd0ed5157184, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  slack_: 1
   random_speed_: {x: 140, y: 200}
   path_update_delay: {x: 2, y: 6}
 --- !u!114 &-353334419602199532
@@ -282,3 +283,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sound_: Hit
   layer_: 19
+  damaged_timer_: 0.1

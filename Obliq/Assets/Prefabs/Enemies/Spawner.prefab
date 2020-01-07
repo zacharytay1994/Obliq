@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2013574147075596947}
   - component: {fileID: 160067512024784293}
   - component: {fileID: 2923235162218229481}
+  - component: {fileID: 4194189329045554462}
   m_Layer: 12
   m_Name: Spawner
   m_TagString: Untagged
@@ -111,3 +112,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a638b6c0e6379af4a9f9de1fede05fc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health_unit_: {fileID: 0}
+  display_size_: 0
+  display_spacing_: 0
+--- !u!114 &4194189329045554462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7862674349831162025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d77c2cebe75a294b8a518022f5327fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound_: Hit
+  layer_: 19
