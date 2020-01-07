@@ -19,6 +19,8 @@ public class Explosion : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        hit_pause_ = FindObjectOfType<HitPause>();
+        camera_manager_ = FindObjectOfType<CameraManager>();
         damage_popup = GameObject.Find("World").GetComponent<DamagePopup>();
     }
 
