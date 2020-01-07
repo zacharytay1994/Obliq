@@ -56,7 +56,7 @@ MonoBehaviour:
   target_reference_: {fileID: 0}
   sectopod_bullet_: {fileID: 4512505190216500458, guid: 08bd5e4d12fbf48498a07428ae0bfee5,
     type: 3}
-  bullet_speed_: 0
+  bullet_speed_: 10
 --- !u!114 &9041656220963992287
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -323,7 +323,6 @@ MonoBehaviour:
   line_contract_increment_: 0.3
   initial_width_: 0.1
   attack_rate_: 3
-  damage_: 0
 --- !u!114 &646901151000501464
 MonoBehaviour:
   m_ObjectHideFlags: 0
