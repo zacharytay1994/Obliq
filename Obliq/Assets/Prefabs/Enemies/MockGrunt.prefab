@@ -299,5 +299,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sound_: Hit
-  layer_: 19
+  layer_:
+    serializedVersion: 2
+    m_Bits: 524288
   damaged_timer_: 0.1

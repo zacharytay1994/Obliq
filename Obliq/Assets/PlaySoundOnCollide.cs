@@ -6,7 +6,7 @@ public class PlaySoundOnCollide : MonoBehaviour
 {
     AudioManager am_;
     [SerializeField] string sound_;
-    [SerializeField] int layer_;
+    [SerializeField] LayerMask layer_;
     [SerializeField] float damaged_timer_;
     SpriteRenderer sr_;
     float timer_ = 0;
