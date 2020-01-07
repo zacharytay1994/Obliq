@@ -12,6 +12,7 @@ public class Explosion : MonoBehaviour
     [SerializeField]
     float screen_shake_base_magnitude_;
     [SerializeField] public int damage_;
+    HitPause hit_pause_;
     DamagePopup damage_popup;
     CameraManager camera_manager_;
     
