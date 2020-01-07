@@ -8,6 +8,8 @@ public class Sectopod : MonoBehaviour
     public GameObject target_reference_;
     // entity reference
     Entity entity_reference_;
+    [SerializeField]
+    public GameObject explosion_;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,8 +27,12 @@ public class Sectopod : MonoBehaviour
         }
     }
         // Update is called once per frame
-        void Update()
+    void Update()
     {
         
+    }
+    public void SpawnExplosion()
+    {
+        Instantiate(explosion_, (Vector2)target_reference_.transform.position, Quaternion.identity);
     }
 }

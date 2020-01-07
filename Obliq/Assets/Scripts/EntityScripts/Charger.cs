@@ -18,6 +18,7 @@ public class Charger : MonoBehaviour
     // entity reference
     Entity entity_reference_;
     HealthComponent health_;
+    GameObject player;
 
     // Start is called before the first frame update
     void Start()
@@ -26,29 +27,32 @@ public class Charger : MonoBehaviour
         entity_reference_ = gameObject.GetComponent<Entity>();
         entity_reference_.statemachine_.SetState(new ChargerIdleState());
         health_ = gameObject.GetComponent<HealthComponent>();
+        player = GameObject.Find("Player");
     }
+  
     void OnCollisionEnter2D(Collision2D collision)
     {
+        if(collision.gameObject == player)
+        {
+            player.GetComponent<HealthComponent>().TakeDamage(1);
+            Physics2D.IgnoreLayerCollision(14, 16, true);
+        }
+        else
+        {
+            Physics2D.IgnoreLayerCollision(14, 16, false);
+        }
         //if(collision.gameObject.GetComponent<ImAProjectile>() != null){
         //    
         //    GC<Entity>(gameObject).TakeDamage(20); //temp magic no
         //}
-        
+
         //if (collision.gameObject.GetComponent<LesserCharger>() == null)
         //{
         //    SpawnLesserChargers();
         //    entity_reference_.statemachine_.SetState(new ChargerIdleState());
 
         //}
-
-
-    }
-    void OnCollisionStay2D(Collision2D collision)
-    {
-      
-    }
-
-    
+    }    
     // Update is called once per frame
     void Update()
     {
@@ -56,6 +60,7 @@ public class Charger : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        
     }
     public void SpawnLesserChargers()
     {
