@@ -5,7 +5,7 @@ using System;
 public class DamageEnemy : MonoBehaviour
 {
     [SerializeField]
-    int damage_ = 0;
+    public int damage_ = 0;
     [SerializeField]
     LayerMask enemy_mask_ = 0;
     [SerializeField]

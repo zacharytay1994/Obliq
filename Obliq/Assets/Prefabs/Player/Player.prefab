@@ -301,14 +301,24 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
   m_GameObject: {fileID: 1102585008617696053}
   m_Enabled: 1
+=======
+  m_GameObject: {fileID: 3305447786734559517}
+  m_Enabled: 0
+>>>>>>> cf45aa5b6da074575f392c57a2827c81463aa912
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d73acfdff9a7efb43abe4d0f8f783111, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
   health_object_: {fileID: 1102585009099040899}
 --- !u!1 &1102585008972862429
+=======
+  health_object_: {fileID: 3305447786734559517}
+--- !u!1 &8230551844717763124
+>>>>>>> cf45aa5b6da074575f392c57a2827c81463aa912
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -659,9 +669,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHp_: 10
+<<<<<<< HEAD
   currentHp_: 0
   invincibility_time_: 0
 --- !u!114 &1102585009099040897
+=======
+  currentHp_: 10
+  invincibility_time_: 0.1
+--- !u!114 &2361982361374958839
+>>>>>>> cf45aa5b6da074575f392c57a2827c81463aa912
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -20,6 +20,7 @@ GameObject:
   - component: {fileID: 7446402319411497978}
   - component: {fileID: 646901151000501464}
   - component: {fileID: -1078255289399383984}
+  - component: {fileID: 8532518073056544977}
   m_Layer: 14
   m_Name: Sectopod
   m_TagString: Enemy
@@ -54,7 +55,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target_reference_: {fileID: 0}
-  explosion_: {fileID: 0}
+  sectopod_bullet_: {fileID: 4512505190216500458, guid: 08bd5e4d12fbf48498a07428ae0bfee5,
+    type: 3}
+  bullet_speed_: 10
 --- !u!114 &9041656220963992287
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -73,8 +76,8 @@ MonoBehaviour:
   unit_scale_per_range_: 1
   health_: 20
   attack_damage_: 5
-  attack_range_: 7
-  detection_range_: 10
+  attack_range_: 20
+  detection_range_: 20
 --- !u!114 &9041656220963992286
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -266,8 +269,8 @@ LineRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 1, b: 1, a: 1}
-      key1: {r: 1, g: 1, b: 1, a: 1}
+      key0: {r: 1, g: 1, b: 1, a: 0.6117647}
+      key1: {r: 1, g: 1, b: 1, a: 0.19607843}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
@@ -320,7 +323,7 @@ MonoBehaviour:
   next_line_contract_time: 0
   line_contract_increment_: 0.3
   initial_width_: 0.1
-  damage_: 1
+  attack_rate_: 3
 --- !u!114 &646901151000501464
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -352,4 +355,20 @@ MonoBehaviour:
   proj_prefab: {fileID: 5809754552401931580, guid: ddcc5a6f26834b04990f4d58b249a6bb,
     type: 3}
   time_delay_: 0
-  guns_out_: 0
+--- !u!114 &8532518073056544977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9041656220963992277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d77c2cebe75a294b8a518022f5327fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound_: Hit
+  layer_:
+    serializedVersion: 2
+    m_Bits: 524288
+  damaged_timer_: 0.1
