@@ -410,6 +410,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 524288
   damaged_timer_: 0.1
+  sound_timer_: 0
 --- !u!114 &-3870448841454263238
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -425,5 +426,6 @@ MonoBehaviour:
   sound_: Smash
   layer_:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 196608
   damaged_timer_: 0
+  sound_timer_: 2
