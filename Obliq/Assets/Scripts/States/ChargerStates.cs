@@ -28,7 +28,7 @@ public class ChargerMoveState : State
         closest_good_guy_position =
             (Vector2)owner.GetComponent<Charger>().target_reference_.transform.position + (to_add * 1.5f); // temp magic number (how far behind target)
         // move charger to position
-        owner.GetComponent<Rigidbody2D>().AddForce(to_add * 20000); //* 40);
+        owner.GetComponent<Rigidbody2D>().AddForce(to_add * 80000); //* 40);
        /* owner.GetComponent<LineRenderer>().SetPosition(0, (Vector2)owner.transform.position);
        
         owner.GetComponent<LineRenderer>().SetPosition(1, closest_good_guy_position);*/
