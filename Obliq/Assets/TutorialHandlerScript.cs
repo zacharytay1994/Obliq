@@ -91,7 +91,7 @@ public class TutorialHandlerScript : MonoBehaviour
 
         // Portal
         Vector2 dist_to_portal_ = player_.GetComponent<Transform>().position - portal_.GetComponent<Transform>().position;
-        if (dist_to_portal_.magnitude <= 3.0f)
+        if (dist_to_portal_.magnitude <= 3.0f && portal_.activeSelf == true)
         {
             SceneManager.LoadScene("1-1");
         }
