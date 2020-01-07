@@ -10,15 +10,36 @@ public class HealthComponent : MonoBehaviour
     bool is_invincible_;
     float invincibility_start_time_;
 
+    [SerializeField]
+    float damage_flash_duration_ = 0.0f;
+    SpriteRenderer sr;
+    bool taken_damage_ = false;
+    float counter = 0.0f;
+
     // Start is called before the first frame update
     void Awake()
     {
         currentHp_ = maxHp_;
-        
+        sr = GetComponent<SpriteRenderer>();
     }
 
     private void Update()
     {
+        if (taken_damage_)
+        {
+            Color original_color_ = sr.color;
+
+            if (counter < damage_flash_duration_)
+            {
+                counter += Time.deltaTime;
+                sr.material.SetColor("_EmissionColor", new Color(1, 1, 1));
+            }
+            else
+            {
+                sr.material.SetColor("_EmissionColor", original_color_);
+                taken_damage_ = false;
+            }
+        }
     }
   
     public void TakeDamage(int damage)
@@ -27,6 +48,8 @@ public class HealthComponent : MonoBehaviour
         {
             currentHp_ -= damage;
             invincibility_start_time_ = Time.time;
+            taken_damage_ = true;
+            counter = 0.0f;
         }
     }
     public bool isInvincible()

@@ -188,9 +188,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b654a9ed45867894d8f8378d03d054a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp_: 6
+  maxHp_: 4
   currentHp_: 0
   invincibility_time_: 0
+  sr: {fileID: 2798105615834141745}
+  damage_flash_duration_: 0.1
 --- !u!114 &7157902452978562834
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -242,6 +244,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a63df80069f1d3044b87fd0ed5157184, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  slack_: 1
   random_speed_: {x: 140, y: 200}
   path_update_delay: {x: 2, y: 6}
 --- !u!114 &-353334419602199532

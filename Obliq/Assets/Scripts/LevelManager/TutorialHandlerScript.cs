@@ -89,17 +89,22 @@ public class TutorialHandlerScript : MonoBehaviour
         }
         else if (training_grunt_2_ == null && training_grunt_3_ == null)
         {
+            player_.GetComponent<PlayerController>().SetAcceleration(30.0f);
             portal_.SetActive(true);
         }
 
-        // When the training grunts touch, let the player move again
-        if (training_grunt_2_.GetComponent<CircleCollider2D>().IsTouching(training_grunt_3_.GetComponent<CircleCollider2D>()))
+        if (training_grunt_2_ != null && training_grunt_3_ != null)
         {
-            player_.GetComponent<PlayerController>().SetAcceleration(30.0f);
+            // When the training grunts touch, let the player move again
+            if (training_grunt_2_.GetComponent<CircleCollider2D>().IsTouching(training_grunt_3_.GetComponent<CircleCollider2D>()))
+            {
+                player_.GetComponent<PlayerController>().SetAcceleration(30.0f);
+            }
         }
 
         // Portal
-        Vector2 dist_to_portal_ = player_.GetComponent<Transform>().position - portal_.GetComponent<Transform>().position;
+        Vector2 dist_to_portal_ = (Vector2)player_.transform.position - (Vector2)portal_.transform.position;
+        Debug.Log(dist_to_portal_.magnitude);
         if (dist_to_portal_.magnitude <= 3.0f && portal_.activeSelf == true)
         {
             STM_.load_scene_Asynch("1-1");
