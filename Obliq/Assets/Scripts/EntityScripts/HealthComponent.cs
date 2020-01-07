@@ -10,8 +10,6 @@ public class HealthComponent : MonoBehaviour
     bool is_invincible_;
     float invincibility_start_time_;
 
-  
-
     // Start is called before the first frame update
     void Awake()
     {

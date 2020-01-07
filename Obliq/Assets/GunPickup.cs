@@ -25,6 +25,7 @@ public class GunPickup : MonoBehaviour
             Debug.Log(((Vector2)player_.transform.position - (Vector2)gameObject.transform.position).magnitude);
             if (((Vector2)player_.transform.position - (Vector2)gameObject.transform.position).magnitude < pickup_radius_)
             {
+                player_.GetComponent<TempWeaponSwitch>().weapon_auto_switch = true;
                 switch (weapon_no_)
                 {
                     case 1:

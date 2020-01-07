@@ -100614,12 +100614,12 @@ PrefabInstance:
     - target: {fileID: 6214192153050318061, guid: 4b16e8bc8534dec4b8cc859368f4439e,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.07
+      value: 6.63
       objectReference: {fileID: 0}
     - target: {fileID: 6214192153050318061, guid: 4b16e8bc8534dec4b8cc859368f4439e,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.9
+      value: -4.56
       objectReference: {fileID: 0}
     - target: {fileID: 6214192153050318061, guid: 4b16e8bc8534dec4b8cc859368f4439e,
         type: 3}
@@ -101008,8 +101008,7 @@ PrefabInstance:
         type: 3}
       propertyPath: weapon_
       value: 
-      objectReference: {fileID: 5809754552401931580, guid: 574acb1f117764f47a813a4e9f1533ca,
-        type: 3}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e2c522e5ec41bb241ae54dc18962a9ef, type: 3}
 --- !u!1 &1209553568
@@ -102100,6 +102099,11 @@ PrefabInstance:
         type: 3}
       propertyPath: end_color_.b
       value: 0.10840158
+      objectReference: {fileID: 0}
+    - target: {fileID: 7581482159293874888, guid: 30de44655fb90e8418fc0eb58beeaeba,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 30de44655fb90e8418fc0eb58beeaeba, type: 3}

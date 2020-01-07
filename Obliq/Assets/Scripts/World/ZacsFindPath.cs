@@ -8,6 +8,7 @@ public class ZacsFindPath : MonoBehaviour
     Tilemap tilemap_reference_ = null;
     ZacsPathfinding pathfinding_reference_ = null;
     List<Node> current_path_ = new List<Node>();
+    [SerializeField]
     float slack_ = 1.0f;
     int current_node_num_ = 0;
     Node current_node_ = null;
@@ -19,6 +20,7 @@ public class ZacsFindPath : MonoBehaviour
     Vector2 path_update_delay = new Vector2(1.0f, 2.0f); // temporary fix
     float path_update__delay_counter_ = 0.0f;
     float og_delay = 0.0f;
+    bool move_ = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -50,7 +52,10 @@ public class ZacsFindPath : MonoBehaviour
         //{
         //    GetPathToPlayer();
         //}
-        ExecutePath();
+        if (move_)
+        {
+            ExecutePath();
+        }
         //if (Random.Range(0.0f, 100.0f - awareness_) == 0)
         //{
         //    GetPathToPlayer();
@@ -100,5 +105,10 @@ public class ZacsFindPath : MonoBehaviour
     public void SetPathfindingStrength(float strength)
     {
         pathfinding_strength = strength;
+    }
+
+    public void SetMove(bool b)
+    {
+        move_ = b;
     }
 }
