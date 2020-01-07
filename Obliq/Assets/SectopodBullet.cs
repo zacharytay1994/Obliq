@@ -19,8 +19,15 @@ public class SectopodBullet : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        SpawnExplosion(collision.gameObject.transform.position);
-        Destroy(gameObject);
+        if (collision.gameObject != GameObject.Find("WallTilemap"))
+        {
+            SpawnExplosion(collision.gameObject.transform.position);
+            Destroy(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
     void SpawnExplosion(Vector2 explosion_pos)
     {

@@ -268,8 +268,8 @@ LineRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 1, b: 1, a: 1}
-      key1: {r: 1, g: 1, b: 1, a: 1}
+      key0: {r: 1, g: 1, b: 1, a: 0.6117647}
+      key1: {r: 1, g: 1, b: 1, a: 0.19607843}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
@@ -315,14 +315,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bae089dd206ed24c944184f57c8ba80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  line_thicken_rate_: 0.01
+  line_thicken_rate_: 0.1
   next_line_thicken_time: 0
   line_thicken_increment_: 0.01
   line_contract_rate_: 0.1
   next_line_contract_time: 0
   line_contract_increment_: 0.3
   initial_width_: 0.1
-  damage_: 1
+  attack_rate_: 3
+  damage_: 0
 --- !u!114 &646901151000501464
 MonoBehaviour:
   m_ObjectHideFlags: 0
