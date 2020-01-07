@@ -9,18 +9,23 @@ public class WorldHandler : MonoBehaviour
    // GameObject radius_three;
     public  List<GameObject> enemies_ = new List<GameObject>();
     public  List<GameObject> goodguys_ = new List<GameObject>();
+    bool has_enemies_ = true;
     // Start is called before the first frame update
     void Start()
     {
-       // radius_one_ = GameObject.Find("RadiusOne");
-       // radius_two_ = GameObject.Find("RadiusTwo");
-       // radius_three = GameObject.Find("RadiusThree");
-
-        foreach (Transform t in GameObject.Find("Enemies").transform)
+        // radius_one_ = GameObject.Find("RadiusOne");
+        // radius_two_ = GameObject.Find("RadiusTwo");
+        // radius_three = GameObject.Find("RadiusThree");
+        if (GameObject.FindGameObjectsWithTag("Enemy").Length > 0)
         {
-            Debug.Log(t.gameObject);
-            enemies_.Add(t.gameObject);
+            foreach (Transform t in GameObject.Find("Enemy").transform)
+            {
+                Debug.Log(t.gameObject);
+                enemies_.Add(t.gameObject);
+            }
         }
+        else has_enemies_ = false; 
+
         //foreach (Transform t in GameObject.Find("Player").transform)
         //{
         //    Debug.Log(t.gameObject);
@@ -33,16 +38,20 @@ public class WorldHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        foreach(GameObject gameobject in enemies_)
+        if(has_enemies_)
         {
-            if(gameobject != null)
+            foreach (GameObject gameobject in enemies_)
             {
-                Debug.Log(gameobject);
-                gameobject.GetComponent<Entity>().statemachine_.Update();
-                
+                if (gameobject != null)
+                {
+                    Debug.Log(gameobject);
+                    gameobject.GetComponent<Entity>().statemachine_.Update();
+
+                }
+
             }
-          
         }
+
     }
 
     public void SetMoveRadiusActive(bool active)

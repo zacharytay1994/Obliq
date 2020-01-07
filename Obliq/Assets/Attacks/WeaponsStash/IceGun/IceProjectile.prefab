@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 235828931358813623}
   - component: {fileID: 7119392443147418798}
   - component: {fileID: 7164747587921222637}
+  - component: {fileID: -5382930554243479430}
   m_Layer: 13
   m_Name: IceProjectile
   m_TagString: Untagged
@@ -48,7 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eeb0363ec7ff550499b9f85ee039a8db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed_: 80
+  speed_: 50
   acceleration_: 1
   max_speed_: 80
   custom_speed_: 0
@@ -61,7 +62,7 @@ MonoBehaviour:
   lifespan_: 3
   on_collide_mask_:
     serializedVersion: 2
-    m_Bits: 16384
+    m_Bits: 147456
   destroy_countdown_: 0
   movement_: 0
   local_speed_: 2
@@ -113,21 +114,23 @@ MonoBehaviour:
     type: 3}
   cont_np_offset_: 0
   cont_np_speed_: 0
-  collide_trigger_: 0
+  collide_trigger_: 1
   layer_to_collide_:
     serializedVersion: 2
-    m_Bits: 10
-  col_active_time_: 0
-  colt_style_: 0
-  colt_density_: 0
-  colt_angle_: 0
+    m_Bits: 147458
+  col_active_time_: 1
+  colt_style_: 2
+  colt_density_: 6
+  colt_angle_: 10
   colt_sstyle_: 0
   colt_stream_rate_: 0
   colt_burst_rest_timer_: 0
   colt_burst_timer_: 0
-  colt_prefab_: {fileID: 0}
+  colt_prefab_: {fileID: 5226346963446909659, guid: 70af7b8a79b882049a0f8b4fefaabae7,
+    type: 3}
   colt_np_offset_: 0
   colt_np_speed_: 0
+  movement_heading_: {x: 0, y: 0}
 --- !u!50 &398347514270677557
 Rigidbody2D:
   serializedVersion: 4
@@ -222,7 +225,7 @@ TrailRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5226346963446909659}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -253,7 +256,7 @@ TrailRenderer:
   m_SortingLayerID: -1352270105
   m_SortingLayer: 7
   m_SortingOrder: 0
-  m_Time: 1
+  m_Time: 0.3
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 0.6
@@ -262,7 +265,7 @@ TrailRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.103603005
+        value: 0.019233704
         inSlope: 1.0613511
         outSlope: 1.0613511
         tangentMode: 0
@@ -270,31 +273,22 @@ TrailRenderer:
         inWeight: 0
         outWeight: 1
       - serializedVersion: 3
-        time: 0.26203492
-        value: 1
-        inSlope: 0
-        outSlope: 0
+        time: 0.39108413
+        value: 0.92308015
+        inSlope: 0.12556726
+        outSlope: 0.12556726
         tangentMode: 0
         weightedMode: 0
-        inWeight: 0
-        outWeight: 0
+        inWeight: 0.6439804
+        outWeight: 0.7520425
       - serializedVersion: 3
-        time: 0.5935893
-        value: 0.25675672
-        inSlope: -0.118229575
-        outSlope: -0.118229575
+        time: 0.90725124
+        value: 0.19231474
+        inSlope: -0.71538466
+        outSlope: -0.71538466
         tangentMode: 0
         weightedMode: 0
-        inWeight: 0
-        outWeight: 1
-      - serializedVersion: 3
-        time: 0.8876994
-        value: 0.02702713
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
+        inWeight: 1
         outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
@@ -357,3 +351,18 @@ MonoBehaviour:
   causes_screen_shake_: 0
   screen_shake_base_duration_: 0
   screen_shake_base_magnitude_: 0
+  crit_chance: 0
+  crit_modifier: 0
+--- !u!114 &-5382930554243479430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5226346963446909659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 727b7bdeac220454681e8961bfe0da59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  life_span: 1

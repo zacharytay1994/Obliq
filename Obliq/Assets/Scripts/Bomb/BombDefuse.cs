@@ -11,7 +11,7 @@ public class BombDefuse : MonoBehaviour
     [SerializeField]
     float bomb_defuse_range_ = 0.0f;
     [SerializeField]
-    GameObject player_ = null;
+    GameObject player_ ;
 
     // Bomb defuse timer
     [Header("BOMB DEFUSE TIMER")]
@@ -39,6 +39,7 @@ public class BombDefuse : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        player_ = GameObject.Find("Player");
         // Bomb defuse timer bar
         defuse_timer_bar_ = BombDefusePrefab.GetComponent<Image>();
         defuse_time_left_ = bomb_defuse_time_;
@@ -95,5 +96,20 @@ public class BombDefuse : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+    public float GetBombDefuseTime()
+    {
+        return bomb_defuse_time_;
+    }
+
+    public float GetDefuseTimeLeft()
+    {
+        return defuse_time_left_;
+    }
+
+    public float GetDefuseProgress()
+    {
+        return defuse_progress_;
     }
 }

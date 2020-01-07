@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 3371876433012458454}
   - component: {fileID: 7446402319411497978}
   - component: {fileID: 646901151000501464}
+  - component: {fileID: -1078255289399383984}
   m_Layer: 14
   m_Name: Sectopod
   m_TagString: Enemy
@@ -53,6 +54,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target_reference_: {fileID: 0}
+  explosion_: {fileID: 0}
 --- !u!114 &9041656220963992287
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -335,3 +337,19 @@ MonoBehaviour:
   intensity_: 0
   splatter_upper_lower: {x: 0, y: 0}
   angle_range_: 0
+--- !u!114 &-1078255289399383984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9041656220963992277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e05c298291ad9bb46bf2038b9c2414bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  proj_prefab: {fileID: 5809754552401931580, guid: ddcc5a6f26834b04990f4d58b249a6bb,
+    type: 3}
+  time_delay_: 0
+  guns_out_: 0

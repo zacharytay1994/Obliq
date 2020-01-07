@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 7164747587921222637}
   - component: {fileID: -323119862179744384}
   - component: {fileID: -3210017494606095120}
+  - component: {fileID: 2317082515281500502}
   m_Layer: 19
   m_Name: MachinegunProjectile
   m_TagString: Untagged
@@ -88,6 +89,7 @@ MonoBehaviour:
   local_orientation_: 0
   follow_mouse_: 0
   spawn_delay_: 0
+  start_spawning_: 0
   spin_: 0
   spin_rate_: 0
   time_trigger_: 0
@@ -360,6 +362,7 @@ MonoBehaviour:
   screen_shake_base_magnitude_: 25
   crit_chance: 0
   crit_modifier: 0
+  knock_back_: 0
 --- !u!114 &-323119862179744384
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -391,3 +394,16 @@ MonoBehaviour:
   intensity_: 5
   splatter_upper_lower: {x: 20, y: 50}
   angle_range_: 30
+--- !u!114 &2317082515281500502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5226346963446909659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88f0f9da40a0d4a4e9d675adbe419984, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound_: Rocket_Launch

@@ -32,7 +32,12 @@ public class Statemachine
 
     public void SetState(State state)
     {
+        if(current_state_!=null)
+        {
+            current_state_.Exit(owner_);
+        }
         current_state_ = state;
+        current_state_.Enter(owner_);
     }
 
     public State GetState()

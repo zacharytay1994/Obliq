@@ -20,6 +20,8 @@ public class ColorChangeScript : MonoBehaviour
     HealthComponent player_health_component_;
     [SerializeField]
     SpriteRenderer sprite_renderer_;
+    [SerializeField]
+    GameObject bomb_prefab_;
 
     // ------------------------------------ //
     // ADD ADDITIONAL VARIABLES HERE
@@ -28,6 +30,9 @@ public class ColorChangeScript : MonoBehaviour
     // Variables for PlayerHealthIndicator (Player's max/current health and percent of health lost)
     float player_max_health_, player_current_health_, player_health_loss_;
 
+    // Variable for bomb list
+    float bomb_defuse_time_, defuse_time_left_, defuse_progress_;
+
     // ------------------------------------ //
     // END OF ADDITIONAL VARIABLES
     // ------------------------------------ //
@@ -35,22 +40,22 @@ public class ColorChangeScript : MonoBehaviour
     // Awake function
     void Awake()
     {
-        // Get sprite renderer
-        sprite_renderer_ = GameObject.Find("PlayerHealth").GetComponent<SpriteRenderer>();
-
         // For player health indicator
         if (script_purpose_ == ScriptPurpose.PlayerHealthIndicator)
         {
+            // Get sprite renderer
+            sprite_renderer_ = GameObject.Find("PlayerHealth").GetComponent<SpriteRenderer>();
+
             // Player component
             player_health_component_ = GameObject.Find("Player").GetComponent<HealthComponent>();
         }
 
-        //// For bomb defuse progress
-        //if (script_purpose_ == ScriptPurpose.BombDefuseProgress)
-        //{
-        //    // Player component
-        //    player_health_component_ = GameObject.Find("Player").GetComponent<HealthComponent>();
-        //}
+        // For bomb defuse progress
+        if (script_purpose_ == ScriptPurpose.BombDefuseProgress)
+        {
+            // Get sprite renderer
+            sprite_renderer_ = gameObject.GetComponent<SpriteRenderer>();
+        }
     }
 
     // Start is called before the first frame update
@@ -64,9 +69,9 @@ public class ColorChangeScript : MonoBehaviour
         if (script_purpose_ == ScriptPurpose.PlayerHealthIndicator)
             UpdateHealth(amount_to_change_);
 
-        //// For bomb defuse progress
-        //if (script_purpose_ == ScriptPurpose.BombDefuseProgress)
-        //    UpdateBombColor();
+        // For bomb defuse progress
+        if (script_purpose_ == ScriptPurpose.BombDefuseProgress)
+            UpdateBombColor();
     }
 
     // Update is called once per frame
@@ -80,9 +85,9 @@ public class ColorChangeScript : MonoBehaviour
         if (script_purpose_ == ScriptPurpose.PlayerHealthIndicator)
             UpdateHealth(amount_to_change_);
 
-        //// For bomb defuse progress
-        //if (script_purpose_ == ScriptPurpose.BombDefuseProgress)
-        //    UpdateBombColor();
+        // For bomb defuse progress
+        if (script_purpose_ == ScriptPurpose.BombDefuseProgress)
+            UpdateBombColor();
     }
 
     // ------------------------------------ //
@@ -108,20 +113,22 @@ public class ColorChangeScript : MonoBehaviour
             );
     }
 
-    //// Updates bomb color based on progress
-    //void UpdateBombColor()
-    //{
-    //    // Get player's current/max health
-    //    player_current_health_ = player_health_component_.currentHp_;
-    //    player_max_health_ = player_health_component_.maxHp_;
+    // Updates bomb color based on progress
+    void UpdateBombColor()
+    {
+        bomb_defuse_time_ = gameObject.GetComponent<BombDefuse>().GetBombDefuseTime();
+        defuse_time_left_ = gameObject.GetComponent<BombDefuse>().GetDefuseTimeLeft();
+        defuse_progress_ = gameObject.GetComponent<BombDefuse>().GetDefuseProgress();
 
-    //    // Calculate how much percent health is lost and change in scale of health indicator
-    //    player_health_loss_ = (player_max_health_ - player_current_health_) / player_max_health_;
+        defuse_progress_ = (bomb_defuse_time_ - defuse_time_left_) / bomb_defuse_time_;
 
-    //    // Change percentage of red and green in player health indicator sprite
-    //    // The higher the health, the higher the value of green
-    //    sprite_renderer_.color = new Color(player_health_loss_, 1 - player_health_loss_, 0f);
-    //}
+        // When bomb is fully defused, it changes from red to black
+        //sprite_renderer_.color = new Color(
+        //    start_color_.r + (amount_to_change_.r * player_health_loss_ * player_max_health_),
+        //    start_color_.g + (amount_to_change_.g * player_health_loss_ * player_max_health_),
+        //    start_color_.b + (amount_to_change_.b * player_health_loss_ * player_max_health_)
+        //    );
+    }
 
     // ------------------------------------ //
     // END OF ADDITIONAL FUNCTIONS

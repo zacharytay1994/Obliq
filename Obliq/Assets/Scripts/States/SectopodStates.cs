@@ -141,7 +141,7 @@ public class SectopodAttackState : State
     float attack_rate = 3.0f; // amt of time to charge
 
     float next_damage_time;
-
+   
     bool is_charging;
     bool laser_aimed;
     DamagePopup damage_popup = GameObject.Find("World").GetComponent<DamagePopup>();
@@ -190,7 +190,7 @@ public class SectopodAttackState : State
             {
                 GC<RaycastAttack>(owner).next_line_thicken_time = Time.time + GC<RaycastAttack>(owner).line_thicken_rate_;
                 GC<RaycastAttack>(owner).LineExpand(GC<LineRenderer>(owner), GC<RaycastAttack>(owner).line_thicken_increment_);
-               // GC<ChargeEffect>(owner).CreateChargeEffect();
+             
                 laser_aimed = true;
             }
             if (Time.time >= next_damage_time && laser_aimed)
@@ -206,8 +206,10 @@ public class SectopodAttackState : State
                     {
                         object_hit.GetComponent<BloodEffect>().DrawBlood(object_hit.transform.position - owner.transform.position);
                     }
-                    damage_popup.Create(object_hit, owner.GetComponent<RaycastAttack>().damage_, false);
-                    object_hit.GetComponent<HealthComponent>().TakeDamage(owner.GetComponent<RaycastAttack>().damage_);
+                    
+                    //object_hit.GetComponent<HealthComponent>().TakeDamage(owner.GetComponent<RaycastAttack>().damage_);
+                    //Instantiate explosion bullet here
+                    owner.GetComponent<Sectopod>().SpawnExplosion();
                     
                 }
 

@@ -11,12 +11,13 @@ public class CameraFollow : MonoBehaviour
     void Start()
     {
         camera_ = GameObject.FindGameObjectWithTag("MainCamera");
+        camera_.transform.position = new Vector3(camera_.transform.position.x, camera_.transform.position.y, transform.position.z + camera_height_);
     }
 
     // Update is called once per frame
     void Update()
     {
         //camera_.transform.rotation = Quaternion.Euler(Vector3.zero);
-        camera_.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z+camera_height_);
+        
     }
 }

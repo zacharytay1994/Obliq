@@ -13,6 +13,7 @@ public class TempGrunt : MonoBehaviour
     HealthComponent health_;
     Rigidbody2D rb_;
     SpawningScript spawner_;
+    PointManager point_manager_;
 
     public Vector2 heading_vector_ = new Vector2(0.0f, 0.0f);
     // Start is called before the first frame update
@@ -21,6 +22,7 @@ public class TempGrunt : MonoBehaviour
         rb_ = GetComponent<Rigidbody2D>();
         health_ = GetComponent<HealthComponent>();
         target_ = GameObject.FindGameObjectWithTag("MainPlayer");
+        point_manager_ = FindObjectOfType<PointManager>();
     }
 
     public void AttachSpawner(SpawningScript spawner) 
@@ -46,6 +48,7 @@ public class TempGrunt : MonoBehaviour
             {
                 spawner_.GruntDied();
             }
+           // point_manager_.AddKillPoints(100, 1);
             Destroy(gameObject);
         }
     }
