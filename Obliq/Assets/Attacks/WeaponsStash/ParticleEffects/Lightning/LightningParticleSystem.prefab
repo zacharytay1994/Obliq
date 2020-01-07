@@ -118,7 +118,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.5
+      scalar: 0.4
       minScalar: 0.0001
       maxCurve:
         serializedVersion: 2
@@ -663,7 +663,7 @@ ParticleSystem:
     serializedVersion: 6
     enabled: 1
     type: 4
-    angle: 90
+    angle: 40
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
@@ -2790,7 +2790,7 @@ ParticleSystem:
     damping: 1
     octaves: 1
     octaveMultiplier: 0.5
-    octaveScale: 2
+    octaveScale: 1
     quality: 1
     scrollSpeed:
       serializedVersion: 2

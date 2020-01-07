@@ -32,6 +32,14 @@ public class PlayerController : MonoBehaviour
     SemiCircleMelee melee_;
     public float stored_angle_ = 0.0f;
 
+    [SerializeField] public float invincibility_time_;
+    bool is_invincible_;
+    float invincibility_start_time_;
+
+    float trail_active_time_ = 0.0f;
+
+    [SerializeField] GameObject dash_particle_ = null;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -50,6 +58,12 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         //ResolveMeleeAttack();
+        if (Time.time >= trail_active_time_)
+        {
+            GetComponent<TrailRenderer>().emitting = false;
+        }
+        else
+            GetComponent<TrailRenderer>().emitting = true;
     }
 
     private void FixedUpdate()
@@ -107,13 +121,15 @@ public class PlayerController : MonoBehaviour
 
     void PlayerMovement()
     {
-       
-        if (Input.GetKeyDown(KeyCode.LeftShift) && Time.time >= next_dash_time)
+        if (Input.GetKeyDown(KeyCode.Space) && Time.time >= next_dash_time)
         {
             //rb2d_.AddForce(heading_ * (dash_strength * dash_duration_));
-            
-                rb2d_.velocity = (Vector3)((heading_) * dash_strength) * dash_duration_;
-                next_dash_time = Time.time + dash_cooldown_;
+            rb2d_.velocity = (Vector3)((heading_) * dash_strength) * dash_duration_;
+            next_dash_time = Time.time + dash_cooldown_;
+            invincibility_start_time_ = Time.time;
+            trail_active_time_ = Time.time + dash_duration_ / 3;
+            GameObject temp = Instantiate(dash_particle_);
+            temp.transform.position = transform.position;
         }
         else
         {
@@ -133,7 +149,6 @@ public class PlayerController : MonoBehaviour
             {
                 heading_.x += player_acceleration_* speed_modifier_;
             }
-
         }
         heading_.x = heading_.x - ((1 - player_decceleration_) * heading_.x);
         heading_.y = heading_.y - ((1 - player_decceleration_) * heading_.y);
@@ -150,5 +165,18 @@ public class PlayerController : MonoBehaviour
     public void SetAcceleration(float acceleration_)
     {
         player_acceleration_ = acceleration_;
+    }
+
+    public bool isInvincible()
+    {
+        if (Time.time - invincibility_start_time_ > invincibility_time_)
+        {
+            return false;
+        }
+        else
+        {
+            gameObject.GetComponent<SpriteRenderer>().color = Color.red;
+            return true;
+        }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System;
 public class DamageEnemy : MonoBehaviour
 {
     [SerializeField]
@@ -58,26 +58,39 @@ public class DamageEnemy : MonoBehaviour
                         hit_pause_.Freeze(damage_);
                     }
 
-                    if (Random.Range(1, 100) <= crit_chance)
+                    if (UnityEngine.Random.Range(1, 100) <= crit_chance)
                     {
-                        Debug.Log("CRIT");
-                        if (!collision.gameObject.GetComponent<HealthComponent>().isInvincible() && collision.gameObject != GameObject.Find("Player"))
+                        if (collision.gameObject != null)
                         {
-                            damage_popup_manager_.Create(gameObject, damage_ * crit_modifier, true);
+                            if (collision.gameObject.GetComponent<HealthComponent>() != null)
+                            {
+                                if (!collision.gameObject.GetComponent<HealthComponent>().isInvincible() && collision.gameObject != GameObject.Find("Player"))
+                                {
+                                    if (damage_popup_manager_ != null)
+                                    {
+                                        damage_popup_manager_.Create(gameObject, damage_ * crit_modifier, true);
+                                    }
+                                }
+                                collision.gameObject.GetComponent<HealthComponent>().TakeDamage(damage_ * crit_modifier);
+                            }
                         }
-                        collision.gameObject.GetComponent<HealthComponent>().TakeDamage(damage_ * crit_modifier);
                     }
                     else
                     {
-                        if (!collision.gameObject.GetComponent<HealthComponent>().isInvincible() && collision.gameObject != GameObject.Find("Player"))
+                        if (collision.gameObject != null)
                         {
-                            if (gameObject != null)
+                            if (collision.gameObject.GetComponent<HealthComponent>() != null)
                             {
-                                damage_popup_manager_.Create(gameObject, damage_, true);
+                                if (!collision.gameObject.GetComponent<HealthComponent>().isInvincible() && collision.gameObject != GameObject.Find("Player"))
+                                {
+                                    if (damage_popup_manager_ != null)
+                                    {
+                                        damage_popup_manager_.Create(collision.gameObject, damage_, true);
+                                    }
+                                }
+                                collision.gameObject.GetComponent<HealthComponent>().TakeDamage(damage_);
                             }
-
                         }
-                        collision.gameObject.GetComponent<HealthComponent>().TakeDamage(damage_);
                     }
                     // get direction
                     Vector2 direction = ((Vector2)collision.gameObject.transform.position - (Vector2)transform.position).normalized;
@@ -87,10 +100,10 @@ public class DamageEnemy : MonoBehaviour
                         collision.gameObject.GetComponent<BloodEffect>().DrawBlood(direction);
                     }
 
-                if (knock_back_ && GetComponent<BombKnockback>() != null)
-                {
-                    GetComponent<BombKnockback>().ForcePush();
-                }
+                    if (knock_back_ && GetComponent<BombKnockback>() != null)
+                    {
+                        GetComponent<BombKnockback>().ForcePush();
+                    }
 
                 }
             }
