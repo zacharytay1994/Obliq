@@ -33,7 +33,9 @@ public class ChargerMoveState : State
        
         owner.GetComponent<LineRenderer>().SetPosition(1, closest_good_guy_position);*/
         compare_vec = (Vector2)owner.transform.position - closest_good_guy_position;
-            
+
+
+
     }
     public override void Execute(GameObject owner)
     {
@@ -91,8 +93,6 @@ public class ChargerIdleState : State
     float charge_start = Time.time;
     public override void Enter(GameObject owner)
     {
-       
-
     }
     public override void Execute(GameObject owner)
     {
@@ -109,6 +109,7 @@ public class ChargerIdleState : State
              ((Vector2)owner.transform.position - 
              (Vector2)owner.GetComponent<Charger>().target_reference_.transform.position).magnitude, layerMask);
 
+            // if there is no obstruction between player and charger
             if (isHit.collider == null)
             {              
                 Vector2 closest_good_guy_position =
@@ -118,6 +119,8 @@ public class ChargerIdleState : State
                     1 * Time.deltaTime));*/
 
                 owner.GetComponent<SpriteRenderer>().material.color = Color.Lerp(owner.GetComponent<SpriteRenderer>().material.color, Color.red, Mathf.PingPong(Time.time, 3 * Time.deltaTime));
+                // turn on particle charge
+                owner.GetComponent<Charger>().GetComponent<GolemSucking>().StartSucking();
 
                 float angle = AngleBetween(owner.transform.position, closest_good_guy_position);
                 owner.transform.rotation = Quaternion.Lerp(owner.transform.rotation, Quaternion.Euler(0.0f, 0.0f, angle), Mathf.PingPong(Time.time,
@@ -127,12 +130,19 @@ public class ChargerIdleState : State
                 {                                                                                                         // move charger to position
                     owner.GetComponent<Entity>().statemachine_.ChangeState(new ChargerMoveState());
                 }
+                // if there is no obstruction between player and charger, turn find path off
+                owner.GetComponent<Charger>().find_path_ = false;
+
             }
             else 
             {
                 owner.GetComponent<SpriteRenderer>().material.color = Color.Lerp(owner.GetComponent<SpriteRenderer>().material.color, Color.white, Mathf.PingPong(Time.time, 3 * Time.deltaTime));
 
                 charge_start = Time.time;
+
+                // if there is obstruction between player and charger, find path
+                owner.GetComponent<Charger>().find_path_ = true;
+
                // owner.GetComponent<LineRenderer>().SetPosition(0, (Vector2)owner.transform.position);
              //   owner.GetComponent<LineRenderer>().SetPosition(1, (Vector2)owner.transform.position);
             }

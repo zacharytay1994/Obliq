@@ -19,6 +19,8 @@ public class Charger : MonoBehaviour
     Entity entity_reference_;
     HealthComponent health_;
     GameObject player;
+    public bool find_path_ = false;
+    ZacsFindPath zfp = null;
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +30,7 @@ public class Charger : MonoBehaviour
         entity_reference_.statemachine_.SetState(new ChargerIdleState());
         health_ = gameObject.GetComponent<HealthComponent>();
         player = GameObject.Find("Player");
+        zfp = gameObject.GetComponent<ZacsFindPath>();
     }
   
     void OnCollisionEnter2D(Collision2D collision)
@@ -61,6 +64,17 @@ public class Charger : MonoBehaviour
             Destroy(gameObject);
         }
         
+        if (find_path_)
+        {
+            if (zfp != null)
+            {
+                zfp.SetMove(true);
+            }
+        }
+        else
+        {
+            zfp.SetMove(false);
+        }
     }
     public void SpawnLesserChargers()
     {
