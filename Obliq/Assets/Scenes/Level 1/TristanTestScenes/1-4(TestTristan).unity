@@ -101263,7 +101263,17 @@ PrefabInstance:
     - target: {fileID: 7446402319411497978, guid: 87310967b1792e142b19378687475514,
         type: 3}
       propertyPath: line_thicken_increment_
-      value: 0.001
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 7446402319411497978, guid: 87310967b1792e142b19378687475514,
+        type: 3}
+      propertyPath: attack_rate_
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3371876433012458454, guid: 87310967b1792e142b19378687475514,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -1078255289399383984, guid: 87310967b1792e142b19378687475514, type: 3}

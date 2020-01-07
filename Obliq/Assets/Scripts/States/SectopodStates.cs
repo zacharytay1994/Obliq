@@ -138,7 +138,7 @@ public class SectopodMoveState : State
 
 public class SectopodAttackState : State
 {
-    float attack_rate = 3.0f; // amt of time to charge
+    float attack_rate; // amt of time to charge
 
     float next_damage_time;
    
@@ -162,6 +162,7 @@ public class SectopodAttackState : State
     }
     public override void Execute(GameObject owner)       
     {
+        attack_rate = owner.GetComponent<RaycastAttack>().attack_rate_;
         GameObject objective = GameObject.Find("Bomb");
         GC<ObliqPathfinding>(owner).target_ = GC<Sectopod>(owner).target_reference_.transform.position;
         if (GC<Entity>(owner).health_ <= 0 || Input.GetKeyDown(KeyCode.B)) // for testing

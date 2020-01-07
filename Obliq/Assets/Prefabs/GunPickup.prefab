@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapon_no_: 1
-  pickup_radius_: 5
+  pickup_radius_: 1
 --- !u!212 &8716858417481334613
 SpriteRenderer:
   m_ObjectHideFlags: 0
