@@ -246,6 +246,8 @@ public class ImAProjectile : MonoBehaviour
     // Projectile Variables
     Vector2 center_point_ = new Vector2(0.0f, 0.0f);
     public Vector2 movement_heading_ = new Vector2(0.0f, 0.0f);
+
+    bool paused_ = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -327,7 +329,7 @@ public class ImAProjectile : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (initialized_)
+        if (initialized_ && !paused_)
         {
             // update life
             if (!persistent_)
@@ -997,5 +999,10 @@ public class ImAProjectile : MonoBehaviour
         {
             to_be_destroyed_ = true;
         }
+    }
+
+    public void SetPause(bool b)
+    {
+        paused_ = b;
     }
 }

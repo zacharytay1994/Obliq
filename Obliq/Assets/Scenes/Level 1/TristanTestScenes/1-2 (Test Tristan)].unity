@@ -100906,7 +100906,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a63df80069f1d3044b87fd0ed5157184, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slack_: 1
+  slack_: 0.1
   random_speed_: {x: 1, y: 10}
   path_update_delay: {x: 1, y: 2}
 --- !u!1 &727468380
@@ -100965,15 +100965,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: Charger 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6214192152273230767, guid: 4b16e8bc8534dec4b8cc859368f4439e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 6214192153050318061, guid: 4b16e8bc8534dec4b8cc859368f4439e,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 25.2
+      value: 24.7
       objectReference: {fileID: 0}
     - target: {fileID: 6214192153050318061, guid: 4b16e8bc8534dec4b8cc859368f4439e,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.9
+      value: -3.1
       objectReference: {fileID: 0}
     - target: {fileID: 6214192153050318061, guid: 4b16e8bc8534dec4b8cc859368f4439e,
         type: 3}
@@ -101273,7 +101278,7 @@ PrefabInstance:
     - target: {fileID: 8469944875963345909, guid: ddaf4ec891c08644396fdaca093c7b2f,
         type: 3}
       propertyPath: m_CullingMask.m_Bits
-      value: 1012535
+      value: 2061111
       objectReference: {fileID: 0}
     - target: {fileID: 8469944875963345909, guid: ddaf4ec891c08644396fdaca093c7b2f,
         type: 3}
@@ -101308,11 +101313,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2361982361374958839, guid: e2c522e5ec41bb241ae54dc18962a9ef,
-        type: 3}
-      propertyPath: world_handler_reference_
-      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8388271945408527302, guid: e2c522e5ec41bb241ae54dc18962a9ef,
         type: 3}
@@ -101368,6 +101368,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2361982361374958839, guid: e2c522e5ec41bb241ae54dc18962a9ef,
+        type: 3}
+      propertyPath: world_handler_reference_
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8388271945408527303, guid: e2c522e5ec41bb241ae54dc18962a9ef,
         type: 3}
