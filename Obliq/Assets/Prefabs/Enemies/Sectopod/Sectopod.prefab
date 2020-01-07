@@ -54,7 +54,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target_reference_: {fileID: 0}
-  explosion_: {fileID: 0}
+  sectopod_bullet_: {fileID: 4512505190216500458, guid: 08bd5e4d12fbf48498a07428ae0bfee5,
+    type: 3}
+  bullet_speed_: 0
 --- !u!114 &9041656220963992287
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -73,8 +75,8 @@ MonoBehaviour:
   unit_scale_per_range_: 1
   health_: 20
   attack_damage_: 5
-  attack_range_: 7
-  detection_range_: 10
+  attack_range_: 20
+  detection_range_: 20
 --- !u!114 &9041656220963992286
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -313,7 +315,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bae089dd206ed24c944184f57c8ba80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  line_thicken_rate_: 0.1
+  line_thicken_rate_: 0.01
   next_line_thicken_time: 0
   line_thicken_increment_: 0.01
   line_contract_rate_: 0.1
@@ -352,4 +354,3 @@ MonoBehaviour:
   proj_prefab: {fileID: 5809754552401931580, guid: ddcc5a6f26834b04990f4d58b249a6bb,
     type: 3}
   time_delay_: 0
-  guns_out_: 0

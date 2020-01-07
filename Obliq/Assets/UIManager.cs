@@ -7,12 +7,18 @@ public class UIManager : MonoBehaviour
 {
     GameObject player;
     bool is_Paused_ = false;
-    List<GameObject> pauseObjects = new List<GameObject>();
+    
     public bool is_Quitting_ = false;
 
     // Start is called before the first frame update
     void Start()
     {
+        
+       
+    }
+    List<GameObject> getPauseObjects()
+    {
+        List<GameObject> pauseObjects = new List<GameObject>();
         GameObject parent = GameObject.Find("PauseCanvas");
         if (parent != null)
         {
@@ -21,12 +27,12 @@ public class UIManager : MonoBehaviour
                 pauseObjects.Add(parent.transform.GetChild(i).gameObject);
             }
         }
+        return pauseObjects;
     }
-
     // Update is called once per frame
     void Update()
     {
-
+        
     }
     void OnApplicationQuit()
     {
@@ -34,12 +40,12 @@ public class UIManager : MonoBehaviour
     }
     public void pauseFunction()
     {
+        List<GameObject> pause_obj = getPauseObjects();
         if (is_Paused_ == true)
-        {
-            
+        {           
             Time.timeScale = 1;
             is_Paused_ = false;
-            foreach (GameObject g in pauseObjects)
+            foreach (GameObject g in pause_obj)
             {
                 g.SetActive(false);
             }
@@ -48,7 +54,7 @@ public class UIManager : MonoBehaviour
         {
             Time.timeScale = 0;
             is_Paused_ = true;
-            foreach (GameObject g in pauseObjects)
+            foreach (GameObject g in pause_obj)
             {
                 g.SetActive(true);
             }

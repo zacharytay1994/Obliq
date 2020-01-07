@@ -209,8 +209,8 @@ public class SectopodAttackState : State
 
                     //object_hit.GetComponent<HealthComponent>().TakeDamage(owner.GetComponent<RaycastAttack>().damage_);
                     //Instantiate explosion bullet here
-                    owner.GetComponent<InitProjSpawner>().GetWeapon().GetComponent<ImAProjectile>().FireForSetTime(0.11f);
-                    owner.GetComponent<Sectopod>().SpawnExplosion();
+                    // owner.GetComponent<InitProjSpawner>().GetWeapon().GetComponent<ImAProjectile>().FireForSetTime(0.11f);
+                    owner.GetComponent<Sectopod>().FireBullet();
                     
                 }
 
