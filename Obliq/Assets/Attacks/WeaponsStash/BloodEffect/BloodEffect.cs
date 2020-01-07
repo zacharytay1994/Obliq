@@ -21,7 +21,7 @@ public class BloodEffect : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void DrawBlood(Vector2 direction)
