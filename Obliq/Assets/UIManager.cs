@@ -14,12 +14,13 @@ public class UIManager : MonoBehaviour
     void Start()
     {
         GameObject parent = GameObject.Find("PauseCanvas");
-      
-        for (int i = 0; i < parent.transform.childCount; i++)
+        if (parent != null)
         {
-            pauseObjects.Add(parent.transform.GetChild(i).gameObject);
+            for (int i = 0; i < parent.transform.childCount; i++)
+            {
+                pauseObjects.Add(parent.transform.GetChild(i).gameObject);
+            }
         }
-
     }
 
     // Update is called once per frame
