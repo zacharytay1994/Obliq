@@ -132,7 +132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e32016ff81133c34a8a41b955befd1ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  causes_screen_shake_: 0
-  screen_shake_base_duration_: 0
-  screen_shake_base_magnitude_: 0
+  causes_screen_shake_: 1
+  screen_shake_base_duration_: 1
+  screen_shake_base_magnitude_: 2
   damage_: 5
