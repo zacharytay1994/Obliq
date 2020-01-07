@@ -392,8 +392,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 103255039}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.5952144, y: -3.1740336, z: 83.887856}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 1.22, y: -4.32, z: 83.887856}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children:
   - {fileID: 1084276718}
   - {fileID: 1977726976}
@@ -1916,8 +1916,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -5.8, y: 52.3}
-  m_SizeDelta: {x: 771.4, y: 204.6}
+  m_AnchoredPosition: {x: -5.8, y: 29.3}
+  m_SizeDelta: {x: 771.4, y: 250.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1434075859
 MonoBehaviour:
@@ -1954,11 +1954,14 @@ MonoBehaviour:
     Stefan Koh
 
 
+    Lecturers: Oon Wee Chong, Lee Ching Yun
+
+
+    Ngee Ann Polytechnic
+
+
     Killing Time by Kevin MacLeod is licensed under a Creative Commons Attribution
-    licence (https://creativecommons.org/licenses/by/4.0/)
-
-
-    And the most important person, you!'
+    licence (https://creativecommons.org/licenses/by/4.0/)'
 --- !u!222 &1434075860
 CanvasRenderer:
   m_ObjectHideFlags: 0

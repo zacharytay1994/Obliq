@@ -22,7 +22,9 @@ GameObject:
   - component: {fileID: 2929811780515459429}
   - component: {fileID: -6655965732787809711}
   - component: {fileID: 8433824389621773196}
-  m_Layer: 20
+  - component: {fileID: 2530374232215806367}
+  - component: {fileID: -3870448841454263238}
+  m_Layer: 14
   m_Name: Charger 1
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -353,7 +355,7 @@ MonoBehaviour:
   damage_: 5
   enemy_mask_:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 65536
   causes_hit_pause_: 0
   causes_screen_shake_: 0
   screen_shake_base_duration_: 0
@@ -391,3 +393,39 @@ MonoBehaviour:
     type: 3}
   sucking_duration_: 0.2
   radius_: 5
+--- !u!114 &2530374232215806367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6214192152273230767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d77c2cebe75a294b8a518022f5327fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound_: Hit
+  layer_:
+    serializedVersion: 2
+    m_Bits: 524288
+  damaged_timer_: 0.1
+  sound_timer_: 0
+--- !u!114 &-3870448841454263238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6214192152273230767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d77c2cebe75a294b8a518022f5327fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound_: Smash
+  layer_:
+    serializedVersion: 2
+    m_Bits: 196608
+  damaged_timer_: 0
+  sound_timer_: 2

@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 9121467770912038756}
   - component: {fileID: -6263682970674648268}
   - component: {fileID: 4414589548416025732}
+  - component: {fileID: 1659046347875968001}
   m_Layer: 14
   m_Name: Charger
   m_TagString: Enemy
@@ -55,6 +56,8 @@ MonoBehaviour:
   target_reference_: {fileID: 0}
   lesser_charger_reference_: {fileID: 2798105615834141751, guid: 35f961e634c9c59499ddf05a9fa3d6b4,
     type: 3}
+  heading: {x: 0, y: 0}
+  find_path_: 0
 --- !u!114 &9121467770912038751
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -236,3 +239,18 @@ MonoBehaviour:
   intensity_: 20
   splatter_upper_lower: {x: 5, y: 15}
   angle_range_: 10
+--- !u!114 &1659046347875968001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9121467770912038757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d77c2cebe75a294b8a518022f5327fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound_: Hit
+  layer_: 19
+  damaged_timer_: 0.1
