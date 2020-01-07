@@ -19,6 +19,8 @@ public class Charger : MonoBehaviour
     Entity entity_reference_;
     HealthComponent health_;
     GameObject player;
+    public bool find_path_ = false;
+    ZacsFindPath zfp = null;
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +30,11 @@ public class Charger : MonoBehaviour
         entity_reference_.statemachine_.SetState(new ChargerIdleState());
         health_ = gameObject.GetComponent<HealthComponent>();
         player = GameObject.Find("Player");
+        zfp = gameObject.GetComponent<ZacsFindPath>();
+
+        Physics2D.IgnoreLayerCollision(20, 14, true);
+        Physics2D.IgnoreLayerCollision(20, 17, true);
+
     }
   
     void OnCollisionEnter2D(Collision2D collision)
@@ -35,11 +42,11 @@ public class Charger : MonoBehaviour
         if(collision.gameObject == player)
         {
             player.GetComponent<HealthComponent>().TakeDamage(1);
-            Physics2D.IgnoreLayerCollision(14, 16, true);
+            Physics2D.IgnoreLayerCollision(20, 16, true);
         }
         else
         {
-            Physics2D.IgnoreLayerCollision(14, 16, false);
+            Physics2D.IgnoreLayerCollision(20, 16, false);
         }
         //if(collision.gameObject.GetComponent<ImAProjectile>() != null){
         //    
@@ -52,6 +59,10 @@ public class Charger : MonoBehaviour
         //    entity_reference_.statemachine_.SetState(new ChargerIdleState());
 
         //}
+        //if (collision.gameObject != player)
+        //{
+        //    Physics2D.IgnoreCollision(gameObject.GetComponent<CircleCollider2D>(), collision.collider, true);
+        //}
     }    
     // Update is called once per frame
     void Update()
@@ -61,6 +72,17 @@ public class Charger : MonoBehaviour
             Destroy(gameObject);
         }
         
+        if (find_path_)
+        {
+            if (zfp != null)
+            {
+                zfp.SetMove(true);
+            }
+        }
+        else
+        {
+            zfp.SetMove(false);
+        }
     }
     public void SpawnLesserChargers()
     {

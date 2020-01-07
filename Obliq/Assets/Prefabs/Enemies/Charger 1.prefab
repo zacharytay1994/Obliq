@@ -20,6 +20,8 @@ GameObject:
   - component: {fileID: 1579370957986562126}
   - component: {fileID: 2929811780515459454}
   - component: {fileID: 2929811780515459429}
+  - component: {fileID: -6655965732787809711}
+  - component: {fileID: 8433824389621773196}
   m_Layer: 14
   m_Name: Charger 1
   m_TagString: Enemy
@@ -34,9 +36,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6214192152273230767}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.07, y: 5.9, z: 1}
-  m_LocalScale: {x: 0.45721596, y: 0.488796, z: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -58,6 +60,7 @@ MonoBehaviour:
   lesser_charger_reference_: {fileID: 2798105615834141751, guid: 35f961e634c9c59499ddf05a9fa3d6b4,
     type: 3}
   heading: {x: 0, y: 0}
+  find_path_: 0
 --- !u!114 &6214192152273230741
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -357,3 +360,34 @@ MonoBehaviour:
   screen_shake_base_magnitude_: 0
   crit_chance: 20
   crit_modifier: 0
+--- !u!114 &-6655965732787809711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6214192152273230767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a63df80069f1d3044b87fd0ed5157184, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slack_: 4
+  random_speed_: {x: 140, y: 200}
+  path_update_delay: {x: 1, y: 2}
+--- !u!114 &8433824389621773196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6214192152273230767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3fa6ebddd80df7488df4618d9d3cf0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particle_: {fileID: 334379398565654414, guid: 4088f03bf6cb1aa438285ea5eb386b3c,
+    type: 3}
+  sucking_duration_: 0.2
+  radius_: 5

@@ -207,7 +207,6 @@ public class SectopodAttackState : State
                         object_hit.GetComponent<BloodEffect>().DrawBlood(object_hit.transform.position - owner.transform.position);
                     }
                     
-                    
                     //object_hit.GetComponent<HealthComponent>().TakeDamage(owner.GetComponent<RaycastAttack>().damage_);
                     //Instantiate explosion bullet here
                     owner.GetComponent<Sectopod>().SpawnExplosion();
