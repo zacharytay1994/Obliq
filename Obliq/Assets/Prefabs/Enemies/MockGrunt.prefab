@@ -282,9 +282,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   power_up_list_:
-  - {fileID: 2813485663529415521, guid: df778adc9d9ac1c4c940d6555a2fa17a, type: 3}
-  - {fileID: 2813485663529415521, guid: df778adc9d9ac1c4c940d6555a2fa17a, type: 3}
-  - {fileID: 2813485663529415521, guid: df778adc9d9ac1c4c940d6555a2fa17a, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &444605166024747844
 MonoBehaviour:
   m_ObjectHideFlags: 0

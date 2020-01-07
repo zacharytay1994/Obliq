@@ -12,6 +12,7 @@ TagManager:
   - Objective
   - Enemy
   - Exit
+  - IceParticle
   layers:
   - Default
   - TransparentFX
@@ -33,7 +34,7 @@ TagManager:
   - Walls
   - WaterWalls
   - Bullets
-  - 
+  - Charger
   - 
   - 
   - 

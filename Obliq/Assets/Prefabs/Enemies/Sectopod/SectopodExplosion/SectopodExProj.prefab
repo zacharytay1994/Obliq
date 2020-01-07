@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eeb0363ec7ff550499b9f85ee039a8db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed_: 5
+  speed_: 70
   acceleration_: 20
   max_speed_: 100
   custom_speed_: 1
@@ -57,7 +57,7 @@ MonoBehaviour:
   decceleration_: 50
   acceleration_time_: 0.5
   decceleration_time_: 1
-  force_type_: 0
+  force_type_: 1
   persistent_: 0
   lifespan_: 3
   on_collide_mask_:
@@ -86,6 +86,8 @@ MonoBehaviour:
   mouse_offset_: {x: 0, y: 0}
   local_orientation_: 0
   follow_mouse_: 0
+  spawn_delay_: 0
+  start_spawning_: 0
   spin_: 0
   spin_rate_: 0
   time_trigger_: 0
@@ -129,6 +131,7 @@ MonoBehaviour:
     type: 3}
   colt_np_offset_: 0.5
   colt_np_speed_: 0
+  movement_heading_: {x: 0, y: 0}
 --- !u!50 &398347514270677557
 Rigidbody2D:
   serializedVersion: 4
@@ -354,6 +357,12 @@ MonoBehaviour:
   enemy_mask_:
     serializedVersion: 2
     m_Bits: 0
+  causes_hit_pause_: 0
+  causes_screen_shake_: 0
+  screen_shake_base_duration_: 0
+  screen_shake_base_magnitude_: 0
+  crit_chance: 0
+  crit_modifier: 0
 --- !u!114 &-323119862179744384
 MonoBehaviour:
   m_ObjectHideFlags: 0

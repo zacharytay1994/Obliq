@@ -83,6 +83,8 @@ MonoBehaviour:
   mouse_offset_: {x: 0, y: 0}
   local_orientation_: 0
   follow_mouse_: 0
+  spawn_delay_: 0
+  start_spawning_: 0
   spin_: 1
   spin_rate_: 50
   time_trigger_: 0
@@ -103,7 +105,7 @@ MonoBehaviour:
   cont_density_: 1
   cont_angle_: 0
   cont_sstyle_: 0
-  cont_stream_rate_: 1
+  cont_stream_rate_: 0.1
   cont_burst_rest_timer_: 0
   cont_burst_timer_: 0
   cont_prefab_: {fileID: 5226346963446909659, guid: d3065a5af77b78d449661094f823cae5,
@@ -125,6 +127,7 @@ MonoBehaviour:
   colt_prefab_: {fileID: 0}
   colt_np_offset_: 0
   colt_np_speed_: 0
+  movement_heading_: {x: 0, y: 0}
 --- !u!50 &5998481998734508820
 Rigidbody2D:
   serializedVersion: 4

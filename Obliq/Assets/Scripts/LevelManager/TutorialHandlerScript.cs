@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class TutorialHandlerScript : MonoBehaviour
 {
@@ -13,9 +12,14 @@ public class TutorialHandlerScript : MonoBehaviour
     float timer_ = 0.0f;
     bool activate_timer_ = false;
 
+    // Manager for scene transition to next scene
+    SceneTransitionLoader STM_;
+
     // Start is called before the first frame update
     void Start()
     {
+        STM_ = FindObjectOfType<SceneTransitionLoader>();
+
         training_grunt_ = GameObject.Find("TrainingGrunt");
 
         training_grunt_2_ = GameObject.Find("TrainingGrunt 2");
@@ -85,15 +89,20 @@ public class TutorialHandlerScript : MonoBehaviour
         }
         else if (training_grunt_2_ == null && training_grunt_3_ == null)
         {
-            player_.GetComponent<PlayerController>().SetAcceleration(30.0f);
             portal_.SetActive(true);
+        }
+
+        // When the training grunts touch, let the player move again
+        if (training_grunt_2_.GetComponent<CircleCollider2D>().IsTouching(training_grunt_3_.GetComponent<CircleCollider2D>()))
+        {
+            player_.GetComponent<PlayerController>().SetAcceleration(30.0f);
         }
 
         // Portal
         Vector2 dist_to_portal_ = player_.GetComponent<Transform>().position - portal_.GetComponent<Transform>().position;
-        if (dist_to_portal_.magnitude <= 3.0f)
+        if (dist_to_portal_.magnitude <= 3.0f && portal_.activeSelf == true)
         {
-            SceneManager.LoadScene("1-1");
+            STM_.load_scene_Asynch("1-1");
         }
     }
 }

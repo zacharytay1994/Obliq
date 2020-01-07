@@ -25,6 +25,10 @@ public class WeaponScript : MonoBehaviour
     [SerializeField]
     float recoil_interval_ = 0.0f;
     float recoil_interval_counter_ = 0.0f;
+    [SerializeField]
+    float fixed_rate_ = 1.0f;
+    float fixed_rate_counter_ = 0.0f;
+    bool rate_reset_ = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,9 +38,23 @@ public class WeaponScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // input trigger
-        if (Input.GetKeyDown(trigger_) || (Input.GetMouseButtonDown(0) && use_mouse_))
+        // incrememet rate reset
+        if (!rate_reset_)
         {
+            if (fixed_rate_counter_ < fixed_rate_)
+            {
+                fixed_rate_counter_ += Time.deltaTime;
+            }
+            else
+            {
+                fixed_rate_counter_ = 0.0f;
+                rate_reset_ = true;
+            }
+        }
+        // input trigger
+        if ((Input.GetKeyDown(trigger_) || (Input.GetMouseButtonDown(0) && use_mouse_)) && rate_reset_)
+        {
+            rate_reset_ = false;
             //is_down_ = true;
             weapon_instance_ = Instantiate(weapon_, transform.position, Quaternion.identity);
             weapon_instance_.GetComponent<ImAProjectile>().InitProj();

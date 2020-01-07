@@ -246,6 +246,12 @@ public class ImAProjectile : MonoBehaviour
     // Projectile Variables
     Vector2 center_point_ = new Vector2(0.0f, 0.0f);
     public Vector2 movement_heading_ = new Vector2(0.0f, 0.0f);
+
+    float pause_timer_ = 0.0f;
+    float pause_counter_ = 0.0f;
+
+    bool paused_ = false;
+    bool pausable_ = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -280,6 +286,11 @@ public class ImAProjectile : MonoBehaviour
             case ProjectileTarget.MouseFollow:
             case ProjectileTarget.MouseDirection:
                 movement_heading_ = ((Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition) - (Vector2)gameObject.transform.position).normalized;
+                if (movement_ == ProjectileMovement.Straight)
+                {
+                    original_direction_ = movement_heading_;
+                    rb.velocity += movement_heading_ * speed_;
+                }
                 break;
             case ProjectileTarget.SpecifyDirection:
                 movement_heading_ = specified_direction_;
@@ -311,7 +322,7 @@ public class ImAProjectile : MonoBehaviour
 
         if (force_type_ == ProjectileForceType.Impulse)
         {
-            Vector2 tempered_movement_heading = movement_heading_;
+            Vector2 tempered_movement_heading = movement_heading_.normalized;
             if (random_spread_)
             {
                 // get random angle
@@ -327,7 +338,11 @@ public class ImAProjectile : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (initialized_)
+        if (pausable_)
+        {
+            ProcessPauseTimer();
+        }
+        if (initialized_ && !paused_)
         {
             // update life
             if (!persistent_)
@@ -996,6 +1011,40 @@ public class ImAProjectile : MonoBehaviour
         if (on_collide_mask_ == (on_collide_mask_ | (1 << collision.gameObject.layer)))
         {
             to_be_destroyed_ = true;
+        }
+    }
+
+    public void SetPause(bool b)
+    {
+        paused_ = b;
+    }
+
+    public void SetPausable(bool b)
+    {
+        pausable_ = b;
+    }
+
+    public void FireForSetTime(float secs)
+    {
+        if (paused_)
+        {
+            paused_ = false;
+            pause_timer_ = secs;
+        }
+    }
+
+    void ProcessPauseTimer()
+    {
+        if (!paused_)
+        {
+            if (pause_timer_ > 0.0f)
+            {
+                pause_timer_ -= Time.deltaTime;
+            }
+            else
+            {
+                paused_ = true;
+            }
         }
     }
 }

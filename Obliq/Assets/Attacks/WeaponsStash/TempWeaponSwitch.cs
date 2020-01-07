@@ -60,6 +60,7 @@ public class TempWeaponSwitch : MonoBehaviour
     Vector3 w4_recoil_data_ = new Vector3(0.0f, 0.0f, 0.0f);
     public bool lock_state_4_ = false;
 
+    public bool weapon_auto_switch = false;
     // GUI WEAPONS
     SpriteRenderer weapon_1_sprite_;
     SpriteRenderer weapon_2_sprite_;
@@ -70,7 +71,7 @@ public class TempWeaponSwitch : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       // weapon_1_sprite_ = GameObject.Find("Weapon1").GetComponent<SpriteRenderer>();
+        weapon_1_sprite_ = GameObject.Find("Weapon1").GetComponent<SpriteRenderer>();
         weapon_2_sprite_ = GameObject.Find("Weapon2").GetComponent<SpriteRenderer>();
         weapon_3_sprite_ = GameObject.Find("Weapon3").GetComponent<SpriteRenderer>();
         weapon_4_sprite_ = GameObject.Find("Weapon4").GetComponent<SpriteRenderer>();
@@ -88,40 +89,44 @@ public class TempWeaponSwitch : MonoBehaviour
     void SwitchWeapon()
     {
         
-        if (Input.GetKeyDown(w1_switch_))
+        if (Input.GetKeyDown(w1_switch_) || weapon_auto_switch)
         {
             if (lock_state_1_)
             {
                 gameObject.GetComponent<WeaponScript>().SetWeapon(weapon_1, w1_has_recoil,
                     w1_continuous_recoil_, w1_recoil_data_.x, w1_recoil_data_.y, w1_recoil_data_.z);
                 ChangeSelectedGUI(0);
+                weapon_auto_switch = false;
             }
         }
-        else if (Input.GetKeyDown(w2_switch_))
+        else if (Input.GetKeyDown(w2_switch_) || weapon_auto_switch)
         {
             if (lock_state_2_)
             {
                 gameObject.GetComponent<WeaponScript>().SetWeapon(weapon_2, w2_has_recoil,
                     w2_continuous_recoil_, w2_recoil_data_.x, w2_recoil_data_.y, w2_recoil_data_.z);
                 ChangeSelectedGUI(1);
+                weapon_auto_switch = false;
             }
         }
-        else if (Input.GetKeyDown(w3_switch_))
+        else if (Input.GetKeyDown(w3_switch_) || weapon_auto_switch)
         {
             if (lock_state_3_)
             {
                 gameObject.GetComponent<WeaponScript>().SetWeapon(weapon_3, w3_has_recoil,
                     w3_continuous_recoil_, w3_recoil_data_.x, w3_recoil_data_.y, w3_recoil_data_.z);
                 ChangeSelectedGUI(2);
+                weapon_auto_switch = false;
             }
         }
-        else if (Input.GetKeyDown(w4_switch_))
+        else if (Input.GetKeyDown(w4_switch_) || weapon_auto_switch)
         {
             if (lock_state_4_)
             {
                 gameObject.GetComponent<WeaponScript>().SetWeapon(weapon_4, w4_has_recoil,
                     w4_continuous_recoil_, w4_recoil_data_.x, w4_recoil_data_.y, w4_recoil_data_.z);
                 ChangeSelectedGUI(4);
+                weapon_auto_switch = false;
             }
         }
     }
