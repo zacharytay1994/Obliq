@@ -7,7 +7,8 @@ public class SectHeadingScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        gameObject.GetComponent<ImAProjectile>().SetPause(true);
+        gameObject.GetComponent<ImAProjectile>().SetPausable(true);
     }
 
     // Update is called once per frame
@@ -26,11 +27,11 @@ public class SectHeadingScript : MonoBehaviour
 
             if (isHit.collider == null)
             {
-                gameObject.GetComponent<ImAProjectile>().SetPause(false);
+                //gameObject.GetComponent<ImAProjectile>().FireForSetTime(2.0f);
             }
             else
             {
-                gameObject.GetComponent<ImAProjectile>().SetPause(true);
+                //gameObject.GetComponent<ImAProjectile>().SetPause(true);
             }
         }
     }

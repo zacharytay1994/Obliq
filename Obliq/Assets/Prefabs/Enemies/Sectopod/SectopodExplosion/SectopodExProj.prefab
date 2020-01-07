@@ -63,7 +63,7 @@ MonoBehaviour:
   on_collide_mask_:
     serializedVersion: 2
     m_Bits: 217088
-  destroy_countdown_: 1
+  destroy_countdown_: 0.1
   movement_: 0
   local_speed_: 1
   random_spread_: 0

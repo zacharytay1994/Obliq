@@ -10,6 +10,8 @@ public class InitProjSpawner : MonoBehaviour
     [SerializeField]
     float time_delay_ = 0.0f;
 
+    GameObject weapon_instance_ = null;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,11 +19,17 @@ public class InitProjSpawner : MonoBehaviour
         temp.GetComponent<ImAProjectile>().spawn_delay_ = time_delay_;
         temp.GetComponent<ImAProjectile>().InitProj();
         temp.transform.SetParent(transform);
+        weapon_instance_ = temp;
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public GameObject GetWeapon()
+    {
+        return weapon_instance_;
     }
 }

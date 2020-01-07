@@ -101451,8 +101451,13 @@ PrefabInstance:
         type: 3}
       propertyPath: weapon_
       value: 
-      objectReference: {fileID: 5809754552401931580, guid: 5ca6cb2c226d3b24a8d5298e367f99c6,
+      objectReference: {fileID: 5809754552401931580, guid: 574acb1f117764f47a813a4e9f1533ca,
         type: 3}
+    - target: {fileID: 8388271945408527321, guid: e2c522e5ec41bb241ae54dc18962a9ef,
+        type: 3}
+      propertyPath: fixed_rate_
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4962826380198985163, guid: e2c522e5ec41bb241ae54dc18962a9ef,
         type: 3}
       propertyPath: invincibility_time_

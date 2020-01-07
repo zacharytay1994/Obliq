@@ -48,9 +48,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eeb0363ec7ff550499b9f85ee039a8db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed_: 100
-  acceleration_: 1
-  max_speed_: 100
+  speed_: 50
+  acceleration_: 0
+  max_speed_: 50
   custom_speed_: 0
   custom_speed_loop_: 0
   decceleration_: 5
@@ -103,10 +103,10 @@ MonoBehaviour:
   tt_np_speed_: 0
   continuous_trigger_: 1
   cont_style_: 1
-  cont_density_: 2
+  cont_density_: 3
   cont_angle_: 0
   cont_sstyle_: 0
-  cont_stream_rate_: 0.01
+  cont_stream_rate_: 0.0001
   cont_burst_rest_timer_: 0
   cont_burst_timer_: 0
   cont_prefab_: {fileID: 5705661621723253877, guid: b3fbdf1ed423c4445a310b8ac6ac9db1,
@@ -128,6 +128,7 @@ MonoBehaviour:
   colt_prefab_: {fileID: 0}
   colt_np_offset_: 0
   colt_np_speed_: 0
+  movement_heading_: {x: 0, y: 0}
 --- !u!50 &398347514270677557
 Rigidbody2D:
   serializedVersion: 4
@@ -330,3 +331,5 @@ MonoBehaviour:
   causes_screen_shake_: 0
   screen_shake_base_duration_: 0
   screen_shake_base_magnitude_: 0
+  crit_chance: 0
+  crit_modifier: 0
