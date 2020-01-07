@@ -100588,7 +100588,7 @@ GameObject:
   m_Component:
   - component: {fileID: 938923564}
   m_Layer: 14
-  m_Name: Enemies
+  m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -100608,6 +100608,7 @@ Transform:
   - {fileID: 407944462}
   - {fileID: 454840854}
   - {fileID: 236080590}
+  - {fileID: 1384945597}
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -101024,7 +101025,7 @@ PrefabInstance:
         type: 3}
       propertyPath: weapon_
       value: 
-      objectReference: {fileID: 5809754552401931580, guid: 574acb1f117764f47a813a4e9f1533ca,
+      objectReference: {fileID: 5809754552401931580, guid: 845deb91a47091a458c93705a6c9a153,
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e2c522e5ec41bb241ae54dc18962a9ef, type: 3}
@@ -101156,6 +101157,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9041656220963992284, guid: 87310967b1792e142b19378687475514,
+        type: 3}
+      propertyPath: explosion_
+      value: 
+      objectReference: {fileID: 4968129811424112630, guid: 77d74132f7da4f44a8b7551adb0cff4d,
+        type: 3}
     - target: {fileID: 9041656220963992287, guid: 87310967b1792e142b19378687475514,
         type: 3}
       propertyPath: detection_range_
@@ -101166,14 +101173,14 @@ PrefabInstance:
       propertyPath: attack_range_
       value: 20
       objectReference: {fileID: 0}
-    - target: {fileID: 9041656220963992284, guid: 87310967b1792e142b19378687475514,
-        type: 3}
-      propertyPath: explosion_
-      value: 
-      objectReference: {fileID: 4968129811424112630, guid: 77d74132f7da4f44a8b7551adb0cff4d,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 87310967b1792e142b19378687475514, type: 3}
+--- !u!4 &1384945597 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9041656221654664760, guid: 87310967b1792e142b19378687475514,
+    type: 3}
+  m_PrefabInstance: {fileID: 1384945596}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1409724957
 GameObject:
   m_ObjectHideFlags: 0
