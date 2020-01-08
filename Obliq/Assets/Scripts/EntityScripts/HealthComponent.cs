@@ -28,8 +28,10 @@ public class HealthComponent : MonoBehaviour
     {
         if (taken_damage_)
         {
-            Color original_color_ = sr.color;
-
+            if (transform.GetChild(0) != null)
+            {
+                Color original_color_ = sr.color;
+            }
             if (counter < damage_flash_duration_)
             {
                 counter += Time.deltaTime;

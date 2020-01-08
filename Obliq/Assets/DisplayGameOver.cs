@@ -15,6 +15,7 @@ public class DisplayGameOver : MonoBehaviour
     {
         //text_ = GetComponent<TextMeshProUGUI>();
         text_.enabled = false;
+        hp_ = GameObject.Find("Player").GetComponent<HealthComponent>();
     }
 
     // Update is called once per frame
