@@ -106,9 +106,9 @@ MonoBehaviour:
   cont_density_: 5
   cont_angle_: 20
   cont_sstyle_: 1
-  cont_stream_rate_: 0.5
+  cont_stream_rate_: 0.1
   cont_burst_rest_timer_: 300
-  cont_burst_timer_: 1
+  cont_burst_timer_: 0.2
   cont_prefab_: {fileID: 5226346963446909659, guid: 40d98460851fef34ba9bcff075fb5ab9,
     type: 3}
   cont_np_offset_: 0

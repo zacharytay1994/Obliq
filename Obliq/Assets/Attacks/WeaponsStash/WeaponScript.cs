@@ -38,46 +38,49 @@ public class WeaponScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // incrememet rate reset
-        if (!rate_reset_)
+        if (weapon_ != null)
         {
-            if (fixed_rate_counter_ < fixed_rate_)
+            // incrememet rate reset
+            if (!rate_reset_)
             {
-                fixed_rate_counter_ += Time.deltaTime;
+                if (fixed_rate_counter_ < fixed_rate_)
+                {
+                    fixed_rate_counter_ += Time.deltaTime;
+                }
+                else
+                {
+                    fixed_rate_counter_ = 0.0f;
+                    rate_reset_ = true;
+                }
             }
-            else
+            // input trigger
+            if ((Input.GetKeyDown(trigger_) || (Input.GetMouseButtonDown(0) && use_mouse_)) && rate_reset_)
             {
-                fixed_rate_counter_ = 0.0f;
-                rate_reset_ = true;
+                rate_reset_ = false;
+                //is_down_ = true;
+                weapon_instance_ = Instantiate(weapon_, transform.position, Quaternion.identity);
+                weapon_instance_.GetComponent<ImAProjectile>().InitProj();
+                // turn on recoil
+                recoil_start_ = true;
             }
-        }
-        // input trigger
-        if ((Input.GetKeyDown(trigger_) || (Input.GetMouseButtonDown(0) && use_mouse_)) && rate_reset_)
-        {
-            rate_reset_ = false;
-            //is_down_ = true;
-            weapon_instance_ = Instantiate(weapon_, transform.position, Quaternion.identity);
-            weapon_instance_.GetComponent<ImAProjectile>().InitProj();
-            // turn on recoil
-            recoil_start_ = true;
-        }
-        if (Input.GetKeyUp(trigger_) || (Input.GetMouseButtonUp(0) && use_mouse_))
-        {
-            //is_down_ = false;
-            Destroy(weapon_instance_);
-            // turn off recoil
-            recoil_start_ = false;
-            ResetRecoil();
-        }
-        // make weapon follow player
-        if (weapon_instance_ != null)
-        {
-            weapon_instance_.transform.position = gameObject.transform.position;
-        }
-        // update recoil
-        if (has_recoil_)
-        {
-            Recoil();
+            if (Input.GetKeyUp(trigger_) || (Input.GetMouseButtonUp(0) && use_mouse_))
+            {
+                //is_down_ = false;
+                Destroy(weapon_instance_);
+                // turn off recoil
+                recoil_start_ = false;
+                ResetRecoil();
+            }
+            // make weapon follow player
+            if (weapon_instance_ != null)
+            {
+                weapon_instance_.transform.position = gameObject.transform.position;
+            }
+            // update recoil
+            if (has_recoil_)
+            {
+                Recoil();
+            }
         }
     }
 
