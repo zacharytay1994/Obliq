@@ -1422,7 +1422,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb0db2418a947dc42847edaf1161b04f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnParticle: {fileID: 3271322974552329805, guid: fbc34d4bfa23f7940b935a5634a3fec8,
+  spawnParticle: {fileID: 5588859061336279653, guid: 29814d2e185dac44fa370131ef426092,
     type: 3}
   anim: {fileID: 1275181644}
   buttonAnim: {fileID: 1665837990}
@@ -1718,7 +1718,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb0db2418a947dc42847edaf1161b04f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnParticle: {fileID: 3271322974552329805, guid: fbc34d4bfa23f7940b935a5634a3fec8,
+  spawnParticle: {fileID: 5588859061336279653, guid: 29814d2e185dac44fa370131ef426092,
     type: 3}
   anim: {fileID: 961473224}
   buttonAnim: {fileID: 1665837990}
@@ -1800,7 +1800,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb0db2418a947dc42847edaf1161b04f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnParticle: {fileID: 3271322974552329805, guid: fbc34d4bfa23f7940b935a5634a3fec8,
+  spawnParticle: {fileID: 5588859061336279653, guid: 29814d2e185dac44fa370131ef426092,
     type: 3}
   anim: {fileID: 729945878}
   buttonAnim: {fileID: 1665837990}
