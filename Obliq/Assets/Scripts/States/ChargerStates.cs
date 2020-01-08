@@ -9,12 +9,14 @@ public class ChargerStates
 
 public class ChargerMoveState : State
 {
+
     Vector2 closest_good_guy_position;
     Vector2 compare_vec;
    
     float charge_timer;
     public override void Enter(GameObject owner)
     {
+
         charge_timer = Time.time;
         owner.GetComponent<Charger>().target_reference_ = GameObject.Find("World").GetComponent<WorldHandler>().GetRandomGoodGuy();
         // if target was not found 
@@ -28,7 +30,7 @@ public class ChargerMoveState : State
         closest_good_guy_position =
             (Vector2)owner.GetComponent<Charger>().target_reference_.transform.position + (to_add * 1.5f); // temp magic number (how far behind target)
         // move charger to position
-        owner.GetComponent<Rigidbody2D>().AddForce(to_add * 20000); //* 40);
+        owner.GetComponent<Rigidbody2D>().AddForce(to_add * 80000); //* 40);
        /* owner.GetComponent<LineRenderer>().SetPosition(0, (Vector2)owner.transform.position);
        
         owner.GetComponent<LineRenderer>().SetPosition(1, closest_good_guy_position);*/
@@ -46,6 +48,7 @@ public class ChargerMoveState : State
         float angle = AngleBetween(owner.transform.position, closest_good_guy_position);       
         owner.transform.rotation = Quaternion.Lerp(owner.transform.rotation, Quaternion.Euler(0.0f, 0.0f, angle), Mathf.PingPong(Time.time,
             1 * Time.deltaTime));
+        
         // if overshoot the target
         
         //owner.GetComponent<LineRenderer>().SetPosition(0, (Vector2)owner.transform.position);
@@ -90,9 +93,14 @@ public class ChargerAttackState : State
 
 public class ChargerIdleState : State
 {
+    AudioManager am;
+    CameraManager cm;
     float charge_start = Time.time;
     public override void Enter(GameObject owner)
     {
+        am = Object.FindObjectOfType<AudioManager>();
+        cm = Object.FindObjectOfType<CameraManager>();
+
     }
     public override void Execute(GameObject owner)
     {
@@ -160,9 +168,14 @@ public class ChargerIdleState : State
 
 
     }
-    public override void Exit(GameObject owner) { }
+    public override void Exit(GameObject owner)
+    {
+        am.PlaySound("Charge");
+        cm.Shake(0.5f, 15);
+    }
     float AngleBetween(Vector2 a, Vector2 b)
     {
+;
         return Mathf.Atan2(a.y - b.y, a.x - b.x) * Mathf.Rad2Deg + 90;
     }
 }

@@ -41,7 +41,7 @@ public class Charger : MonoBehaviour
     {
         if(collision.gameObject == player)
         {
-            player.GetComponent<HealthComponent>().TakeDamage(1);
+            player.GetComponent<HealthComponent>().TakeDamage(gameObject.GetComponent<DamageEnemy>().damage_);
             Physics2D.IgnoreLayerCollision(20, 16, true);
         }
         else

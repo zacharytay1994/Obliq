@@ -131,6 +131,7 @@ MonoBehaviour:
   colt_prefab_: {fileID: 0}
   colt_np_offset_: 0
   colt_np_speed_: 0
+  movement_heading_: {x: 0, y: 0}
 --- !u!50 &398347514270677557
 Rigidbody2D:
   serializedVersion: 4
@@ -357,12 +358,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 16384
   causes_hit_pause_: 0
-  causes_screen_shake_: 0
-  screen_shake_base_duration_: 1
-  screen_shake_base_magnitude_: 25
+  causes_screen_shake_: 1
+  screen_shake_base_duration_: 2
+  screen_shake_base_magnitude_: 10
   crit_chance: 0
   crit_modifier: 0
-  knock_back_: 0
 --- !u!114 &-323119862179744384
 MonoBehaviour:
   m_ObjectHideFlags: 0
