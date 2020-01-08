@@ -45,7 +45,7 @@ public class PlaySoundOnCollide : MonoBehaviour
         {
             if(s_timer_ <=0)
             {
-                am_.PlaySound(sound_);
+                //am_.PlaySound(sound_);
                 s_timer_ = sound_timer_;
             }
             

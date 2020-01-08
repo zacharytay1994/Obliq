@@ -18,7 +18,7 @@ public class StartOfScene : MonoBehaviour
 
         if (end_prev_scene_sounds_)
         {
-            am_.StopAllSound();
+            //am_.StopAllSound();
         }
         if(choose_one_loop_)
         {

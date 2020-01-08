@@ -71,10 +71,10 @@ public class TempWeaponSwitch : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        weapon_1_sprite_ = GameObject.Find("Weapon1").GetComponent<SpriteRenderer>();
-        weapon_2_sprite_ = GameObject.Find("Weapon2").GetComponent<SpriteRenderer>();
-        weapon_3_sprite_ = GameObject.Find("Weapon3").GetComponent<SpriteRenderer>();
-        weapon_4_sprite_ = GameObject.Find("Weapon4").GetComponent<SpriteRenderer>();
+        //weapon_1_sprite_ = GameObject.Find("Weapon1").GetComponent<SpriteRenderer>();
+        //weapon_2_sprite_ = GameObject.Find("Weapon2").GetComponent<SpriteRenderer>();
+        //weapon_3_sprite_ = GameObject.Find("Weapon3").GetComponent<SpriteRenderer>();
+        //weapon_4_sprite_ = GameObject.Find("Weapon4").GetComponent<SpriteRenderer>();
 
         GetGunStates();
         ChangeSelectedGUI(0);

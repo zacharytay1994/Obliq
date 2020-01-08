@@ -21,6 +21,7 @@ public class DisplayGameOver : MonoBehaviour
         //text_ = GetComponent<TextMeshProUGUI>();
         text_.enabled = false;
         to_menu_button_.SetActive(false);
+        hp_ = GameObject.Find("Player").GetComponent<HealthComponent>();
     }
 
     // Update is called once per frame

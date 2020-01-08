@@ -49,7 +49,10 @@ public class DamageEnemy : MonoBehaviour
             {
                 if (causes_screen_shake_)
                 {
-                    camera_manager_.Shake(hit_pause_.base_duration_ * damage_ * screen_shake_base_duration_, damage_ * screen_shake_base_magnitude_);
+                    if (camera_manager_ != null)
+                    {
+                        camera_manager_.Shake(hit_pause_.base_duration_ * damage_ * screen_shake_base_duration_, damage_ * screen_shake_base_magnitude_);
+                    }
                 }
                 if (causes_hit_pause_)
                 {
