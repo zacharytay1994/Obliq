@@ -40,9 +40,13 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] GameObject dash_particle_ = null;
 
+    AudioManager am_;
+    [SerializeField] string dash_sound_;
+
     // Start is called before the first frame update
     void Start()
     {
+        am_ = FindObjectOfType<AudioManager>();
         rb2d_ = GetComponent<Rigidbody2D>();
         camera_ = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         if (ball_follow_ != null)
@@ -123,6 +127,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) && Time.time >= next_dash_time)
         {
+            am_.PlaySound(dash_sound_);
             //rb2d_.AddForce(heading_ * (dash_strength * dash_duration_));
             rb2d_.velocity = (Vector3)((heading_) * dash_strength) * dash_duration_;
             next_dash_time = Time.time + dash_cooldown_;

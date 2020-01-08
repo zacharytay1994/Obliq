@@ -48,6 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weapon_no_: 1
   pickup_radius_: 1
+  pickup_sound_: Pickup
 --- !u!212 &7839916546353964628
 SpriteRenderer:
   m_ObjectHideFlags: 0
