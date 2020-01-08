@@ -20,7 +20,7 @@ public class ZacsFindPath : MonoBehaviour
     Vector2 path_update_delay = new Vector2(1.0f, 2.0f); // temporary fix
     float path_update__delay_counter_ = 0.0f;
     float og_delay = 0.0f;
-    bool move_ = true;
+    bool move_ = false;
     // Start is called before the first frame update
     void Start()
     {

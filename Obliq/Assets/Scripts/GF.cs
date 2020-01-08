@@ -28,9 +28,4 @@ public class GF
     {
         return new Vector2((vector.x * Mathf.Cos(angle) + vector.y * -Mathf.Sin(angle)), (vector.x * Mathf.Sin(angle) + vector.y * Mathf.Cos(angle)));
     }
-
-    public static float AngleBetween(Vector2 a, Vector2 b)
-    {
-        return Mathf.Atan2(a.y - b.y, a.x - b.x) * Mathf.Rad2Deg + 90;
-    }
 }

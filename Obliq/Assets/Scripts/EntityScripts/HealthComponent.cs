@@ -20,8 +20,8 @@ public class HealthComponent : MonoBehaviour
     void Awake()
     {
         currentHp_ = maxHp_;
-        sr_ = GetComponent<SpriteRenderer>();       
-        sr_halo_ = transform.GetChild(0).GetComponent<SpriteRenderer>();       
+        sr_ = GetComponent<SpriteRenderer>();
+        sr_halo_ = transform.GetChild(1).GetComponent<SpriteRenderer>();
         
     }
     void Update()
