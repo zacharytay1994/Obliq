@@ -21,6 +21,7 @@ public class HealthComponent : MonoBehaviour
     {
         currentHp_ = maxHp_;
         sr_ = GetComponent<SpriteRenderer>();
+        sr_halo_ = transform.GetChild(1).GetComponent<SpriteRenderer>();
         
     }
     void Update()
