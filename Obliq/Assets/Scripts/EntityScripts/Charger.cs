@@ -32,7 +32,7 @@ public class Charger : MonoBehaviour
         player = GameObject.Find("Player");
         zfp = gameObject.GetComponent<ZacsFindPath>();
 
-        //Physics2D.IgnoreLayerCollision(20, 14, true);
+        Physics2D.IgnoreLayerCollision(20, 14, true);
         Physics2D.IgnoreLayerCollision(20, 17, true);
 
     }

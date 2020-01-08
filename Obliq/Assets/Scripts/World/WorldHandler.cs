@@ -45,10 +45,7 @@ public class WorldHandler : MonoBehaviour
                 if (gameobject != null)
                 {
                     Debug.Log(gameobject);
-                    if (gameObject.GetComponent<Entity>() != null)
-                    {
-                        gameobject.GetComponent<Entity>().statemachine_.Update();
-                    }
+                    gameobject.GetComponent<Entity>().statemachine_.Update();
 
                 }
 

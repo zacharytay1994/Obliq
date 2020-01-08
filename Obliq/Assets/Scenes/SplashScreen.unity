@@ -241,7 +241,7 @@ MonoBehaviour:
     SoundType: 0
   - name: Pickup
     clip: {fileID: 8300000, guid: 7423443b00598d448905d8795ca5152c, type: 3}
-    volume: 1
+    volume: 2
     pitch: 1
     source: {fileID: 0}
     SoundType: 0
@@ -251,10 +251,10 @@ MonoBehaviour:
     pitch: 1
     source: {fileID: 0}
     SoundType: 0
-  - name: Portal
+  - name: Dash
     clip: {fileID: 8300000, guid: 8014440b719f728429531ce9c1b6e2c6, type: 3}
-    volume: 1
-    pitch: 1
+    volume: 1.5
+    pitch: 1.5
     source: {fileID: 0}
     SoundType: 0
   - name: Charge
@@ -269,10 +269,10 @@ MonoBehaviour:
     pitch: 1
     source: {fileID: 0}
     SoundType: 0
-  - name: 
-    clip: {fileID: 0}
-    volume: 0
-    pitch: 0
+  - name: Portal
+    clip: {fileID: 8300000, guid: 466ca6e9a43894c41b771f59b1db1bcb, type: 3}
+    volume: 1
+    pitch: 1
     source: {fileID: 0}
     SoundType: 0
   - name: 
