@@ -9,7 +9,7 @@ public class BloodParticle : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Destroy(gameObject, life_span_);
+        Destroy(gameObject, Random.Range(2.0f, life_span_));
     }
 
     // Update is called once per frame
