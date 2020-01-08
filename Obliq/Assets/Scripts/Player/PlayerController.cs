@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
 
     AudioManager am_;
     [SerializeField] string dash_sound_;
-
+   
     // Start is called before the first frame update
     void Start()
     {
@@ -125,10 +125,13 @@ public class PlayerController : MonoBehaviour
 
     void PlayerMovement()
     {
+       
         if (Input.GetKeyDown(KeyCode.Space) && Time.time >= next_dash_time)
         {
             am_.PlaySound(dash_sound_);
             //rb2d_.AddForce(heading_ * (dash_strength * dash_duration_));
+            GameObject temp2 = GameObject.Find("Dashbar");
+            temp2.GetComponent<DashFill>().dashbar();
             rb2d_.velocity = (Vector3)((heading_) * dash_strength) * dash_duration_;
             next_dash_time = Time.time + dash_cooldown_;
             invincibility_start_time_ = Time.time;

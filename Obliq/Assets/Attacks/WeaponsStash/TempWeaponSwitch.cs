@@ -69,7 +69,7 @@ public class TempWeaponSwitch : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         weapon_1_sprite_ = GameObject.Find("Weapon1").GetComponent<SpriteRenderer>();
         weapon_2_sprite_ = GameObject.Find("Weapon2").GetComponent<SpriteRenderer>();
@@ -89,7 +89,7 @@ public class TempWeaponSwitch : MonoBehaviour
     void SwitchWeapon()
     {
         
-        if (Input.GetKeyDown(w1_switch_) || weapon_auto_switch)
+        if (Input.GetKeyDown(KeyCode.Alpha1) || weapon_auto_switch)
         {
             if (lock_state_1_)
             {
@@ -99,7 +99,7 @@ public class TempWeaponSwitch : MonoBehaviour
                 weapon_auto_switch = false;
             }
         }
-        else if (Input.GetKeyDown(w2_switch_) || weapon_auto_switch)
+        else if (Input.GetKeyDown(KeyCode.Alpha2) || weapon_auto_switch)
         {
             if (lock_state_2_)
             {
@@ -109,7 +109,7 @@ public class TempWeaponSwitch : MonoBehaviour
                 weapon_auto_switch = false;
             }
         }
-        else if (Input.GetKeyDown(w3_switch_) || weapon_auto_switch)
+        else if (Input.GetKeyDown(KeyCode.Alpha3) || weapon_auto_switch)
         {
             if (lock_state_3_)
             {
@@ -119,7 +119,7 @@ public class TempWeaponSwitch : MonoBehaviour
                 weapon_auto_switch = false;
             }
         }
-        else if (Input.GetKeyDown(w4_switch_) || weapon_auto_switch)
+        else if (Input.GetKeyDown(KeyCode.Alpha4) || weapon_auto_switch)
         {
             if (lock_state_4_)
             {
@@ -152,6 +152,9 @@ public class TempWeaponSwitch : MonoBehaviour
 
     void ChangeSelectedGUI(int i)
     {
+        //Vector3 trmp = gameObject.transform.localScale;
+        //trmp.x *= 2;
+        //gameObject.transform.localScale = trmp;
         // set everything to 10% transparency
         Color c = new Color(1.0f, 1.0f, 1.0f, 0.3f);
         Color c_0 = new Color(1.0f, 1.0f, 1.0f, 0.0f);

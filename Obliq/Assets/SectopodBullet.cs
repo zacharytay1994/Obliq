@@ -10,11 +10,13 @@ public class SectopodBullet : MonoBehaviour
     GameObject ring_;
     [SerializeField]
     int amount_ = 5;
+    AudioManager am_;
     // Start is called before the first frame update
     void Start()
     {
         // spins bullet
         GetComponent<Rigidbody2D>().angularVelocity = 1000.0f;
+        am_ = FindObjectOfType<AudioManager>();
     }
 
     // Update is called once per frame
@@ -28,6 +30,7 @@ public class SectopodBullet : MonoBehaviour
             //SpawnExplosion(collision.gameObject.transform.position);
             if (explosion_ != null)
             {
+                am_.PlaySound("Explosion");
                 for (int i = 0; i < amount_; i++)
                 {
                     GameObject temp = Instantiate(explosion_);

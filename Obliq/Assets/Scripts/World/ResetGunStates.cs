@@ -5,7 +5,7 @@ using UnityEngine;
 public class ResetGunStates : MonoBehaviour
 {
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         string w = "0000";
         TextIO.WriteFile(w, "Assets/TextFiles/GunStates.txt");
