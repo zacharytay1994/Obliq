@@ -21,17 +21,20 @@ public class HealthComponent : MonoBehaviour
     {
         currentHp_ = maxHp_;
         sr_ = GetComponent<SpriteRenderer>();
-        sr_halo_ = transform.GetChild(1).GetComponent<SpriteRenderer>();
+        if (transform.GetChild(0) != null)
+        {
+            sr_halo_ = transform.GetChild(0).GetComponent<SpriteRenderer>();
+        }
+        sr = GetComponent<SpriteRenderer>();
         
     }
     void Update()
     {
         if (taken_damage_)
         {
-            if (transform.GetChild(0) != null)
-            {
-                Color original_color_ = sr.color;
-            }
+           
+           Color original_color_ = sr.color;
+            
             if (counter < damage_flash_duration_)
             {
                 counter += Time.deltaTime;
