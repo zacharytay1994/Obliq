@@ -384,7 +384,7 @@ MonoBehaviour:
   weapon_: {fileID: 0}
   use_mouse_: 1
   trigger_: 0
-  has_recoil_: 1
+  has_recoil_: 0
   continuous_recoil_: 0
   recoil_: 5
   recoil_amount_: 4
