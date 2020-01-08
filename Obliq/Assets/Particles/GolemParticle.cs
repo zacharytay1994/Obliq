@@ -29,33 +29,36 @@ public class GolemParticle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // move towards parent position
-        Vector2 distance_between_ = (Vector2)parent_.position - (Vector2)transform.position;
-        if (distance_between_.magnitude > threshold_)
+        if (parent_ != null)
         {
-            transform.position += (Vector3)(distance_between_.normalized * speed_ * Time.deltaTime);
-        }
-        else
-        {
-            GameObject.Destroy(gameObject);
-        }
+            // move towards parent position
+            Vector2 distance_between_ = (Vector2)parent_.position - (Vector2)transform.position;
+            if (distance_between_.magnitude > threshold_)
+            {
+                transform.position += (Vector3)(distance_between_.normalized * speed_ * Time.deltaTime);
+            }
+            else
+            {
+                GameObject.Destroy(gameObject);
+            }
 
-        // update life
-        if (life_span_ > 0.0f)
-        {
-            life_span_ -= Time.deltaTime;
-        }
-        else
-        {
-            GameObject.Destroy(gameObject);
-        }
+            // update life
+            if (life_span_ > 0.0f)
+            {
+                life_span_ -= Time.deltaTime;
+            }
+            else
+            {
+                GameObject.Destroy(gameObject);
+            }
 
-        // increment alpha
-        if (sr_.color.a < 1.0f)
-        {
-            Color temp = sr_.color;
-            temp.a += alpha_speed_ * Time.deltaTime;
-            sr_.color = temp;
+            // increment alpha
+            if (sr_.color.a < 1.0f)
+            {
+                Color temp = sr_.color;
+                temp.a += alpha_speed_ * Time.deltaTime;
+                sr_.color = temp;
+            }
         }
     }
 

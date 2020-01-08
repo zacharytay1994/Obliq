@@ -65,7 +65,7 @@ MonoBehaviour:
   lifespan_: 3
   on_collide_mask_:
     serializedVersion: 2
-    m_Bits: 147456
+    m_Bits: 1196032
   destroy_countdown_: 0
   movement_: 0
   local_speed_: 1
@@ -357,7 +357,7 @@ MonoBehaviour:
   damage_: 1
   enemy_mask_:
     serializedVersion: 2
-    m_Bits: 16384
+    m_Bits: 1064960
   causes_hit_pause_: 0
   causes_screen_shake_: 1
   screen_shake_base_duration_: 2
