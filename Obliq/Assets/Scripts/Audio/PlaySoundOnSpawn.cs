@@ -12,7 +12,7 @@ public class PlaySoundOnSpawn : MonoBehaviour
     {
         pitch_ = Random.Range(0.9f, 1.1f);
         am_ = FindObjectOfType<AudioManager>();
-        //am_.PlaySound(sound_,1,pitch_);
+        am_.PlaySound(sound_,1,pitch_);
     }
 
     // Update is called once per frame
