@@ -6,22 +6,39 @@ public class SectopodBullet : MonoBehaviour
 {
     [SerializeField]
     public GameObject explosion_;
+    [SerializeField]
+    GameObject ring_;
+    [SerializeField]
+    int amount_ = 5;
     // Start is called before the first frame update
     void Start()
     {
-        
+        // spins bullet
+        GetComponent<Rigidbody2D>().angularVelocity = 1000.0f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject != GameObject.Find("WallTilemap"))
+        if (true)
         {
-            SpawnExplosion(collision.gameObject.transform.position);
+            //SpawnExplosion(collision.gameObject.transform.position);
+            if (explosion_ != null)
+            {
+                for (int i = 0; i < amount_; i++)
+                {
+                    GameObject temp = Instantiate(explosion_);
+                    temp.transform.position = transform.position;
+                }
+            }
+            if (ring_ != null)
+            {
+                GameObject temp = Instantiate(ring_);
+                temp.transform.position = transform.position;
+            }
             Destroy(gameObject);
         }
         else
