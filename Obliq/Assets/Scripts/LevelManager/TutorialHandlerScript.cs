@@ -81,6 +81,12 @@ public class TutorialHandlerScript : MonoBehaviour
             int training_grunt_2_current_hp_ = training_grunt_2_health_component_.getCurrentHp();
             int training_grunt_3_current_hp_ = training_grunt_3_health_component_.getCurrentHp();
 
+            // When player damages either training grunts, unfreeze player
+            if (training_grunt_2_current_hp_ < training_grunt_2_max_hp_ || training_grunt_3_current_hp_ < training_grunt_3_max_hp_)
+            {
+                player_.GetComponent<PlayerController>().SetAcceleration(30.0f);
+            }
+
             Vector2 training_grunt_2_dist_ = training_grunt_2_.GetComponent<Transform>().position - player_.GetComponent<Transform>().position;
             Vector2 training_grunt_3_dist_ = training_grunt_3_.GetComponent<Transform>().position - player_.GetComponent<Transform>().position;
 
@@ -95,12 +101,6 @@ public class TutorialHandlerScript : MonoBehaviour
             if (training_grunt_3_dist_.magnitude < 5.0f)
             {
                 training_grunt_3_.GetComponent<Rigidbody2D>().velocity -= training_grunt_3_.GetComponent<Rigidbody2D>().velocity * 0.9f;
-            }
-
-            // When player damages either training grunts, unfreeze player
-            if (training_grunt_2_current_hp_ < training_grunt_2_max_hp_ || training_grunt_3_current_hp_ < training_grunt_3_max_hp_)
-            {
-                player_.GetComponent<PlayerController>().SetAcceleration(30.0f);
             }
         }
         else if (training_grunt_2_ == null && training_grunt_3_ == null)
