@@ -192,8 +192,6 @@ MonoBehaviour:
   m_BeforeTransparentBundles: []
   m_BeforeStackBundles: []
   m_AfterStackBundles: []
-<<<<<<< HEAD
-=======
 --- !u!1 &192890052 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8388271945408527297, guid: e2c522e5ec41bb241ae54dc18962a9ef,
@@ -332,7 +330,6 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
->>>>>>> cf45aa5b6da074575f392c57a2827c81463aa912
 --- !u!1 &403895196
 GameObject:
   m_ObjectHideFlags: 0
@@ -37306,8 +37303,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
-<<<<<<< HEAD
-=======
 --- !u!1 &630803064
 GameObject:
   m_ObjectHideFlags: 0
@@ -37403,7 +37398,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
->>>>>>> cf45aa5b6da074575f392c57a2827c81463aa912
 --- !u!1 &727468380
 GameObject:
   m_ObjectHideFlags: 0
@@ -37520,7 +37514,6 @@ PrefabInstance:
       propertyPath: speed_
       value: 0
       objectReference: {fileID: 0}
-<<<<<<< HEAD
     - target: {fileID: -1695331286466119510, guid: fd62292d39bed884fb5fe6cfd580481b,
         type: 3}
       propertyPath: m_Enabled
@@ -37535,12 +37528,10 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 0
-=======
     - target: {fileID: 7157902452978562834, guid: fd62292d39bed884fb5fe6cfd580481b,
         type: 3}
       propertyPath: enemy_mask_.m_Bits
       value: 73728
->>>>>>> cf45aa5b6da074575f392c57a2827c81463aa912
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd62292d39bed884fb5fe6cfd580481b, type: 3}
@@ -38210,8 +38201,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1705133459}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD
-=======
 --- !u!1 &1715492410
 GameObject:
   m_ObjectHideFlags: 0
@@ -38306,7 +38295,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
->>>>>>> cf45aa5b6da074575f392c57a2827c81463aa912
 --- !u!1 &1724193147 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2798105615834141751, guid: fd62292d39bed884fb5fe6cfd580481b,
@@ -39474,11 +39462,7 @@ PrefabInstance:
     - target: {fileID: 7839916546353964630, guid: 9b0e26d4e252aca4fa4d2678f41b4d12,
         type: 3}
       propertyPath: m_RootOrder
-<<<<<<< HEAD
-      value: 11
-=======
       value: 12
->>>>>>> cf45aa5b6da074575f392c57a2827c81463aa912
       objectReference: {fileID: 0}
     - target: {fileID: 7839916546353964630, guid: 9b0e26d4e252aca4fa4d2678f41b4d12,
         type: 3}
