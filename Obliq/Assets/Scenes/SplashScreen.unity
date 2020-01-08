@@ -164,7 +164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8628027d1ac75441afbe322a44849a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  musicVolume: 1
+  musicVolume: 0.7
   sfxVolume: 1
   sounds:
   - name: Wahh
@@ -247,14 +247,14 @@ MonoBehaviour:
     SoundType: 0
   - name: Hit
     clip: {fileID: 8300000, guid: 466ca6e9a43894c41b771f59b1db1bcb, type: 3}
-    volume: 1
+    volume: 0.7
     pitch: 1
     source: {fileID: 0}
     SoundType: 0
   - name: Dash
-    clip: {fileID: 8300000, guid: 8014440b719f728429531ce9c1b6e2c6, type: 3}
-    volume: 1.5
-    pitch: 1.5
+    clip: {fileID: 8300000, guid: de94bdb74351f354fbe9e79c3d960216, type: 3}
+    volume: 2
+    pitch: 0.5
     source: {fileID: 0}
     SoundType: 0
   - name: Charge

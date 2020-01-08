@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: -323119862179744384}
   - component: {fileID: -3210017494606095120}
   - component: {fileID: 2317082515281500502}
+  - component: {fileID: -5033200605650922655}
   m_Layer: 19
   m_Name: MachinegunProjectile
   m_TagString: Untagged
@@ -407,3 +408,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sound_: Rocket_Launch
+--- !u!114 &-5033200605650922655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5226346963446909659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d77c2cebe75a294b8a518022f5327fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound_: Hit
+  layer_:
+    serializedVersion: 2
+    m_Bits: 675840
+  damaged_timer_: 0
+  sound_timer_: 0
