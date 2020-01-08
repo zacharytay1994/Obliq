@@ -12,6 +12,7 @@ public class Sectopod : MonoBehaviour
     GameObject sectopod_bullet_;
     [SerializeField]
     float bullet_speed_;
+    GameObject player_ = null;
     
     // Start is called before the first frame update
     void Start()
@@ -19,6 +20,7 @@ public class Sectopod : MonoBehaviour
         entity_reference_ = gameObject.GetComponent<Entity>();
         entity_reference_.statemachine_.SetState(new SectopodIdleState());
         //GetComponent<ImAProjectile>().InitProj();
+        player_ = GameObject.Find("Player");
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
@@ -32,7 +34,9 @@ public class Sectopod : MonoBehaviour
         // Update is called once per frame
     void Update()
     {
-        
+        float angle = GF.AngleBetween(transform.position, player_.transform.position);
+        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0.0f, 0.0f, angle), Mathf.PingPong(Time.time,
+            6 * Time.deltaTime));
     }
     public void FireBullet()
     {

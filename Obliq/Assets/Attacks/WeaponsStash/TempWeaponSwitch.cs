@@ -71,9 +71,9 @@ public class TempWeaponSwitch : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //weapon_1_sprite_ = GameObject.Find("Weapon1").GetComponent<SpriteRenderer>();
-        //weapon_2_sprite_ = GameObject.Find("Weapon2").GetComponent<SpriteRenderer>();
-        //weapon_3_sprite_ = GameObject.Find("Weapon3").GetComponent<SpriteRenderer>();
+        weapon_1_sprite_ = GameObject.Find("Weapon1").GetComponent<SpriteRenderer>();
+        weapon_2_sprite_ = GameObject.Find("Weapon2").GetComponent<SpriteRenderer>();
+        weapon_3_sprite_ = GameObject.Find("Weapon3").GetComponent<SpriteRenderer>();
         //weapon_4_sprite_ = GameObject.Find("Weapon4").GetComponent<SpriteRenderer>();
 
         GetGunStates();
@@ -125,7 +125,7 @@ public class TempWeaponSwitch : MonoBehaviour
             {
                 gameObject.GetComponent<WeaponScript>().SetWeapon(weapon_4, w4_has_recoil,
                     w4_continuous_recoil_, w4_recoil_data_.x, w4_recoil_data_.y, w4_recoil_data_.z);
-                ChangeSelectedGUI(4);
+                ChangeSelectedGUI(3);
                 weapon_auto_switch = false;
             }
         }
@@ -140,13 +140,14 @@ public class TempWeaponSwitch : MonoBehaviour
         lock_state_4_ = r[3] == '1' ? true : false;
     }
 
-    void SaveGunStates()
+    public void SaveGunStates()
     {
         string w = "";
         w += lock_state_1_ ? '1' : '0';
         w += lock_state_2_ ? '1' : '0';
         w += lock_state_3_ ? '1' : '0';
         w += lock_state_4_ ? '1' : '0';
+        TextIO.WriteFile(w, "Assets/TextFiles/GunStates.txt");
     }
 
     void ChangeSelectedGUI(int i)
@@ -154,26 +155,62 @@ public class TempWeaponSwitch : MonoBehaviour
         // set everything to 10% transparency
         Color c = new Color(1.0f, 1.0f, 1.0f, 0.3f);
         Color c_0 = new Color(1.0f, 1.0f, 1.0f, 0.0f);
-      //  weapon_1_sprite_.color = lock_state_1_ ? c : c_0;
+        weapon_1_sprite_.color = lock_state_1_ ? c : c_0;
         weapon_2_sprite_.color = lock_state_2_ ? c : c_0;
         weapon_3_sprite_.color = lock_state_3_ ? c : c_0;
-        weapon_4_sprite_.color = lock_state_4_ ? c : c_0;
+        //weapon_4_sprite_.color = lock_state_4_ ? c : c_0;
 
         c.a = 1.0f;
         // set selected to full alpha
         switch (i)
         {
             case 0:
-                weapon_1_sprite_.color = c;
+                if (lock_state_1_)
+                {
+                    weapon_1_sprite_.color = c;
+                }
                 break;
             case 1:
-                weapon_2_sprite_.color = c;
+                if (lock_state_2_)
+                {
+                    weapon_2_sprite_.color = c;
+                }
                 break;
             case 2:
-                weapon_3_sprite_.color = c;
+                if (lock_state_3_)
+                {
+                    weapon_3_sprite_.color = c;
+                }
                 break;
             case 3:
-                weapon_4_sprite_.color = c;
+                //weapon_4_sprite_.color = c;
+                break;
+        }
+    }
+
+    public void UpdateWeapon(int n)
+    {
+        switch(n)
+        {
+            case 1:
+                gameObject.GetComponent<WeaponScript>().SetWeapon(weapon_1, w1_has_recoil,
+                    w1_continuous_recoil_, w1_recoil_data_.x, w1_recoil_data_.y, w1_recoil_data_.z);
+                ChangeSelectedGUI(0);
+                break;
+            case 2:
+                gameObject.GetComponent<WeaponScript>().SetWeapon(weapon_2, w2_has_recoil,
+                    w2_continuous_recoil_, w2_recoil_data_.x, w2_recoil_data_.y, w2_recoil_data_.z);
+                ChangeSelectedGUI(1);
+                break;
+            case 3:
+                gameObject.GetComponent<WeaponScript>().SetWeapon(weapon_3, w3_has_recoil,
+                    w3_continuous_recoil_, w3_recoil_data_.x, w3_recoil_data_.y, w3_recoil_data_.z);
+                ChangeSelectedGUI(2);
+                break;
+            case 4:
+                //gameObject.GetComponent<WeaponScript>().SetWeapon(weapon_4, w4_has_recoil,
+                //    w4_continuous_recoil_, w4_recoil_data_.x, w4_recoil_data_.y, w4_recoil_data_.z);
+                //ChangeSelectedGUI(3);
                 break;
         }
     }
