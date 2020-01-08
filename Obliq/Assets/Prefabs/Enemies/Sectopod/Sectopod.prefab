@@ -37,7 +37,7 @@ Transform:
   m_GameObject: {fileID: 9041656220963992277}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -10.8, y: -7.2, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -57,7 +57,7 @@ MonoBehaviour:
   target_reference_: {fileID: 0}
   sectopod_bullet_: {fileID: 4512505190216500458, guid: 08bd5e4d12fbf48498a07428ae0bfee5,
     type: 3}
-  bullet_speed_: 10
+  bullet_speed_: 30
 --- !u!114 &9041656220963992287
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,8 +181,8 @@ SpriteRenderer:
   m_SortingLayerID: -1840328445
   m_SortingLayer: 5
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 4a0b52b0057db9e4780ad58b63fd1891, type: 3}
-  m_Color: {r: 1, g: 0.49056602, b: 0.97584385, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 8a5532c08f6d70145aca71fdae052462, type: 3}
+  m_Color: {r: 0, g: 0.8392157, b: 0.74872303, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -372,3 +372,4 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 524288
   damaged_timer_: 0.1
+  sound_timer_: 0
