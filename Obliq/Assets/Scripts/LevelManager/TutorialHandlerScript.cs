@@ -109,18 +109,6 @@ public class TutorialHandlerScript : MonoBehaviour
             portal_.SetActive(true);
         }
 
-<<<<<<< HEAD
-        if (training_grunt_2_ != null && training_grunt_3_ != null)
-        {
-            // When the training grunts touch, let the player move again
-            if (training_grunt_2_.GetComponent<CircleCollider2D>().IsTouching(training_grunt_3_.GetComponent<CircleCollider2D>()))
-            {
-                player_.GetComponent<PlayerController>().SetAcceleration(30.0f);
-            }
-        }
-
-=======
->>>>>>> cf45aa5b6da074575f392c57a2827c81463aa912
         // Portal
         Vector2 dist_to_portal_ = (Vector2)player_.transform.position - (Vector2)portal_.transform.position;
         Debug.Log(dist_to_portal_.magnitude);

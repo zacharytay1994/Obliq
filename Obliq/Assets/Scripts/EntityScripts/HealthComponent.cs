@@ -20,18 +20,11 @@ public class HealthComponent : MonoBehaviour
     void Awake()
     {
         currentHp_ = maxHp_;
-<<<<<<< HEAD
-        sr = GetComponent<SpriteRenderer>();
-=======
         sr_ = GetComponent<SpriteRenderer>();
-        sr_halo_ = transform.GetChild(1).GetComponent<SpriteRenderer>();
         
->>>>>>> cf45aa5b6da074575f392c57a2827c81463aa912
     }
-
-    private void Update()
+    void Update()
     {
-<<<<<<< HEAD
         if (taken_damage_)
         {
             Color original_color_ = sr.color;
@@ -47,7 +40,6 @@ public class HealthComponent : MonoBehaviour
                 taken_damage_ = false;
             }
         }
-=======
         is_invincible_ = isInvincible();
         bool prev_is_invincible = is_invincible_;
         if(is_invincible_)
@@ -63,7 +55,6 @@ public class HealthComponent : MonoBehaviour
 
         prev_is_invincible = is_invincible_;
         
->>>>>>> cf45aa5b6da074575f392c57a2827c81463aa912
     }
   
     public void TakeDamage(int damage)
