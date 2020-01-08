@@ -33,7 +33,7 @@ public class Explosion : MonoBehaviour
         hit_pause_ = FindObjectOfType<HitPause>();
         camera_manager_ = FindObjectOfType<CameraManager>();
         damage_popup = GameObject.Find("World").GetComponent<DamagePopup>();
-        Destroy(gameObject, 5.0f);
+        Destroy(gameObject, 1.5f);
 
         og_size_ = random_size_;
         random_size_ = Random.Range(1.0f, random_size_ - 2.0f);

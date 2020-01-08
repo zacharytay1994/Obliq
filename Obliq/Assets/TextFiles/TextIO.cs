@@ -7,7 +7,7 @@ public class TextIO
 {
     public static void WriteFile(string s, string path)
     {
-        StreamWriter writer = new StreamWriter(path, true);
+        StreamWriter writer = File.CreateText(path);
         writer.WriteLine(s);
         writer.Close();
     }
