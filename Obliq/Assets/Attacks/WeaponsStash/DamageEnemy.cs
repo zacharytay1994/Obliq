@@ -103,6 +103,7 @@ public class DamageEnemy : MonoBehaviour
                     GetComponent<BombKnockback>().ForcePush();
                 }
             }
+        }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
