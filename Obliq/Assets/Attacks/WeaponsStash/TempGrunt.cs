@@ -15,6 +15,9 @@ public class TempGrunt : MonoBehaviour
     SpawningScript spawner_;
     PointManager point_manager_;
 
+    [SerializeField]
+    ParticleSystem ps;
+
     public Vector2 heading_vector_ = new Vector2(0.0f, 0.0f);
     // Start is called before the first frame update
     void Start()
@@ -48,7 +51,8 @@ public class TempGrunt : MonoBehaviour
             {
                 spawner_.GruntDied();
             }
-           // point_manager_.AddKillPoints(100, 1);
+            // point_manager_.AddKillPoints(100, 1);
+            Instantiate(ps, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
     }

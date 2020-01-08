@@ -143,6 +143,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   in_range_: 15
   speed_: 160
+  ps: {fileID: 5655388222687966017, guid: 398338016bcb01449b46559a9442687a, type: 3}
   heading_vector_: {x: 0, y: 0}
 --- !u!114 &-4854751461574285594
 MonoBehaviour:
@@ -190,8 +191,8 @@ MonoBehaviour:
   maxHp_: 4
   currentHp_: 0
   invincibility_time_: 0
-  sr: {fileID: 2798105615834141745}
   damage_flash_duration_: 0.1
+  ps: {fileID: 0}
 --- !u!114 &7157902452978562834
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -288,3 +289,4 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 524288
   damaged_timer_: 0.1
+  sound_timer_: 0
