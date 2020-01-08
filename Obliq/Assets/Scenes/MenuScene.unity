@@ -1429,6 +1429,7 @@ MonoBehaviour:
   pauseSecondsBeforeLoad: 1.5
   sceneToLoad: CreditScene
   OptionButton: 0
+  LoadSceneAsynch: 1
 --- !u!61 &1553913468
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1725,6 +1726,7 @@ MonoBehaviour:
   pauseSecondsBeforeLoad: 1.5
   sceneToLoad: 1-0
   OptionButton: 0
+  LoadSceneAsynch: 1
 --- !u!61 &1851987949
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1807,6 +1809,7 @@ MonoBehaviour:
   pauseSecondsBeforeLoad: 1.5
   sceneToLoad: Exit
   OptionButton: 0
+  LoadSceneAsynch: 0
 --- !u!61 &1912166630
 BoxCollider2D:
   m_ObjectHideFlags: 0

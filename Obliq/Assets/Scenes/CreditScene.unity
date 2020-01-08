@@ -2026,6 +2026,7 @@ MonoBehaviour:
   pauseSecondsBeforeLoad: 1.5
   sceneToLoad: MenuScene
   OptionButton: 0
+  LoadSceneAsynch: 1
 --- !u!61 &1553913468
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -24,6 +24,9 @@ public class ButtonPress : MonoBehaviour
     [Space(10)]
     [SerializeField] bool OptionButton;
 
+    [Space(10)]
+    [SerializeField] bool LoadSceneAsynch;
+
 
     // Start is called before the first frame update
     void Start()
@@ -88,7 +91,14 @@ public class ButtonPress : MonoBehaviour
             {
                 if (pauseSecondsBeforeLoad <= 0)
                 {
-                    STM_.load_scene_Asynch(sceneToLoad);
+                    if(LoadSceneAsynch)
+                    {
+                        STM_.load_scene_Asynch(sceneToLoad);
+                    }
+                    else
+                    {
+                        STM_.load_scene(sceneToLoad);
+                    }
                 }
                 else
                 {
