@@ -15,6 +15,17 @@ public class Explosion : MonoBehaviour
     HitPause hit_pause_;
     DamagePopup damage_popup;
     CameraManager camera_manager_;
+
+    [SerializeField]
+    float random_size_ = 5.0f;
+    [SerializeField]
+    float speed_ = 50.0f;
+    Vector2 random_direction_ = Vector2.zero;
+    SpriteRenderer sr_ = null;
+    [SerializeField]
+    float fade_speed_ = 1.0f;
+    float og_size_ = 0.0f;
+    float fade_acceleration = 0.0f;
     
     // Start is called before the first frame update
     void Start()
@@ -22,12 +33,28 @@ public class Explosion : MonoBehaviour
         hit_pause_ = FindObjectOfType<HitPause>();
         camera_manager_ = FindObjectOfType<CameraManager>();
         damage_popup = GameObject.Find("World").GetComponent<DamagePopup>();
+        Destroy(gameObject, 1.5f);
+
+        og_size_ = random_size_;
+        random_size_ = Random.Range(1.0f, random_size_ - 2.0f);
+        gameObject.transform.localScale = new Vector3(random_size_, random_size_, 1.0f);
+        speed_ = (og_size_ - random_size_) * speed_;
+        random_direction_ = GF.RotateVector(new Vector2(0.0f, 1.0f), Random.Range(0.0f, 360.0f));
+        sr_ = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        Destroy(gameObject, 1.5f);
+        transform.position += (Vector3)(random_direction_ * speed_ * Time.deltaTime);
+        // make fade over time
+        Color fade = sr_.color;
+        if (fade.a > 0.0f)
+        {
+            fade_acceleration += ((og_size_ - random_size_) / og_size_) * fade_speed_ * Time.deltaTime;
+            fade.a -= fade_acceleration;
+            sr_.color = fade;
+        }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
