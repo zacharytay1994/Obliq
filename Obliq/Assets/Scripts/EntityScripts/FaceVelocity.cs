@@ -5,6 +5,7 @@ using UnityEngine;
 public class FaceVelocity : MonoBehaviour
 {
     Rigidbody2D rb;
+    bool active_ = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,7 +17,10 @@ public class FaceVelocity : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        RotateImageToVelocity();
+        if (active_)
+        {
+            RotateImageToVelocity();
+        }
     }
 
     void RotateImageToVelocity()
@@ -29,5 +33,10 @@ public class FaceVelocity : MonoBehaviour
     float AngleBetween(Vector2 a, Vector2 b)
     {
         return Mathf.Atan2(a.y - b.y, a.x - b.x) * Mathf.Rad2Deg + 90;
+    }
+
+    public void SetActive(bool b)
+    {
+        active_ = b;
     }
 }
