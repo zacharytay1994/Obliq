@@ -39628,51 +39628,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 7065022726016586311, guid: 30de44655fb90e8418fc0eb58beeaeba,
-        type: 3}
-      propertyPath: text_
-      value: Destroy All Enemies
-      objectReference: {fileID: 0}
-    - target: {fileID: 7065022726016586329, guid: 30de44655fb90e8418fc0eb58beeaeba,
-        type: 3}
-      propertyPath: m_text
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 7065022726016586329, guid: 30de44655fb90e8418fc0eb58beeaeba,
-        type: 3}
-      propertyPath: m_textInfo.characterCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7065022726016586329, guid: 30de44655fb90e8418fc0eb58beeaeba,
-        type: 3}
-      propertyPath: m_textInfo.wordCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7065022726016586329, guid: 30de44655fb90e8418fc0eb58beeaeba,
-        type: 3}
-      propertyPath: m_textInfo.spaceCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7065022726016586329, guid: 30de44655fb90e8418fc0eb58beeaeba,
-        type: 3}
-      propertyPath: m_fontSize
-      value: 60
-      objectReference: {fileID: 0}
-    - target: {fileID: 7065022726016586329, guid: 30de44655fb90e8418fc0eb58beeaeba,
-        type: 3}
-      propertyPath: m_textInfo.lineCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7065022726016586329, guid: 30de44655fb90e8418fc0eb58beeaeba,
-        type: 3}
-      propertyPath: m_textInfo.pageCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7065022726016586328, guid: 30de44655fb90e8418fc0eb58beeaeba,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 2710746636912595028, guid: 30de44655fb90e8418fc0eb58beeaeba,
         type: 3}
       propertyPath: m_Name
@@ -39788,6 +39743,51 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7065022726016586311, guid: 30de44655fb90e8418fc0eb58beeaeba,
+        type: 3}
+      propertyPath: text_
+      value: Destroy All Enemies
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065022726016586329, guid: 30de44655fb90e8418fc0eb58beeaeba,
+        type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065022726016586329, guid: 30de44655fb90e8418fc0eb58beeaeba,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065022726016586329, guid: 30de44655fb90e8418fc0eb58beeaeba,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065022726016586329, guid: 30de44655fb90e8418fc0eb58beeaeba,
+        type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065022726016586329, guid: 30de44655fb90e8418fc0eb58beeaeba,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065022726016586329, guid: 30de44655fb90e8418fc0eb58beeaeba,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065022726016586329, guid: 30de44655fb90e8418fc0eb58beeaeba,
+        type: 3}
+      propertyPath: m_textInfo.pageCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065022726016586328, guid: 30de44655fb90e8418fc0eb58beeaeba,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 2710746636912595031, guid: 30de44655fb90e8418fc0eb58beeaeba,
         type: 3}
       propertyPath: m_Camera
@@ -39807,11 +39807,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8157183913901451169, guid: 30de44655fb90e8418fc0eb58beeaeba,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7581482159293874888, guid: 30de44655fb90e8418fc0eb58beeaeba,
         type: 3}
@@ -39841,7 +39836,7 @@ PrefabInstance:
     - target: {fileID: 8239219786968882253, guid: 30de44655fb90e8418fc0eb58beeaeba,
         type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 3491053290712943926, guid: 30de44655fb90e8418fc0eb58beeaeba,
         type: 3}
@@ -40268,6 +40263,31 @@ PrefabInstance:
       propertyPath: y_offset_
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: -5931340751887898288, guid: cd678b94e0c94b44896a3a9d5ad48fe6,
+        type: 3}
+      propertyPath: tracking_
+      value: 
+      objectReference: {fileID: 1163035722}
+    - target: {fileID: -5931340751887898288, guid: cd678b94e0c94b44896a3a9d5ad48fe6,
+        type: 3}
+      propertyPath: hover_scale_
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: -5931340751887898288, guid: cd678b94e0c94b44896a3a9d5ad48fe6,
+        type: 3}
+      propertyPath: hover_speed_
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -5931340751887898288, guid: cd678b94e0c94b44896a3a9d5ad48fe6,
+        type: 3}
+      propertyPath: text_
+      value: Machine Gun
+      objectReference: {fileID: 0}
+    - target: {fileID: -5931340751887898288, guid: cd678b94e0c94b44896a3a9d5ad48fe6,
+        type: 3}
+      propertyPath: y_offset_
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2869628859967718735, guid: cd678b94e0c94b44896a3a9d5ad48fe6,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -40387,31 +40407,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_textInfo.characterCount
       value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: -5931340751887898288, guid: cd678b94e0c94b44896a3a9d5ad48fe6,
-        type: 3}
-      propertyPath: tracking_
-      value: 
-      objectReference: {fileID: 1163035722}
-    - target: {fileID: -5931340751887898288, guid: cd678b94e0c94b44896a3a9d5ad48fe6,
-        type: 3}
-      propertyPath: hover_scale_
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: -5931340751887898288, guid: cd678b94e0c94b44896a3a9d5ad48fe6,
-        type: 3}
-      propertyPath: hover_speed_
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: -5931340751887898288, guid: cd678b94e0c94b44896a3a9d5ad48fe6,
-        type: 3}
-      propertyPath: text_
-      value: Machine Gun
-      objectReference: {fileID: 0}
-    - target: {fileID: -5931340751887898288, guid: cd678b94e0c94b44896a3a9d5ad48fe6,
-        type: 3}
-      propertyPath: y_offset_
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd678b94e0c94b44896a3a9d5ad48fe6, type: 3}
