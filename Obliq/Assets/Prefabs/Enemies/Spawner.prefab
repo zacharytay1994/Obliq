@@ -13,7 +13,9 @@ GameObject:
   - component: {fileID: 160067512024784293}
   - component: {fileID: 2923235162218229481}
   - component: {fileID: 4194189329045554462}
-  m_Layer: 12
+  - component: {fileID: 7528438476978259933}
+  - component: {fileID: 4863398212447123227}
+  m_Layer: 14
   m_Name: Spawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -133,3 +135,35 @@ MonoBehaviour:
     m_Bits: 524288
   damaged_timer_: 0
   sound_timer_: 0
+--- !u!58 &7528438476978259933
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7862674349831162025}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.1
+--- !u!114 &4863398212447123227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7862674349831162025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b654a9ed45867894d8f8378d03d054a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHp_: 5
+  currentHp_: 0
+  invincibility_time_: 0
+  damage_flash_duration_: 0
