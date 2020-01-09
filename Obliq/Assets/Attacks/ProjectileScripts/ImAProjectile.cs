@@ -354,6 +354,10 @@ public class ImAProjectile : MonoBehaviour
                 else
                 {
                     Destroy(gameObject);
+                    if (GetComponent<SparkCollide>() != null)
+                    {
+                        GetComponent<SparkCollide>().Spark(Vector2.zero);
+                    }
                 }
             }
             if (to_be_destroyed_)
@@ -365,6 +369,10 @@ public class ImAProjectile : MonoBehaviour
                 else
                 {
                     Destroy(gameObject);
+                    if (GetComponent<SparkCollide>() != null)
+                    {
+                        GetComponent<SparkCollide>().Spark(Vector2.zero);
+                    }
                 }
             }
             // update speed - not to be confused with linear drag, this is speed of the 'system'

@@ -27,6 +27,7 @@ public class Explosion : MonoBehaviour
     float og_size_ = 0.0f;
     float fade_acceleration = 0.0f;
     
+    
     // Start is called before the first frame update
     void Start()
     {

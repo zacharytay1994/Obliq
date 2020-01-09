@@ -103,10 +103,10 @@ MonoBehaviour:
   tt_np_speed_: 0
   continuous_trigger_: 1
   cont_style_: 1
-  cont_density_: 3
+  cont_density_: 5
   cont_angle_: 20
   cont_sstyle_: 1
-  cont_stream_rate_: 1
+  cont_stream_rate_: 0.5
   cont_burst_rest_timer_: 300
   cont_burst_timer_: 1
   cont_prefab_: {fileID: 5226346963446909659, guid: 40d98460851fef34ba9bcff075fb5ab9,
@@ -128,6 +128,7 @@ MonoBehaviour:
   colt_prefab_: {fileID: 0}
   colt_np_offset_: 0
   colt_np_speed_: 0
+  movement_heading_: {x: 0, y: 0}
 --- !u!50 &5998481998734508820
 Rigidbody2D:
   serializedVersion: 4

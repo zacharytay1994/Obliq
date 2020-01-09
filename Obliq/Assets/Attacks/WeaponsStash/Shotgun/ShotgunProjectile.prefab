@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eeb0363ec7ff550499b9f85ee039a8db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed_: 300
+  speed_: 100
   acceleration_: 1
   max_speed_: 10
   custom_speed_: 0
@@ -61,7 +61,7 @@ MonoBehaviour:
   lifespan_: 0.3
   on_collide_mask_:
     serializedVersion: 2
-    m_Bits: 151552
+    m_Bits: 1200128
   destroy_countdown_: 0
   movement_: 0
   local_speed_: 1
@@ -204,7 +204,7 @@ SpriteRenderer:
   m_SortingLayerID: -1352270105
   m_SortingLayer: 7
   m_SortingOrder: 0
-  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: 3e43b7c6a4ddb7343a290794fa8f8fe2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -353,7 +353,7 @@ MonoBehaviour:
   damage_: 1
   enemy_mask_:
     serializedVersion: 2
-    m_Bits: 16384
+    m_Bits: 1064960
   causes_hit_pause_: 1
   causes_screen_shake_: 1
   screen_shake_base_duration_: 2

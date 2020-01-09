@@ -19,7 +19,7 @@ public class ObliqFlock : MonoBehaviour
     [SerializeField]
     float cohesion_strength_ = 0.0f;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         flock_handler_ = GameObject.Find("FlockHandler").GetComponent<FlockingHandler>();
         if (flock_handler_ != null)

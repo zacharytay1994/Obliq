@@ -29,8 +29,9 @@ public class SparkCollide : MonoBehaviour
         }
     }
 
-    public void Spark(Vector2 direction)
+    public void Spark(Vector2 direction2)
     {
+        Vector2 direction = -non_zero_vel_;
         for (int i = 0; i < intensity_; i++)
         {
             // get random angle
@@ -44,8 +45,12 @@ public class SparkCollide : MonoBehaviour
         }
     }
 
-    private void OnDestroy()
-    {
-        Spark(-non_zero_vel_);
-    }
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    Spark(-non_zero_vel_);
+    //}
+    //private void OnDestroy()
+    //{
+
+    //}
 }

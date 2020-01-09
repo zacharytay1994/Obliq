@@ -15,6 +15,7 @@ TagManager:
   - IceParticle
   - ShowOnPause
   - Wall
+  - LevelManager
   layers:
   - Default
   - TransparentFX
