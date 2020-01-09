@@ -270,8 +270,8 @@ MonoBehaviour:
     source: {fileID: 0}
     SoundType: 0
   - name: Portal
-    clip: {fileID: 8300000, guid: 466ca6e9a43894c41b771f59b1db1bcb, type: 3}
-    volume: 1
+    clip: {fileID: 8300000, guid: f0b3eaf9ecb539645bcbf995252e5d8a, type: 3}
+    volume: 2
     pitch: 1
     source: {fileID: 0}
     SoundType: 0

@@ -40,7 +40,9 @@ public class Portal : MonoBehaviour
 
     public void SetActivatePortal(bool set_portal_active_)
     {
-        activate_portal_ = set_portal_active_;
+        Debug.Log("Portal Sound");
         am_.PlaySound(portal_sound_);
+        activate_portal_ = set_portal_active_;
+        
     }
 }
