@@ -45,4 +45,15 @@ public class ToopTipControl : MonoBehaviour
             GameObject.Destroy(gameObject);
         }
     }
+
+    public void Init(GameObject g, string s, float yoffset, float hoverspeed_, float hoverscale, Color c)
+    {
+        tracking_ = g;
+        text_ = s;
+        GetComponent<TMPro.TextMeshPro>().text = text_;
+        y_offset_ = yoffset;
+        hover_speed_ = hoverspeed_;
+        hover_scale_ = hoverscale;
+        GetComponent<TMPro.TextMeshPro>().color = c;
+    }
 }
