@@ -38044,6 +38044,23 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 7839916545776806957}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1163035723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1163035722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e297c8bc97a8ca4484855447405cad7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text_: Machine Gun
+  hover_speed_: 2
+  y_offset_: 2
+  hover_scale: 0.2
+  color_: {r: 1, g: 0.7192065, b: 0, a: 1}
 --- !u!1001 &1163629049
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -38758,6 +38775,23 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 921801657}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1752012217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1752012216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e297c8bc97a8ca4484855447405cad7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text_: Grunt
+  hover_speed_: 2
+  y_offset_: 2
+  hover_scale: 0.2
+  color_: {r: 0.007977366, g: 1, b: 0, a: 1}
 --- !u!114 &1752012230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39807,7 +39841,7 @@ PrefabInstance:
     - target: {fileID: 8239219786968882253, guid: 30de44655fb90e8418fc0eb58beeaeba,
         type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3491053290712943926, guid: 30de44655fb90e8418fc0eb58beeaeba,
         type: 3}
@@ -40353,6 +40387,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_textInfo.characterCount
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: -5931340751887898288, guid: cd678b94e0c94b44896a3a9d5ad48fe6,
+        type: 3}
+      propertyPath: tracking_
+      value: 
+      objectReference: {fileID: 1163035722}
+    - target: {fileID: -5931340751887898288, guid: cd678b94e0c94b44896a3a9d5ad48fe6,
+        type: 3}
+      propertyPath: hover_scale_
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: -5931340751887898288, guid: cd678b94e0c94b44896a3a9d5ad48fe6,
+        type: 3}
+      propertyPath: hover_speed_
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -5931340751887898288, guid: cd678b94e0c94b44896a3a9d5ad48fe6,
+        type: 3}
+      propertyPath: text_
+      value: Machine Gun
+      objectReference: {fileID: 0}
+    - target: {fileID: -5931340751887898288, guid: cd678b94e0c94b44896a3a9d5ad48fe6,
+        type: 3}
+      propertyPath: y_offset_
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd678b94e0c94b44896a3a9d5ad48fe6, type: 3}
