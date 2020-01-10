@@ -133,7 +133,7 @@ public class TempWeaponSwitch : MonoBehaviour
 
     void GetGunStates()
     {
-        string r = TextIO.ReadFile("Assets/TextFiles/GunStates.txt");
+        string r = TextIO.ReadFile("GunStates.txt");
         lock_state_1_ = r[0] == '1' ? true : false;
         lock_state_2_ = r[1] == '1' ? true : false;
         lock_state_3_ = r[2] == '1' ? true : false;
@@ -147,7 +147,7 @@ public class TempWeaponSwitch : MonoBehaviour
         w += lock_state_2_ ? '1' : '0';
         w += lock_state_3_ ? '1' : '0';
         w += lock_state_4_ ? '1' : '0';
-        TextIO.WriteFile(w, "Assets/TextFiles/GunStates.txt");
+        TextIO.WriteFile(w, "GunStates.txt");
     }
 
     void ChangeSelectedGUI(int i)
