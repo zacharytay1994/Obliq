@@ -11,6 +11,8 @@ public class ForceGruntsAway : MonoBehaviour
     // push strength
     float force_ = 1.0f;
     [SerializeField]
+    float drop_off_force_ = 1.0f;
+    [SerializeField]
     GameObject fart_visual_ = null;
 
     // Start is called before the first frame update
@@ -38,7 +40,7 @@ public class ForceGruntsAway : MonoBehaviour
                     Vector2 distance_vec = (Vector2)c.transform.position - (Vector2)transform.position;
                     float distance = distance_vec.magnitude;
                     // calculate ratio force to apply
-                    float ratio = radius_ - distance / radius_;
+                    float ratio = (radius_ - distance / radius_) / drop_off_force_;
                     c.GetComponent<Rigidbody2D>().AddForce(distance_vec.normalized * ratio * force_);
                 }
                 // if has health component dmg it

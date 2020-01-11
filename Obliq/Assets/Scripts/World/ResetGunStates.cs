@@ -8,7 +8,7 @@ public class ResetGunStates : MonoBehaviour
     void Awake()
     {
         string w = "0000";
-        TextIO.WriteFile(w, "Assets/TextFiles/GunStates.txt");
+        TextIO.WriteFile(w, "GunStates.txt");
     }
 
     // Update is called once per frame
