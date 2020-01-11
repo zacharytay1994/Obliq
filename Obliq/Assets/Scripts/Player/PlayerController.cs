@@ -138,6 +138,7 @@ public class PlayerController : MonoBehaviour
             trail_active_time_ = Time.time + dash_duration_ / 3;
             GameObject temp = Instantiate(dash_particle_);
             temp.transform.position = transform.position;
+            GetComponent<ForceGruntsAway>().PushAllEnemies();
         }
         else
         {

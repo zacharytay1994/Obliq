@@ -221,6 +221,7 @@ GameObject:
   - component: {fileID: 1102585009099040898}
   - component: {fileID: 1102585009099040919}
   - component: {fileID: 2361982361374958839}
+  - component: {fileID: 1043391047657003997}
   m_Layer: 16
   m_Name: Player
   m_TagString: MainPlayer
@@ -607,3 +608,19 @@ MonoBehaviour:
   attack_damage_: 5
   attack_range_: 5
   detection_range_: 5
+--- !u!114 &1043391047657003997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1102585009099040899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da399ffb0c0cbf846957c577c6f50561, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius_: 5
+  force_: 4000
+  fart_visual_: {fileID: 6847415619979573289, guid: 3e42e9a86b5aee24a8849fd01b980f8f,
+    type: 3}
