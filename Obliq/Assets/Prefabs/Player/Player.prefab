@@ -223,6 +223,7 @@ GameObject:
   - component: {fileID: 2361982361374958839}
   - component: {fileID: 1043391047657003997}
   - component: {fileID: 3175323466441815771}
+  - component: {fileID: -679246854607487943}
   m_Layer: 16
   m_Name: Player
   m_TagString: MainPlayer
@@ -325,6 +326,8 @@ MonoBehaviour:
     type: 3}
   dash_sound_: Dash
   invuln_dash_: 0.6
+  dash_damage_: 1
+  dash_radius_: 2
 --- !u!50 &1102585009099040907
 Rigidbody2D:
   serializedVersion: 4
@@ -649,3 +652,16 @@ MonoBehaviour:
   screen_shake_base_magnitude_: 0
   crit_chance: 0
   crit_modifier: 0
+--- !u!114 &-679246854607487943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1102585009099040899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 875fbe885a4cf45488a041033e55374d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mark_: {fileID: 4670743272651592365, guid: 019ffc3cc351a6f44b5d329699563766, type: 3}

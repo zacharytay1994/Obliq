@@ -83,11 +83,36 @@ public class Charger : MonoBehaviour
         {
             zfp.SetMove(false);
         }
+
+        MarkCheck();
     }
     public void SpawnLesserChargers()
     {
         GameObject LC1 = Instantiate(lesser_charger_reference_, new Vector3(gameObject.transform.position.x - 0.5f, gameObject.transform.position.y, -1.0f), gameObject.transform.rotation);
         GameObject LC2 = Instantiate(lesser_charger_reference_, new Vector3(gameObject.transform.position.x + 0.5f, gameObject.transform.position.y, -1.0f), gameObject.transform.rotation);
 
+    }
+
+    public void MarkPlayer(bool b)
+    {
+        if (player.GetComponent<MarkedByGrunt>() != null)
+        {
+            player.GetComponent<MarkedByGrunt>().SetMark(b);
+        }
+    }
+
+    public void MarkCheck()
+    {
+        LayerMask layerMask = LayerMask.GetMask("Walls");
+
+        RaycastHit2D isHit = Physics2D.Raycast(transform.position,
+                ((Vector2)player.transform.position - (Vector2)transform.position).normalized,
+             ((Vector2)transform.position -
+             (Vector2)player.transform.position).magnitude, layerMask);
+
+        if (isHit.collider == null)
+        {
+            player.GetComponent<MarkedByGrunt>().SetMark(true);
+        }
     }
 }
