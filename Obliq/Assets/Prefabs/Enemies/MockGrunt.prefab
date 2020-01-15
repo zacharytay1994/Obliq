@@ -144,6 +144,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   in_range_: 15
   speed_: 160
+  grow_rate_: 1
   heading_vector_: {x: 0, y: 0}
 --- !u!114 &-4854751461574285594
 MonoBehaviour:

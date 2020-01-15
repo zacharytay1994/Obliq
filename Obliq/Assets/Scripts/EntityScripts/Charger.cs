@@ -90,7 +90,13 @@ public class Charger : MonoBehaviour
     {
         GameObject LC1 = Instantiate(lesser_charger_reference_, new Vector3(gameObject.transform.position.x - 0.5f, gameObject.transform.position.y, -1.0f), gameObject.transform.rotation);
         GameObject LC2 = Instantiate(lesser_charger_reference_, new Vector3(gameObject.transform.position.x + 0.5f, gameObject.transform.position.y, -1.0f), gameObject.transform.rotation);
-
+        if (LC1.GetComponent<GruntSpawnAnimation>() != null && LC2.GetComponent<GruntSpawnAnimation>())
+        {
+            LC1.GetComponent<GruntSpawnAnimation>().SetSpawner(gameObject);
+            LC1.GetComponent<GruntSpawnAnimation>().Init();
+            LC2.GetComponent<GruntSpawnAnimation>().SetSpawner(gameObject);
+            LC2.GetComponent<GruntSpawnAnimation>().Init();
+        }
     }
 
     public void MarkPlayer(bool b)
