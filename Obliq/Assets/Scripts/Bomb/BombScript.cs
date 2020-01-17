@@ -8,7 +8,7 @@ public class BombScript : MonoBehaviour
     [SerializeField]
     float bomb_damage_;
     [SerializeField]
-    float time_left_;
+    public float time_left_;
     float time_left_min_, time_left_sec_;
     bool stop_timer_ = false;
     bool bomb_explode_ = false;

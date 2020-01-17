@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class BombDefuse : MonoBehaviour
 {
+    [SerializeField]
+    TriggerBombDetection detection_range_;
     bool bomb_defused_ = false;
     [SerializeField]
     float bomb_defuse_range_ = 0.0f;
@@ -48,7 +50,8 @@ public class BombDefuse : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (PlayerIsWithinRange())
+
+        if (detection_range_.player_within_range_improved_)
         {
             // If bomb is not defused, decrease defuse timer bar size.
             if (defuse_time_left_ <= 0)
