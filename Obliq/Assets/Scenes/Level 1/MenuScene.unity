@@ -756,7 +756,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_textAlignment: 257
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -854,7 +854,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scroll_delay_: 0.1
-  typing_sound_: KeyboardPress
+  chain_scrolling_text_: 1
+  prev_text_chain_: {fileID: 1275181648}
+  scroll_complete_: 0
 --- !u!1 &838032481
 GameObject:
   m_ObjectHideFlags: 0
@@ -1060,7 +1062,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_textAlignment: 257
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -1158,7 +1160,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scroll_delay_: 0.1
-  typing_sound_: KeyboardPress
+  chain_scrolling_text_: 0
+  prev_text_chain_: {fileID: 0}
+  scroll_complete_: 0
 --- !u!1 &1149764607
 GameObject:
   m_ObjectHideFlags: 0
@@ -1288,7 +1292,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_textAlignment: 257
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -1386,7 +1390,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scroll_delay_: 0.1
-  typing_sound_: KeyboardPress
+  chain_scrolling_text_: 1
+  prev_text_chain_: {fileID: 961473225}
+  scroll_complete_: 0
 --- !u!1 &1360682042
 GameObject:
   m_ObjectHideFlags: 0

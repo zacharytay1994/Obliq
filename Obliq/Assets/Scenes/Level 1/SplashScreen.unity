@@ -281,10 +281,40 @@ MonoBehaviour:
     pitch: 1.5
     source: {fileID: 0}
     SoundType: 0
-  - name: KeyboardPress
-    clip: {fileID: 8300000, guid: c8947a991ec00f548b5bd0ca47b0bdee, type: 3}
+  - name: kb1
+    clip: {fileID: 8300000, guid: 6dc4d45c50a26424e91ea253c3b8ab78, type: 3}
     volume: 0.5
-    pitch: 1
+    pitch: 0.5
+    source: {fileID: 0}
+    SoundType: 0
+  - name: kb2
+    clip: {fileID: 8300000, guid: b22fcdd2d8ec11543b47cb05c180a7b3, type: 3}
+    volume: 0.5
+    pitch: 0.5
+    source: {fileID: 0}
+    SoundType: 0
+  - name: kb3
+    clip: {fileID: 8300000, guid: 7f4d2481dda7e6d468e23026e2aaf375, type: 3}
+    volume: 0.5
+    pitch: 0.5
+    source: {fileID: 0}
+    SoundType: 0
+  - name: kb4
+    clip: {fileID: 8300000, guid: ea0dfdc3c9460874f844dc8b34542b8f, type: 3}
+    volume: 0.5
+    pitch: 0.5
+    source: {fileID: 0}
+    SoundType: 0
+  - name: kb5
+    clip: {fileID: 8300000, guid: 3a20652898901704d99b2504eec84b79, type: 3}
+    volume: 0.5
+    pitch: 0.5
+    source: {fileID: 0}
+    SoundType: 0
+  - name: kb6
+    clip: {fileID: 8300000, guid: 5a5e27df5e738654da48b9e6474bc3f4, type: 3}
+    volume: 0.5
+    pitch: 0.5
     source: {fileID: 0}
     SoundType: 0
   - name: 
