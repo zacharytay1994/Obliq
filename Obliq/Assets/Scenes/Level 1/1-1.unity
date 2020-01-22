@@ -37543,27 +37543,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2013574147075596947, guid: b46ff27c54fc6b147add87599ceaf19a,
-        type: 3}
-      propertyPath: waves_
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2013574147075596947, guid: b46ff27c54fc6b147add87599ceaf19a,
-        type: 3}
-      propertyPath: spawn_interval_
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2013574147075596947, guid: b46ff27c54fc6b147add87599ceaf19a,
-        type: 3}
-      propertyPath: max_grunt_count_
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2013574147075596947, guid: b46ff27c54fc6b147add87599ceaf19a,
-        type: 3}
-      propertyPath: grunt_
-      value: 
-      objectReference: {fileID: 8401532159652299948, guid: 858475df435e48e4d8bbde62380203e5,
-        type: 3}
     - target: {fileID: 4863398212447123227, guid: b46ff27c54fc6b147add87599ceaf19a,
         type: 3}
       propertyPath: maxHp_
@@ -38534,17 +38513,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2013574147075596947, guid: b46ff27c54fc6b147add87599ceaf19a,
-        type: 3}
-      propertyPath: max_grunt_count_
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2013574147075596947, guid: b46ff27c54fc6b147add87599ceaf19a,
-        type: 3}
-      propertyPath: grunt_
-      value: 
-      objectReference: {fileID: 8401532159652299948, guid: 858475df435e48e4d8bbde62380203e5,
-        type: 3}
     - target: {fileID: 4863398212447123227, guid: b46ff27c54fc6b147add87599ceaf19a,
         type: 3}
       propertyPath: maxHp_
@@ -38990,17 +38958,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2013574147075596947, guid: b46ff27c54fc6b147add87599ceaf19a,
-        type: 3}
-      propertyPath: max_grunt_count_
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2013574147075596947, guid: b46ff27c54fc6b147add87599ceaf19a,
-        type: 3}
-      propertyPath: grunt_
-      value: 
-      objectReference: {fileID: 8401532159652299948, guid: 858475df435e48e4d8bbde62380203e5,
-        type: 3}
     - target: {fileID: 4863398212447123227, guid: b46ff27c54fc6b147add87599ceaf19a,
         type: 3}
       propertyPath: maxHp_
@@ -39965,7 +39922,7 @@ PrefabInstance:
     - target: {fileID: 7065022726016586328, guid: 30de44655fb90e8418fc0eb58beeaeba,
         type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 2710746636912595031, guid: 30de44655fb90e8418fc0eb58beeaeba,
         type: 3}
@@ -40010,7 +39967,7 @@ PrefabInstance:
     - target: {fileID: 8239219786968882253, guid: 30de44655fb90e8418fc0eb58beeaeba,
         type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 3491053290712943926, guid: 30de44655fb90e8418fc0eb58beeaeba,
         type: 3}
@@ -40066,6 +40023,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -208
+      objectReference: {fileID: 0}
+    - target: {fileID: 4121584643347464299, guid: 30de44655fb90e8418fc0eb58beeaeba,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1270858698310954106, guid: 30de44655fb90e8418fc0eb58beeaeba,
         type: 3}

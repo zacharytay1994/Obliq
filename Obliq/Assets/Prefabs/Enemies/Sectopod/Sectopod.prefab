@@ -372,7 +372,7 @@ MonoBehaviour:
   layer_:
     serializedVersion: 2
     m_Bits: 524288
-  damaged_timer_: 0.1
+  damaged_timer_: 0
   sound_timer_: 0
 --- !u!114 &-7590505609151203536
 MonoBehaviour:

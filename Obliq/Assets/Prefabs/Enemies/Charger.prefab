@@ -223,6 +223,7 @@ MonoBehaviour:
   maxHp_: 50
   currentHp_: 50
   invincibility_time_: 0
+  damage_flash_duration_: 0
 --- !u!114 &4414589548416025732
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -252,5 +253,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sound_: Hit
-  layer_: 19
-  damaged_timer_: 0.1
+  layer_:
+    serializedVersion: 2
+    m_Bits: 0
+  damaged_timer_: 0
+  sound_timer_: 0

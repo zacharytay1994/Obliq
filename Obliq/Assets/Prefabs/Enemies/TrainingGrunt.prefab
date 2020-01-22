@@ -143,6 +143,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   in_range_: 15
   speed_: 160
+  grow_rate_: 50
   heading_vector_: {x: 0, y: 0}
 --- !u!114 &-4854751461574285594
 MonoBehaviour:
@@ -286,5 +287,5 @@ MonoBehaviour:
   layer_:
     serializedVersion: 2
     m_Bits: 524288
-  damaged_timer_: 0.1
+  damaged_timer_: 0
   sound_timer_: 0
