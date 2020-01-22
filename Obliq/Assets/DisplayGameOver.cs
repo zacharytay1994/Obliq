@@ -9,6 +9,8 @@ public class DisplayGameOver : MonoBehaviour
     TextMeshProUGUI text_;
     [SerializeField]
     HealthComponent hp_;
+    [SerializeField]
+    ScrollingTextSystem scroll_;
 
     [SerializeField] GameObject to_menu_button_;
 
@@ -20,6 +22,7 @@ public class DisplayGameOver : MonoBehaviour
         stl_ = FindObjectOfType<SceneTransitionLoader>();
         //text_ = GetComponent<TextMeshProUGUI>();
         text_.enabled = false;
+        scroll_.enabled = false;
         to_menu_button_.SetActive(false);
         hp_ = GameObject.Find("Player").GetComponent<HealthComponent>();
     }
@@ -32,6 +35,7 @@ public class DisplayGameOver : MonoBehaviour
         {
             to_menu_button_.SetActive(true);
             text_.enabled = true;
+            scroll_.enabled = true;
         }
     }
 

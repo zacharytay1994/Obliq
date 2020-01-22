@@ -11,7 +11,7 @@ public class ScrollingTextSystem : MonoBehaviour
     float scroll_delay_timer_;
     AudioManager am_;
     [Space(10)]
-    List<string> typing_sound_ = new List<string> { "kb3", "kb4", "kb5", "kb6" };
+    List<string> typing_sound_ = new List<string> { "alienpop" };
     bool flicker_audio_ = true;
     [SerializeField] bool chain_scrolling_text_;
     [SerializeField] ScrollingTextSystem prev_text_chain_;
@@ -30,22 +30,23 @@ public class ScrollingTextSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(chain_scrolling_text_)
-        {
-            if(prev_text_chain_.scroll_complete_)
+            if (chain_scrolling_text_)
+            {
+                if (prev_text_chain_.scroll_complete_)
+                {
+                    ScrollingText();
+                }
+            }
+            else
             {
                 ScrollingText();
             }
-        }
-        else
-        {
-            ScrollingText();
-        }
+
+            if (current_text_.Length <= 0)
+            {
+                scroll_complete_ = true;
+            }
         
-        if(current_text_.Length<=0)
-        {
-            scroll_complete_ = true;
-        }
     }
 
     void ScrollingText()
@@ -54,10 +55,10 @@ public class ScrollingTextSystem : MonoBehaviour
         if (scroll_delay_timer_ <= 0 && current_text_.Length > 0)
         {
 
-                float random_pitch = Random.Range(0.7f, 1.3f);
+                float random_pitch = Random.Range(0.95f, 1.05f);
                 int random_sound = Random.Range(0, typing_sound_.Count);
 
-                am_.PlaySound(typing_sound_[random_sound], 1, random_pitch);
+                //am_.PlaySound(typing_sound_[random_sound], 1, random_pitch);
                 Debug.Log(typing_sound_[random_sound]);
             
 
