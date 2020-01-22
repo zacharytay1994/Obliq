@@ -53,6 +53,7 @@ MonoBehaviour:
   waves_: 1
   spawn_interval_: 5
   per_wave_: 1
+  random_offset_: {x: -1, y: 1}
 --- !u!212 &160067512024784293
 SpriteRenderer:
   m_ObjectHideFlags: 0

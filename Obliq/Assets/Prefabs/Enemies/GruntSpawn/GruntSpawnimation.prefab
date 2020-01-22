@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8401532159652299948
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 765740513334294752}
+  - component: {fileID: 2459186591918195745}
+  m_Layer: 0
+  m_Name: GruntSpawnimation
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &765740513334294752
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8401532159652299948}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2459186591918195745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8401532159652299948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c621ffbfc0661c4daca2cbe33747cf6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ring_effect_: {fileID: 5588859061336279653, guid: c872335f77cfc5e488f0df8e23649757,
+    type: 3}
+  particle_effect_: {fileID: 613365266420387135, guid: 76cf2cfe808169948b598f58f7a3edcd,
+    type: 3}
+  number_of_particles_: 20
+  particle_converge_time_: 2
+  random_strength_: {x: 5, y: 20}
+  spawn_time_: 2.5
+  grunt_: {fileID: 2798105615834141751, guid: 35f961e634c9c59499ddf05a9fa3d6b4, type: 3}

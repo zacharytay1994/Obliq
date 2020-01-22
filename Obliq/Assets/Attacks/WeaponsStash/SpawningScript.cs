@@ -17,6 +17,8 @@ public class SpawningScript : MonoBehaviour
     float spawn_interval_counter_ = 0.0f;
     [SerializeField]
     bool per_wave_ = true;
+    [SerializeField]
+    Vector2 random_offset_ = new Vector2(-1.0f, 1.0f);
     // Start is called before the first frame update
     void Start()
     {
@@ -50,11 +52,16 @@ public class SpawningScript : MonoBehaviour
             if (grunt_count_ < max_grunt_count_ && waves_ > 0)
             {
                 
-                GameObject temp = Instantiate(grunt_, new Vector3(transform.position.x, transform.position.y, -1.0f) + new Vector3(Random.Range(0.0f,1.0f), Random.Range(0.0f,1.0f), 0.0f), Quaternion.identity);
+                GameObject temp = Instantiate(grunt_, new Vector3(transform.position.x + Random.Range(random_offset_.x, random_offset_.y), transform.position.y + Random.Range(random_offset_.x, random_offset_.y), -1.0f) + new Vector3(Random.Range(0.0f,1.0f), Random.Range(0.0f,1.0f), 0.0f), Quaternion.identity);
                 temp.transform.SetParent(GameObject.Find("Enemy").transform);
                 if (temp.GetComponent<TempGrunt>() != null)
                 {
                     temp.GetComponent<TempGrunt>().AttachSpawner(this);
+                }
+                if (temp.GetComponent<GruntSpawnAnimation>() != null)
+                {
+                    temp.GetComponent<GruntSpawnAnimation>().SetSpawner(gameObject);
+                    temp.GetComponent<GruntSpawnAnimation>().Init();
                 }
                 
                 grunt_count_++;
@@ -77,10 +84,15 @@ public class SpawningScript : MonoBehaviour
             {
                 for (int i = 0; i < max_grunt_count_; i++)
                 {
-                    GameObject temp = Instantiate(grunt_, new Vector3(transform.position.x, transform.position.y, -1.0f) + new Vector3(Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f), 0.0f), Quaternion.identity);
+                    GameObject temp = Instantiate(grunt_, new Vector3(transform.position.x + Random.Range(random_offset_.x, random_offset_.y), transform.position.y + Random.Range(random_offset_.x, random_offset_.y), -1.0f) + new Vector3(Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f), 0.0f), Quaternion.identity);
                     if (temp.GetComponent<TempGrunt>() != null)
                     {
                         temp.GetComponent<TempGrunt>().AttachSpawner(this);
+                    }
+                    if (temp.GetComponent<GruntSpawnAnimation>() != null)
+                    {
+                        temp.GetComponent<GruntSpawnAnimation>().SetSpawner(gameObject);
+                        temp.GetComponent<GruntSpawnAnimation>().Init();
                     }
                 }
             }

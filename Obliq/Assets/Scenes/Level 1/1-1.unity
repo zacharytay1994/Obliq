@@ -37558,6 +37558,12 @@ PrefabInstance:
       propertyPath: max_grunt_count_
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 2013574147075596947, guid: b46ff27c54fc6b147add87599ceaf19a,
+        type: 3}
+      propertyPath: grunt_
+      value: 
+      objectReference: {fileID: 8401532159652299948, guid: 858475df435e48e4d8bbde62380203e5,
+        type: 3}
     - target: {fileID: 4863398212447123227, guid: b46ff27c54fc6b147add87599ceaf19a,
         type: 3}
       propertyPath: maxHp_
@@ -38021,6 +38027,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RootOrder
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1102585009099040905, guid: e2c522e5ec41bb241ae54dc18962a9ef,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1102585009099040905, guid: e2c522e5ec41bb241ae54dc18962a9ef,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.3
       objectReference: {fileID: 0}
     - target: {fileID: 1102585009099040909, guid: e2c522e5ec41bb241ae54dc18962a9ef,
         type: 3}
@@ -38523,6 +38539,12 @@ PrefabInstance:
       propertyPath: max_grunt_count_
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 2013574147075596947, guid: b46ff27c54fc6b147add87599ceaf19a,
+        type: 3}
+      propertyPath: grunt_
+      value: 
+      objectReference: {fileID: 8401532159652299948, guid: 858475df435e48e4d8bbde62380203e5,
+        type: 3}
     - target: {fileID: 4863398212447123227, guid: b46ff27c54fc6b147add87599ceaf19a,
         type: 3}
       propertyPath: maxHp_
@@ -38916,7 +38938,7 @@ PrefabInstance:
     - target: {fileID: 434712922699763752, guid: b46ff27c54fc6b147add87599ceaf19a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -9.58
+      value: -8.61
       objectReference: {fileID: 0}
     - target: {fileID: 434712922699763752, guid: b46ff27c54fc6b147add87599ceaf19a,
         type: 3}
@@ -38973,6 +38995,12 @@ PrefabInstance:
       propertyPath: max_grunt_count_
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 2013574147075596947, guid: b46ff27c54fc6b147add87599ceaf19a,
+        type: 3}
+      propertyPath: grunt_
+      value: 
+      objectReference: {fileID: 8401532159652299948, guid: 858475df435e48e4d8bbde62380203e5,
+        type: 3}
     - target: {fileID: 4863398212447123227, guid: b46ff27c54fc6b147add87599ceaf19a,
         type: 3}
       propertyPath: maxHp_
