@@ -97,7 +97,7 @@ public class PlayerController : MonoBehaviour
             {
                 if (!dash_enemy_list.Contains(c))
                 {
-                    if (c.gameObject.GetComponent<HealthComponent>() != null) {
+                    if (c.gameObject.GetComponent<HealthComponent>() != null && c.gameObject.layer == 14) {
                         c.gameObject.GetComponent<HealthComponent>().TakeDamage(1);
                     }
                     dash_enemy_list.Add(c);

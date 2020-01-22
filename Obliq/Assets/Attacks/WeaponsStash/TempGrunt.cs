@@ -15,6 +15,10 @@ public class TempGrunt : MonoBehaviour
     SpawningScript spawner_;
     PointManager point_manager_;
 
+    [SerializeField]
+    float grow_rate_ = 50.0f;
+    bool grown_ = false;
+    float growth_ = 0.1f;
     public Vector2 heading_vector_ = new Vector2(0.0f, 0.0f);
     // Start is called before the first frame update
     void Start()
@@ -23,6 +27,7 @@ public class TempGrunt : MonoBehaviour
         health_ = GetComponent<HealthComponent>();
         target_ = GameObject.FindGameObjectWithTag("MainPlayer");
         point_manager_ = FindObjectOfType<PointManager>();
+        transform.localScale = new Vector3(0.1f, 0.1f, 1.0f);
     }
 
     public void AttachSpawner(SpawningScript spawner) 
@@ -33,6 +38,16 @@ public class TempGrunt : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (transform.localScale.x < 1.0f && !grown_)
+        {
+            growth_ += grow_rate_ * Time.deltaTime;
+            transform.localScale = new Vector3(growth_, growth_, 1.0f);
+        }
+        else
+        {
+            grown_ = true;
+            transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+        }
         //if (target_ != null)
         //{
         //    Vector2 dir_vector = (Vector2)target_.transform.position - (Vector2)transform.position;
