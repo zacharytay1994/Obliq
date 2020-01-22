@@ -30,7 +30,7 @@ public class SectopodBullet : MonoBehaviour
             //SpawnExplosion(collision.gameObject.transform.position);
             if (explosion_ != null)
             {
-                am_.PlaySound("Explosion");
+                //am_.PlaySound("Explosion");
                 for (int i = 0; i < amount_; i++)
                 {
                     GameObject temp = Instantiate(explosion_);

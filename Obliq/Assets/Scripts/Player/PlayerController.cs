@@ -172,7 +172,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) && Time.time >= next_dash_time)
         {
-            am_.PlaySound(dash_sound_);
+            //am_.PlaySound(dash_sound_);
             //rb2d_.AddForce(heading_ * (dash_strength * dash_duration_));
             GameObject temp2 = GameObject.Find("Dashbar");
             temp2.GetComponent<DashFill>().dashbar();
@@ -225,7 +225,7 @@ public class PlayerController : MonoBehaviour
 
     public bool isInvincible()
     {
-        if (Time.time - invincibility_start_time_ > invincibility_time_)
+        if (Time.time - invincibility_start_time_ > invincibility_time_ * Time.deltaTime)
         {
             return false;
         }

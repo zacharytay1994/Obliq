@@ -11,8 +11,12 @@ public class Sectopod : MonoBehaviour
     [SerializeField]
     GameObject sectopod_bullet_;
     [SerializeField]
-    float bullet_speed_;
-    GameObject player_ = null;
+    GameObject sectopod_missile_;
+    [SerializeField]
+    public float bullet_speed_;
+    [SerializeField]
+    public float missile_attack_speed;
+    public GameObject player_ = null;
 
     HealthComponent hc_ = null;
 
@@ -42,5 +46,10 @@ public class Sectopod : MonoBehaviour
         GameObject bullet = Instantiate(sectopod_bullet_, (Vector2)gameObject.transform.position + ((gameObject.GetComponent<CircleCollider2D>().radius + 2.0f) *
              ((Vector2)target_reference_.transform.position - (Vector2)gameObject.transform.position).normalized), Quaternion.identity);
         bullet.GetComponent<Rigidbody2D>().velocity = ((Vector2)target_reference_.transform.position - (Vector2)gameObject.transform.position).normalized * bullet_speed_;
+    }
+    public void FireMissile()
+    {
+        Instantiate(sectopod_missile_, (Vector2)gameObject.transform.position + ((gameObject.GetComponent<CircleCollider2D>().radius + 2.0f) *
+             ((Vector2)target_reference_.transform.position - (Vector2)gameObject.transform.position).normalized), gameObject.transform.rotation);
     }
 }
