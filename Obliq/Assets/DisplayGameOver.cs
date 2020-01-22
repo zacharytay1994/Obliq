@@ -14,6 +14,8 @@ public class DisplayGameOver : MonoBehaviour
 
     SceneTransitionLoader stl_;
 
+    GameObject player_;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +24,7 @@ public class DisplayGameOver : MonoBehaviour
         text_.enabled = false;
         to_menu_button_.SetActive(false);
         hp_ = GameObject.Find("Player").GetComponent<HealthComponent>();
+        player_ = GameObject.Find("Player");
     }
 
     // Update is called once per frame
@@ -32,6 +35,7 @@ public class DisplayGameOver : MonoBehaviour
         {
             to_menu_button_.SetActive(true);
             text_.enabled = true;
+            player_.GetComponent<PlayerController>().SetAcceleration(0.0f);
         }
     }
 
