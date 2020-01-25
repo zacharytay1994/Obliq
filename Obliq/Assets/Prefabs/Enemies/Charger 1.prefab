@@ -59,7 +59,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   move_distance_: 10
   target_reference_: {fileID: 0}
-  lesser_charger_reference_: {fileID: 2798105615834141751, guid: 35f961e634c9c59499ddf05a9fa3d6b4,
+  lesser_charger_reference_: {fileID: 8401532159652299948, guid: 858475df435e48e4d8bbde62380203e5,
     type: 3}
   heading: {x: 0, y: 0}
   find_path_: 0
@@ -225,9 +225,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b654a9ed45867894d8f8378d03d054a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp_: 50
-  currentHp_: 50
+  maxHp_: 15
+  currentHp_: 15
   invincibility_time_: 0
+  damage_flash_duration_: 0
 --- !u!114 &1579370957986562126
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -352,7 +353,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a666b79897ec1f64caea9eb18b4ece5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage_: 5
+  damage_: 3
   enemy_mask_:
     serializedVersion: 2
     m_Bits: 65536

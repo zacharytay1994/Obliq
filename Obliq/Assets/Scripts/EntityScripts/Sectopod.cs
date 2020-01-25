@@ -13,7 +13,9 @@ public class Sectopod : MonoBehaviour
     [SerializeField]
     float bullet_speed_;
     GameObject player_ = null;
-    
+
+    HealthComponent hc_ = null;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,15 +23,7 @@ public class Sectopod : MonoBehaviour
         entity_reference_.statemachine_.SetState(new SectopodIdleState());
         //GetComponent<ImAProjectile>().InitProj();
         player_ = GameObject.Find("Player");
-    }
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        /*if (collision.gameObject.GetComponent<ImAProjectile>() != null)
-        {
-            Debug.Log("Enemy hit");
-            GC<Entity>(gameObject).TakeDamage(20); //temp magic no
-            
-        }*/
+        hc_ = GetComponent<HealthComponent>();
     }
         // Update is called once per frame
     void Update()
@@ -37,6 +31,11 @@ public class Sectopod : MonoBehaviour
         float angle = GF.AngleBetween(transform.position, player_.transform.position);
         transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0.0f, 0.0f, angle), Mathf.PingPong(Time.time,
             6 * Time.deltaTime));
+
+        if (hc_.getCurrentHp() <= 0)
+        {
+            GameObject.Destroy(gameObject);
+        }
     }
     public void FireBullet()
     {

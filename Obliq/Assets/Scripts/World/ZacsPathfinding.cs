@@ -23,8 +23,15 @@ public class ZacsPathfinding : MonoBehaviour
         // create open set
         List<Node> open_set = new List<Node>();
 
-        Node start_node = grid_.GetNode(gridstart.x - grid_offset_.x, gridstart.y - grid_offset_.y);
-        Node end_node = grid_.GetNode(gridend.x - grid_offset_.x, gridend.y - grid_offset_.y);
+        Node start_node = null;
+        if (!grid_.GetNode(gridstart.x - grid_offset_.x, gridstart.y - grid_offset_.y, ref start_node))
+        {
+            return false;
+        }
+        Node end_node = null;
+        if (!grid_.GetNode(gridend.x - grid_offset_.x, gridend.y - grid_offset_.y, ref end_node)) {
+            return false;
+        }
 
         if ((start_node.gridX_ < 0 || start_node.gridX_ > grid_.grid_size_x) || (start_node.gridY_ < 0 || start_node.gridY_ > grid_.grid_size_y) ||
             (end_node.gridX_ < 0 || end_node.gridX_ > grid_.grid_size_x) || (end_node.gridY_ < 0 || end_node.gridY_ > grid_.grid_size_y))
@@ -271,9 +278,15 @@ public class PathfindingGrid
         return neighbours;
     }
 
-    public Node GetNode(int x, int y)
+    public bool GetNode(int x, int y, ref Node n)
     {
-        Debug.Log(x + "," + y);
-        return node_grid_[x, y];
+        //Debug.Log(x + "," + y);
+        if (x < 0 || x >= grid_size_x || y < 0 || y >= grid_size_y)
+        {
+            Debug.Log("PATHFINDING: out of range");
+            return false;
+        }
+        n = node_grid_[x, y];
+        return true;
     }
 }

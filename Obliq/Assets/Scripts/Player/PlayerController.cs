@@ -42,6 +42,15 @@ public class PlayerController : MonoBehaviour
 
     AudioManager am_;
     [SerializeField] string dash_sound_;
+    [SerializeField]
+    float invuln_dash_ = 0.4f;
+    float invuln_dash_counter_ = 0.0f;
+    bool invuln_ = false;
+    [SerializeField]
+    float dash_damage_ = 1.0f;
+    [SerializeField]
+    float dash_radius_ = 2.0f;
+    List<Collider2D> dash_enemy_list = new List<Collider2D>();
    
     // Start is called before the first frame update
     void Start()
@@ -75,6 +84,26 @@ public class PlayerController : MonoBehaviour
         //PlayerFacingDirection();
         UpdateFacingDirection();
         PlayerMovement();
+
+        DashDamage();
+    }
+
+    public void DashDamage()
+    {
+        if (invuln_)
+        {
+            Collider2D[] temp_cols_ = Physics2D.OverlapCircleAll(transform.position, dash_damage_);
+            foreach (Collider2D c in temp_cols_)
+            {
+                if (!dash_enemy_list.Contains(c))
+                {
+                    if (c.gameObject.GetComponent<HealthComponent>() != null && c.gameObject.layer == 14) {
+                        c.gameObject.GetComponent<HealthComponent>().TakeDamage(1);
+                    }
+                    dash_enemy_list.Add(c);
+                }
+            }
+        }
     }
 
     float melee_timer_;
@@ -125,7 +154,22 @@ public class PlayerController : MonoBehaviour
 
     void PlayerMovement()
     {
-       
+        if (invuln_)
+        {
+            if (invuln_dash_counter_ < invuln_dash_)
+            {
+                invuln_dash_counter_ += Time.deltaTime;
+            }
+            else
+            {
+                invuln_ = false;
+                invuln_dash_counter_ = 0.0f;
+                // reactivate player (14) enemy (16) collision 
+                Physics2D.IgnoreLayerCollision(14, 16, false);
+                dash_enemy_list.Clear();
+            }
+        }
+
         if (Input.GetKeyDown(KeyCode.Space) && Time.time >= next_dash_time)
         {
             am_.PlaySound(dash_sound_);
@@ -138,6 +182,10 @@ public class PlayerController : MonoBehaviour
             trail_active_time_ = Time.time + dash_duration_ / 3;
             GameObject temp = Instantiate(dash_particle_);
             temp.transform.position = transform.position;
+            GetComponent<ForceGruntsAway>().PushAllEnemies();
+            invuln_ = true;
+            // deactivate player (14) enemy (16) collision
+            Physics2D.IgnoreLayerCollision(14, 16, true);
         }
         else
         {

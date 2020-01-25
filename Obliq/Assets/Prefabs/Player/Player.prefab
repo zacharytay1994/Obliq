@@ -221,6 +221,9 @@ GameObject:
   - component: {fileID: 1102585009099040898}
   - component: {fileID: 1102585009099040919}
   - component: {fileID: 2361982361374958839}
+  - component: {fileID: 1043391047657003997}
+  - component: {fileID: 3175323466441815771}
+  - component: {fileID: -679246854607487943}
   m_Layer: 16
   m_Name: Player
   m_TagString: MainPlayer
@@ -315,13 +318,16 @@ MonoBehaviour:
   attack_duration_: 0
   dash_strength: 1.5
   dash_cooldown_: 2
-  dash_duration_: 0.8
+  dash_duration_: 1
   speed_modifier_: 1
   stored_angle_: 0
   invincibility_time_: 1
   dash_particle_: {fileID: 5588859061336279653, guid: 29814d2e185dac44fa370131ef426092,
     type: 3}
   dash_sound_: Dash
+  invuln_dash_: 0.6
+  dash_damage_: 1
+  dash_radius_: 2
 --- !u!50 &1102585009099040907
 Rigidbody2D:
   serializedVersion: 4
@@ -405,23 +411,23 @@ MonoBehaviour:
   w1_switch_: 49
   weapon_1: {fileID: 5809754552401931580, guid: 845deb91a47091a458c93705a6c9a153,
     type: 3}
-  w1_has_recoil: 1
-  w1_continuous_recoil_: 1
-  w1_recoil_data_: {x: 5, y: 0, z: 0.1}
+  w1_has_recoil: 0
+  w1_continuous_recoil_: 0
+  w1_recoil_data_: {x: 2, y: 0, z: 0.1}
   lock_state_1_: 0
   w2_switch_: 50
   weapon_2: {fileID: 5809754552401931580, guid: 2318608e6738fea46b144f76a34b137e,
     type: 3}
   w2_has_recoil: 1
   w2_continuous_recoil_: 0
-  w2_recoil_data_: {x: 5, y: 4, z: 0.1}
+  w2_recoil_data_: {x: 3, y: 2, z: 0.1}
   lock_state_2_: 0
   w3_switch_: 51
   weapon_3: {fileID: 5809754552401931580, guid: 6ea7af6f01d35d24b9d140ed19fa34e0,
     type: 3}
   w3_has_recoil: 1
   w3_continuous_recoil_: 1
-  w3_recoil_data_: {x: 5, y: 0, z: 0.1}
+  w3_recoil_data_: {x: 3, y: 0, z: 0.1}
   lock_state_3_: 0
   w4_switch_: 52
   weapon_4: {fileID: 0}
@@ -607,3 +613,55 @@ MonoBehaviour:
   attack_damage_: 5
   attack_range_: 5
   detection_range_: 5
+--- !u!114 &1043391047657003997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1102585009099040899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da399ffb0c0cbf846957c577c6f50561, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius_: 5
+  force_: 2500
+  drop_off_force_: 2
+  fart_visual_: {fileID: 6847415619979573289, guid: 3e42e9a86b5aee24a8849fd01b980f8f,
+    type: 3}
+--- !u!114 &3175323466441815771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1102585009099040899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a666b79897ec1f64caea9eb18b4ece5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage_: 1
+  enemy_mask_:
+    serializedVersion: 2
+    m_Bits: 16384
+  causes_hit_pause_: 0
+  causes_screen_shake_: 0
+  screen_shake_base_duration_: 0
+  screen_shake_base_magnitude_: 0
+  crit_chance: 0
+  crit_modifier: 0
+--- !u!114 &-679246854607487943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1102585009099040899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 875fbe885a4cf45488a041033e55374d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mark_: {fileID: 4670743272651592365, guid: 019ffc3cc351a6f44b5d329699563766, type: 3}

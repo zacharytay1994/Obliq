@@ -21,11 +21,18 @@ public class ZacsFindPath : MonoBehaviour
     float path_update__delay_counter_ = 0.0f;
     float og_delay = 0.0f;
     bool move_ = true;
+
+    GameObject player_ = null;
+    Grid tilemap_grid_ = null;
+
+    bool outside_map_ = false; 
     // Start is called before the first frame update
     void Start()
     {
         tilemap_reference_ = GameObject.Find("WallTilemap").GetComponent<Tilemap>();
         pathfinding_reference_ = GameObject.Find("Pathfinder").GetComponent<ZacsPathfinding>();
+        player_ = GameObject.Find("Player");
+        tilemap_grid_ = GameObject.Find("WallTilemap").GetComponent<Grid>();
         og_delay = Random.Range(path_update_delay.x, path_update_delay.y + 1);
         path_update__delay_counter_ = og_delay;
         pathfinding_strength = Random.Range(random_speed_.x, random_speed_.y);
@@ -45,8 +52,23 @@ public class ZacsFindPath : MonoBehaviour
         }
         else
         {
-            GetPathToPlayer();
+            if (!GetPathToPlayer())
+            {
+                outside_map_ = true;
+                gameObject.GetComponent<CircleCollider2D>().enabled = false;
+            }
+            else
+            {
+                outside_map_ = false;
+                gameObject.GetComponent<CircleCollider2D>().enabled = true;
+            }
             path_update__delay_counter_ = og_delay;
+        }
+
+        if (outside_map_)
+        {
+            Vector2 to_player_ = ((Vector2)player_.transform.position - (Vector2)gameObject.transform.position).normalized;
+            gameObject.transform.position += (Vector3)to_player_ * 5.0f * Time.deltaTime;
         }
         //if (Input.GetKeyDown(KeyCode.F))
         //{
@@ -64,10 +86,10 @@ public class ZacsFindPath : MonoBehaviour
         //ExecutePath();
     }
 
-    void GetPathToPlayer()
+    bool GetPathToPlayer()
     {
-        Vector3Int player_pos = GameObject.Find("WallTilemap").GetComponent<Grid>().WorldToCell(GameObject.Find("Player").transform.position);
-        Vector3Int current_pos = GameObject.Find("WallTilemap").GetComponent<Grid>().WorldToCell(transform.position);
+        Vector3Int player_pos = tilemap_grid_.WorldToCell(player_.transform.position);
+        Vector3Int current_pos = tilemap_grid_.WorldToCell(transform.position);
         //current_pos.x -= pathfinding_reference_.grid_offset_.x;
         //current_pos.y -= pathfinding_reference_.grid_offset_.y;
         //player_pos.x -= pathfinding_reference_.grid_offset_.x;
@@ -75,7 +97,9 @@ public class ZacsFindPath : MonoBehaviour
         if (pathfinding_reference_.FindPath((Vector2Int)current_pos, (Vector2Int)player_pos, ref current_path_))
         {
             current_node_num_ = 0;
+            return true;
         }
+        return false;
     }
 
     void ExecutePath()

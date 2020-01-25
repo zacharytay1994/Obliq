@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 646901151000501464}
   - component: {fileID: -1078255289399383984}
   - component: {fileID: 8532518073056544977}
+  - component: {fileID: -7590505609151203536}
   m_Layer: 14
   m_Name: Sectopod
   m_TagString: Enemy
@@ -131,7 +132,7 @@ Rigidbody2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9041656220963992277}
   m_BodyType: 0
-  m_Simulated: 0
+  m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 5
@@ -207,7 +208,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 1
 --- !u!120 &3371876433012458454
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -373,3 +374,19 @@ MonoBehaviour:
     m_Bits: 524288
   damaged_timer_: 0.1
   sound_timer_: 0
+--- !u!114 &-7590505609151203536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9041656220963992277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b654a9ed45867894d8f8378d03d054a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHp_: 15
+  currentHp_: 0
+  invincibility_time_: 0
+  damage_flash_duration_: 0

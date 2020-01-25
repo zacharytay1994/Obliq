@@ -151,8 +151,8 @@ public class ChargerIdleState : State
                 // if there is obstruction between player and charger, find path
                 owner.GetComponent<Charger>().find_path_ = true;
 
-               // owner.GetComponent<LineRenderer>().SetPosition(0, (Vector2)owner.transform.position);
-             //   owner.GetComponent<LineRenderer>().SetPosition(1, (Vector2)owner.transform.position);
+                // owner.GetComponent<LineRenderer>().SetPosition(0, (Vector2)owner.transform.position);
+                //   owner.GetComponent<LineRenderer>().SetPosition(1, (Vector2)owner.transform.position);
             }
           
         }

@@ -144,6 +144,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   in_range_: 15
   speed_: 160
+  grow_rate_: 1
   heading_vector_: {x: 0, y: 0}
 --- !u!114 &-4854751461574285594
 MonoBehaviour:
@@ -188,33 +189,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b654a9ed45867894d8f8378d03d054a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp_: 4
+  maxHp_: 2
   currentHp_: 0
   invincibility_time_: 0
-  sr: {fileID: 2798105615834141745}
   damage_flash_duration_: 0.1
---- !u!114 &7157902452978562834
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2798105615834141751}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a666b79897ec1f64caea9eb18b4ece5e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage_: 1
-  enemy_mask_:
-    serializedVersion: 2
-    m_Bits: 73728
-  causes_hit_pause_: 0
-  causes_screen_shake_: 0
-  screen_shake_base_duration_: 0
-  screen_shake_base_magnitude_: 0
-  crit_chance: 0
-  crit_modifier: 0
 --- !u!114 &-1695331286466119510
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -301,7 +279,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sound_: Hit
-  layer_: 19
+  layer_:
+    serializedVersion: 2
+    m_Bits: 0
+  damaged_timer_: 0
+  sound_timer_: 0
 --- !u!114 &-347582107535407799
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -320,7 +302,3 @@ MonoBehaviour:
   firing_timer_: 0.5
   pewpew_: {fileID: 3773918459123960786, guid: b52e24e32a949b84f8c5e4153059264e, type: 3}
   speed_: 650
-  layer_:
-    serializedVersion: 2
-    m_Bits: 524288
-  damaged_timer_: 0.1
