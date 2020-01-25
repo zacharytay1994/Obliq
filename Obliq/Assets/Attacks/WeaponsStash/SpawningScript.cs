@@ -19,10 +19,12 @@ public class SpawningScript : MonoBehaviour
     bool per_wave_ = true;
     [SerializeField]
     Vector2 random_offset_ = new Vector2(-1.0f, 1.0f);
+    Animator anim_;
     // Start is called before the first frame update
     void Start()
     {
         spawn_interval_counter_ = spawn_interval_;
+        anim_ = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -71,6 +73,7 @@ public class SpawningScript : MonoBehaviour
                 waves_--;
                 added_grunt_count_ = 0;
             }
+            
         }
     }
 
@@ -81,6 +84,7 @@ public class SpawningScript : MonoBehaviour
             spawn_interval_counter_ = 0;
             if (grunt_ != null && waves_ > 0)
             {
+                anim_.SetTrigger("IsSpawning");
                 for (int i = 0; i < max_grunt_count_; i++)
                 {
                     GameObject temp = Instantiate(grunt_, new Vector3(transform.position.x + Random.Range(random_offset_.x, random_offset_.y), transform.position.y + Random.Range(random_offset_.x, random_offset_.y), -1.0f) + new Vector3(Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f), 0.0f), Quaternion.identity);

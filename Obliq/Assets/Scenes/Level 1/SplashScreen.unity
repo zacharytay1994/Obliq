@@ -210,7 +210,7 @@ MonoBehaviour:
     source: {fileID: 0}
     SoundType: 0
   - name: Rocket_Launch
-    clip: {fileID: 8300000, guid: 2c76f5e71fcf5d440935213ef8aecf7f, type: 3}
+    clip: {fileID: 8300000, guid: 5f468857b31d957458e31dc97817d797, type: 3}
     volume: 1
     pitch: 1
     source: {fileID: 0}
@@ -318,7 +318,7 @@ MonoBehaviour:
     source: {fileID: 0}
     SoundType: 0
   - name: alienpop
-    clip: {fileID: 8300000, guid: c4a67499f0a999e45abd3a67caa8bfed, type: 3}
+    clip: {fileID: 8300000, guid: e25e9b3a5b6be9b4bac4b0137ff7696a, type: 3}
     volume: 1
     pitch: 2
     source: {fileID: 0}
