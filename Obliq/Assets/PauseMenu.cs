@@ -1,22 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.SceneManagement;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class UIManager : MonoBehaviour
+public class PauseMenu : MonoBehaviour
 {
-    GameObject player;
     bool is_Paused_ = false;
-    
-    public bool is_Quitting_ = false;
     SceneTransitionLoader stl_;
-
     // Start is called before the first frame update
     void Start()
     {
-        stl_ = GameObject.Find("SceneManager").GetComponent<SceneTransitionLoader>();
-        getPauseObjects();
+        
+    }
 
+    // Update is called once per frame
+    void Update()
+    {
+        
     }
     List<GameObject> getPauseObjects()
     {
@@ -32,20 +32,11 @@ public class UIManager : MonoBehaviour
         }
         return pauseObjects;
     }
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-    void OnApplicationQuit()
-    {
-        is_Quitting_ = true;
-    }
     public void pauseFunction()
     {
         List<GameObject> pause_obj = getPauseObjects();
         if (is_Paused_ == true)
-        {           
+        {
             Time.timeScale = 1;
             is_Paused_ = false;
             foreach (GameObject g in pause_obj)
@@ -65,13 +56,7 @@ public class UIManager : MonoBehaviour
     }
     public void restartFunction()
     {
-        is_Quitting_ = true;
-        stl_ = GameObject.Find("SceneManager").GetComponent<SceneTransitionLoader>();
-        stl_.load_scene_Asynch(SceneManager.GetActiveScene().name); // SceneManager.LoadScene(SceneManager.GetActiveScene().name); 
+        stl_.load_scene_Asynch(SceneManager.GetActiveScene().name);
         pauseFunction();
-    }
-    public void quitFunction()
-    {
-        Application.Quit();// doesnt work in editor
     }
 }
