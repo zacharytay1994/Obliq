@@ -35,7 +35,10 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyUp(KeyCode.Escape))
+        {
+            pauseFunction();
+        }
     }
     void OnApplicationQuit()
     {
@@ -44,10 +47,10 @@ public class UIManager : MonoBehaviour
     public void pauseFunction()
     {
         List<GameObject> pause_obj = getPauseObjects();
-        if (is_Paused_ == true)
+        if (Time.timeScale == 0)
         {           
             Time.timeScale = 1;
-            is_Paused_ = false;
+            
             foreach (GameObject g in pause_obj)
             {
                 g.SetActive(false);
@@ -56,7 +59,7 @@ public class UIManager : MonoBehaviour
         else
         {
             Time.timeScale = 0;
-            is_Paused_ = true;
+           
             foreach (GameObject g in pause_obj)
             {
                 g.SetActive(true);
