@@ -70,6 +70,12 @@ public class UIManager : MonoBehaviour
         stl_.load_scene_Asynch(SceneManager.GetActiveScene().name); // SceneManager.LoadScene(SceneManager.GetActiveScene().name); 
         pauseFunction();
     }
+    public void GoToMenu()
+    {
+        stl_ = GameObject.Find("SceneManager").GetComponent<SceneTransitionLoader>();
+        stl_.load_scene_Asynch("MenuScene");
+        pauseFunction();
+    }
     public void quitFunction()
     {
         Application.Quit();// doesnt work in editor

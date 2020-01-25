@@ -522,7 +522,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4339236358779993321, guid: 46b4b67a40d044e40b16d10070debf93,
           type: 3}
-        m_MethodName: 
+        m_MethodName: GoToMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
