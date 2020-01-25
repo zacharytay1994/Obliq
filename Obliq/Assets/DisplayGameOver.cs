@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class DisplayGameOver : MonoBehaviour
@@ -11,6 +12,7 @@ public class DisplayGameOver : MonoBehaviour
     HealthComponent hp_;
 
     [SerializeField] GameObject to_menu_button_;
+    [SerializeField] GameObject restart_level_button;
 
     SceneTransitionLoader stl_;
 
@@ -21,6 +23,7 @@ public class DisplayGameOver : MonoBehaviour
         //text_ = GetComponent<TextMeshProUGUI>();
         text_.enabled = false;
         to_menu_button_.SetActive(false);
+        restart_level_button.SetActive(false);
         hp_ = GameObject.Find("Player").GetComponent<HealthComponent>();
     }
 
@@ -31,6 +34,7 @@ public class DisplayGameOver : MonoBehaviour
         if (hp_.getCurrentHp() <= 0)
         {
             to_menu_button_.SetActive(true);
+            restart_level_button.SetActive(true);
             text_.enabled = true;
         }
     }
@@ -38,5 +42,10 @@ public class DisplayGameOver : MonoBehaviour
     public void GoToMenu()
     {
         stl_.load_scene_Asynch("MenuScene");
+    }
+    public void restartFunction()
+    {
+        stl_.load_scene_Asynch(SceneManager.GetActiveScene().name);
+       // SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
