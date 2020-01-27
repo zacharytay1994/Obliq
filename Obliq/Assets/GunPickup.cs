@@ -30,6 +30,7 @@ public class GunPickup : MonoBehaviour
             if (taken_)
             {
                 Destroy(gameObject);
+                
             }
 
                 Debug.Log(((Vector2)player_.transform.position - (Vector2)gameObject.transform.position).magnitude);

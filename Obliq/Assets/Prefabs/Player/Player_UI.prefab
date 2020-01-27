@@ -708,6 +708,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16de908f1137ff647b0fb1e61351dd0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UI_: 1
   scroll_delay_: 0.1
   chain_scrolling_text_: 0
   prev_text_chain_: {fileID: 0}
@@ -724,6 +725,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16de908f1137ff647b0fb1e61351dd0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UI_: 1
   scroll_delay_: 0.1
   chain_scrolling_text_: 0
   prev_text_chain_: {fileID: 0}
@@ -1306,11 +1308,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 7111901231261016674, guid: 631b638ecd2c4584da5cbbc43c566997,
-        type: 3}
-      propertyPath: bottom_text_
-      value: 
-      objectReference: {fileID: 654704925034974968}
     - target: {fileID: 7111901231261016701, guid: 631b638ecd2c4584da5cbbc43c566997,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1416,6 +1413,11 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 7111901231261016674, guid: 631b638ecd2c4584da5cbbc43c566997,
+        type: 3}
+      propertyPath: bottom_text_
+      value: 
+      objectReference: {fileID: 654704925034974968}
     - target: {fileID: 7111901231261016700, guid: 631b638ecd2c4584da5cbbc43c566997,
         type: 3}
       propertyPath: m_fontSize

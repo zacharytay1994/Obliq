@@ -5,7 +5,9 @@ using TMPro;
 
 public class ScrollingTextSystem : MonoBehaviour
 {
-    TextMeshProUGUI current_text_mesh_;
+    [SerializeField] bool UI_;
+    TextMeshPro current_text_mesh_;
+    TextMeshProUGUI current_text_mesh_UI_;
     string current_text_;
     [SerializeField] float scroll_delay_;
     float scroll_delay_timer_;
@@ -20,9 +22,22 @@ public class ScrollingTextSystem : MonoBehaviour
     void Start()
     {
         am_ = FindObjectOfType<AudioManager>();
-        current_text_mesh_ = GetComponent<TextMeshProUGUI>();
-        current_text_ = current_text_mesh_.text;
-        current_text_mesh_.text = "";
+        if(UI_)
+        {
+            current_text_mesh_UI_ = GetComponent<TextMeshProUGUI>();
+            current_text_ = current_text_mesh_UI_.text;
+            current_text_mesh_UI_.text = "";
+        }
+
+        else
+        {
+            current_text_mesh_ = GetComponent<TextMeshPro>();
+            current_text_ = current_text_mesh_.text;
+            current_text_mesh_.text = "";
+        }
+        
+
+
         scroll_delay_timer_ = scroll_delay_;
         
     }
@@ -30,42 +45,51 @@ public class ScrollingTextSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-            if (chain_scrolling_text_)
+        if (chain_scrolling_text_)
+        {
+            if (prev_text_chain_.scroll_complete_)
             {
-                if (prev_text_chain_.scroll_complete_)
-                {
-                    ScrollingText();
-                }
+                ScrollingText(UI_);
             }
-            else
-            {
-                ScrollingText();
-            }
+        }
+        else
+        {
+            ScrollingText(UI_);
+        }
 
-            if (current_text_.Length <= 0)
-            {
-                scroll_complete_ = true;
-            }
-        
+        if (current_text_.Length <= 0)
+        {
+            scroll_complete_ = true;
+        }
+
     }
 
-    void ScrollingText()
+    void ScrollingText(bool isUI)
     {
         scroll_delay_timer_ -= Time.deltaTime;
         if (scroll_delay_timer_ <= 0 && current_text_.Length > 0)
         {
 
-                float random_pitch = Random.Range(2.5f, 2.5f);
-                int random_sound = Random.Range(0, typing_sound_.Count);
+            float random_pitch = Random.Range(2f, 2f);
+            int random_sound = Random.Range(0, typing_sound_.Count);
 
-                am_.PlaySound(typing_sound_[random_sound], 1, random_pitch);
-                //Debug.Log(typing_sound_[random_sound]);
-            
+            //Debug.Log(typing_sound_[random_sound]);
 
 
             char c = current_text_[0];
+            if (c != '>' && c != '.')
+            {
+                am_.PlaySound(typing_sound_[random_sound], 1, random_pitch);
+            }
             current_text_ = current_text_.Remove(0, 1);
-            current_text_mesh_.text += c;
+            if (isUI)
+            {
+                current_text_mesh_UI_.text += c;
+            }
+            else
+            {
+                current_text_mesh_.text += c;
+            }
             scroll_delay_timer_ = scroll_delay_;
 
             flicker_audio_ = !flicker_audio_;

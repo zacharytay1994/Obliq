@@ -30,7 +30,6 @@ public class DisplayGameOver : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("value is" + hp_.getCurrentHp());
         if (hp_.getCurrentHp() <= 0)
         {
             to_menu_button_.SetActive(true);
