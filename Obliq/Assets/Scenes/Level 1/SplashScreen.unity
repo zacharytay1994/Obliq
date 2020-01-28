@@ -206,13 +206,13 @@ MonoBehaviour:
   - name: Shotgun_Shot
     clip: {fileID: 8300000, guid: d12c1ac5ceb06714c999baf12271edf2, type: 3}
     volume: 1
-    pitch: 0.29
+    pitch: 0.2
     source: {fileID: 0}
     SoundType: 0
   - name: Rocket_Launch
     clip: {fileID: 8300000, guid: 5f468857b31d957458e31dc97817d797, type: 3}
     volume: 1
-    pitch: 1
+    pitch: 0.5
     source: {fileID: 0}
     SoundType: 0
   - name: Rocket_Explosion
@@ -254,7 +254,7 @@ MonoBehaviour:
   - name: Dash
     clip: {fileID: 8300000, guid: de94bdb74351f354fbe9e79c3d960216, type: 3}
     volume: 2
-    pitch: 0.5
+    pitch: 0.7
     source: {fileID: 0}
     SoundType: 0
   - name: Charge
