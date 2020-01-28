@@ -411,8 +411,8 @@ MonoBehaviour:
   w1_switch_: 49
   weapon_1: {fileID: 5809754552401931580, guid: 845deb91a47091a458c93705a6c9a153,
     type: 3}
-  w1_has_recoil: 1
-  w1_continuous_recoil_: 1
+  w1_has_recoil: 0
+  w1_continuous_recoil_: 0
   w1_recoil_data_: {x: 2, y: 0, z: 0.1}
   lock_state_1_: 0
   w2_switch_: 50
