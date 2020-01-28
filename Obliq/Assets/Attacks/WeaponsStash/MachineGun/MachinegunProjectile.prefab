@@ -52,7 +52,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eeb0363ec7ff550499b9f85ee039a8db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed_: 50
+  speed_: 30
   acceleration_: 1
   max_speed_: 10
   custom_speed_: 0
@@ -208,8 +208,8 @@ SpriteRenderer:
   m_SortingLayerID: -1352270105
   m_SortingLayer: 7
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 3e43b7c6a4ddb7343a290794fa8f8fe2, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  m_Color: {r: 0, g: 0.060203552, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -258,7 +258,7 @@ TrailRenderer:
   m_SortingLayerID: -1352270105
   m_SortingLayer: 7
   m_SortingOrder: 0
-  m_Time: 0.1
+  m_Time: 0.2
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -267,22 +267,22 @@ TrailRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.16215897
-        inSlope: 0
-        outSlope: 0
+        value: 0.31257197
+        inSlope: 1.3120676
+        outSlope: 1.3120676
         tangentMode: 0
         weightedMode: 0
         inWeight: 0.33333334
-        outWeight: 0.33333334
+        outWeight: 0.56604874
       - serializedVersion: 3
-        time: 0.19251458
-        value: 0.10540643
-        inSlope: 0
-        outSlope: 0
+        time: 0.19786279
+        value: 0.2551104
+        inSlope: -1.0926499
+        outSlope: -1.0926499
         tangentMode: 0
         weightedMode: 0
         inWeight: 0
-        outWeight: 0
+        outWeight: 0.35965103
       - serializedVersion: 3
         time: 0.5026689
         value: 0.07837659
@@ -293,8 +293,8 @@ TrailRenderer:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 0.9678996
-        value: 0.037837327
+        time: 0.74306726
+        value: 0
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -306,20 +306,20 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 0.25274113, b: 0, a: 1}
-      key1: {r: 1, g: 0.494457, b: 0.2588235, a: 0}
-      key2: {r: 1, g: 0.93402195, b: 0.4528302, a: 0}
-      key3: {r: 1, g: 0.9903333, b: 0.735849, a: 0}
+      key0: {r: 0, g: 0.075618744, b: 1, a: 1}
+      key1: {r: 0.2588235, g: 0.55915916, b: 1, a: 0.39215687}
+      key2: {r: 0.45098042, g: 0.94998264, b: 1, a: 0}
+      key3: {r: 0.9575472, g: 1, b: 0.99873275, a: 0}
       key4: {r: 1, g: 1, b: 1, a: 0}
-      key5: {r: 0, g: 0, b: 0, a: 0}
+      key5: {r: 1, g: 1, b: 1, a: 0}
       key6: {r: 0, g: 0, b: 0, a: 0}
       key7: {r: 0, g: 0, b: 0, a: 0}
       ctime0: 0
-      ctime1: 17155
-      ctime2: 30262
-      ctime3: 43947
+      ctime1: 7517
+      ctime2: 15035
+      ctime3: 33153
       ctime4: 65535
-      ctime5: 0
+      ctime5: 65535
       ctime6: 0
       ctime7: 0
       atime0: 0
