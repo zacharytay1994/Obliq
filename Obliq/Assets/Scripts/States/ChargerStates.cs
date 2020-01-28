@@ -14,9 +14,10 @@ public class ChargerMoveState : State
     Vector2 compare_vec;
    
     float charge_timer;
+    float next_charge_time;
     public override void Enter(GameObject owner)
     {
-
+        next_charge_time = Time.time;
         charge_timer = Time.time;
         owner.GetComponent<Charger>().target_reference_ = GameObject.Find("World").GetComponent<WorldHandler>().GetRandomGoodGuy();
         // if target was not found 
@@ -30,7 +31,7 @@ public class ChargerMoveState : State
         closest_good_guy_position =
             (Vector2)owner.GetComponent<Charger>().target_reference_.transform.position + (to_add * 1.5f); // temp magic number (how far behind target)
         // move charger to position
-        owner.GetComponent<Rigidbody2D>().AddForce(to_add * 80000); //* 40);
+        owner.GetComponent<Rigidbody2D>().AddForce(to_add * 4000 * owner.GetComponent<Rigidbody2D>().mass); //* 40);
        /* owner.GetComponent<LineRenderer>().SetPosition(0, (Vector2)owner.transform.position);
        
         owner.GetComponent<LineRenderer>().SetPosition(1, closest_good_guy_position);*/
@@ -41,7 +42,7 @@ public class ChargerMoveState : State
     }
     public override void Execute(GameObject owner)
     {
-
+        next_charge_time += Time.deltaTime;
         Debug.Log("Charger Move");
         owner.GetComponent<SpriteRenderer>().material.color =
            Color.Lerp(owner.GetComponent<SpriteRenderer>().material.color, Color.white, Mathf.PingPong(Time.time, 1 * Time.deltaTime));
@@ -66,7 +67,7 @@ public class ChargerMoveState : State
 
             owner.GetComponent<Entity>().statemachine_.ChangeState(new ChargerIdleState());
         }
-        if (GC<Rigidbody2D>(owner).velocity == Vector2.zero || Time.time - charge_timer > 3.0f)
+        if (GC<Rigidbody2D>(owner).velocity == Vector2.zero || next_charge_time - charge_timer > 3.0f)
         {
             GC<Charger>(owner).SpawnLesserChargers();
             owner.GetComponent<Entity>().statemachine_.ChangeState(new ChargerIdleState()); 

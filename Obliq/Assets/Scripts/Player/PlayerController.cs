@@ -50,6 +50,7 @@ public class PlayerController : MonoBehaviour
     float dash_damage_ = 1.0f;
     [SerializeField]
     float dash_radius_ = 2.0f;
+    float dash_cooldown_counter = 2.0f;
     List<Collider2D> dash_enemy_list = new List<Collider2D>();
    
     // Start is called before the first frame update
@@ -169,15 +170,16 @@ public class PlayerController : MonoBehaviour
                 dash_enemy_list.Clear();
             }
         }
+        
 
-        if (Input.GetKeyDown(KeyCode.Space) && Time.time >= next_dash_time)
+        if (Input.GetKeyDown(KeyCode.Space) && dash_cooldown_counter >= dash_cooldown_)
         {
-            am_.PlaySound(dash_sound_);
+            //am_.PlaySound(dash_sound_);
             //rb2d_.AddForce(heading_ * (dash_strength * dash_duration_));
             GameObject temp2 = GameObject.Find("Dashbar");
             temp2.GetComponent<DashFill>().dashbar();
             rb2d_.velocity = (Vector3)((heading_) * dash_strength) * dash_duration_;
-            next_dash_time = Time.time + dash_cooldown_;
+            dash_cooldown_counter = 0.0f;
             invincibility_start_time_ = Time.time;
             trail_active_time_ = Time.time + dash_duration_ / 3;
             GameObject temp = Instantiate(dash_particle_);
@@ -189,6 +191,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
+            
             if (Input.GetKey(KeyCode.W))
             {
                 heading_.y += player_acceleration_ * speed_modifier_;
@@ -208,7 +211,7 @@ public class PlayerController : MonoBehaviour
         }
         heading_.x = heading_.x - ((1 - player_decceleration_) * heading_.x);
         heading_.y = heading_.y - ((1 - player_decceleration_) * heading_.y);
-       
+        dash_cooldown_counter += Time.deltaTime;
         //rb2d_.velocity = heading_;
         rb2d_.AddForce(heading_, ForceMode2D.Force);
     }
@@ -225,7 +228,7 @@ public class PlayerController : MonoBehaviour
 
     public bool isInvincible()
     {
-        if (Time.time - invincibility_start_time_ > invincibility_time_)
+        if (Time.time - invincibility_start_time_ > invincibility_time_ * Time.deltaTime)
         {
             return false;
         }

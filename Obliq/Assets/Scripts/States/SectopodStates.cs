@@ -139,7 +139,7 @@ public class SectopodMoveState : State
 public class SectopodAttackState : State
 {
     float attack_rate; // amt of time to charge
-
+    float next_attack_missile_time;
     float next_damage_time;
    
     bool is_charging;
@@ -147,6 +147,7 @@ public class SectopodAttackState : State
     DamagePopup damage_popup = GameObject.Find("World").GetComponent<DamagePopup>();
     public override void Enter(GameObject owner)
     {
+        next_attack_missile_time = Time.time + Time.time + owner.GetComponent<Sectopod>().missile_attack_speed;
         Debug.Log("Sectopod Attack state");
         is_charging = true;
         laser_aimed = false;
@@ -162,6 +163,7 @@ public class SectopodAttackState : State
     }
     public override void Execute(GameObject owner)       
     {
+
         attack_rate = owner.GetComponent<RaycastAttack>().attack_rate_;
         GameObject objective = GameObject.Find("Bomb");
         GC<ObliqPathfinding>(owner).target_ = GC<Sectopod>(owner).target_reference_.transform.position;
@@ -172,6 +174,11 @@ public class SectopodAttackState : State
         if ((GC<Sectopod>(owner).target_reference_.transform.position - owner.transform.position).magnitude
             < GC<Entity>(owner).attack_range_ || laser_aimed) 
         {
+            if (Time.time > next_attack_missile_time)
+            {
+                owner.GetComponent<Sectopod>().FireMissile();
+                next_attack_missile_time = Time.time + owner.GetComponent<Sectopod>().missile_attack_speed;
+            }
             GC<RaycastAttack>(owner).Attack(owner, GC<Sectopod>(owner).target_reference_);
             
             if (Time.time >=  GC<RaycastAttack> (owner).next_line_thicken_time && !is_charging)//start charging
@@ -212,7 +219,8 @@ public class SectopodAttackState : State
                     //Instantiate explosion bullet here
                     // owner.GetComponent<InitProjSpawner>().GetWeapon().GetComponent<ImAProjectile>().FireForSetTime(0.11f);
                     owner.GetComponent<Sectopod>().FireBullet();
-                    
+                   
+
                 }
 
                 is_charging = false;

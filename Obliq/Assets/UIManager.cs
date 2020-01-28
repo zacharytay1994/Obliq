@@ -9,12 +9,14 @@ public class UIManager : MonoBehaviour
     bool is_Paused_ = false;
     
     public bool is_Quitting_ = false;
+    SceneTransitionLoader stl_;
 
     // Start is called before the first frame update
     void Start()
     {
-        
-       
+        stl_ = GameObject.Find("SceneManager").GetComponent<SceneTransitionLoader>();
+        getPauseObjects();
+
     }
     List<GameObject> getPauseObjects()
     {
@@ -25,6 +27,7 @@ public class UIManager : MonoBehaviour
             for (int i = 0; i < parent.transform.childCount; i++)
             {
                 pauseObjects.Add(parent.transform.GetChild(i).gameObject);
+                parent.transform.GetChild(i).gameObject.SetActive(false);
             }
         }
         return pauseObjects;
@@ -32,7 +35,10 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyUp(KeyCode.Escape))
+        {
+            pauseFunction();
+        }
     }
     void OnApplicationQuit()
     {
@@ -41,10 +47,10 @@ public class UIManager : MonoBehaviour
     public void pauseFunction()
     {
         List<GameObject> pause_obj = getPauseObjects();
-        if (is_Paused_ == true)
+        if (Time.timeScale == 0)
         {           
             Time.timeScale = 1;
-            is_Paused_ = false;
+            
             foreach (GameObject g in pause_obj)
             {
                 g.SetActive(false);
@@ -53,7 +59,7 @@ public class UIManager : MonoBehaviour
         else
         {
             Time.timeScale = 0;
-            is_Paused_ = true;
+           
             foreach (GameObject g in pause_obj)
             {
                 g.SetActive(true);
@@ -63,7 +69,14 @@ public class UIManager : MonoBehaviour
     public void restartFunction()
     {
         is_Quitting_ = true;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        stl_ = GameObject.Find("SceneManager").GetComponent<SceneTransitionLoader>();
+        stl_.load_scene_Asynch(SceneManager.GetActiveScene().name); // SceneManager.LoadScene(SceneManager.GetActiveScene().name); 
+        pauseFunction();
+    }
+    public void GoToMenu()
+    {
+        stl_ = GameObject.Find("SceneManager").GetComponent<SceneTransitionLoader>();
+        stl_.load_scene_Asynch("MenuScene");
         pauseFunction();
     }
     public void quitFunction()
