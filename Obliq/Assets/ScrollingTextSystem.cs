@@ -70,14 +70,14 @@ public class ScrollingTextSystem : MonoBehaviour
         if (scroll_delay_timer_ <= 0 && current_text_.Length > 0)
         {
 
-            float random_pitch = Random.Range(2f, 2f);
+            float random_pitch = 1.5f;
             int random_sound = Random.Range(0, typing_sound_.Count);
 
             //Debug.Log(typing_sound_[random_sound]);
 
 
             char c = current_text_[0];
-            if (c != '>' && c != '.')
+            if (c != '>' && c != '.' && c!= '<')
             {
                 am_.PlaySound(typing_sound_[random_sound], 1, random_pitch);
             }
