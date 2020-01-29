@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,7 +17,7 @@ public class TheGudSuc : MonoBehaviour
     [SerializeField]
     float reach_threshold_ = 0.1f;
 
-    bool suc = true;
+    bool suc = false;
     [SerializeField]
     float particle_amount_ = 10.0f;
     [SerializeField]
@@ -88,7 +89,7 @@ public class TheGudSuc : MonoBehaviour
         }
     }
 
-    void Suc(bool b)
+    public void Suc(bool b)
     {
         suc = b;
     }
