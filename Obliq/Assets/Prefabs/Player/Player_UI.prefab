@@ -718,8 +718,6 @@ MonoBehaviour:
   - {fileID: 7713048702581525774}
   - {fileID: 3620094675693219706}
   - {fileID: 5082153176967092224}
-  to_menu_button_: {fileID: 7713048702581525774}
-  restart_level_button: {fileID: 0}
 --- !u!114 &570956903338412772
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -865,7 +863,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &179920230060837878
 RectTransform:
   m_ObjectHideFlags: 0

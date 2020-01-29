@@ -69,8 +69,6 @@ public class ScrollingTextSystem : MonoBehaviour
         scroll_delay_timer_ -= Time.deltaTime;
         if (scroll_delay_timer_ <= 0 && current_text_.Length > 0)
         {
-
-            float random_pitch = 1.5f;
             int random_sound = Random.Range(0, typing_sound_.Count);
 
             //Debug.Log(typing_sound_[random_sound]);
@@ -79,7 +77,7 @@ public class ScrollingTextSystem : MonoBehaviour
             char c = current_text_[0];
             if (c != '>' && c != '.' && c!= '<')
             {
-                am_.PlaySound(typing_sound_[random_sound], 1, random_pitch);
+                am_.PlaySound(typing_sound_[random_sound]);
             }
             current_text_ = current_text_.Remove(0, 1);
             if (isUI)

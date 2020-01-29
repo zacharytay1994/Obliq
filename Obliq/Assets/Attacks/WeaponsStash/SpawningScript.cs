@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class SpawningScript : MonoBehaviour
 {
+    [SerializeField]
+    int grunt_spawn_limit_=10;
     int grunt_count_ = 0;
     [SerializeField]
     int max_grunt_count_ = 10;
