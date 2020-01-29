@@ -14,7 +14,14 @@ public class ActivateNavDialogue : MonoBehaviour
 
     private void Update()
     {
-
+        for (int i = 0; i < objects_to_destroy_.Count; i++)
+        {
+            if (objects_to_destroy_[i] == null)
+            {
+                objects_to_destroy_.RemoveAt(i);
+                break;
+            }
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
