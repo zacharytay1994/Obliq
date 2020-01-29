@@ -58,7 +58,11 @@ MonoBehaviour:
   target_reference_: {fileID: 0}
   sectopod_bullet_: {fileID: 4512505190216500458, guid: 08bd5e4d12fbf48498a07428ae0bfee5,
     type: 3}
+  sectopod_missile_: {fileID: 5522028647058031579, guid: 3a5c4e2bc5213b847ab937122018965f,
+    type: 3}
   bullet_speed_: 30
+  missile_attack_speed: 3
+  player_: {fileID: 0}
 --- !u!114 &9041656220963992287
 MonoBehaviour:
   m_ObjectHideFlags: 0
