@@ -45,6 +45,8 @@ public class AudioManager : MonoBehaviour
             playedSound.AddComponent<AudioSource>();
             AudioSource aus = playedSound.GetComponent<AudioSource>();
             aus.clip = s.Clip;
+            aus.volume = s.Volume;
+            aus.pitch = s.Pitch;
             playedSound.AddComponent<DeleteSoundScript>();
 
             Instantiate(playedSound, transform);
@@ -60,7 +62,7 @@ public class AudioManager : MonoBehaviour
         }
         else
         {
-            s.Volume = volume;
+            //s.Volume = volume;
 
             s.Source.loop = false;
 
@@ -68,6 +70,8 @@ public class AudioManager : MonoBehaviour
             playedSound.AddComponent<AudioSource>();
             AudioSource aus = playedSound.GetComponent<AudioSource>();
             aus.clip = s.Clip;
+            aus.volume = s.Volume * volume;
+            aus.pitch = s.Pitch;
             playedSound.AddComponent<DeleteSoundScript>();
 
             Instantiate(playedSound, transform);
@@ -90,8 +94,8 @@ public class AudioManager : MonoBehaviour
             playedSound.AddComponent<AudioSource>();
             AudioSource aus = playedSound.GetComponent<AudioSource>();
             aus.clip = s.Clip;
-            aus.volume = volume;
-            aus.pitch = pitch;
+            aus.volume = s.Volume * volume;
+            aus.pitch = s.Pitch * pitch;
             playedSound.AddComponent<DeleteSoundScript>();
 
             Instantiate(playedSound, transform);
@@ -114,6 +118,8 @@ public class AudioManager : MonoBehaviour
             playedSound.AddComponent<AudioSource>();
             AudioSource aus = playedSound.GetComponent<AudioSource>();
             aus.clip = s.Clip;
+            aus.volume = s.Volume;
+            aus.pitch = s.Pitch;
             aus.loop = true;
             playedSound.AddComponent<DeleteSoundScript>();
 
@@ -138,7 +144,8 @@ public class AudioManager : MonoBehaviour
             AudioSource aus = playedSound.GetComponent<AudioSource>();
             aus.clip = s.Clip;
             aus.loop = true;
-            aus.volume = volume;
+            aus.volume = s.Volume * volume;
+            aus.pitch = s.Pitch;
             playedSound.AddComponent<DeleteSoundScript>();
 
             Instantiate(playedSound, transform);
