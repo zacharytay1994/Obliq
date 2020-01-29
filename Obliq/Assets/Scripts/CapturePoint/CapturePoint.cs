@@ -50,7 +50,7 @@ public class CapturePoint : MonoBehaviour
 
         if (((Vector2)transform.position - (Vector2)player.transform.position).magnitude <= capture_radius_ && !captured_)
         {
-            capture_rate_ += 1;
+            capture_rate_ += 2;
             if (capture_rate_ >= max_capture_rate)
             {
                 capture_rate_ = max_capture_rate;
@@ -60,7 +60,7 @@ public class CapturePoint : MonoBehaviour
         }
         else
         {
-            capture_rate_ -= 1;
+            capture_rate_ -= 2;
             if (capture_rate_ <= 1 && !captured_)
             {
                 capture_rate_ = 1;
