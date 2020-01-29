@@ -13,8 +13,7 @@ public class DisplayGameOver : MonoBehaviour
     [SerializeField]
     ScrollingTextSystem scroll_;
 
-    [SerializeField] GameObject to_menu_button_;
-    [SerializeField] GameObject restart_level_button;
+    [SerializeField] List<GameObject> objects_to_activate_;
 
     SceneTransitionLoader stl_;
 
@@ -25,10 +24,12 @@ public class DisplayGameOver : MonoBehaviour
     {
         stl_ = FindObjectOfType<SceneTransitionLoader>();
         //text_ = GetComponent<TextMeshProUGUI>();
+        foreach (GameObject g in objects_to_activate_)
+        {
+            g.SetActive(false);
+        }
         text_.enabled = false;
         scroll_.enabled = false;
-        to_menu_button_.SetActive(false);
-        restart_level_button.SetActive(false);
         hp_ = GameObject.Find("Player").GetComponent<HealthComponent>();
         player_ = GameObject.Find("Player");
     }
@@ -38,8 +39,13 @@ public class DisplayGameOver : MonoBehaviour
     {
         if (hp_.getCurrentHp() <= 0)
         {
-            to_menu_button_.SetActive(true);
-            restart_level_button.SetActive(true);
+            //to_menu_button_.SetActive(true);
+            //restart_level_button.SetActive(true);
+
+            foreach(GameObject g in objects_to_activate_)
+            {
+                g.SetActive(true);
+            }
             text_.enabled = true;
             scroll_.enabled = true;
 
