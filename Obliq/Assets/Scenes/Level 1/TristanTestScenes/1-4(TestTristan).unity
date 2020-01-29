@@ -101198,15 +101198,15 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 2361982361374958839, guid: e2c522e5ec41bb241ae54dc18962a9ef,
-        type: 3}
-      propertyPath: world_handler_reference_
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 4962826380198985163, guid: e2c522e5ec41bb241ae54dc18962a9ef,
         type: 3}
       propertyPath: invincibility_time_
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2361982361374958839, guid: e2c522e5ec41bb241ae54dc18962a9ef,
+        type: 3}
+      propertyPath: world_handler_reference_
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e2c522e5ec41bb241ae54dc18962a9ef, type: 3}
@@ -101283,37 +101283,15 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4968129811424112630, guid: 77d74132f7da4f44a8b7551adb0cff4d,
         type: 3}
-    - target: {fileID: 9041656220963992284, guid: 87310967b1792e142b19378687475514,
-        type: 3}
-      propertyPath: bullet_speed_
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 9041656220963992284, guid: 87310967b1792e142b19378687475514,
-        type: 3}
-      propertyPath: sectopod_bullet_
-      value: 
-      objectReference: {fileID: 4512505190216500458, guid: 08bd5e4d12fbf48498a07428ae0bfee5,
-        type: 3}
-    - target: {fileID: 9041656220963992284, guid: 87310967b1792e142b19378687475514,
-        type: 3}
-      propertyPath: missile_attack_speed
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 9041656220963992284, guid: 87310967b1792e142b19378687475514,
-        type: 3}
-      propertyPath: sectopod_missile_
-      value: 
-      objectReference: {fileID: 5522028647058031579, guid: 3a5c4e2bc5213b847ab937122018965f,
-        type: 3}
-    - target: {fileID: 3371876433012458454, guid: 87310967b1792e142b19378687475514,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 9041656220963992274, guid: 87310967b1792e142b19378687475514,
         type: 3}
       propertyPath: m_IsTrigger
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3371876433012458454, guid: 87310967b1792e142b19378687475514,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7446402319411497978, guid: 87310967b1792e142b19378687475514,
         type: 3}
@@ -102241,41 +102219,6 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 8239219786968882253, guid: 30de44655fb90e8418fc0eb58beeaeba,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 7065022726016586328, guid: 30de44655fb90e8418fc0eb58beeaeba,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 2710746636912595029, guid: 30de44655fb90e8418fc0eb58beeaeba,
-        type: 3}
-      propertyPath: m_BlockingMask.m_Bits
-      value: 4294967295
-      objectReference: {fileID: 0}
-    - target: {fileID: 3637035237731279072, guid: 30de44655fb90e8418fc0eb58beeaeba,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3637035237731279072, guid: 30de44655fb90e8418fc0eb58beeaeba,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3637035237731279074, guid: 30de44655fb90e8418fc0eb58beeaeba,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: pauseFunction
-      objectReference: {fileID: 0}
-    - target: {fileID: 3637035237731279074, guid: 30de44655fb90e8418fc0eb58beeaeba,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: pauseFunction
-      objectReference: {fileID: 0}
     - target: {fileID: 5395600227332659189, guid: 30de44655fb90e8418fc0eb58beeaeba,
         type: 3}
       propertyPath: start_color_.r
@@ -102305,6 +102248,51 @@ PrefabInstance:
         type: 3}
       propertyPath: end_color_.b
       value: 0.10840158
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065022726016586328, guid: 30de44655fb90e8418fc0eb58beeaeba,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4121584643347464299, guid: 30de44655fb90e8418fc0eb58beeaeba,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8239219786968882253, guid: 30de44655fb90e8418fc0eb58beeaeba,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1807049619608216043, guid: 30de44655fb90e8418fc0eb58beeaeba,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2710746636912595029, guid: 30de44655fb90e8418fc0eb58beeaeba,
+        type: 3}
+      propertyPath: m_BlockingMask.m_Bits
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 3637035237731279072, guid: 30de44655fb90e8418fc0eb58beeaeba,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3637035237731279072, guid: 30de44655fb90e8418fc0eb58beeaeba,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3637035237731279074, guid: 30de44655fb90e8418fc0eb58beeaeba,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: pauseFunction
+      objectReference: {fileID: 0}
+    - target: {fileID: 3637035237731279074, guid: 30de44655fb90e8418fc0eb58beeaeba,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: pauseFunction
       objectReference: {fileID: 0}
     - target: {fileID: 4771300331288405153, guid: 30de44655fb90e8418fc0eb58beeaeba,
         type: 3}
