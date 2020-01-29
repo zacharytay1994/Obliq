@@ -80,25 +80,35 @@ public class LevelManagerScript : MonoBehaviour
             // Initialize spawners
             spawner_1_ = GameObject.Find("Spawner");
             spawner_2_ = GameObject.Find("Spawner 2");
-            spawner_3_ = GameObject.Find("Spawner 3");
         }
 
         // 1-2
         else if (level_selector_ == LevelSelector.Two)
         {
+            // Initialize spawners
+            spawner_1_ = GameObject.Find("Spawner");
+            spawner_2_ = GameObject.Find("Spawner 2");
+            spawner_3_ = GameObject.Find("Spawner 3");
+        }
+
+        // 1-3 TO BE DONE
+
+        // 1-4
+        else if (level_selector_ == LevelSelector.Four)
+        {
             // Initialize capture point (Objective)
             capture_point_ = GameObject.Find("CapturePoint");
         }
 
-        // 1-3-1
-        else if (level_selector_ == LevelSelector.Three_Prelude)
+        // 1-5
+        else if (level_selector_ == LevelSelector.Five)
         {
             // Initialize charger
             charger_1_ = GameObject.Find("Charger");
         }
 
-        // 1-3
-        else if (level_selector_ == LevelSelector.Three)
+        // 1-6
+        else if (level_selector_ == LevelSelector.Six)
         {
             // Initialize chargers
             charger_1_ = GameObject.Find("Charger");
@@ -106,38 +116,36 @@ public class LevelManagerScript : MonoBehaviour
             charger_3_ = GameObject.Find("Charger 3");
         }
 
-        // 1-4
-        else if (level_selector_ == LevelSelector.Four)
+        // 1-7
+        else if (level_selector_ == LevelSelector.Seven)
         {
             // Initialize charger and spawners
             charger_1_ = GameObject.Find("Charger");
             spawner_1_ = GameObject.Find("Spawner");
             spawner_2_ = GameObject.Find("Spawner 2");
-        }
-
-        // 1-5
-        else if (level_selector_ == LevelSelector.Five)
-        {
-            // Initialize chargers and spawners
-            charger_1_ = GameObject.Find("Charger");
-            charger_2_ = GameObject.Find("Charger 2");
-            spawner_1_ = GameObject.Find("Spawner");
-            spawner_2_ = GameObject.Find("Spawner 2");
             spawner_3_ = GameObject.Find("Spawner 3");
         }
 
-        // 1-6
-        else if (level_selector_ == LevelSelector.Six)
+        // 1-8
+        else if (level_selector_ == LevelSelector.Eight)
         {
-            // Initialize capture point (Objective)
-            capture_point_ = GameObject.Find("CapturePoint");
+            // Initialize spawners
+            spawner_1_ = GameObject.Find("Spawner");
+            spawner_2_ = GameObject.Find("Spawner 2");
         }
 
-        // 1-7
-        else if (level_selector_ == LevelSelector.Seven)
+        // 1-9
+        else if (level_selector_ == LevelSelector.Nine)
         {
             // Initialize capture point (Objective)
-            capture_point_ = GameObject.Find("CapturePoint");
+            //capture_point_ = GameObject.Find("CapturePoint");
+        }
+
+        // 1-10
+        else if (level_selector_ == LevelSelector.Ten)
+        {
+            // Initialize capture point (Objective)
+            //capture_point_ = GameObject.Find("CapturePoint");
         }
     }
 
@@ -213,8 +221,8 @@ public class LevelManagerScript : MonoBehaviour
         // 1-1
         else if (level_selector_ == LevelSelector.One)
         {
-            // When all spawners are destroyed, activate portal. When in range of portal, transport player to next level.
-            if (spawner_1_ == null && spawner_2_ == null && spawner_3_ == null && activate_portal_ == false)
+            // When the two top spawners are destroyed, activate portal. When in range of portal, transport player to next level.
+            if (spawner_1_ == null && spawner_2_ == null && activate_portal_ == false)
             {
                 portal_script_.SetActivatePortal(true);
                 activate_portal_ = true;
@@ -231,68 +239,32 @@ public class LevelManagerScript : MonoBehaviour
         // 1-2
         else if (level_selector_ == LevelSelector.Two)
         {
+            // When the two top spawners are destroyed, activate portal. When in range of portal, transport player to next level.
+            if (spawner_1_ == null && spawner_2_ == null && spawner_3_ == null && activate_portal_ == false)
+            {
+                portal_script_.SetActivatePortal(true);
+                activate_portal_ = true;
+            }
+
+            // Check distance between player and portal
+            Vector2 dist_to_portal_ = player_.GetComponent<Transform>().position - portal_.GetComponent<Transform>().position;
+            if (dist_to_portal_.magnitude <= 3.0f && portal_.activeSelf == true)
+            {
+                //STM_.load_scene_Asynch("1-3");
+                STM_.load_scene_Asynch("1-4");
+            }
+        }
+
+        // 1-3 TO BE DONE
+
+        // 1-4
+        else if (level_selector_ == LevelSelector.Four)
+        {
             // Check if capture point is captured
             captured_ = capture_point_.GetComponent<CapturePoint>().captured_;
 
             // When capture point is captured, activate portal. When in range of portal, transport player to next level.
             if (captured_ == true && activate_portal_ == false)
-            {
-                // Activate portal
-                portal_script_.SetActivatePortal(true);
-                activate_portal_ = true;
-            }
-
-            // Check distance between player and portal
-            Vector2 dist_to_portal_ = player_.GetComponent<Transform>().position - portal_.GetComponent<Transform>().position;
-            if (dist_to_portal_.magnitude <= 3.0f && portal_.activeSelf == true)
-            {
-                STM_.load_scene_Asynch("1-3-1");
-            }
-        }
-
-        // 1-3-1
-        else if (level_selector_ == LevelSelector.Three_Prelude)
-        {
-            // When charger is killed, activate portal. When in range of portal, transport player to next level.
-            if (charger_1_ == null && activate_portal_ == false)
-            {
-                // Activate portal
-                portal_script_.SetActivatePortal(true);
-                activate_portal_ = true;
-            }
-
-            // Check distance between player and portal
-            Vector2 dist_to_portal_ = player_.GetComponent<Transform>().position - portal_.GetComponent<Transform>().position;
-            if (dist_to_portal_.magnitude <= 3.0f && portal_.activeSelf == true)
-            {
-                STM_.load_scene_Asynch("1-3");
-            }
-        }
-
-        // 1-3
-        else if (level_selector_ == LevelSelector.Three)
-        {
-            // When all chargers are killed, activate portal. When in range of portal, transport player to next level.
-            if (charger_1_ == null && charger_2_ == null && charger_3_ == null && activate_portal_ == false)
-            {
-                // Activate portal
-                portal_script_.SetActivatePortal(true);
-                activate_portal_ = true;
-            }
-
-            // Check distance between player and portal
-            Vector2 dist_to_portal_ = player_.GetComponent<Transform>().position - portal_.GetComponent<Transform>().position;
-            if (dist_to_portal_.magnitude <= 3.0f && portal_.activeSelf == true)
-            {
-                STM_.load_scene_Asynch("1-4");
-            }
-        }
-
-        // 1-4
-        else if (level_selector_ == LevelSelector.Four)
-        {
-            // When charger is killed and spawners are destroyed, activate portal. When in range of portal, transport player to next level.
-            if (charger_1_ == null && spawner_1_ == null && spawner_2_ == null && activate_portal_ == false)
             {
                 // Activate portal
                 portal_script_.SetActivatePortal(true);
@@ -310,8 +282,8 @@ public class LevelManagerScript : MonoBehaviour
         // 1-5
         else if (level_selector_ == LevelSelector.Five)
         {
-            // When chargers are killed and spawners are destroyed, activate portal. When in range of portal, transport player to next level.
-            if (charger_1_ == null && charger_2_ == null && spawner_1_ == null && spawner_2_ == null && spawner_3_ == null && activate_portal_ == false)
+            // When charger is killed, activate portal. When in range of portal, transport player to next level.
+            if (charger_1_ == null && activate_portal_ == false)
             {
                 // Activate portal
                 portal_script_.SetActivatePortal(true);
@@ -329,11 +301,8 @@ public class LevelManagerScript : MonoBehaviour
         // 1-6
         else if (level_selector_ == LevelSelector.Six)
         {
-            // Check if capture point is captured
-            captured_ = capture_point_.GetComponent<CapturePoint>().captured_;
-
-            //When capture point is captured, activate portal. When in range of portal, transport player to next level.
-            if (captured_ == true && activate_portal_ == false)
+            // When all chargers are killed, activate portal. When in range of portal, transport player to next level.
+            if (charger_1_ == null && charger_2_ == null && charger_3_ == null && activate_portal_ == false)
             {
                 // Activate portal
                 portal_script_.SetActivatePortal(true);
@@ -350,6 +319,66 @@ public class LevelManagerScript : MonoBehaviour
 
         // 1-7
         else if (level_selector_ == LevelSelector.Seven)
+        {
+            // When charger is killed and spawners are destroyed, activate portal. When in range of portal, transport player to next level.
+            if (charger_1_ == null && spawner_1_ == null && spawner_2_ == null && spawner_3_ == null && activate_portal_ == false)
+            {
+                // Activate portal
+                portal_script_.SetActivatePortal(true);
+                activate_portal_ = true;
+            }
+
+            // Check distance between player and portal
+            Vector2 dist_to_portal_ = player_.GetComponent<Transform>().position - portal_.GetComponent<Transform>().position;
+            if (dist_to_portal_.magnitude <= 3.0f && portal_.activeSelf == true)
+            {
+                STM_.load_scene_Asynch("1-8");
+            }
+        }
+
+        // 1-8
+        else if (level_selector_ == LevelSelector.Eight)
+        {
+            // When chargers are killed and spawners are destroyed, activate portal. When in range of portal, transport player to next level.
+            if (spawner_1_ == null && spawner_2_ == null && activate_portal_ == false)
+            {
+                // Activate portal
+                portal_script_.SetActivatePortal(true);
+                activate_portal_ = true;
+            }
+
+            // Check distance between player and portal
+            Vector2 dist_to_portal_ = player_.GetComponent<Transform>().position - portal_.GetComponent<Transform>().position;
+            if (dist_to_portal_.magnitude <= 3.0f && portal_.activeSelf == true)
+            {
+                STM_.load_scene_Asynch("1-9");
+            }
+        }
+
+        // 1-9
+        else if (level_selector_ == LevelSelector.Nine)
+        {
+            // Check if capture point is captured
+            captured_ = capture_point_.GetComponent<CapturePoint>().captured_;
+
+            //When capture point is captured, activate portal. When in range of portal, transport player to next level.
+            if (captured_ == true && activate_portal_ == false)
+            {
+                // Activate portal
+                portal_script_.SetActivatePortal(true);
+                activate_portal_ = true;
+            }
+
+            // Check distance between player and portal
+            Vector2 dist_to_portal_ = player_.GetComponent<Transform>().position - portal_.GetComponent<Transform>().position;
+            if (dist_to_portal_.magnitude <= 3.0f && portal_.activeSelf == true)
+            {
+                STM_.load_scene_Asynch("1-10");
+            }
+        }
+
+        // 1-10
+        else if (level_selector_ == LevelSelector.Ten)
         {
             // Check if capture point is captured
             captured_ = capture_point_.GetComponent<CapturePoint>().captured_;
