@@ -6,6 +6,10 @@ public class SpawningScript : MonoBehaviour
 {
     FlockingHandler flock_;
     [SerializeField]
+    bool activated_by_trigger_;
+    [SerializeField]
+    GameObject player_trigger_;
+    [SerializeField]
     int grunt_spawn_limit_=10;
     int grunt_count_ = 0;
     [SerializeField]
@@ -38,7 +42,14 @@ public class SpawningScript : MonoBehaviour
         {
             if(flock_.flockers_.Count<=grunt_spawn_limit_-max_grunt_count_)
             {
-                SpawnWave();
+                if(!activated_by_trigger_)
+                {
+                    SpawnWave();
+                }
+                else if(player_trigger_.activeInHierarchy)
+                {
+                    SpawnWave();
+                }
             }
         }
         else

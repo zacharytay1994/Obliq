@@ -138451,8 +138451,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Good job.\nApologies for restraining you, it was a <<JOKE>>. \nI, too can
-    be funny. <<HAHA>>\nNow, <<ENTER>> the portal."
+  m_text: "Good job.\nApologies for adding two more [enemies], it was a <<JOKE>>.
+    \nI, too can be funny. <<HAHA>>\nNow, <<ENTER>> the portal."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d4d265e293a0b06488c0aa5aa8e1719e, type: 2}
   m_sharedMaterial: {fileID: -2482713616062068163, guid: d4d265e293a0b06488c0aa5aa8e1719e,
