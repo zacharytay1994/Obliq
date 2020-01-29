@@ -224,6 +224,7 @@ GameObject:
   - component: {fileID: 1043391047657003997}
   - component: {fileID: 3175323466441815771}
   - component: {fileID: -679246854607487943}
+  - component: {fileID: -2491790334604582751}
   m_Layer: 16
   m_Name: Player
   m_TagString: MainPlayer
@@ -665,3 +666,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mark_: {fileID: 4670743272651592365, guid: 019ffc3cc351a6f44b5d329699563766, type: 3}
+--- !u!114 &-2491790334604582751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1102585009099040899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 247a87edb3e01174a999cb39387e811b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  suc_target_: {fileID: 0}
+  particle_: {fileID: 0}
+  suc_min_max_: {x: 0, y: 0}
+  particle_speed_: 10
+  reach_threshold_: 0.1
+  particle_amount_: 10
+  spawn_interval_: 0.1
