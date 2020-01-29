@@ -25,8 +25,9 @@ public class LevelManagerScript : MonoBehaviour
     // Chargers
     GameObject charger_1_, charger_2_, charger_3_;
 
-    // Bomb (Objective)
-    GameObject bomb_objective_;
+    // Capture point (Objective)
+    GameObject capture_point_;
+    bool captured_;
 
     //----------------------Tutorial-----------------------------
     // Training grunts
@@ -85,8 +86,8 @@ public class LevelManagerScript : MonoBehaviour
         // 1-2
         else if (level_selector_ == LevelSelector.Two)
         {
-            // Initialize bomb (Objective)
-            bomb_objective_ = GameObject.Find("Bomb");
+            // Initialize capture point (Objective)
+            capture_point_ = GameObject.Find("CapturePoint");
         }
 
         // 1-3-1
@@ -128,15 +129,15 @@ public class LevelManagerScript : MonoBehaviour
         // 1-6
         else if (level_selector_ == LevelSelector.Six)
         {
-            // Initialize bomb (Objective)
-            bomb_objective_ = GameObject.Find("Bomb");
+            // Initialize capture point (Objective)
+            capture_point_ = GameObject.Find("CapturePoint");
         }
 
         // 1-7
         else if (level_selector_ == LevelSelector.Seven)
         {
-            // Initialize bomb (Objective)
-            bomb_objective_ = GameObject.Find("Bomb");
+            // Initialize capture point (Objective)
+            capture_point_ = GameObject.Find("CapturePoint");
         }
     }
 
@@ -230,8 +231,11 @@ public class LevelManagerScript : MonoBehaviour
         // 1-2
         else if (level_selector_ == LevelSelector.Two)
         {
-            // When bomb is defused, activate portal. When in range of portal, transport player to next level.
-            if (bomb_objective_ == null && activate_portal_ == false)
+            // Check if capture point is captured
+            captured_ = capture_point_.GetComponent<CapturePoint>().captured_;
+
+            // When capture point is captured, activate portal. When in range of portal, transport player to next level.
+            if (captured_ == true && activate_portal_ == false)
             {
                 // Activate portal
                 portal_script_.SetActivatePortal(true);
@@ -249,7 +253,7 @@ public class LevelManagerScript : MonoBehaviour
         // 1-3-1
         else if (level_selector_ == LevelSelector.Three_Prelude)
         {
-            // When all chargers are killed, activate portal. When in range of portal, transport player to next level.
+            // When charger is killed, activate portal. When in range of portal, transport player to next level.
             if (charger_1_ == null && activate_portal_ == false)
             {
                 // Activate portal
@@ -268,7 +272,7 @@ public class LevelManagerScript : MonoBehaviour
         // 1-3
         else if (level_selector_ == LevelSelector.Three)
         {
-            // When bomb is defused, activate portal. When in range of portal, transport player to next level.
+            // When all chargers are killed, activate portal. When in range of portal, transport player to next level.
             if (charger_1_ == null && charger_2_ == null && charger_3_ == null && activate_portal_ == false)
             {
                 // Activate portal
@@ -325,8 +329,11 @@ public class LevelManagerScript : MonoBehaviour
         // 1-6
         else if (level_selector_ == LevelSelector.Six)
         {
-            //When bomb is defused, activate portal. When in range of portal, transport player to next level.
-            if (bomb_objective_ == null && activate_portal_ == false)
+            // Check if capture point is captured
+            captured_ = capture_point_.GetComponent<CapturePoint>().captured_;
+
+            //When capture point is captured, activate portal. When in range of portal, transport player to next level.
+            if (captured_ == true && activate_portal_ == false)
             {
                 // Activate portal
                 portal_script_.SetActivatePortal(true);
@@ -344,8 +351,11 @@ public class LevelManagerScript : MonoBehaviour
         // 1-7
         else if (level_selector_ == LevelSelector.Seven)
         {
-            //When bomb is defused, activate portal. When in range of portal, transport player to next level.
-            if (bomb_objective_ == null && activate_portal_ == false)
+            // Check if capture point is captured
+            captured_ = capture_point_.GetComponent<CapturePoint>().captured_;
+
+            //When capture point is captured, activate portal. When in range of portal, transport player to next level.
+            if (captured_ == true && activate_portal_ == false)
             {
                 // Activate portal
                 portal_script_.SetActivatePortal(true);

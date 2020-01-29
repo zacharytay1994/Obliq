@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8854787102229975483}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 65.52, y: 67.86, z: -26.074219}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 0.7, y: 0.7, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -93,9 +93,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e54b7aab8bf0fbd4d991a141893c98d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  time_to_capture_: 5
-  capture_radius_: 100
-  max_capture_rate: 180
+  time_to_capture_: 8
+  captured_: 0
+  capture_radius_: 8
+  max_capture_rate: 400
   rotation_speed_: 10
   capture_particles_: {fileID: 3280040919189175650, guid: b61dee43bc520b24ea341661b2152c0c,
     type: 3}
