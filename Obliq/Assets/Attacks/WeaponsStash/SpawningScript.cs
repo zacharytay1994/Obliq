@@ -4,14 +4,10 @@ using UnityEngine;
 
 public class SpawningScript : MonoBehaviour
 {
-    FlockingHandler flock_;
-    [SerializeField]
-    bool activated_by_trigger_;
-    [SerializeField]
-    GameObject player_trigger_;
+    GruntCountFromSpawners gcfs_;
     [SerializeField]
     int grunt_spawn_limit_=10;
-    int grunt_count_ = 0;
+    [HideInInspector] public int grunt_count_ = 0;
     [SerializeField]
     int max_grunt_count_ = 10;
     [SerializeField]
@@ -32,7 +28,7 @@ public class SpawningScript : MonoBehaviour
     {
         spawn_interval_counter_ = spawn_interval_;
         anim_ = GetComponent<Animator>();
-        flock_ = FindObjectOfType<FlockingHandler>();
+        gcfs_ = GetComponentInParent<GruntCountFromSpawners>();
     }
 
     // Update is called once per frame
@@ -40,16 +36,9 @@ public class SpawningScript : MonoBehaviour
     {
         if (per_wave_)
         {
-            if(flock_.flockers_.Count<=grunt_spawn_limit_-max_grunt_count_)
+            if(gcfs_.total_grunt_count_<=grunt_spawn_limit_-max_grunt_count_)
             {
-                if(!activated_by_trigger_)
-                {
                     SpawnWave();
-                }
-                else if(player_trigger_.activeInHierarchy)
-                {
-                    SpawnWave();
-                }
             }
         }
         else
