@@ -62,6 +62,20 @@ public class ScrollingTextSystem : MonoBehaviour
             scroll_complete_ = true;
         }
 
+        if (Input.GetKey(KeyCode.K))
+        {
+            if(UI_)
+            {
+                current_text_mesh_UI_.text += current_text_;
+            }
+            else
+            {
+                current_text_mesh_.text += current_text_;
+            }
+            
+            current_text_ = "";
+            Debug.Log("text skip");
+        }
     }
 
     void ScrollingText(bool isUI)
@@ -92,5 +106,7 @@ public class ScrollingTextSystem : MonoBehaviour
 
             flicker_audio_ = !flicker_audio_;
         }
+
+
     }
 }
