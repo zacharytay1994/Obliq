@@ -188,7 +188,7 @@ public class SectopodAttackState : State
             }
             GC<RaycastAttack>(owner).Attack(owner, GC<Sectopod>(owner).target_reference_);
             
-            if (line_timer >=  GC<RaycastAttack> (owner).next_line_thicken_time && !is_charging)//start charging
+            if (line_timer >=  GC<RaycastAttack> (owner).next_line_thicken_time && !is_charging)//start contracting
             {
                 GC<RaycastAttack>(owner).next_line_contract_time = Time.time + GC<RaycastAttack>(owner).line_contract_rate_;
                 GC<RaycastAttack>(owner).LineContract(GC<LineRenderer>(owner), GC<RaycastAttack>(owner).line_contract_increment_);
