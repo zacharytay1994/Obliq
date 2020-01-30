@@ -12,7 +12,6 @@ public class GolemSucking : MonoBehaviour
     bool sucking_ = false;
     [SerializeField]
     float radius_ = 5.0f;
-    [SerializeField]
     int particle_amt_ = 1;
     // Start is called before the first frame update
     void Start()

@@ -4805,10 +4805,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aaec188e262097f458f838d56b8945e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grunt_parent_: {fileID: 3393541871282005782, guid: 80a3ec2bdfbbd824d95a7abc64731712,
-    type: 3}
-  grunt_spawn_limit_: 10
-  grunt_count_: 0
   max_grunt_count_: 3
   grunt_: {fileID: 8401532159652299948, guid: 858475df435e48e4d8bbde62380203e5, type: 3}
   waves_: 99999

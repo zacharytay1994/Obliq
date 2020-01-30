@@ -18,7 +18,6 @@ public class ScrollingTextSystem : MonoBehaviour
     [SerializeField] bool chain_scrolling_text_;
     [SerializeField] ScrollingTextSystem prev_text_chain_;
     [HideInInspector] public bool scroll_complete_ = false;
-    bool alternating_sound_text_;
     // Start is called before the first frame update
     void Start()
     {
@@ -36,9 +35,9 @@ public class ScrollingTextSystem : MonoBehaviour
             current_text_ = current_text_mesh_.text;
             current_text_mesh_.text = "";
         }
+        
 
 
-        alternating_sound_text_ = true;
         scroll_delay_timer_ = scroll_delay_;
         
     }
@@ -63,19 +62,6 @@ public class ScrollingTextSystem : MonoBehaviour
             scroll_complete_ = true;
         }
 
-        if (Input.GetKey(KeyCode.Z))
-        {
-            if(UI_)
-            {
-                current_text_mesh_UI_.text += current_text_;
-            }
-            else
-            {
-                current_text_mesh_.text += current_text_;
-            }
-            
-            current_text_ = "";
-        }
     }
 
     void ScrollingText(bool isUI)
@@ -84,12 +70,12 @@ public class ScrollingTextSystem : MonoBehaviour
         if (scroll_delay_timer_ <= 0 && current_text_.Length > 0)
         {
             int random_sound = Random.Range(0, typing_sound_.Count);
-            
+
             //Debug.Log(typing_sound_[random_sound]);
 
 
             char c = current_text_[0];
-            if (c != '>' && c != '.' && c!= '<' && alternating_sound_text_)
+            if (c != '>' && c != '.' && c!= '<')
             {
                 am_.PlaySound(typing_sound_[random_sound]);
             }
@@ -105,9 +91,6 @@ public class ScrollingTextSystem : MonoBehaviour
             scroll_delay_timer_ = scroll_delay_;
 
             flicker_audio_ = !flicker_audio_;
-            alternating_sound_text_ = !alternating_sound_text_;
         }
-
-
     }
 }
