@@ -325,10 +325,12 @@ MonoBehaviour:
   invincibility_time_: 1
   dash_particle_: {fileID: 5588859061336279653, guid: 29814d2e185dac44fa370131ef426092,
     type: 3}
+  dash_recharge_particle_: {fileID: 6205605354114173106, guid: 188c76f42a182da43a5724797a846182,
+    type: 3}
   dash_sound_: Dash
   invuln_dash_: 0.6
-  dash_damage_: 1
-  dash_radius_: 2
+  dash_damage_: 0
+  dash_radius_: 0
 --- !u!50 &1102585009099040907
 Rigidbody2D:
   serializedVersion: 4
