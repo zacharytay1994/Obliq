@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class SpawningScript : MonoBehaviour
 {
+    ActivateEnemyScriptsOnTrigger aesot_;
     GruntCountFromSpawners gcfs_;
+    [SerializeField]
+    bool requires_initial_trigger_ = false;
     [SerializeField]
     int grunt_spawn_limit_=10;
     public int grunt_count_ = 0;
@@ -26,6 +29,8 @@ public class SpawningScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        aesot_ = FindObjectOfType<ActivateEnemyScriptsOnTrigger>();
+        
         spawn_interval_counter_ = spawn_interval_;
         anim_ = GetComponent<Animator>();
         gcfs_ = GetComponentInParent<GruntCountFromSpawners>();
@@ -34,19 +39,45 @@ public class SpawningScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (per_wave_)
+        if (requires_initial_trigger_)
         {
-             SpawnWave(); 
+            if (aesot_.enemy_script_enabled_)
+            {
+                if (per_wave_)
+                {
+                    SpawnWave();
+                }
+                else
+                {
+                    SpawnGrunt();
+                }
+                if (gameObject.GetComponent<HealthComponent>() != null)
+                {
+                    if (gameObject.GetComponent<HealthComponent>().getCurrentHp() <= 0)
+                    {
+                        Destroy(gameObject);
+                    }
+                }
+            }
         }
         else
         {
-            SpawnGrunt();
-        }
-        if(gameObject.GetComponent<HealthComponent>() != null)
-        {
-            if (gameObject.GetComponent<HealthComponent>().getCurrentHp() <= 0)
+
+
+            if (per_wave_)
             {
-                Destroy(gameObject);
+                SpawnWave();
+            }
+            else
+            {
+                SpawnGrunt();
+            }
+            if (gameObject.GetComponent<HealthComponent>() != null)
+            {
+                if (gameObject.GetComponent<HealthComponent>().getCurrentHp() <= 0)
+                {
+                    Destroy(gameObject);
+                }
             }
         }
     }
