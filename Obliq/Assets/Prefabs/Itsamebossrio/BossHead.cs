@@ -41,6 +41,16 @@ public class BossHead : MonoBehaviour
     [SerializeField]
     float charge_duration_ = 3.0f;
     float charge_counter_ = 0.0f;
+    [SerializeField]
+    float laser_attack_speed_;
+    [SerializeField]
+    float laser_speed_;
+    [SerializeField]
+    GameObject laser_object_;
+    float laser_timer_;
+    
+
+    int what_attack;
 
     HealthComponent hc_;
     // Start is called before the first frame update
@@ -49,6 +59,7 @@ public class BossHead : MonoBehaviour
         player_ = GameObject.Find("Player");
         rb_ = GetComponent<Rigidbody2D>();
         hc_ = GetComponent<HealthComponent>();
+        laser_timer_ = 0;
     }
 
     // Update is called once per frame
@@ -61,15 +72,38 @@ public class BossHead : MonoBehaviour
                 Quaternion.Euler(0.0f, 0.0f, GF.AngleBetween(new Vector2(0.0f, 1.0f), (Vector2)player_.transform.position - (Vector2)gameObject.transform.position)),
                 Mathf.PingPong(Time.time,
                 6 * Time.deltaTime));
+            what_attack = Random.Range(1, 3);
+            laser_timer_ += Time.deltaTime;
         }
-        if (inplace_)
+        switch(what_attack)
         {
-            InplaceHover();
+            case 1:
+                if (inplace_)
+                {
+                    InplaceHover();
+                }
+                if (inplace_charge_)
+                {
+                    ExecuteCharge();
+                }
+                break;
+            case 2:
+                FireLasers();
+              
+                break;
+
+            default:
+                if (inplace_)
+                {
+                    InplaceHover();
+                }
+                if (inplace_charge_)
+                {
+                    ExecuteCharge();
+                }
+                break;
         }
-        if (inplace_charge_)
-        {
-            ExecuteCharge();
-        }
+        
         if (hc_.currentHp_ <= 0)
         {
             bb_.SetPhase(2);
@@ -186,7 +220,18 @@ public class BossHead : MonoBehaviour
     {
 
     }
-
+    public void FireLasers()
+    {
+        if(laser_timer_ > laser_attack_speed_)
+        {
+            GameObject bullet = Instantiate(laser_object_, (Vector2)gameObject.transform.position + ((gameObject.GetComponent<CircleCollider2D>().radius + 2.0f) *
+            ((Vector2)player_.transform.position - (Vector2)gameObject.transform.position).normalized), Quaternion.identity);
+            laser_timer_ = 0;
+            bullet.GetComponent<Rigidbody2D>().velocity = ((Vector2)player_.transform.position - (Vector2)gameObject.transform.position).normalized * laser_speed_;
+            
+        }
+                                 
+    }
     public void ExecuteCharge()
     {
         if (!start_charge_)
