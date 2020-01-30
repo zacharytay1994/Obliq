@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SpawningScript : MonoBehaviour
 {
+    LevelActivateTrigger lat_;
     [SerializeField]
     int grunt_spawn_limit_=10;
     int grunt_count_ = 0;
@@ -27,6 +28,7 @@ public class SpawningScript : MonoBehaviour
     {
         spawn_interval_counter_ = spawn_interval_;
         anim_ = GetComponent<Animator>();
+        lat_ = FindObjectOfType<LevelActivateTrigger>();
     }
 
     // Update is called once per frame
@@ -81,7 +83,7 @@ public class SpawningScript : MonoBehaviour
 
     void SpawnWave()
     {
-        if (spawn_interval_counter_ > spawn_interval_)
+        if (spawn_interval_counter_ > spawn_interval_ && lat_.level_activated_)
         {
             spawn_interval_counter_ = 0;
             if (grunt_ != null && waves_ > 0)

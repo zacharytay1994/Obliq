@@ -319,7 +319,7 @@ MonoBehaviour:
     SoundType: 0
   - name: alienpop
     clip: {fileID: 8300000, guid: 6a4abc37944b20c45a4bf0156cd17e7b, type: 3}
-    volume: 0.5
+    volume: 0.25
     pitch: 1
     source: {fileID: 0}
     SoundType: 0
