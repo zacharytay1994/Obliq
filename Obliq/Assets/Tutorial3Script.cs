@@ -15,11 +15,12 @@ public class Tutorial3Script : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        foreach(GameObject g in enemies_needed_to_be_deleted_)
+        for(int i=0;i<enemies_needed_to_be_deleted_.Count;i++)
         {
-            if(g==null)
+            if(enemies_needed_to_be_deleted_[i] == null)
             {
-                enemies_needed_to_be_deleted_.Remove(g);
+                enemies_needed_to_be_deleted_.RemoveAt(i);
+                break;
             }
         }
         if(enemies_needed_to_be_deleted_.Count == 0)

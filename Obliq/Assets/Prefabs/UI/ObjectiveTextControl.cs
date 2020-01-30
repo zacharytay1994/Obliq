@@ -19,9 +19,13 @@ public class ObjectiveTextControl : MonoBehaviour
     void Start()
     {
         tmp_ = GetComponent<TMPro.TextMeshProUGUI>();
-        bottom_text_.text = text_;
-        bottom_text_.color = new Color(1, 1, 1, 0);
-        tmp_.text = text_;
+        if(bottom_text_!=null)
+        {
+            bottom_text_.text = text_;
+            bottom_text_.color = new Color(1, 1, 1, 0);
+            tmp_.text = text_;
+        }
+
     }
 
     // Update is called once per frame
@@ -31,7 +35,12 @@ public class ObjectiveTextControl : MonoBehaviour
         if (to_destroy_)
         {
             Color temp = tmp_.color;
-            Color bottom_temp = bottom_text_.color;
+            Color bottom_temp = Color.black;
+            if (bottom_text_!=null)
+            {
+                bottom_temp = bottom_text_.color;
+            }
+           
             if (temp.a > 0.0f)
             {
                 temp.a -= fade_speed_ * Time.deltaTime;
@@ -41,12 +50,16 @@ public class ObjectiveTextControl : MonoBehaviour
             {
                 GameObject.Destroy(gameObject);
             }
-            if(bottom_temp.a<1.0f)
+            if(bottom_text_!=null)
             {
-                bottom_temp.a += fade_speed_ * Time.deltaTime;
+                if (bottom_temp.a < 1.0f)
+                {
+                    bottom_temp.a += fade_speed_ * Time.deltaTime;
+                }
+               
+                bottom_text_.color = bottom_temp;
             }
             tmp_.color = temp;
-            bottom_text_.color = bottom_temp;
         }
 
         // if life span up, mark to destroy
