@@ -63,7 +63,7 @@ public class ScrollingTextSystem : MonoBehaviour
             scroll_complete_ = true;
         }
 
-        if (Input.GetKey(KeyCode.K))
+        if (Input.GetKey(KeyCode.Z))
         {
             if(UI_)
             {
@@ -75,7 +75,6 @@ public class ScrollingTextSystem : MonoBehaviour
             }
             
             current_text_ = "";
-            Debug.Log("text skip");
         }
     }
 
