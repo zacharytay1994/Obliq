@@ -120,16 +120,17 @@ MonoBehaviour:
   collide_trigger_: 0
   layer_to_collide_:
     serializedVersion: 2
-    m_Bits: 10
-  col_active_time_: 0
+    m_Bits: 147458
+  col_active_time_: 1
   colt_style_: 0
   colt_density_: 0
   colt_angle_: 0
   colt_sstyle_: 0
-  colt_stream_rate_: 0
+  colt_stream_rate_: 1
   colt_burst_rest_timer_: 0
   colt_burst_timer_: 0
-  colt_prefab_: {fileID: 0}
+  colt_prefab_: {fileID: 8331543213767106506, guid: 6d0959aaa55e235448b4df2ea33297f3,
+    type: 3}
   colt_np_offset_: 0
   colt_np_speed_: 0
   movement_heading_: {x: 0, y: 0}

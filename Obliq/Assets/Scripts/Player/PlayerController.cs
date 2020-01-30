@@ -184,8 +184,10 @@ public class PlayerController : MonoBehaviour
         {
             am_.PlaySound(dash_sound_);
             //rb2d_.AddForce(heading_ * (dash_strength * dash_duration_));
-            GameObject temp2 = GameObject.Find("Dashbar");
+            GameObject temp2 = GameObject.Find("DashbarTop");
             temp2.GetComponent<DashFill>().dashbar();
+            GameObject temp3 = GameObject.Find("DashbarBottom");
+            temp3.GetComponent<DashFill>().dashbar();
             rb2d_.velocity = (Vector3)((heading_) * dash_strength) * dash_duration_;
             dash_cooldown_counter = 0.0f;
             invincibility_start_time_ = Time.time;
