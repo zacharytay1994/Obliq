@@ -49,8 +49,12 @@ public class BossHead : MonoBehaviour
     [SerializeField]
     GameObject laser_object_;
     float laser_timer_;
-    
 
+    [SerializeField]
+    float range_of_cone;
+    [SerializeField]
+    float cone_intensity_;
+    bool cone_is_firing;
     int what_attack;
 
     HealthComponent hc_;
@@ -81,22 +85,22 @@ public class BossHead : MonoBehaviour
             case 1:
             case 2:
             case 3:
-                if (inplace_)
-                {
-                    InplaceHover();
-                    FireLasers();
-                }
-                if (inplace_charge_)
-                {
-                    ExecuteCharge();
-                }
+                //if (inplace_)
+                //{
+                //    InplaceHover();
+                //    FireLasers();
+                //}
+                //if (inplace_charge_)
+                //{
+                //    ExecuteCharge();
+                //}
 
                 break;                          
-            //case 4:
-            //case 5:
-            //    FireLasers();
-              
-            //    break;
+            case 4:
+            case 5:
+                ConeAttack(gameObject.transform.position - player_.transform.position);
+
+                break;
 
             default:
                 if (inplace_)
@@ -182,7 +186,21 @@ public class BossHead : MonoBehaviour
             }
         }
     }
+    public void ConeAttack(Vector2 direction)
+    {
+        
+            for(int i = 0; i < cone_intensity_; i++)
+            {
+                cone_is_firing = true;
+                Vector2 new_vector = Random.Range(0, 2) == 0 ? GF.RotateVector(direction, Random.Range(0.0f, range_of_cone)).normalized :
+                    GF.RotateVector(direction, Random.Range(0.0f, -range_of_cone)).normalized;
 
+                GameObject bullet = Instantiate(laser_object_, (Vector2)gameObject.transform.position + ((gameObject.GetComponent<CircleCollider2D>().radius + 2.0f) *
+               (new_vector).normalized), Quaternion.identity);
+                bullet.GetComponent<Rigidbody2D>().velocity = new_vector * laser_speed_;
+            }
+        
+    }
     public void InplaceHover()
     {
         Vector2 pos = (Vector2)gameObject.transform.position;

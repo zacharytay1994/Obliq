@@ -103,11 +103,12 @@ MonoBehaviour:
   hover_distance_: 2
   charge_force_: 1500
   charge_duration_: 3
-  laser_damage_: 1
   laser_attack_speed_: 2
   laser_speed_: 30
   laser_object_: {fileID: 2143071876191568341, guid: a0333c45eadb2334abb726746173d237,
     type: 3}
+  range_of_cone: 5
+  cone_intensity_: 5
 --- !u!114 &174579134008034121
 MonoBehaviour:
   m_ObjectHideFlags: 0
