@@ -1760,7 +1760,7 @@ PrefabInstance:
     - target: {fileID: 7111901231261016700, guid: 631b638ecd2c4584da5cbbc43c566997,
         type: 3}
       propertyPath: m_fontSize
-      value: 42.65
+      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 631b638ecd2c4584da5cbbc43c566997, type: 3}
@@ -1777,6 +1777,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2710746636912595016}
     m_Modifications:
+    - target: {fileID: 4484549626545099330, guid: 8d0874b584063944d90095379dcca707,
+        type: 3}
+      propertyPath: m_Name
+      value: DashbarBottom
+      objectReference: {fileID: 0}
+    - target: {fileID: 4484549626545099330, guid: 8d0874b584063944d90095379dcca707,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1106196114537942013, guid: 8d0874b584063944d90095379dcca707,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1882,16 +1892,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 4484549626545099330, guid: 8d0874b584063944d90095379dcca707,
-        type: 3}
-      propertyPath: m_Name
-      value: DashbarBottom
-      objectReference: {fileID: 0}
-    - target: {fileID: 4484549626545099330, guid: 8d0874b584063944d90095379dcca707,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7749776431326330485, guid: 8d0874b584063944d90095379dcca707,
         type: 3}
       propertyPath: m_Type
@@ -1944,6 +1944,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2710746636912595016}
     m_Modifications:
+    - target: {fileID: 4484549626545099330, guid: 8d0874b584063944d90095379dcca707,
+        type: 3}
+      propertyPath: m_Name
+      value: DashbarTop
+      objectReference: {fileID: 0}
+    - target: {fileID: 4484549626545099330, guid: 8d0874b584063944d90095379dcca707,
+        type: 3}
+      propertyPath: m_Name
+      value: DashbarTop
+      objectReference: {fileID: 0}
     - target: {fileID: 1106196114537942013, guid: 8d0874b584063944d90095379dcca707,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2048,16 +2058,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4484549626545099330, guid: 8d0874b584063944d90095379dcca707,
-        type: 3}
-      propertyPath: m_Name
-      value: DashbarTop
-      objectReference: {fileID: 0}
-    - target: {fileID: 4484549626545099330, guid: 8d0874b584063944d90095379dcca707,
-        type: 3}
-      propertyPath: m_Name
-      value: DashbarTop
       objectReference: {fileID: 0}
     - target: {fileID: 7749776431326330485, guid: 8d0874b584063944d90095379dcca707,
         type: 3}

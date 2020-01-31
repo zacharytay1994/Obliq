@@ -164,12 +164,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8628027d1ac75441afbe322a44849a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  musicVolume: 0.3
-  sfxVolume: 1
+  musicVolume: 0.7
+  sfxVolume: 0.6
   sounds:
   - name: Wahh
     clip: {fileID: 8300000, guid: 0a80db3045285964f88ee807ce576c51, type: 3}
-    volume: 0.653
+    volume: 0.4
     pitch: 1
     source: {fileID: 0}
     SoundType: 0
@@ -224,7 +224,7 @@ MonoBehaviour:
   - name: Electric_Saw
     clip: {fileID: 8300000, guid: 303c454f4eceaf34aaf82013c549fc95, type: 3}
     volume: 1
-    pitch: 1
+    pitch: 2
     source: {fileID: 0}
     SoundType: 0
   - name: Fireball
@@ -253,7 +253,7 @@ MonoBehaviour:
     SoundType: 0
   - name: Dash
     clip: {fileID: 8300000, guid: de94bdb74351f354fbe9e79c3d960216, type: 3}
-    volume: 2
+    volume: 0.5
     pitch: 0.7
     source: {fileID: 0}
     SoundType: 0
