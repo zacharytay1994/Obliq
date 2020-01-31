@@ -214,7 +214,7 @@ public class LevelManagerScript : MonoBehaviour
             Vector2 dist_to_portal_ = (Vector2)player_.transform.position - (Vector2)portal_.transform.position;
             if (dist_to_portal_.magnitude <= 3.0f && portal_.activeSelf == true)
             {
-                STM_.load_scene_Asynch("1-0-2");
+                STM_.load_scene_Asynch("1-1");
             }
         }
 
@@ -239,7 +239,7 @@ public class LevelManagerScript : MonoBehaviour
         // 1-2
         else if (level_selector_ == LevelSelector.Two)
         {
-            // When the two top spawners are destroyed, activate portal. When in range of portal, transport player to next level.
+            // When the three top spawners are destroyed, activate portal. When in range of portal, transport player to next level.
             if (spawner_1_ == null && spawner_2_ == null && spawner_3_ == null && activate_portal_ == false)
             {
                 portal_script_.SetActivatePortal(true);
