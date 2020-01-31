@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class SpawningScript : MonoBehaviour
 {
-    FlockingHandler flock_;
+    [SerializeField] bool spawn_on_activated_;
+    SpawnerSetLimit ssl_;
+    LevelActivateTrigger lat_;
     [SerializeField]
     int grunt_spawn_limit_=10;
-    int grunt_count_ = 0;
+    public int grunt_count_ = 0;
     [SerializeField]
     int max_grunt_count_ = 10;
     [SerializeField]
@@ -26,9 +28,10 @@ public class SpawningScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        ssl_ = FindObjectOfType<SpawnerSetLimit>();
         spawn_interval_counter_ = spawn_interval_;
         anim_ = GetComponent<Animator>();
-        flock_ = FindObjectOfType<FlockingHandler>();
+        lat_ = FindObjectOfType<LevelActivateTrigger>();
     }
 
     // Update is called once per frame
@@ -36,10 +39,7 @@ public class SpawningScript : MonoBehaviour
     {
         if (per_wave_)
         {
-            if(flock_.flockers_.Count<=grunt_spawn_limit_-max_grunt_count_)
-            {
-                SpawnWave();
-            }
+            SpawnWave();
         }
         else
         {
@@ -86,33 +86,39 @@ public class SpawningScript : MonoBehaviour
 
     void SpawnWave()
     {
-        if (spawn_interval_counter_ > spawn_interval_)
+        if (spawn_interval_counter_ > spawn_interval_ && ssl_.total_grunt_count_ < grunt_spawn_limit_)
         {
-            spawn_interval_counter_ = 0;
-            if (grunt_ != null && waves_ > 0)
+            if (!spawn_on_activated_ || (spawn_on_activated_&&lat_.level_activated_))
             {
-                anim_.SetTrigger("IsSpawning");
-                for (int i = 0; i < max_grunt_count_; i++)
+                spawn_interval_counter_ = 0;
+                if (grunt_ != null && waves_ > 0)
                 {
-                    GameObject temp = Instantiate(grunt_, new Vector3(transform.position.x + Random.Range(random_offset_.x, random_offset_.y), transform.position.y + Random.Range(random_offset_.x, random_offset_.y), -1.0f) + new Vector3(Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f), 0.0f), Quaternion.identity);
-                    if (temp.GetComponent<TempGrunt>() != null)
+                    anim_.SetTrigger("IsSpawning");
+                    for (int i = 0; i < max_grunt_count_; i++)
                     {
-                        temp.GetComponent<TempGrunt>().AttachSpawner(this);
-                    }
-                    if (temp.GetComponent<GruntSpawnAnimation>() != null)
-                    {
-                        temp.GetComponent<GruntSpawnAnimation>().SetSpawner(gameObject);
-                        temp.GetComponent<GruntSpawnAnimation>().Init();
+                        GameObject temp = Instantiate(grunt_, new Vector3(transform.position.x + Random.Range(random_offset_.x, random_offset_.y), transform.position.y + Random.Range(random_offset_.x, random_offset_.y), -1.0f) + new Vector3(Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f), 0.0f), Quaternion.identity);
+                        if (temp.GetComponent<TempGrunt>() != null)
+                        {
+                            temp.GetComponent<TempGrunt>().AttachSpawner(this);
+                        }
+                        if (temp.GetComponent<GruntSpawnAnimation>() != null)
+                        {
+                            temp.GetComponent<GruntSpawnAnimation>().SetSpawner(gameObject);
+                            temp.GetComponent<GruntSpawnAnimation>().Init();
+                        }
+                        grunt_count_++;
                     }
                 }
+                waves_--;
             }
-            waves_--;
+            
         }
         else
         {
             spawn_interval_counter_ += Time.deltaTime;
             return;
         }
+        
     }
     
     public void GruntDied()

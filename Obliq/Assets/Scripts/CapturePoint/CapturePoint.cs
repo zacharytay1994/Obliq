@@ -8,7 +8,7 @@ public class CapturePoint : MonoBehaviour
     [SerializeField]
     float time_to_capture_;
     float capture_time_elapsed_;
-    bool captured_;
+    public bool captured_;
     bool played_effect_;
 
     [SerializeField]
