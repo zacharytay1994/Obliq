@@ -18,6 +18,7 @@ public class ScrollingTextSystem : MonoBehaviour
     [SerializeField] bool chain_scrolling_text_;
     [SerializeField] ScrollingTextSystem prev_text_chain_;
     [HideInInspector] public bool scroll_complete_ = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -39,7 +40,6 @@ public class ScrollingTextSystem : MonoBehaviour
 
 
         scroll_delay_timer_ = scroll_delay_;
-        
     }
 
     // Update is called once per frame
@@ -62,6 +62,19 @@ public class ScrollingTextSystem : MonoBehaviour
             scroll_complete_ = true;
         }
 
+        if(Input.GetKeyDown(KeyCode.Z))
+        {
+            if(UI_)
+            {
+                current_text_mesh_UI_.text += current_text_;
+                current_text_ = "";
+            }
+            else
+            {
+                current_text_mesh_.text += current_text_;
+                current_text_ = "";
+            }
+        }
     }
 
     void ScrollingText(bool isUI)
@@ -77,7 +90,11 @@ public class ScrollingTextSystem : MonoBehaviour
             char c = current_text_[0];
             if (c != '>' && c != '.' && c!= '<')
             {
-                am_.PlaySound(typing_sound_[random_sound]);
+                if(flicker_audio_)
+                {
+                    am_.PlaySound(typing_sound_[random_sound]);
+                }
+               
             }
             current_text_ = current_text_.Remove(0, 1);
             if (isUI)

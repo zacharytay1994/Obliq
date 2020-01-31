@@ -39,6 +39,8 @@ public class PlayerController : MonoBehaviour
     float trail_active_time_ = 0.0f;
 
     [SerializeField] GameObject dash_particle_ = null;
+    [SerializeField] GameObject dash_recharge_particle_ = null;
+    float recharge_timer_ = 0.0f;
 
     AudioManager am_;
     [SerializeField] string dash_sound_;
@@ -78,6 +80,12 @@ public class PlayerController : MonoBehaviour
         }
         else
             GetComponent<TrailRenderer>().emitting = true;
+
+        if (recharge_timer_ >= dash_cooldown_ - 0.01)
+        {
+            GameObject temp = Instantiate(dash_recharge_particle_);
+            temp.transform.position = transform.position;
+        }
     }
 
     private void FixedUpdate()
@@ -176,8 +184,10 @@ public class PlayerController : MonoBehaviour
         {
             am_.PlaySound(dash_sound_);
             //rb2d_.AddForce(heading_ * (dash_strength * dash_duration_));
-            GameObject temp2 = GameObject.Find("Dashbar");
+            GameObject temp2 = GameObject.Find("DashbarTop");
             temp2.GetComponent<DashFill>().dashbar();
+            GameObject temp3 = GameObject.Find("DashbarBottom");
+            temp3.GetComponent<DashFill>().dashbar();
             rb2d_.velocity = (Vector3)((heading_) * dash_strength) * dash_duration_;
             dash_cooldown_counter = 0.0f;
             invincibility_start_time_ = Time.time;
@@ -214,6 +224,15 @@ public class PlayerController : MonoBehaviour
         dash_cooldown_counter += Time.deltaTime;
         //rb2d_.velocity = heading_;
         rb2d_.AddForce(heading_, ForceMode2D.Force);
+
+        if (dash_cooldown_counter >= dash_cooldown_)
+        {
+            recharge_timer_ = 0;
+        }
+        else
+        {
+            recharge_timer_ += Time.deltaTime;
+        }
     }
 
     public float GetAcceleration()

@@ -214,7 +214,7 @@ public class LevelManagerScript : MonoBehaviour
             Vector2 dist_to_portal_ = (Vector2)player_.transform.position - (Vector2)portal_.transform.position;
             if (dist_to_portal_.magnitude <= 3.0f && portal_.activeSelf == true)
             {
-                STM_.load_scene_Asynch("1-1");
+                STM_.load_scene_Asynch("1-0-2");
             }
         }
 

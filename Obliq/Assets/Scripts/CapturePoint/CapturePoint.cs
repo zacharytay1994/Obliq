@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,7 +15,9 @@ public class CapturePoint : MonoBehaviour
     float capture_radius_;
     float capture_rate_;
     [SerializeField]
-    float max_capture_rate;
+    float max_capture_rate_;
+    [SerializeField]
+    float color_change_rate_;
 
     [SerializeField]
     float rotation_speed_;
@@ -24,9 +27,12 @@ public class CapturePoint : MonoBehaviour
     GameObject capture_particles_;
     GameObject player;
 
+    Color original_color_;
+
     // Start is called before the first frame update
     void Start()
     {
+        original_color_ = gameObject.GetComponent<SpriteRenderer>().color;
         capture_time_elapsed_ = Time.deltaTime;
         capture_rate_ = 1;
         captured_ = false;
@@ -51,9 +57,14 @@ public class CapturePoint : MonoBehaviour
         if (((Vector2)transform.position - (Vector2)player.transform.position).magnitude <= capture_radius_ && !captured_)
         {
             capture_rate_ += 2;
-            if (capture_rate_ >= max_capture_rate)
+            player.GetComponent<TheGudSuc>().Suc(true);
+
+            Color temp = GetComponent<SpriteRenderer>().color;
+            GetComponent<SpriteRenderer>().color = Color.Lerp(temp, Color.white, capture_time_elapsed_ / time_to_capture_ * Time.deltaTime);
+
+            if (capture_rate_ >= max_capture_rate_)
             {
-                capture_rate_ = max_capture_rate;
+                capture_rate_ = max_capture_rate_;
             }
 
             capture_time_elapsed_ += Time.deltaTime;
@@ -61,6 +72,13 @@ public class CapturePoint : MonoBehaviour
         else
         {
             capture_rate_ -= 2;
+            player.GetComponent<TheGudSuc>().Suc(false);
+
+            if (!captured_)
+            {
+                GetComponent<SpriteRenderer>().color = Color.Lerp(gameObject.GetComponent<SpriteRenderer>().color, original_color_, time_to_capture_ * Time.deltaTime);
+            }
+
             if (capture_rate_ <= 1 && !captured_)
             {
                 capture_rate_ = 1;
