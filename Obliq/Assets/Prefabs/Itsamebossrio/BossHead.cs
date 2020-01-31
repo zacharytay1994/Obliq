@@ -41,6 +41,7 @@ public class BossHead : MonoBehaviour
     [SerializeField]
     float charge_duration_ = 3.0f;
     float charge_counter_ = 0.0f;
+    
     [SerializeField]
     float laser_attack_speed_;
     [SerializeField]
@@ -72,25 +73,30 @@ public class BossHead : MonoBehaviour
                 Quaternion.Euler(0.0f, 0.0f, GF.AngleBetween(new Vector2(0.0f, 1.0f), (Vector2)player_.transform.position - (Vector2)gameObject.transform.position)),
                 Mathf.PingPong(Time.time,
                 6 * Time.deltaTime));
-            what_attack = Random.Range(1, 3);
+            what_attack = Random.Range(1, 6);
             laser_timer_ += Time.deltaTime;
         }
         switch(what_attack)
         {
             case 1:
+            case 2:
+            case 3:
                 if (inplace_)
                 {
                     InplaceHover();
+                    FireLasers();
                 }
                 if (inplace_charge_)
                 {
                     ExecuteCharge();
                 }
-                break;
-            case 2:
-                FireLasers();
+
+                break;                          
+            //case 4:
+            //case 5:
+            //    FireLasers();
               
-                break;
+            //    break;
 
             default:
                 if (inplace_)
