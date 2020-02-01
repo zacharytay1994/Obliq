@@ -54,6 +54,7 @@ public class BossHead : MonoBehaviour
     float range_of_cone;
     [SerializeField]
     float cone_intensity_;
+    float cone_timer;
     bool cone_is_firing;
     int what_attack;
 
@@ -65,6 +66,7 @@ public class BossHead : MonoBehaviour
         rb_ = GetComponent<Rigidbody2D>();
         hc_ = GetComponent<HealthComponent>();
         laser_timer_ = 0;
+        cone_timer = 0;
     }
 
     // Update is called once per frame
@@ -79,6 +81,7 @@ public class BossHead : MonoBehaviour
                 6 * Time.deltaTime));
             what_attack = Random.Range(1, 6);
             laser_timer_ += Time.deltaTime;
+            cone_timer += Time.deltaTime;
         }
         switch(what_attack)
         {
@@ -187,19 +190,11 @@ public class BossHead : MonoBehaviour
         }
     }
     public void ConeAttack(Vector2 direction)
-    {
-        
-            for(int i = 0; i < cone_intensity_; i++)
-            {
-                cone_is_firing = true;
-                Vector2 new_vector = Random.Range(0, 2) == 0 ? GF.RotateVector(direction, Random.Range(0.0f, range_of_cone)).normalized :
-                    GF.RotateVector(direction, Random.Range(0.0f, -range_of_cone)).normalized;
-
-                GameObject bullet = Instantiate(laser_object_, (Vector2)gameObject.transform.position + ((gameObject.GetComponent<CircleCollider2D>().radius + 2.0f) *
-               (new_vector).normalized), Quaternion.identity);
-                bullet.GetComponent<Rigidbody2D>().velocity = new_vector * laser_speed_;
-            }
-        
+    {      
+        Vector2 target = new Vector2(player_.transform.position.x + Random.Range(-5 , 5), player_.transform.position.y + Random.Range(-5, 5));
+        GameObject bullet = Instantiate(laser_object_, (Vector2)gameObject.transform.position + ((gameObject.GetComponent<CircleCollider2D>().radius + 2.0f) *
+            (target - (Vector2)gameObject.transform.position).normalized), Quaternion.identity);
+        bullet.GetComponent<Rigidbody2D>().velocity = (target - (Vector2)gameObject.transform.position).normalized * laser_speed_;        
     }
     public void InplaceHover()
     {
