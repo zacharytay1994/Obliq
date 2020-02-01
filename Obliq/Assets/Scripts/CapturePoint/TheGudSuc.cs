@@ -26,7 +26,7 @@ public class TheGudSuc : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        suc_target_ = GameObject.Find("CapturePoint");
     }
 
     // Update is called once per frame
