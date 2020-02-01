@@ -109,6 +109,8 @@ MonoBehaviour:
     type: 3}
   range_of_cone: 5
   cone_intensity_: 5
+  cone_lines_: {fileID: 3105799701528140724, guid: b12be1a2fc92c95468f3ca4aeebbc168,
+    type: 3}
 --- !u!114 &174579134008034121
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -175,8 +177,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b654a9ed45867894d8f8378d03d054a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp_: 10
-  currentHp_: 10
+  maxHp_: 60
+  currentHp_: 60
   invincibility_time_: 0
   damage_flash_duration_: 0
 --- !u!114 &-4408499475002364534

@@ -54,9 +54,18 @@ public class BossHead : MonoBehaviour
     float range_of_cone;
     [SerializeField]
     float cone_intensity_;
+    [SerializeField]
+    GameObject cone_lines_;
     float cone_timer;
-    bool cone_is_firing;
-    int what_attack;
+    float draw_come_timer;
+    int line_count;
+
+    float charge_count = 0;
+  
+   
+
+    LineRenderer lr1;
+    LineRenderer lr2;
 
     HealthComponent hc_;
     // Start is called before the first frame update
@@ -67,6 +76,13 @@ public class BossHead : MonoBehaviour
         hc_ = GetComponent<HealthComponent>();
         laser_timer_ = 0;
         cone_timer = 0;
+        //draw_come_timer = 0;
+
+        GameObject temp1 = GameObject.Instantiate(cone_lines_, transform);
+        lr1 = temp1.GetComponent<LineRenderer>();
+
+        GameObject temp2 = Instantiate(cone_lines_, transform);
+        lr2 = temp2.GetComponent<LineRenderer>();
     }
 
     // Update is called once per frame
@@ -79,43 +95,29 @@ public class BossHead : MonoBehaviour
                 Quaternion.Euler(0.0f, 0.0f, GF.AngleBetween(new Vector2(0.0f, 1.0f), (Vector2)player_.transform.position - (Vector2)gameObject.transform.position)),
                 Mathf.PingPong(Time.time,
                 6 * Time.deltaTime));
-            what_attack = Random.Range(1, 6);
+            
             laser_timer_ += Time.deltaTime;
             cone_timer += Time.deltaTime;
+
         }
-        switch(what_attack)
+        
+        if (inplace_)
         {
-            case 1:
-            case 2:
-            case 3:
-                //if (inplace_)
-                //{
-                //    InplaceHover();
-                //    FireLasers();
-                //}
-                //if (inplace_charge_)
-                //{
-                //    ExecuteCharge();
-                //}
-
-                break;                          
-            case 4:
-            case 5:
-                ConeAttack(gameObject.transform.position - player_.transform.position);
-
-                break;
-
-            default:
-                if (inplace_)
-                {
-                    InplaceHover();
-                }
-                if (inplace_charge_)
-                {
-                    ExecuteCharge();
-                }
-                break;
+            InplaceHover();
+            FireLasers();
+            Debug.Log("Firing lasers");
         }
+        if (inplace_charge_)
+        {
+            ExecuteCharge();
+            Debug.Log("Charging");
+        }
+
+        if (inplace_ && charge_count < 3)
+        {
+            Debug.Log("Cone");
+            ConeAttack(gameObject.transform.position - player_.transform.position);
+        }   
         
         if (hc_.currentHp_ <= 0)
         {
@@ -147,7 +149,7 @@ public class BossHead : MonoBehaviour
         top_ = top;
         bottom_ = bottom;
     }
-
+    
     public void SelectRandomPosition()
     {
         int i = Random.Range(0, 4);
@@ -189,12 +191,32 @@ public class BossHead : MonoBehaviour
             }
         }
     }
+    void DrawCone(Vector2 from,Vector2 to, LineRenderer lr)
+    {                 
+        lr.SetPosition(0, from);
+        lr.SetPosition(1, Vector3.Lerp(from, to, 0.25f));                                       
+    }
+    void ResetLine(LineRenderer lr)
+    {
+        lr.SetPosition(1, lr.GetPosition(0));
+    }
     public void ConeAttack(Vector2 direction)
-    {      
-        Vector2 target = new Vector2(player_.transform.position.x + Random.Range(-5 , 5), player_.transform.position.y + Random.Range(-5, 5));
-        GameObject bullet = Instantiate(laser_object_, (Vector2)gameObject.transform.position + ((gameObject.GetComponent<CircleCollider2D>().radius + 2.0f) *
-            (target - (Vector2)gameObject.transform.position).normalized), Quaternion.identity);
-        bullet.GetComponent<Rigidbody2D>().velocity = (target - (Vector2)gameObject.transform.position).normalized * laser_speed_;        
+    {
+        if (cone_timer > laser_attack_speed_)
+        {
+            //DrawCone(gameObject.transform.position, new Vector2(player_.transform.position.x - 5, player_.transform.position.y -5), lr1);
+            //DrawCone(gameObject.transform.position, new Vector2(player_.transform.position.x + 5, player_.transform.position.y + 5), lr2);
+            for (int i = 0; i < cone_intensity_; i++)
+            {
+                Vector2 target = new Vector2(player_.transform.position.x + Random.Range(-5, 5), player_.transform.position.y + Random.Range(-5, 5));
+                GameObject bullet = Instantiate(laser_object_, (Vector2)gameObject.transform.position + ((gameObject.GetComponent<CircleCollider2D>().radius + 2.0f) *
+                    (target - (Vector2)gameObject.transform.position).normalized), Quaternion.identity);
+                bullet.GetComponent<Rigidbody2D>().velocity = (target - (Vector2)gameObject.transform.position).normalized * laser_speed_;
+            }
+            //ResetLine(lr1);
+            //ResetLine(lr2);
+            cone_timer = 0;
+        }
     }
     public void InplaceHover()
     {
@@ -267,6 +289,11 @@ public class BossHead : MonoBehaviour
             charged_ = true;
             // boost to player
             inplace_ = false;
+            charge_count++;
+            if(charge_count > 3)
+            {
+                charge_count = 0;
+            }
             rb_.AddForce(((Vector2)player_.transform.position - (Vector2)gameObject.transform.position).normalized * charge_force_ * Time.deltaTime, ForceMode2D.Impulse);
         }
         else
