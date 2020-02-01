@@ -75,8 +75,6 @@ public class ObjectiveIndicator : MonoBehaviour
                 Vector3 pointer_world_position_ = camera_.ScreenToWorldPoint(capped_target_screen_position_);
                 pointer_rect_transform_.position = pointer_world_position_;
                 pointer_rect_transform_.localPosition = new Vector3(pointer_rect_transform_.localPosition.x, pointer_rect_transform_.localPosition.y);
-
-
             }
 
             // If target can be seen, disable indicator
