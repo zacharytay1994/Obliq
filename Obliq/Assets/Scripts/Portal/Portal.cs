@@ -17,10 +17,10 @@ public class Portal : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         // Portal
         activate_portal_ = false;
         portal_ = GameObject.Find("Portal");
-
         // Audio Manager
         am_ = FindObjectOfType<AudioManager>();
     }

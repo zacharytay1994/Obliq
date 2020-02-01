@@ -20,7 +20,7 @@ public class LevelManagerScript : MonoBehaviour
     bool activate_portal_ = false;
 
     // Spawners
-    GameObject spawner_1_, spawner_2_, spawner_3_;
+    GameObject spawner_1_, spawner_2_, spawner_3_, spawner_4_;
 
     // Chargers
     GameObject charger_1_, charger_2_, charger_3_;
@@ -89,6 +89,7 @@ public class LevelManagerScript : MonoBehaviour
             spawner_1_ = GameObject.Find("Spawner");
             spawner_2_ = GameObject.Find("Spawner 2");
             spawner_3_ = GameObject.Find("Spawner 3");
+            spawner_4_ = GameObject.Find("Spawner 4");
         }
 
         // 1-3 TO BE DONE
@@ -230,9 +231,9 @@ public class LevelManagerScript : MonoBehaviour
 
             // Check distance between player and portal
             Vector2 dist_to_portal_ = player_.GetComponent<Transform>().position - portal_.GetComponent<Transform>().position;
-            if (dist_to_portal_.magnitude <= 3.0f && portal_.activeSelf == true)
+            if (dist_to_portal_.magnitude <= 3.0f && portal_.activeInHierarchy == true)
             {
-                STM_.load_scene_Asynch("1-2");
+                STM_.load_scene_Asynch("1-2New");
             }
         }
 
@@ -240,7 +241,7 @@ public class LevelManagerScript : MonoBehaviour
         else if (level_selector_ == LevelSelector.Two)
         {
             // When the three top spawners are destroyed, activate portal. When in range of portal, transport player to next level.
-            if (spawner_1_ == null && spawner_2_ == null && spawner_3_ == null && activate_portal_ == false)
+            if (spawner_1_ == null && spawner_2_ == null && spawner_3_ == null && spawner_4_ == null && activate_portal_ == false)
             {
                 portal_script_.SetActivatePortal(true);
                 activate_portal_ = true;
