@@ -680,10 +680,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 247a87edb3e01174a999cb39387e811b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  suc_target_: {fileID: 0}
-  particle_: {fileID: 0}
-  suc_min_max_: {x: 0, y: 0}
-  particle_speed_: 10
-  reach_threshold_: 0.1
-  particle_amount_: 10
+  suc_target_: {fileID: 8854787102229975483, guid: 4851628cd0816ee4b92612b37353720b,
+    type: 3}
+  particle_: {fileID: 334379398565654414, guid: 528482ce924b2214f8cb5b16974ba0bc,
+    type: 3}
+  suc_min_max_: {x: 1, y: 1.5}
+  particle_speed_: 0.5
+  reach_threshold_: 0.8
+  particle_amount_: 3
   spawn_interval_: 0.1
