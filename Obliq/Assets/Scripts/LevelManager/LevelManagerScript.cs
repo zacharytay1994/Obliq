@@ -29,6 +29,9 @@ public class LevelManagerScript : MonoBehaviour
     GameObject capture_point_;
     bool captured_;
 
+    // List of enemies
+    GameObject[] enemies_list_;
+
     //----------------------Tutorial-----------------------------
     // Training grunts
     GameObject training_grunt_, training_grunt_2_, training_grunt_3_;
@@ -147,11 +150,30 @@ public class LevelManagerScript : MonoBehaviour
             // Initialize capture point (Objective)
             //capture_point_ = GameObject.Find("CapturePoint");
         }
+
+        // Disable all enemies at the start
+        enemies_list_ = GameObject.FindGameObjectsWithTag("Enemy");
+
+        foreach (GameObject enemy in enemies_list_)
+        {
+            enemy.SetActive(false);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
+        // If walk over trigger, make all enemies active
+        bool is_triggered_ = GameObject.Find("ActivateTriggerTilemap").GetComponent<ActivateEnemies>().activate_enemies_;
+
+        if (is_triggered_)
+        {
+            foreach (GameObject enemy in enemies_list_)
+            {
+                enemy.SetActive(true);
+            }
+        }
+
         // 1-0
         if (level_selector_ == LevelSelector.Tutorial)
         {

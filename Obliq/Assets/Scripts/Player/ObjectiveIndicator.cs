@@ -40,14 +40,23 @@ public class ObjectiveIndicator : MonoBehaviour
             float border_size_ = 15f;
 
             Vector3 target_position_screen_point_ = Camera.main.WorldToScreenPoint(target_position_);
+
+            // Check if arrow is off-screen
             bool is_off_screen_ = target_position_screen_point_.x <= 0 || target_position_screen_point_.x >= Screen.width ||
                 target_position_screen_point_.y <= 0 || target_position_screen_point_.y >= Screen.height;
 
             // If target is off-screen, activate indicator
             if (is_off_screen_)
             {
-                // Activate indicator
-                pointer_.SetActive(true);
+                // If target is disabled, disable pointer. If target is enabled, activate indicator.
+                if (objective_.activeSelf == false)
+                {
+                    pointer_.SetActive(false);
+                }
+                else if (objective_.activeSelf == true)
+                {
+                    pointer_.SetActive(true);
+                }
 
                 // Rotate indicator to target
                 RotateToTarget();
@@ -66,6 +75,8 @@ public class ObjectiveIndicator : MonoBehaviour
                 Vector3 pointer_world_position_ = camera_.ScreenToWorldPoint(capped_target_screen_position_);
                 pointer_rect_transform_.position = pointer_world_position_;
                 pointer_rect_transform_.localPosition = new Vector3(pointer_rect_transform_.localPosition.x, pointer_rect_transform_.localPosition.y);
+
+
             }
 
             // If target can be seen, disable indicator
