@@ -6,13 +6,14 @@ using UnityEngine.UI;
 
 public class DashFill : MonoBehaviour
 {
-    [SerializeField]
+    
     float dashbar_fill_time_;
     Image dashbar_img_;
     bool filling_;
     // Start is called before the first frame update
     void Start()
     {
+        dashbar_fill_time_ = GameObject.Find("Player").GetComponent<PlayerController>().dash_cooldown_;
         dashbar_img_ = gameObject.GetComponent<Image>();
     }
 
