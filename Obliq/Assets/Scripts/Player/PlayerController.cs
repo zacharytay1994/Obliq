@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float attack_duration_;
     [SerializeField] float dash_strength;
 
-    [SerializeField]float dash_cooldown_; //time in between dash
+    [SerializeField] public float dash_cooldown_; //time in between dash
     [SerializeField] float dash_duration_;
     float next_dash_time = 0.0f;
     float dash_start;
@@ -225,14 +225,14 @@ public class PlayerController : MonoBehaviour
         //rb2d_.velocity = heading_;
         rb2d_.AddForce(heading_, ForceMode2D.Force);
 
-        if (dash_cooldown_counter >= dash_cooldown_)
-        {
-            recharge_timer_ = 0;
-        }
-        else
-        {
-            recharge_timer_ += Time.deltaTime;
-        }
+        //if (dash_cooldown_counter >= dash_cooldown_)
+        //{
+        //    recharge_timer_ = 0;
+        //}
+        //else
+        //{
+        //    recharge_timer_ += Time.deltaTime;
+        //}
     }
 
     public float GetAcceleration()
