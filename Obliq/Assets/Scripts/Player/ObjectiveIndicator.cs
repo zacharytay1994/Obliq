@@ -10,7 +10,7 @@ public class ObjectiveIndicator : MonoBehaviour
 
     // Target to point to
     [SerializeField]
-    GameObject objective_;
+    public GameObject objective_;
 
     // Initialise some variables
     Vector2 target_position_;
@@ -25,6 +25,9 @@ public class ObjectiveIndicator : MonoBehaviour
 
         // Get rect transform component of pointer
         pointer_rect_transform_ = pointer_.GetComponent<RectTransform>();
+
+        // Camera
+        camera_ = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
     }
 
     // Update is called once per frame

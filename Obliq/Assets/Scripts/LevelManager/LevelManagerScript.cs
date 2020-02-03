@@ -11,6 +11,12 @@ public class LevelManagerScript : MonoBehaviour
     // Player
     GameObject player_;
 
+    // Objective indicator
+    [SerializeField]
+    GameObject objective_indicator_;
+    GameObject objective_indicator_parent_;
+    GameObject[] objective_indicator_list_;
+
     // Manager for scene transition to next scene
     SceneTransitionLoader STM_;
 
@@ -55,6 +61,9 @@ public class LevelManagerScript : MonoBehaviour
 
         // Initialize player
         player_ = GameObject.Find("Player");
+
+        // Initialize objective indicator
+        objective_indicator_ = GameObject.Find("ObjectiveIndicator");
 
         // Initialize portal
         portal_ = GameObject.Find("Portal");
@@ -169,6 +178,18 @@ public class LevelManagerScript : MonoBehaviour
 
         }
 
+        // Enemy list
+        enemies_list_ = GameObject.FindGameObjectsWithTag("Enemy");
+
+        objective_indicator_parent_ = GameObject.Find("Player_UI");
+
+        foreach (GameObject enemy in enemies_list_)
+        {
+            GameObject gameobject_temp = GameObject.Instantiate(objective_indicator_, objective_indicator_parent_.transform);
+
+            gameobject_temp.GetComponent<ObjectiveIndicator>().objective_ = enemy;
+        }
+
         /*----------WHEN WE IMPLEMENT TRIGGER THEN UNCOMMENT----------*/
         /*// Disable all enemies at the start
         enemies_list_ = GameObject.FindGameObjectsWithTag("Enemy");
@@ -193,6 +214,16 @@ public class LevelManagerScript : MonoBehaviour
                 enemy.SetActive(true);
             }
         }*/
+
+        objective_indicator_list_ = GameObject.FindGameObjectsWithTag("ObjectiveIndicator");
+
+        foreach (GameObject o in objective_indicator_list_)
+        {
+            if (o.GetComponent<ObjectiveIndicator>().objective_.name.Contains("Charger"))
+            {
+                o.GetComponent<SpriteRenderer>().color = o.GetComponent<ObjectiveIndicator>().objective_.GetComponent<SpriteRenderer>().color;
+            }
+        }        
 
         // Capture Point Levels
         if (level_selector_ == LevelSelector.Three || level_selector_ == LevelSelector.Four || level_selector_ == LevelSelector.Nine)
