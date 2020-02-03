@@ -668,6 +668,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mark_: {fileID: 4670743272651592365, guid: 019ffc3cc351a6f44b5d329699563766, type: 3}
+  y_offset_: 1.5
 --- !u!114 &-2491790334604582751
 MonoBehaviour:
   m_ObjectHideFlags: 0
