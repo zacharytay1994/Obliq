@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 7839916546353964628}
   - component: {fileID: 1685405248275748477}
   - component: {fileID: 2583029199171789121}
-  - component: {fileID: 4244049727520256679}
   m_Layer: 0
   m_Name: GunPickup
   m_TagString: Untagged
@@ -4820,22 +4819,3 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!95 &4244049727520256679
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7839916546353964629}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: efedbe1afdd8afc45b5b9da68c1b05ae, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
