@@ -34,6 +34,9 @@ public class LevelManagerScript : MonoBehaviour
     // Sectopod
     GameObject sectopod_;
 
+    // Boss
+    GameObject boss_;
+
     // Capture point (Objective)
     GameObject capture_point_;
     bool captured_;
@@ -46,6 +49,7 @@ public class LevelManagerScript : MonoBehaviour
     GameObject training_grunt_, training_grunt_2_, training_grunt_3_;
     HealthComponent training_grunt_2_health_component_, training_grunt_3_health_component_;
     int training_grunt_2_max_hp_, training_grunt_3_max_hp_;
+    bool activate_training_grunts_ = false;
 
     // Timer after training grunt dies
     float wait_time_ = 1.0f;
@@ -80,13 +84,11 @@ public class LevelManagerScript : MonoBehaviour
             training_grunt_2_ = GameObject.Find("TrainingGrunt 2");
             training_grunt_2_health_component_ = training_grunt_2_.GetComponent<HealthComponent>();
             training_grunt_2_max_hp_ = training_grunt_2_health_component_.getMaxHp();
-            training_grunt_2_.SetActive(false);
 
             // Initialize third training grunt
             training_grunt_3_ = GameObject.Find("TrainingGrunt 3");
             training_grunt_3_health_component_ = training_grunt_3_.GetComponent<HealthComponent>();
             training_grunt_3_max_hp_ = training_grunt_3_health_component_.getMaxHp();
-            training_grunt_3_.SetActive(false);
         }
 
         // 1-1
@@ -106,7 +108,7 @@ public class LevelManagerScript : MonoBehaviour
             spawner_3_ = GameObject.Find("Spawner 3");
             spawner_4_ = GameObject.Find("Spawner 4");
         }
-        
+
         // 1-3, 1-4 or 1-9
         else if (level_selector_ == LevelSelector.Three || level_selector_ == LevelSelector.Four || level_selector_ == LevelSelector.Nine)
         {
@@ -178,6 +180,13 @@ public class LevelManagerScript : MonoBehaviour
 
         }
 
+        // Boss level
+        else if (level_selector_ == LevelSelector.Boss)
+        {
+            // Initialize boss
+            boss_ = GameObject.Find("BossBody");
+        }
+
         // Enemy list
         enemies_list_ = GameObject.FindGameObjectsWithTag("Enemy");
 
@@ -217,13 +226,13 @@ public class LevelManagerScript : MonoBehaviour
 
         objective_indicator_list_ = GameObject.FindGameObjectsWithTag("ObjectiveIndicator");
 
-        foreach (GameObject o in objective_indicator_list_)
+        /*foreach (GameObject o in objective_indicator_list_)
         {
             if (o.GetComponent<ObjectiveIndicator>().objective_.name.Contains("Charger"))
             {
                 o.GetComponent<SpriteRenderer>().color = o.GetComponent<ObjectiveIndicator>().objective_.GetComponent<SpriteRenderer>().color;
             }
-        }        
+        }*/
 
         // Capture Point Levels
         if (level_selector_ == LevelSelector.Three || level_selector_ == LevelSelector.Four || level_selector_ == LevelSelector.Nine)
@@ -257,14 +266,20 @@ public class LevelManagerScript : MonoBehaviour
         // 1-0
         if (level_selector_ == LevelSelector.Tutorial)
         {
-            // If first training grunt is killed, spawn 2 and 3 after 1s, freeze player
-            if (training_grunt_ != null)
+            // Disable training grunts 2 & 3 on start
+            if (!activate_training_grunts_)
             {
-                if (training_grunt_.GetComponent<HealthComponent>().getCurrentHp() <= 0)
-                {
-                    // Activate timer
-                    activate_timer_ = true;
-                }
+                training_grunt_2_.SetActive(false);
+                training_grunt_3_.SetActive(false);
+            }
+
+            // If first training grunt is killed, spawn 2 and 3
+            if (training_grunt_ == null)
+            {
+                // Activate timer
+                activate_timer_ = true;
+                activate_training_grunts_ = true;
+
             }
 
             // Activate timer
@@ -279,7 +294,7 @@ public class LevelManagerScript : MonoBehaviour
                 timer_ = wait_time_;
 
                 // If not killed, set them to active
-                if (training_grunt_2_ != null && training_grunt_3_ != null)
+                if (training_grunt_2_ != null && training_grunt_3_ != null && activate_training_grunts_ == true)
                 {
                     training_grunt_2_.SetActive(true);
                     training_grunt_3_.SetActive(true);
@@ -452,6 +467,26 @@ public class LevelManagerScript : MonoBehaviour
             if (dist_to_portal_.magnitude <= 3.0f && portal_.activeSelf == true)
             {
                 //STM_.load_scene_Asynch("1-Boss");
+                STM_.load_scene_Asynch("CPTest");
+            }
+        }
+
+        // Boss level
+        else if (level_selector_ == LevelSelector.Boss)
+        {
+            // When chargers and sectopod are killed and spawners are destroyed, activate portal. When in range of portal, transport player to next level.
+            if (boss_ == null && activate_portal_ == false)
+            {
+                // Activate portal
+                portal_script_.SetActivatePortal(true);
+                activate_portal_ = true;
+            }
+
+            // Check distance between player and portal
+            Vector2 dist_to_portal_ = player_.GetComponent<Transform>().position - portal_.GetComponent<Transform>().position;
+            if (dist_to_portal_.magnitude <= 3.0f && portal_.activeSelf == true)
+            {
+                STM_.load_scene_Asynch("CreditScene");
             }
         }
     }

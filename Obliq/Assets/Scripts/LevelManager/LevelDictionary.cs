@@ -18,4 +18,5 @@ public enum LevelSelector
     Eight = 8,
     Nine = 9,
     Ten = 10,
+    Boss = 11
 }

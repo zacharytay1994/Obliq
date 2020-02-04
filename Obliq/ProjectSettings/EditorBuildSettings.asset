@@ -47,4 +47,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level 1/1-10.unity
     guid: 3c5b8fb7aff49ff4d906b0a435240b7a
+  - enabled: 1
+    path: Assets/Scenes/Level 1/AustinScenes/AustinTest3.unity
+    guid: 170fba72a777a7945ab5de5f1628c85a
+  - enabled: 1
+    path: Assets/Scenes/Level 1/AustinScenes/Austin4.unity
+    guid: e9e6a7d3a7100cf469f7788cca8aecea
   m_configObjects: {}
