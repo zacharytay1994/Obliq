@@ -231,13 +231,21 @@ public class LevelManagerScript : MonoBehaviour
 
         objective_indicator_list_ = GameObject.FindGameObjectsWithTag("ObjectiveIndicator");
 
-        /*foreach (GameObject o in objective_indicator_list_)
+        foreach (GameObject o in objective_indicator_list_)
         {
-            if (o.GetComponent<ObjectiveIndicator>().objective_.name.Contains("Charger"))
+            if (o.GetComponent<ObjectiveIndicator>().objective_ != null)
             {
-                o.GetComponent<SpriteRenderer>().color = o.GetComponent<ObjectiveIndicator>().objective_.GetComponent<SpriteRenderer>().color;
+                if (o.GetComponent<ObjectiveIndicator>().objective_.name.Contains("Charger"))
+                {
+                    float charger_color_r = o.GetComponent<ObjectiveIndicator>().objective_.GetComponent<Renderer>().material.color.r;
+                    float charger_color_g = o.GetComponent<ObjectiveIndicator>().objective_.GetComponent<Renderer>().material.color.g;
+                    float charger_color_b = o.GetComponent<ObjectiveIndicator>().objective_.GetComponent<Renderer>().material.color.b;
+
+                    o.GetComponent<Transform>().GetChild(0).GetComponent<SpriteRenderer>().color =
+                        new Color(charger_color_r, charger_color_g, charger_color_b);
+                }
             }
-        }*/
+        }
 
         // Capture Point Levels
         if (level_selector_ == LevelSelector.Three || level_selector_ == LevelSelector.Four || level_selector_ == LevelSelector.Nine)
@@ -271,6 +279,8 @@ public class LevelManagerScript : MonoBehaviour
         // 1-0
         if (level_selector_ == LevelSelector.Tutorial)
         {
+            Debug.Log("THIS IS THE TUTORIAL LEVEL RIGHT");
+
             // Disable training grunts 2 & 3 on start
             if (!activate_training_grunts_)
             {
