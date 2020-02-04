@@ -66,8 +66,8 @@ public class BossHead : MonoBehaviour
     GameObject cone_lines_;
     float overall_cone_timer;
     float cone_timer;
-    
-    
+
+    bool is_attacking = false;
 
     float charge_count = 0;
     float laser_count_ = 0;
@@ -123,7 +123,31 @@ public class BossHead : MonoBehaviour
             
             
         }
-        
+        if (!is_attacking)
+        {
+            int what_attack = Random.Range(1, 7);
+            switch (what_attack) {
+                case 1:
+                case 2:
+                case 3:
+                    charging = true;
+                    hover_ = false;
+                    cone_ = false;
+                    break;
+                case 4:
+                case 5:
+                    charging = false;
+                    hover_ = true;
+                    cone_ = false;
+                    break;
+                case 6:
+                    charging = false;
+                    hover_ = false;
+                    cone_ = true;
+                    break;
+            }
+
+        }
         if (charging)
         {
             can_get_pos = true;
@@ -256,6 +280,7 @@ public class BossHead : MonoBehaviour
         if(overall_cone_timer <= 0)
         {
             target_cone = player_.transform.position;
+            is_attacking = true;
         }
         overall_cone_timer += Time.deltaTime;
        
@@ -281,12 +306,12 @@ public class BossHead : MonoBehaviour
                 ((Vector2)target_cone - (Vector2)gameObject.transform.position).normalized), Quaternion.identity);
             Vector2 final_dir = new Vector2((target_cone.x - gameObject.transform.position.x) + Random.Range(-range_of_cone, range_of_cone), 
                 (target_cone.y - gameObject.transform.position.y) + Random.Range(-range_of_cone, range_of_cone));
-            Vector2 max_dir = new Vector2((target_cone.x - gameObject.transform.position.x) + -range_of_cone,
-                (target_cone.y - gameObject.transform.position.y) + -range_of_cone);
-            Vector2 min_dir = new Vector2((target_cone.x - gameObject.transform.position.x) + range_of_cone,
-                (target_cone.y - gameObject.transform.position.y) + range_of_cone);
-            lr1.SetPosition(0, gameObject.transform.position);
-            lr1.SetPosition(1, Vector3.Lerp(gameObject.transform.position, max_dir.normalized, 0.5f));    
+            //Vector2 max_dir = new Vector2((target_cone.x - gameObject.transform.position.x) + -range_of_cone,
+            //    (target_cone.y - gameObject.transform.position.y) + -range_of_cone);
+            //Vector2 min_dir = new Vector2((target_cone.x - gameObject.transform.position.x) + range_of_cone,
+            //    (target_cone.y - gameObject.transform.position.y) + range_of_cone);
+            //lr1.SetPosition(0, gameObject.transform.position);
+            //lr1.SetPosition(1, Vector3.Lerp(gameObject.transform.position, max_dir.normalized, 0.5f));    
             bullet.GetComponent<Rigidbody2D>().velocity =(final_dir).normalized * laser_speed_;
             cone_timer = 0;
         }
@@ -294,8 +319,7 @@ public class BossHead : MonoBehaviour
         {
             overall_cone_timer = 0;
             charge_count = 0;
-            cone_ = false;
-            charging = true;
+            is_attacking = false;
             can_get_pos = true;
             
         }
@@ -347,6 +371,7 @@ public class BossHead : MonoBehaviour
     public void FireLasers()
     {
         overall_laser_timer_ += Time.deltaTime;
+        is_attacking = true;
         if(overall_laser_timer_ <= overall_laser_attack_speed_)
         {
             laser_timer_ += Time.deltaTime;
@@ -363,8 +388,7 @@ public class BossHead : MonoBehaviour
 
         if (overall_laser_timer_ >= overall_laser_attack_speed_)
         {
-            hover_ = false;
-            charging = true;
+            is_attacking = false;
             overall_laser_timer_ = 0;
         }
 
@@ -375,6 +399,7 @@ public class BossHead : MonoBehaviour
         {
             gameObject.GetComponent<GolemSucking>().StartSucking();
             start_charge_ = true;
+            is_attacking = true;
         }
         if (charge_counter_ < charge_duration_)
         {
@@ -435,9 +460,8 @@ public class BossHead : MonoBehaviour
         start_charge_ = false;
         charge_counter_ = 0.0f;
         charged_ = false;
-        charging = false;
-        hover_ = true;
         inplace_ = true;
+        is_attacking = false;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
