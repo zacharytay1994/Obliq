@@ -225,14 +225,14 @@ public class PlayerController : MonoBehaviour
         //rb2d_.velocity = heading_;
         rb2d_.AddForce(heading_, ForceMode2D.Force);
 
-        //if (dash_cooldown_counter >= dash_cooldown_)
-        //{
-        //    recharge_timer_ = 0;
-        //}
-        //else
-        //{
-        //    recharge_timer_ += Time.deltaTime;
-        //}
+        if (dash_cooldown_counter >= dash_cooldown_)
+        {
+            recharge_timer_ = 0;
+        }
+        else
+        {
+            recharge_timer_ += Time.deltaTime;
+        }
     }
 
     public float GetAcceleration()
