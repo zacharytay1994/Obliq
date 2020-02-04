@@ -45,23 +45,41 @@ public class BossHead : MonoBehaviour
     [SerializeField]
     float laser_attack_speed_;
     [SerializeField]
+    float overall_laser_attack_speed_;
+    [SerializeField]
     float laser_speed_;
     [SerializeField]
     GameObject laser_object_;
+
+    float overall_laser_timer_;
     float laser_timer_;
 
     [SerializeField]
     float range_of_cone;
     [SerializeField]
-    float cone_intensity_;
+    float cone_attack_speed;
+    [SerializeField]
+    float overall_cone_duration;
+    
+    
     [SerializeField]
     GameObject cone_lines_;
+    float overall_cone_timer;
     float cone_timer;
-    float draw_come_timer;
-    int line_count;
+    
+    
 
     float charge_count = 0;
-  
+    float laser_count_ = 0;
+
+    Vector2 target_cone;
+    bool can_get_pos = true;
+
+    bool charging;
+    bool cone_;
+    bool hover_;
+
+    float dotprod;
    
 
     LineRenderer lr1;
@@ -74,15 +92,20 @@ public class BossHead : MonoBehaviour
         player_ = GameObject.Find("Player");
         rb_ = GetComponent<Rigidbody2D>();
         hc_ = GetComponent<HealthComponent>();
-        laser_timer_ = 0;
-        cone_timer = 0;
-        //draw_come_timer = 0;
 
+
+        //draw_come_timer = 0;
+        cone_timer = 0;
+        laser_timer_ = 0;
+        laser_count_ = 0;
         GameObject temp1 = GameObject.Instantiate(cone_lines_, transform);
         lr1 = temp1.GetComponent<LineRenderer>();
 
         GameObject temp2 = Instantiate(cone_lines_, transform);
         lr2 = temp2.GetComponent<LineRenderer>();
+        cone_ = false;
+        charging = true;
+        hover_ = false;
     }
 
     // Update is called once per frame
@@ -91,33 +114,63 @@ public class BossHead : MonoBehaviour
         if (activate_)
         {
             WalkToInitialPosition();
+       
             gameObject.transform.rotation = Quaternion.Lerp(transform.rotation,
-                Quaternion.Euler(0.0f, 0.0f, GF.AngleBetween(new Vector2(0.0f, 1.0f), (Vector2)player_.transform.position - (Vector2)gameObject.transform.position)),
-                Mathf.PingPong(Time.time,
-                6 * Time.deltaTime));
+            Quaternion.Euler(0.0f, 0.0f, GF.AngleBetween(new Vector2(0.0f, 1.0f), (Vector2)player_.transform.position - (Vector2)gameObject.transform.position)),
+            Mathf.PingPong(Time.time,
+            6 * Time.deltaTime));
             
-            laser_timer_ += Time.deltaTime;
-            cone_timer += Time.deltaTime;
-
+            
         }
         
-        if (inplace_)
+        if (charging)
         {
-            InplaceHover();
-            FireLasers();
-            Debug.Log("Firing lasers");
-        }
-        if (inplace_charge_)
-        {
-            ExecuteCharge();
-            Debug.Log("Charging");
-        }
+            can_get_pos = true;
+            if (inplace_charge_)
+            {
+                ExecuteCharge();
+                Debug.Log("Charging");
 
-        if (inplace_ && charge_count < 3)
+            }
+        }
+        else if (cone_)
         {
-            Debug.Log("Cone");
-            ConeAttack(gameObject.transform.position - player_.transform.position);
-        }   
+
+            //float angle = Mathf.Acos(dotprod / dirFromPlayerToBoss.magnitude * 
+            //    gameObject.transform.TransformDirection(Vector3.forward).magnitude);
+            //dotprod = dirFromPlayerToBoss.magnitude * gameObject.transform.TransformDirection(Vector3.forward).magnitude *
+            //     Mathf.Cos(angle);
+
+           
+           
+            dotprod = Vector3.Dot(player_.transform.forward, gameObject.transform.forward);
+            Debug.Log(dotprod + "Dot");
+
+            if (dotprod > 0.9)
+            {
+                target_cone = gameObject.transform.forward;
+                if (charge_count > 1 && activate_)
+                {
+                    ConeAttack(new Vector2(2,0));
+                }
+            }
+                     
+        }
+        else if (hover_)
+        {
+            can_get_pos = true;
+            if (inplace_)
+            {
+                InplaceHover();
+                FireLasers();
+               
+                Debug.Log("Firing lasers");                
+            }
+            
+        }
+        
+
+         
         
         if (hc_.currentHp_ <= 0)
         {
@@ -202,21 +255,46 @@ public class BossHead : MonoBehaviour
     }
     public void ConeAttack(Vector2 direction)
     {
-        if (cone_timer > laser_attack_speed_)
+        overall_cone_timer += Time.deltaTime;
+        
+        if (overall_cone_timer <= overall_cone_duration)
         {
+            cone_timer += Time.deltaTime;
+        }
+
+        if (cone_timer > cone_attack_speed)
+        {
+            Debug.Log("cone");
+
+            //gameObject.transform.rotation = Quaternion.Euler(0.0f, 0.0f, GF.AngleBetween(new Vector2(0.0f, 1.0f), (Vector2)player_.transform.position - (Vector2)gameObject.transform.position));
             //DrawCone(gameObject.transform.position, new Vector2(player_.transform.position.x - 5, player_.transform.position.y -5), lr1);
             //DrawCone(gameObject.transform.position, new Vector2(player_.transform.position.x + 5, player_.transform.position.y + 5), lr2);
-            for (int i = 0; i < cone_intensity_; i++)
-            {
-                Vector2 target = new Vector2(player_.transform.position.x + Random.Range(-5, 5), player_.transform.position.y + Random.Range(-5, 5));
-                GameObject bullet = Instantiate(laser_object_, (Vector2)gameObject.transform.position + ((gameObject.GetComponent<CircleCollider2D>().radius + 2.0f) *
-                    (target - (Vector2)gameObject.transform.position).normalized), Quaternion.identity);
-                bullet.GetComponent<Rigidbody2D>().velocity = (target - (Vector2)gameObject.transform.position).normalized * laser_speed_;
-            }
-            //ResetLine(lr1);
-            //ResetLine(lr2);
+            
+
+           //Vector2 target = new Vector2(direction.x + Random.Range(-range_of_cone, range_of_cone), direction.y + Random.Range(-range_of_cone, range_of_cone)).normalized;
+           // Vector2 target = new Vector2(direction.x , direction.y);
+           // Debug.Log(target + "Position");
+
+            GameObject bullet = Instantiate(laser_object_, (Vector2)gameObject.transform.position + ((gameObject.GetComponent<CircleCollider2D>().radius + 2.0f) *
+                ((Vector2)gameObject.transform.forward).normalized), Quaternion.identity);
+            var rotation = bullet.transform.rotation;
+            rotation.x += Random.Range(-range_of_cone, range_of_cone);
+            rotation.y += Random.Range(-range_of_cone, range_of_cone);
+
+            bullet.transform.rotation = rotation;
+            bullet.GetComponent<Rigidbody2D>().velocity = transform.forward * laser_speed_;
             cone_timer = 0;
         }
+        if (overall_cone_timer >= overall_laser_attack_speed_)
+        {
+            overall_cone_timer = 0;
+            charge_count = 0;
+            cone_ = false;
+            charging = true;
+            can_get_pos = true;
+            
+        }
+
     }
     public void InplaceHover()
     {
@@ -263,15 +341,28 @@ public class BossHead : MonoBehaviour
     }
     public void FireLasers()
     {
-        if(laser_timer_ > laser_attack_speed_)
+        overall_laser_timer_ += Time.deltaTime;
+        if(overall_laser_timer_ <= overall_laser_attack_speed_)
         {
+            laser_timer_ += Time.deltaTime;
+        }
+        gameObject.transform.rotation = Quaternion.Euler(0.0f, 0.0f, GF.AngleBetween(new Vector2(0.0f, 1.0f), (Vector2)player_.transform.position - (Vector2)gameObject.transform.position));
+        if (laser_timer_ > laser_attack_speed_)
+        {
+           
             GameObject bullet = Instantiate(laser_object_, (Vector2)gameObject.transform.position + ((gameObject.GetComponent<CircleCollider2D>().radius + 2.0f) *
             ((Vector2)player_.transform.position - (Vector2)gameObject.transform.position).normalized), Quaternion.identity);
-            laser_timer_ = 0;
             bullet.GetComponent<Rigidbody2D>().velocity = ((Vector2)player_.transform.position - (Vector2)gameObject.transform.position).normalized * laser_speed_;
-            
+            laser_timer_ = 0;
         }
-                                 
+
+        if (overall_laser_timer_ >= overall_laser_attack_speed_)
+        {
+            hover_ = false;
+            charging = true;
+            overall_laser_timer_ = 0;
+        }
+
     }
     public void ExecuteCharge()
     {
@@ -290,12 +381,16 @@ public class BossHead : MonoBehaviour
             // boost to player
             inplace_ = false;
             charge_count++;
-            if(charge_count > 3)
+            if(charge_count > 1)
             {
-                charge_count = 0;
+                
+                cone_ = true;
             }
             rb_.AddForce(((Vector2)player_.transform.position - (Vector2)gameObject.transform.position).normalized * charge_force_ * Time.deltaTime, ForceMode2D.Impulse);
+            
         }
+
+
         else
         {
             Vector3 pos = gameObject.transform.position;
@@ -335,6 +430,8 @@ public class BossHead : MonoBehaviour
         start_charge_ = false;
         charge_counter_ = 0.0f;
         charged_ = false;
+        charging = false;
+        hover_ = true;
         inplace_ = true;
     }
 

@@ -19,12 +19,11 @@ public class BossLaserBehaviour : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject == GameObject.Find("Player"))
-        {
-            
+        {         
             collision.gameObject.GetComponent<HealthComponent>().TakeDamage(laser_damage_);
             Destroy(gameObject);
         }
-        else
+        else if(collision.gameObject != gameObject)
         {
             Destroy(gameObject);
         }
