@@ -44,6 +44,9 @@ public class LevelManagerScript : MonoBehaviour
     // List of enemies
     GameObject[] enemies_list_;
 
+    // Check to stop enabling enemies
+    bool stop_enemies_enable_ = false;
+
     //----------------------Tutorial-----------------------------
     // Training grunts
     GameObject training_grunt_, training_grunt_2_, training_grunt_3_;
@@ -200,29 +203,31 @@ public class LevelManagerScript : MonoBehaviour
         }
 
         /*----------WHEN WE IMPLEMENT TRIGGER THEN UNCOMMENT----------*/
-        /*// Disable all enemies at the start
+        // Disable all enemies at the start
         enemies_list_ = GameObject.FindGameObjectsWithTag("Enemy");
 
         foreach (GameObject enemy in enemies_list_)
         {
             enemy.SetActive(false);
-        }*/
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
         /*----------WHEN WE IMPLEMENT TRIGGER THEN UNCOMMENT----------*/
-        /*// If walk over trigger, make all enemies active
+        // If walk over trigger, make all enemies active
         bool is_triggered_ = GameObject.Find("ActivateTriggerTilemap").GetComponent<ActivateEnemies>().activate_enemies_;
 
-        if (is_triggered_)
+        if (is_triggered_ && !stop_enemies_enable_)
         {
             foreach (GameObject enemy in enemies_list_)
             {
                 enemy.SetActive(true);
             }
-        }*/
+
+            stop_enemies_enable_ = true;
+        }
 
         objective_indicator_list_ = GameObject.FindGameObjectsWithTag("ObjectiveIndicator");
 
