@@ -225,6 +225,7 @@ GameObject:
   - component: {fileID: 3175323466441815771}
   - component: {fileID: -679246854607487943}
   - component: {fileID: -2491790334604582751}
+  - component: {fileID: 260131635397256083}
   m_Layer: 16
   m_Name: Player
   m_TagString: MainPlayer
@@ -690,3 +691,16 @@ MonoBehaviour:
   reach_threshold_: 0.8
   particle_amount_: 3
   spawn_interval_: 0.1
+--- !u!114 &260131635397256083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1102585009099040899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6e2640e80dd63243a98ac14b6965630, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hit_sound_: Hit
