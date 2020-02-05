@@ -10,6 +10,10 @@ public class MissileBehaviour : MonoBehaviour
     float bullet_speed_;
     [SerializeField]
     int damage_;
+    [SerializeField]
+    float rotation_speed_;
+    float z_rotate_ = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,10 +23,10 @@ public class MissileBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        z_rotate_ += Time.deltaTime * (rotation_speed_);
         float angle = GF.AngleBetween(transform.position, player_.transform.position);
-        transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+        transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle + z_rotate_));
         MissileMovement();
-
     }
     public void MissileMovement()
     {

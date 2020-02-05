@@ -279,8 +279,6 @@ public class LevelManagerScript : MonoBehaviour
         // 1-0
         if (level_selector_ == LevelSelector.Tutorial)
         {
-            Debug.Log("THIS IS THE TUTORIAL LEVEL RIGHT");
-
             // Disable training grunts 2 & 3 on start
             if (!activate_training_grunts_)
             {
