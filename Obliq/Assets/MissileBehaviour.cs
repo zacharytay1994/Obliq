@@ -12,6 +12,8 @@ public class MissileBehaviour : MonoBehaviour
     int damage_;
     [SerializeField]
     float rotation_speed_;
+    [SerializeField]
+    GameObject explosion_effect_;
     float z_rotate_ = 0;
 
     // Start is called before the first frame update
@@ -36,11 +38,13 @@ public class MissileBehaviour : MonoBehaviour
     {
         if (collision.gameObject == player_)
         {
+            Instantiate(explosion_effect_, transform.position, Quaternion.identity);
             player_.GetComponent<HealthComponent>().TakeDamage(damage_);
             Destroy(gameObject);
         }
         if (collision.gameObject.layer == 19)
         {
+            Instantiate(explosion_effect_, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
     }

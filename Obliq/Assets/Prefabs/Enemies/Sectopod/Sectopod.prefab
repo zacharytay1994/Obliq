@@ -81,8 +81,8 @@ MonoBehaviour:
   unit_scale_per_range_: 1
   health_: 20
   attack_damage_: 5
-  attack_range_: 40
-  detection_range_: 40
+  attack_range_: 50
+  detection_range_: 50
 --- !u!114 &9041656220963992286
 MonoBehaviour:
   m_ObjectHideFlags: 0
