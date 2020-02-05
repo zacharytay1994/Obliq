@@ -23,7 +23,7 @@ public class TempWeaponSwitch : MonoBehaviour
     [SerializeField]
     KeyCode w2_switch_ = KeyCode.Alpha2;
     [SerializeField]
-    GameObject weapon_2 = null;
+    public GameObject weapon_2 = null;
     [SerializeField]
     bool w2_has_recoil = false;
     [SerializeField]
