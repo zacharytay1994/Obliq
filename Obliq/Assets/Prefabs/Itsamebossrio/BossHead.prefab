@@ -192,6 +192,7 @@ MonoBehaviour:
   range_of_cone: 5
   cone_attack_speed: 0.1
   overall_cone_duration: 3
+  cone_delay_time: 2
   cone_lines_: {fileID: 3105799701528140724, guid: b12be1a2fc92c95468f3ca4aeebbc168,
     type: 3}
 --- !u!114 &174579134008034121

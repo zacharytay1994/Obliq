@@ -60,7 +60,9 @@ public class BossHead : MonoBehaviour
     float cone_attack_speed;
     [SerializeField]
     float overall_cone_duration;
-    
+    [SerializeField]
+    float cone_delay_time;
+    float cone_delay_timer;
     
     [SerializeField]
     GameObject cone_lines_;
@@ -127,19 +129,24 @@ public class BossHead : MonoBehaviour
         {
             int what_attack = Random.Range(1, 7);
             switch (what_attack) {
+                //case 1:
+                //case 2:
+                //case 3:
+                //    charging = true;
+                //    hover_ = false;
+                //    cone_ = false;
+                //    break;
+                //case 4:
+                //case 5:
+                //    charging = false;
+                //    hover_ = true;
+                //    cone_ = false;
+                //    break;
                 case 1:
                 case 2:
                 case 3:
-                    charging = true;
-                    hover_ = false;
-                    cone_ = false;
-                    break;
                 case 4:
                 case 5:
-                    charging = false;
-                    hover_ = true;
-                    cone_ = false;
-                    break;
                 case 6:
                     charging = false;
                     hover_ = false;
@@ -171,7 +178,7 @@ public class BossHead : MonoBehaviour
             if (dotprod > 0.9)
             {
                
-                if (charge_count > 1 && activate_)
+                if (inplace_ && activate_)
                 {
                     ConeAttack();
                 }
@@ -277,53 +284,59 @@ public class BossHead : MonoBehaviour
     }
     public void ConeAttack()
     {
-        if(overall_cone_timer <= 0)
+        cone_delay_timer += Time.deltaTime;
+        if (cone_delay_timer > cone_delay_time)
         {
-            target_cone = player_.transform.position;
-            is_attacking = true;
-        }
-        overall_cone_timer += Time.deltaTime;
-       
-        if (overall_cone_timer <= overall_cone_duration)
-        {
-            cone_timer += Time.deltaTime;
-        }
-
-        if (cone_timer > cone_attack_speed)
-        {
-            Debug.Log("cone");
-
-            //gameObject.transform.rotation = Quaternion.Euler(0.0f, 0.0f, GF.AngleBetween(new Vector2(0.0f, 1.0f), (Vector2)player_.transform.position - (Vector2)gameObject.transform.position));
-            //DrawCone(gameObject.transform.position, new Vector2(player_.transform.position.x - 5, player_.transform.position.y -5), lr1);
-            //DrawCone(gameObject.transform.position, new Vector2(player_.transform.position.x + 5, player_.transform.position.y + 5), lr2);
+            if (overall_cone_timer <= 0)
+            {
+                target_cone = player_.transform.position;
+                is_attacking = true;
+            }
+           
+            overall_cone_timer += Time.deltaTime;
             
 
-           //Vector2 target = new Vector2(direction.x + Random.Range(-range_of_cone, range_of_cone), direction.y + Random.Range(-range_of_cone, range_of_cone)).normalized;
-           // Vector2 target = new Vector2(direction.x , direction.y);
-           // Debug.Log(target + "Position");
+            if (overall_cone_timer <= overall_cone_duration)
+            {
+                cone_timer += Time.deltaTime;
+            }
 
-            GameObject bullet = Instantiate(laser_object_, (Vector2)gameObject.transform.position + ((gameObject.GetComponent<CircleCollider2D>().radius + 2.0f) *
-                ((Vector2)target_cone - (Vector2)gameObject.transform.position).normalized), Quaternion.identity);
-            Vector2 final_dir = new Vector2((target_cone.x - gameObject.transform.position.x) + Random.Range(-range_of_cone, range_of_cone), 
-                (target_cone.y - gameObject.transform.position.y) + Random.Range(-range_of_cone, range_of_cone));
-            //Vector2 max_dir = new Vector2((target_cone.x - gameObject.transform.position.x) + -range_of_cone,
-            //    (target_cone.y - gameObject.transform.position.y) + -range_of_cone);
-            //Vector2 min_dir = new Vector2((target_cone.x - gameObject.transform.position.x) + range_of_cone,
-            //    (target_cone.y - gameObject.transform.position.y) + range_of_cone);
-            //lr1.SetPosition(0, gameObject.transform.position);
-            //lr1.SetPosition(1, Vector3.Lerp(gameObject.transform.position, max_dir.normalized, 0.5f));    
-            bullet.GetComponent<Rigidbody2D>().velocity =(final_dir).normalized * laser_speed_;
-            cone_timer = 0;
-        }
-        if (overall_cone_timer >= overall_laser_attack_speed_)
-        {
-            overall_cone_timer = 0;
-            charge_count = 0;
-            is_attacking = false;
-            can_get_pos = true;
-            
-        }
+            if (cone_timer > cone_attack_speed)
+            {
+                Debug.Log("cone");
 
+                //gameObject.transform.rotation = Quaternion.Euler(0.0f, 0.0f, GF.AngleBetween(new Vector2(0.0f, 1.0f), (Vector2)player_.transform.position - (Vector2)gameObject.transform.position));
+                //DrawCone(gameObject.transform.position, new Vector2(player_.transform.position.x - 5, player_.transform.position.y -5), lr1);
+                //DrawCone(gameObject.transform.position, new Vector2(player_.transform.position.x + 5, player_.transform.position.y + 5), lr2);
+
+
+                //Vector2 target = new Vector2(direction.x + Random.Range(-range_of_cone, range_of_cone), direction.y + Random.Range(-range_of_cone, range_of_cone)).normalized;
+                // Vector2 target = new Vector2(direction.x , direction.y);
+                // Debug.Log(target + "Position");
+
+                GameObject bullet = Instantiate(laser_object_, (Vector2)gameObject.transform.position + ((gameObject.GetComponent<CircleCollider2D>().radius + 2.0f) *
+                    ((Vector2)target_cone - (Vector2)gameObject.transform.position).normalized), Quaternion.identity);
+                Vector2 final_dir = new Vector2((target_cone.x - gameObject.transform.position.x) + Random.Range(-range_of_cone, range_of_cone),
+                    (target_cone.y - gameObject.transform.position.y) + Random.Range(-range_of_cone, range_of_cone));
+                //Vector2 max_dir = new Vector2((target_cone.x - gameObject.transform.position.x) + -range_of_cone,
+                //    (target_cone.y - gameObject.transform.position.y) + -range_of_cone);
+                //Vector2 min_dir = new Vector2((target_cone.x - gameObject.transform.position.x) + range_of_cone,
+                //    (target_cone.y - gameObject.transform.position.y) + range_of_cone);
+                //lr1.SetPosition(0, gameObject.transform.position);
+                //lr1.SetPosition(1, Vector3.Lerp(gameObject.transform.position, max_dir.normalized, 0.5f));    
+                bullet.GetComponent<Rigidbody2D>().velocity = (final_dir).normalized * laser_speed_;
+                cone_timer = 0;
+            }
+            if (overall_cone_timer >= overall_laser_attack_speed_)
+            {
+                overall_cone_timer = 0;
+                charge_count = 0;
+                is_attacking = false;
+                can_get_pos = true;
+                cone_delay_timer = 0;
+
+            }
+        }
     }
     public void InplaceHover()
     {
