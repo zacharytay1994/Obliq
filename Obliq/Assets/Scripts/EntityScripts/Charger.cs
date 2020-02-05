@@ -34,6 +34,7 @@ public class Charger : MonoBehaviour
 
         //Physics2D.IgnoreLayerCollision(20, 14, true);
         Physics2D.IgnoreLayerCollision(20, 17, true);
+        Physics2D.IgnoreLayerCollision(20, 23, true);
 
     }
   

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1730615251446629458}
   - component: {fileID: 7027338462996194306}
   - component: {fileID: 5334708403414921924}
-  m_Layer: 14
+  m_Layer: 23
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4770,7 +4770,7 @@ GameObject:
   - component: {fileID: 4863398212447123227}
   - component: {fileID: 8305134896097840506}
   - component: {fileID: 8033678033718259255}
-  m_Layer: 14
+  m_Layer: 23
   m_Name: Spawner
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -4974,7 +4974,7 @@ GameObject:
   - component: {fileID: 5584496288895513341}
   - component: {fileID: 1241360610339789453}
   - component: {fileID: 3752421910518274486}
-  m_Layer: 14
+  m_Layer: 23
   m_Name: Diamond
   m_TagString: Untagged
   m_Icon: {fileID: 0}
