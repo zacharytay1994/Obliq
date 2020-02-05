@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8447645668751343950}
-  - component: {fileID: 5697847296892656586}
+  - component: {fileID: 2227645346651557183}
   m_Layer: 5
-  m_Name: ObjectiveIndicator
-  m_TagString: ObjectiveIndicator
+  m_Name: PortalIndicator
+  m_TagString: PortalIndicator
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -37,7 +37,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &5697847296892656586
+--- !u!114 &2227645346651557183
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -46,11 +46,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1485242819113200788}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d99b7e54f8db6da429b976b8ecf67f76, type: 3}
+  m_Script: {fileID: 11500000, guid: 11d4536bc94c70d40a319627334a2be9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  camera_: {fileID: 0}
   objective_: {fileID: 0}
-  offset_amount_: 0
 --- !u!1 &6460379624379971086
 GameObject:
   m_ObjectHideFlags: 0
