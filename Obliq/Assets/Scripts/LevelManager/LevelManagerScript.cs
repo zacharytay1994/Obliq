@@ -489,7 +489,7 @@ public class LevelManagerScript : MonoBehaviour
         {
             // When chargers are killed and spawners are destroyed, activate portal. When in range of portal, transport player to next level.
             if (charger_1_ == null && charger_2_ == null && spawner_1_ == null && spawner_2_ == null && spawner_3_ == null && spawner_4_ == null 
-                && spawner_5_ == null && spawner_6_ == null && spawner_7_ == null && spawner_8_ == null && activate_portal_ == false)
+                && spawner_5_ == null && spawner_6_ == null && activate_portal_ == false)
             {
                 // Activate portal
                 portal_script_.SetActivatePortal(true);

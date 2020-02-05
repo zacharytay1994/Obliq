@@ -56,6 +56,10 @@ public class Explosion : MonoBehaviour
             fade.a -= fade_acceleration;
             sr_.color = fade;
         }
+        else
+        {
+            GameObject.Destroy(gameObject);
+        }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

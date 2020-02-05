@@ -61,7 +61,7 @@ MonoBehaviour:
   sectopod_missile_: {fileID: 5522028647058031579, guid: 3a5c4e2bc5213b847ab937122018965f,
     type: 3}
   bullet_speed_: 30
-  missile_attack_speed: 2
+  missile_attack_speed: 1
   player_: {fileID: 0}
 --- !u!114 &9041656220963992287
 MonoBehaviour:
@@ -81,8 +81,8 @@ MonoBehaviour:
   unit_scale_per_range_: 1
   health_: 20
   attack_damage_: 5
-  attack_range_: 20
-  detection_range_: 20
+  attack_range_: 40
+  detection_range_: 40
 --- !u!114 &9041656220963992286
 MonoBehaviour:
   m_ObjectHideFlags: 0
