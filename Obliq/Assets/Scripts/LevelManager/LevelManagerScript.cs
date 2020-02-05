@@ -16,6 +16,8 @@ public class LevelManagerScript : MonoBehaviour
     GameObject objective_indicator_;
     GameObject objective_indicator_parent_;
     GameObject[] objective_indicator_list_;
+    int enemy_count_;
+    float indicator_offset_;
 
     // Manager for scene transition to next scene
     SceneTransitionLoader STM_;
@@ -192,17 +194,27 @@ public class LevelManagerScript : MonoBehaviour
 
         // Enemy list
         enemies_list_ = GameObject.FindGameObjectsWithTag("Enemy");
+        enemy_count_ = enemies_list_.Length;
 
-        objective_indicator_parent_ = GameObject.Find("Player_UI");
+        // Spawn objecive indicators for each target
+        objective_indicator_parent_ = GameObject.Find("Player");
+
+        if (enemy_count_ <= 6)
+        {
+            indicator_offset_ = 2;
+        }
+        else
+        {
+            indicator_offset_ = 5;
+        }
 
         foreach (GameObject enemy in enemies_list_)
         {
             GameObject gameobject_temp = GameObject.Instantiate(objective_indicator_, objective_indicator_parent_.transform);
-
             gameobject_temp.GetComponent<ObjectiveIndicator>().objective_ = enemy;
+            gameobject_temp.GetComponent<ObjectiveIndicator>().offset_amount_ = indicator_offset_;
         }
 
-        /*----------WHEN WE IMPLEMENT TRIGGER THEN UNCOMMENT----------*/
         // Disable all enemies at the start
         enemies_list_ = GameObject.FindGameObjectsWithTag("Enemy");
 
@@ -215,7 +227,57 @@ public class LevelManagerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*----------WHEN WE IMPLEMENT TRIGGER THEN UNCOMMENT----------*/
+        //------------------------CHEAT CODE TO MOVE TO LEVEL----------------------------------
+        if (Input.GetKeyDown(KeyCode.F1))
+        {
+            STM_.load_scene_Asynch("1-0");
+        }
+        if (Input.GetKeyDown(KeyCode.F2))
+        {
+            STM_.load_scene_Asynch("1-1");
+        }
+        if (Input.GetKeyDown(KeyCode.F3))
+        {
+            STM_.load_scene_Asynch("1-2");
+        }
+        if (Input.GetKeyDown(KeyCode.F4))
+        {
+            STM_.load_scene_Asynch("1-3");
+        }
+        if (Input.GetKeyDown(KeyCode.F5))
+        {
+            STM_.load_scene_Asynch("1-4");
+        }
+        if (Input.GetKeyDown(KeyCode.F6))
+        {
+            STM_.load_scene_Asynch("1-5");
+        }
+        if (Input.GetKeyDown(KeyCode.F7))
+        {
+            STM_.load_scene_Asynch("1-6");
+        }
+        if (Input.GetKeyDown(KeyCode.F8))
+        {
+            STM_.load_scene_Asynch("1-7");
+        }
+        if (Input.GetKeyDown(KeyCode.F9))
+        {
+            STM_.load_scene_Asynch("1-8");
+        }
+        if (Input.GetKeyDown(KeyCode.F10))
+        {
+            STM_.load_scene_Asynch("1-9");
+        }
+        if (Input.GetKeyDown(KeyCode.F11))
+        {
+            STM_.load_scene_Asynch("1-10");
+        }
+        if (Input.GetKeyDown(KeyCode.F12))
+        {
+            STM_.load_scene_Asynch("CPTest");
+        }
+        //------------------------CHEAT CODE END DELETE DIS----------------------------------
+
         // If walk over trigger, make all enemies active
         bool is_triggered_ = GameObject.Find("ActivateTriggerTilemap").GetComponent<ActivateEnemies>().activate_enemies_;
 
@@ -427,7 +489,7 @@ public class LevelManagerScript : MonoBehaviour
         {
             // When chargers are killed and spawners are destroyed, activate portal. When in range of portal, transport player to next level.
             if (charger_1_ == null && charger_2_ == null && spawner_1_ == null && spawner_2_ == null && spawner_3_ == null && spawner_4_ == null 
-                && spawner_5_ == null && spawner_6_ == null && spawner_7_ == null && spawner_8_ == null && activate_portal_ == false)
+                && spawner_5_ == null && spawner_6_ == null && activate_portal_ == false)
             {
                 // Activate portal
                 portal_script_.SetActivatePortal(true);
