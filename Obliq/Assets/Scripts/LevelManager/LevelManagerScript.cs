@@ -149,8 +149,6 @@ public class LevelManagerScript : MonoBehaviour
             spawner_4_ = GameObject.Find("Spawner 4");
             spawner_5_ = GameObject.Find("Spawner 5");
             spawner_6_ = GameObject.Find("Spawner 6");
-            spawner_7_ = GameObject.Find("Spawner 7");
-            spawner_8_ = GameObject.Find("Spawner 8");
         }
 
         // 1-8
