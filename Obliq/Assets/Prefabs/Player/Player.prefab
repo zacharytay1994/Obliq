@@ -469,7 +469,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHp_: 10
   currentHp_: 10
-  invincibility_time_: 0.1
+  invincibility_time_: 1
   damage_flash_duration_: 0
 --- !u!114 &1102585009099040898
 MonoBehaviour:
