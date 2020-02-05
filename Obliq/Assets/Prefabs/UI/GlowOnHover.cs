@@ -19,11 +19,9 @@ public class GlowOnHover : MonoBehaviour
     void OnMouseEnter()
     {
         gameObject.GetComponent<Text>().fontStyle = FontStyle.Bold;
-        Debug.Log("Gay");
     }
     void OnMouseExit()
     {
         gameObject.GetComponent<Text>().fontStyle = FontStyle.Normal;
-        Debug.Log("No U");
     }
 }

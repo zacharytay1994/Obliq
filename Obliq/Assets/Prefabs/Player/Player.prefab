@@ -225,6 +225,7 @@ GameObject:
   - component: {fileID: 3175323466441815771}
   - component: {fileID: -679246854607487943}
   - component: {fileID: -2491790334604582751}
+  - component: {fileID: 260131635397256083}
   m_Layer: 16
   m_Name: Player
   m_TagString: MainPlayer
@@ -668,6 +669,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mark_: {fileID: 4670743272651592365, guid: 019ffc3cc351a6f44b5d329699563766, type: 3}
+  y_offset_: 1.5
 --- !u!114 &-2491790334604582751
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -680,10 +682,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 247a87edb3e01174a999cb39387e811b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  suc_target_: {fileID: 0}
-  particle_: {fileID: 0}
-  suc_min_max_: {x: 0, y: 0}
-  particle_speed_: 10
-  reach_threshold_: 0.1
-  particle_amount_: 10
+  suc_target_: {fileID: 8854787102229975483, guid: 4851628cd0816ee4b92612b37353720b,
+    type: 3}
+  particle_: {fileID: 334379398565654414, guid: 528482ce924b2214f8cb5b16974ba0bc,
+    type: 3}
+  suc_min_max_: {x: 1, y: 1.5}
+  particle_speed_: 0.5
+  reach_threshold_: 0.8
+  particle_amount_: 3
   spawn_interval_: 0.1
+--- !u!114 &260131635397256083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1102585009099040899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6e2640e80dd63243a98ac14b6965630, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hit_sound_: Hit

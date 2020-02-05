@@ -206,7 +206,7 @@ MonoBehaviour:
   - name: Shotgun_Shot
     clip: {fileID: 8300000, guid: d12c1ac5ceb06714c999baf12271edf2, type: 3}
     volume: 1
-    pitch: 0.2
+    pitch: 1
     source: {fileID: 0}
     SoundType: 0
   - name: Rocket_Launch
@@ -224,7 +224,7 @@ MonoBehaviour:
   - name: Electric_Saw
     clip: {fileID: 8300000, guid: 303c454f4eceaf34aaf82013c549fc95, type: 3}
     volume: 1
-    pitch: 2
+    pitch: 1
     source: {fileID: 0}
     SoundType: 0
   - name: Fireball
@@ -247,7 +247,7 @@ MonoBehaviour:
     SoundType: 0
   - name: Hit
     clip: {fileID: 8300000, guid: 466ca6e9a43894c41b771f59b1db1bcb, type: 3}
-    volume: 0.7
+    volume: 1.2
     pitch: 1
     source: {fileID: 0}
     SoundType: 0

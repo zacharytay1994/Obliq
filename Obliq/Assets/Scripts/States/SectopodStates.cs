@@ -140,6 +140,7 @@ public class SectopodAttackState : State
 {
     float attack_rate; // amt of time to charge
     float next_attack_missile_time;
+    float missile_timer;
     float next_damage_time;
    
     bool is_charging;
@@ -147,23 +148,20 @@ public class SectopodAttackState : State
     DamagePopup damage_popup = GameObject.Find("World").GetComponent<DamagePopup>();
     public override void Enter(GameObject owner)
     {
-        next_attack_missile_time = Time.time + Time.time + owner.GetComponent<Sectopod>().missile_attack_speed;
+        next_attack_missile_time = owner.GetComponent<Sectopod>().missile_attack_speed;
         Debug.Log("Sectopod Attack state");
         is_charging = true;
         laser_aimed = false;
         
-        if (next_damage_time == 0)
-        {
-            next_damage_time = Time.time + attack_rate;
-
-        }
+        
         owner.GetComponent<ObliqPathfinding>().StartPath(owner.GetComponent<ObliqPathfinding>().target_);
       
         
     }
     public override void Execute(GameObject owner)       
     {
-
+        missile_timer += Time.deltaTime;
+        next_damage_time += Time.deltaTime;
         attack_rate = owner.GetComponent<RaycastAttack>().attack_rate_;
         GameObject objective = GameObject.Find("Bomb");
         GC<ObliqPathfinding>(owner).target_ = GC<Sectopod>(owner).target_reference_.transform.position;
@@ -174,10 +172,10 @@ public class SectopodAttackState : State
         if ((GC<Sectopod>(owner).target_reference_.transform.position - owner.transform.position).magnitude
             < GC<Entity>(owner).attack_range_ || laser_aimed) 
         {
-            if (Time.time > next_attack_missile_time)
+            if (missile_timer > next_attack_missile_time)
             {
                 owner.GetComponent<Sectopod>().FireMissile();
-                next_attack_missile_time = Time.time + owner.GetComponent<Sectopod>().missile_attack_speed;
+                missile_timer = 0;
             }
             GC<RaycastAttack>(owner).Attack(owner, GC<Sectopod>(owner).target_reference_);
             
@@ -201,9 +199,9 @@ public class SectopodAttackState : State
              
                 laser_aimed = true;
             }
-            if (Time.time >= next_damage_time && laser_aimed)
+            if (next_damage_time >= attack_rate && laser_aimed)
             {
-                next_damage_time = Time.time + attack_rate;
+                next_damage_time = 0;
                 
                 if (GC<RaycastAttack>(owner).Attack(owner, GC<Sectopod>(owner).target_reference_) != null)
                 {

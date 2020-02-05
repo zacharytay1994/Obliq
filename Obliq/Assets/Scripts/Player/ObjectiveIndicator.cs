@@ -10,7 +10,7 @@ public class ObjectiveIndicator : MonoBehaviour
 
     // Target to point to
     [SerializeField]
-    GameObject objective_;
+    public GameObject objective_;
 
     // Initialise some variables
     Vector2 target_position_;
@@ -25,6 +25,9 @@ public class ObjectiveIndicator : MonoBehaviour
 
         // Get rect transform component of pointer
         pointer_rect_transform_ = pointer_.GetComponent<RectTransform>();
+
+        // Camera
+        camera_ = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
     }
 
     // Update is called once per frame
@@ -40,14 +43,23 @@ public class ObjectiveIndicator : MonoBehaviour
             float border_size_ = 15f;
 
             Vector3 target_position_screen_point_ = Camera.main.WorldToScreenPoint(target_position_);
+
+            // Check if arrow is off-screen
             bool is_off_screen_ = target_position_screen_point_.x <= 0 || target_position_screen_point_.x >= Screen.width ||
                 target_position_screen_point_.y <= 0 || target_position_screen_point_.y >= Screen.height;
 
             // If target is off-screen, activate indicator
             if (is_off_screen_)
             {
-                // Activate indicator
-                pointer_.SetActive(true);
+                // If target is disabled, disable pointer. If target is enabled, activate indicator.
+                if (objective_.activeSelf == false)
+                {
+                    pointer_.SetActive(false);
+                }
+                else if (objective_.activeSelf == true)
+                {
+                    pointer_.SetActive(true);
+                }
 
                 // Rotate indicator to target
                 RotateToTarget();
