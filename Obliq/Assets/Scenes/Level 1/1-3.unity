@@ -121785,7 +121785,7 @@ PrefabInstance:
     - target: {fileID: 6369410269454357851, guid: 5236d8f19c2c74845b0a10e6b59f9a8b,
         type: 3}
       propertyPath: m_textInfo.characterCount
-      value: 34
+      value: 37
       objectReference: {fileID: 0}
     - target: {fileID: 6369410269454357851, guid: 5236d8f19c2c74845b0a10e6b59f9a8b,
         type: 3}
@@ -121800,7 +121800,7 @@ PrefabInstance:
     - target: {fileID: 6369410269454357851, guid: 5236d8f19c2c74845b0a10e6b59f9a8b,
         type: 3}
       propertyPath: m_textInfo.lineCount
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6369410269454357851, guid: 5236d8f19c2c74845b0a10e6b59f9a8b,
         type: 3}
@@ -121810,14 +121810,14 @@ PrefabInstance:
     - target: {fileID: 6369410269454357851, guid: 5236d8f19c2c74845b0a10e6b59f9a8b,
         type: 3}
       propertyPath: m_text
-      value: '<<STAND NEAR>> to <<SAVE>> files.
+      value: '<<STAND NEAR>> to <<CORRUPT>> files.
 
 '
       objectReference: {fileID: 0}
     - target: {fileID: 6369410269454357851, guid: 5236d8f19c2c74845b0a10e6b59f9a8b,
         type: 3}
       propertyPath: m_firstOverflowCharacterIndex
-      value: -1
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 6369410269454357851, guid: 5236d8f19c2c74845b0a10e6b59f9a8b,
         type: 3}
@@ -121828,6 +121828,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_margin.x
       value: 1.2399359
+      objectReference: {fileID: 0}
+    - target: {fileID: 6369410269454357850, guid: 5236d8f19c2c74845b0a10e6b59f9a8b,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5236d8f19c2c74845b0a10e6b59f9a8b, type: 3}
