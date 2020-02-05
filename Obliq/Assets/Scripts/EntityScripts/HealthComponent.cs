@@ -8,7 +8,7 @@ public class HealthComponent : MonoBehaviour
     SpriteRenderer sr_;
     SpriteRenderer sr_halo_;
     bool is_invincible_;
-    float invincibility_start_time_;
+    float invincibility_timer_;
 
     [SerializeField]
     float damage_flash_duration_ = 0.0f;
@@ -45,11 +45,13 @@ public class HealthComponent : MonoBehaviour
                 sr.material.SetColor("_EmissionColor", original_color_);
                 taken_damage_ = false;
             }
+
         }
         is_invincible_ = isInvincible();
         bool prev_is_invincible = is_invincible_;
         if(is_invincible_)
         {
+            invincibility_timer_ += Time.deltaTime;
             sr_.color = new Color(sr_.color.r, sr_.color.g, sr_.color.b, 0.5f);
             if (sr_halo_ != null)
             {
@@ -75,24 +77,24 @@ public class HealthComponent : MonoBehaviour
         if (currentHp_ > 0 && !isInvincible())
         {
             currentHp_ -= damage;
-            invincibility_start_time_ = Time.time;
+            invincibility_timer_ = 0;
             taken_damage_ = true;
             counter = 0.0f;
         }
     }
     public bool isInvincible()
     {
-       if(Time.time - invincibility_start_time_ > invincibility_time_)
+       if(invincibility_timer_ < invincibility_time_)
         {
             //sr_.color = new Color(sr_.color.r, sr_.color.b, sr_.color.g, 1);
             //sr_halo_.color = new Color(sr_halo_.color.r, sr_halo_.color.b, sr_halo_.color.g,1);
-            return false;
+            return true;
         }
         else
         {
             //sr_.color = new Color(sr_.color.r, sr_.color.b, sr_.color.g, 0.5f);
             //sr_halo_.color = new Color(sr_halo_.color.r, sr_halo_.color.b, sr_halo_.color.g, 0.5f);
-            return true;
+            return false;
         }
     }
     public void HealHp(int healing)
