@@ -39,7 +39,8 @@ public class PlayerHealthBar : MonoBehaviour
     {
         if (player_health_component_.getCurrentHp() < num_healthbar && num_healthbar > 0 && transform.childCount > 0)
         {
-            Instantiate(health_loss_effect_, transform.GetChild(num_healthbar - 1).gameObject.transform.position, Quaternion.identity);
+            GameObject temp = Instantiate(health_loss_effect_, transform.GetChild(num_healthbar - 1).gameObject.transform.position, Quaternion.identity);
+            temp.transform.SetParent(GameObject.Find("Player_UI").transform);
             Destroy(transform.GetChild(num_healthbar - 1).gameObject);
             num_healthbar--;
         }

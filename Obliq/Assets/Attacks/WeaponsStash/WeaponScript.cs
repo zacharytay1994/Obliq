@@ -38,6 +38,10 @@ public class WeaponScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (weapon_ != GetComponent<TempWeaponSwitch>().weapon_2)
+        {
+            fixed_rate_counter_ = fixed_rate_;
+        }
         if (weapon_ != null)
         {
             // incrememet rate reset
