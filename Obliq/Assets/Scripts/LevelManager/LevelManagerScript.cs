@@ -18,6 +18,7 @@ public class LevelManagerScript : MonoBehaviour
     GameObject[] objective_indicator_list_;
     int enemy_count_;
     float indicator_offset_;
+    float indicator_fade_range = 20;
 
     // Manager for scene transition to next scene
     SceneTransitionLoader STM_;
@@ -295,6 +296,7 @@ public class LevelManagerScript : MonoBehaviour
         {
             if (o.GetComponent<ObjectiveIndicator>().objective_ != null)
             {
+                // Change color if target is charger
                 if (o.GetComponent<ObjectiveIndicator>().objective_.name.Contains("Charger"))
                 {
                     float charger_color_r = o.GetComponent<ObjectiveIndicator>().objective_.GetComponent<Renderer>().material.color.r;
@@ -303,6 +305,19 @@ public class LevelManagerScript : MonoBehaviour
 
                     o.GetComponent<Transform>().GetChild(0).GetComponent<SpriteRenderer>().color =
                         new Color(charger_color_r, charger_color_g, charger_color_b);
+                }
+
+                Vector2 vector_from_indicator_to_target = o.GetComponent<ObjectiveIndicator>().objective_.transform.position - o.transform.position;
+
+                if (vector_from_indicator_to_target.magnitude <= indicator_fade_range)
+                {
+                    float indicator_color_r = o.GetComponent<Transform>().GetChild(0).GetComponent<SpriteRenderer>().color.r;
+                    float indicator_color_g = o.GetComponent<Transform>().GetChild(0).GetComponent<SpriteRenderer>().color.g;
+                    float indicator_color_b = o.GetComponent<Transform>().GetChild(0).GetComponent<SpriteRenderer>().color.b;
+                    float indicator_color_a = (255/indicator_fade_range * vector_from_indicator_to_target.magnitude) / 255;
+
+                    o.GetComponent<Transform>().GetChild(0).GetComponent<SpriteRenderer>().color =
+                        new Color(indicator_color_r, indicator_color_g, indicator_color_b, indicator_color_a);
                 }
             }
         }
