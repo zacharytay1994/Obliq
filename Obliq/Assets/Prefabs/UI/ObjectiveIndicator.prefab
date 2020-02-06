@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8447645668751343950}
-  - component: {fileID: 5697847296892656586}
+  - component: {fileID: 7121111192489118522}
   m_Layer: 5
   m_Name: ObjectiveIndicator
   m_TagString: ObjectiveIndicator
@@ -37,7 +37,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &5697847296892656586
+--- !u!114 &7121111192489118522
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -49,7 +49,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d99b7e54f8db6da429b976b8ecf67f76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objective_: {fileID: 0}
   offset_amount_: 0
 --- !u!1 &6460379624379971086
 GameObject:

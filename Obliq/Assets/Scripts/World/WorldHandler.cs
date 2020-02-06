@@ -9,7 +9,7 @@ public class WorldHandler : MonoBehaviour
     bool has_enemies_ = true;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         if (GameObject.FindGameObjectsWithTag("Enemy").Length > 0)
         {

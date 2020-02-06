@@ -44,8 +44,8 @@ public class ChargerMoveState : State
     {
         next_charge_time += Time.deltaTime;
         Debug.Log("Charger Move");
-        owner.GetComponent<SpriteRenderer>().material.color =
-           Color.Lerp(owner.GetComponent<SpriteRenderer>().material.color, Color.white, Mathf.PingPong(Time.time, 1 * Time.deltaTime));
+        owner.GetComponent<SpriteRenderer>().color =
+           Color.Lerp(owner.GetComponent<SpriteRenderer>().color, Color.white, Time.deltaTime/*Mathf.PingPong(Time.deltaTime, 1 * Time.deltaTime)*/);
         float angle = AngleBetween(owner.transform.position, closest_good_guy_position);       
         owner.transform.rotation = Quaternion.Lerp(owner.transform.rotation, Quaternion.Euler(0.0f, 0.0f, angle), Mathf.PingPong(Time.time,
             1 * Time.deltaTime));
@@ -127,7 +127,7 @@ public class ChargerIdleState : State
                 owner.GetComponent<LineRenderer>().SetPosition(1, Vector2.Lerp(owner.GetComponent<LineRenderer>().GetPosition(1), closest_good_guy_position,
                     1 * Time.deltaTime));*/
 
-                owner.GetComponent<SpriteRenderer>().material.color = Color.Lerp(owner.GetComponent<SpriteRenderer>().material.color, Color.red, Mathf.PingPong(Time.time, 3 * Time.deltaTime));
+                owner.GetComponent<SpriteRenderer>().color = Color.Lerp(owner.GetComponent<SpriteRenderer>().color, Color.red, Time.deltaTime/*Mathf.PingPong(Time.deltaTime, 3 * Time.deltaTime)*/);
                 // turn on particle charge
                 owner.GetComponent<Charger>().GetComponent<GolemSucking>().StartSucking();
 
@@ -145,7 +145,7 @@ public class ChargerIdleState : State
             }
             else 
             {
-                owner.GetComponent<SpriteRenderer>().material.color = Color.Lerp(owner.GetComponent<SpriteRenderer>().material.color, Color.white, Mathf.PingPong(Time.time, 3 * Time.deltaTime));
+                owner.GetComponent<SpriteRenderer>().color = Color.Lerp(owner.GetComponent<SpriteRenderer>().color, Color.white, Time.deltaTime /*Mathf.PingPong(Time.deltaTime, 3 * Time.deltaTime)*/);
 
                 charge_start = Time.time;
 

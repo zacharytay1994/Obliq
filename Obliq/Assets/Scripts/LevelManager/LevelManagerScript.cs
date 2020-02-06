@@ -210,16 +210,19 @@ public class LevelManagerScript : MonoBehaviour
         foreach (GameObject enemy in enemies_list_)
         {
             GameObject gameobject_temp = GameObject.Instantiate(objective_indicator_, objective_indicator_parent_.transform);
-            gameobject_temp.GetComponent<ObjectiveIndicator>().objective_ = enemy;
+            gameobject_temp.GetComponent<ObjectiveIndicator>().SetObjective(enemy);
             gameobject_temp.GetComponent<ObjectiveIndicator>().offset_amount_ = indicator_offset_;
         }
 
         // Disable all enemies at the start
-        enemies_list_ = GameObject.FindGameObjectsWithTag("Enemy");
+        //enemies_list_ = GameObject.FindGameObjectsWithTag("Enemy");
 
         foreach (GameObject enemy in enemies_list_)
         {
-            enemy.SetActive(false);
+            if (enemy.name != "CapturePoint")
+            {
+                enemy.SetActive(false);
+            }
         }
     }
 
@@ -294,30 +297,33 @@ public class LevelManagerScript : MonoBehaviour
 
         foreach (GameObject o in objective_indicator_list_)
         {
-            if (o.GetComponent<ObjectiveIndicator>().objective_ != null)
+            if (o.GetComponent<ObjectiveIndicator>() != null)
             {
-                // Change color if target is charger
-                if (o.GetComponent<ObjectiveIndicator>().objective_.name.Contains("Charger"))
+                if (o.GetComponent<ObjectiveIndicator>().GetObjective() != null)
                 {
-                    float charger_color_r = o.GetComponent<ObjectiveIndicator>().objective_.GetComponent<Renderer>().material.color.r;
-                    float charger_color_g = o.GetComponent<ObjectiveIndicator>().objective_.GetComponent<Renderer>().material.color.g;
-                    float charger_color_b = o.GetComponent<ObjectiveIndicator>().objective_.GetComponent<Renderer>().material.color.b;
+                    // Change color if target is charger
+                    if (o.GetComponent<ObjectiveIndicator>().GetObjective().name.Contains("Charger"))
+                    {
+                        float charger_color_r = o.GetComponent<ObjectiveIndicator>().GetObjective().GetComponent<SpriteRenderer>().color.r;
+                        float charger_color_g = o.GetComponent<ObjectiveIndicator>().GetObjective().GetComponent<SpriteRenderer>().color.g;
+                        float charger_color_b = o.GetComponent<ObjectiveIndicator>().GetObjective().GetComponent<SpriteRenderer>().color.b;
 
-                    o.GetComponent<Transform>().GetChild(0).GetComponent<SpriteRenderer>().color =
-                        new Color(charger_color_r, charger_color_g, charger_color_b);
-                }
+                        o.GetComponent<Transform>().GetChild(0).GetComponent<SpriteRenderer>().color =
+                            new Color(charger_color_r, charger_color_g, charger_color_b);
+                    }
 
-                Vector2 vector_from_indicator_to_target = o.GetComponent<ObjectiveIndicator>().objective_.transform.position - o.transform.position;
+                    Vector2 vector_from_indicator_to_target = o.GetComponent<ObjectiveIndicator>().GetObjective().transform.position - o.transform.position;
 
-                if (vector_from_indicator_to_target.magnitude <= indicator_fade_range)
-                {
-                    float indicator_color_r = o.GetComponent<Transform>().GetChild(0).GetComponent<SpriteRenderer>().color.r;
-                    float indicator_color_g = o.GetComponent<Transform>().GetChild(0).GetComponent<SpriteRenderer>().color.g;
-                    float indicator_color_b = o.GetComponent<Transform>().GetChild(0).GetComponent<SpriteRenderer>().color.b;
-                    float indicator_color_a = (255/indicator_fade_range * vector_from_indicator_to_target.magnitude) / 255;
+                    if (vector_from_indicator_to_target.magnitude <= indicator_fade_range)
+                    {
+                        float indicator_color_r = o.GetComponent<Transform>().GetChild(0).GetComponent<SpriteRenderer>().color.r;
+                        float indicator_color_g = o.GetComponent<Transform>().GetChild(0).GetComponent<SpriteRenderer>().color.g;
+                        float indicator_color_b = o.GetComponent<Transform>().GetChild(0).GetComponent<SpriteRenderer>().color.b;
+                        float indicator_color_a = (255 / indicator_fade_range * vector_from_indicator_to_target.magnitude) / 255;
 
-                    o.GetComponent<Transform>().GetChild(0).GetComponent<SpriteRenderer>().color =
-                        new Color(indicator_color_r, indicator_color_g, indicator_color_b, indicator_color_a);
+                        o.GetComponent<Transform>().GetChild(0).GetComponent<SpriteRenderer>().color =
+                            new Color(indicator_color_r, indicator_color_g, indicator_color_b, indicator_color_a);
+                    }
                 }
             }
         }
