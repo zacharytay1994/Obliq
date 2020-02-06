@@ -555,10 +555,11 @@ public class LevelManagerScript : MonoBehaviour
             if (dist_to_portal_.magnitude <= 3.0f && portal_.activeSelf == true)
             {
                 //STM_.load_scene_Asynch("1-Boss");
-                STM_.load_scene_Asynch("CPTest");
+                STM_.load_scene_Asynch("CreditScene");
             }
         }
 
+        /* ===================================== STILL IN DEVELOPMENT ===================================================
         // Boss level
         else if (level_selector_ == LevelSelector.Boss)
         {
@@ -577,5 +578,6 @@ public class LevelManagerScript : MonoBehaviour
                 STM_.load_scene_Asynch("CreditScene");
             }
         }
+        ===================================== STILL IN DEVELOPMENT =================================================== */
     }
 }

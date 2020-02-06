@@ -361,7 +361,7 @@ MonoBehaviour:
   causes_screen_shake_: 0
   screen_shake_base_duration_: 0
   screen_shake_base_magnitude_: 0
-  crit_chance: 20
+  crit_chance: 0
   crit_modifier: 0
 --- !u!114 &-6655965732787809711
 MonoBehaviour:

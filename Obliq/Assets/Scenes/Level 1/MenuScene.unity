@@ -853,7 +853,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UI_: 1
-  scroll_delay_: 0.07
+  scroll_delay_: 0.035
   chain_scrolling_text_: 1
   prev_text_chain_: {fileID: 1275181648}
   scroll_complete_: 0
@@ -1160,7 +1160,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UI_: 1
-  scroll_delay_: 0.07
+  scroll_delay_: 0.035
   chain_scrolling_text_: 0
   prev_text_chain_: {fileID: 0}
   scroll_complete_: 0
@@ -1391,7 +1391,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UI_: 1
-  scroll_delay_: 0.07
+  scroll_delay_: 0.035
   chain_scrolling_text_: 1
   prev_text_chain_: {fileID: 961473225}
   scroll_complete_: 0
