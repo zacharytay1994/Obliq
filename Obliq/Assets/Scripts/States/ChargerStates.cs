@@ -27,7 +27,7 @@ public class ChargerMoveState : State
             return;
         }
         // find position behind target
-        Vector2 to_add = (owner.GetComponent<Charger>().target_reference_.transform.position - owner.transform.position).normalized;
+        Vector2 to_add = ((Vector2)owner.GetComponent<Charger>().target_reference_.transform.position - (Vector2)owner.transform.position).normalized;
         closest_good_guy_position =
             (Vector2)owner.GetComponent<Charger>().target_reference_.transform.position + (to_add * 1.5f); // temp magic number (how far behind target)
         // move charger to position
@@ -44,9 +44,9 @@ public class ChargerMoveState : State
     {
         next_charge_time += Time.deltaTime;
         Debug.Log("Charger Move");
-        owner.GetComponent<SpriteRenderer>().material.color =
-           Color.Lerp(owner.GetComponent<SpriteRenderer>().material.color, Color.white, Mathf.PingPong(Time.time, 1 * Time.deltaTime));
-        float angle = AngleBetween(owner.transform.position, closest_good_guy_position);       
+        owner.GetComponent<SpriteRenderer>().color =
+           Color.Lerp(owner.GetComponent<SpriteRenderer>().color, Color.white, Time.deltaTime/*Mathf.PingPong(Time.time, 1 * Time.deltaTime)*/);
+        float angle = AngleBetween((Vector2)owner.transform.position, (Vector2)closest_good_guy_position);       
         owner.transform.rotation = Quaternion.Lerp(owner.transform.rotation, Quaternion.Euler(0.0f, 0.0f, angle), Mathf.PingPong(Time.time,
             1 * Time.deltaTime));
         
@@ -111,7 +111,7 @@ public class ChargerIdleState : State
         if(GameObject.Find("World").GetComponent<WorldHandler>().GetRandomGoodGuy() != null)
         {         
             owner.GetComponent<Charger>().target_reference_ = GameObject.Find("World").GetComponent<WorldHandler>().GetRandomGoodGuy();
-            Vector2 to_add = (owner.GetComponent<Charger>().target_reference_.transform.position - owner.transform.position).normalized;
+            Vector2 to_add = ((Vector2)owner.GetComponent<Charger>().target_reference_.transform.position - (Vector2)owner.transform.position).normalized;
 
             RaycastHit2D isHit = Physics2D.Raycast(owner.transform.position,
                 ((Vector2)owner.GetComponent<Charger>().target_reference_.transform.position - (Vector2)owner.transform.position).normalized,
@@ -126,8 +126,8 @@ public class ChargerIdleState : State
               /*  owner.GetComponent<LineRenderer>().SetPosition(0, (Vector2)owner.transform.position);
                 owner.GetComponent<LineRenderer>().SetPosition(1, Vector2.Lerp(owner.GetComponent<LineRenderer>().GetPosition(1), closest_good_guy_position,
                     1 * Time.deltaTime));*/
-
-                owner.GetComponent<SpriteRenderer>().material.color = Color.Lerp(owner.GetComponent<SpriteRenderer>().material.color, Color.red, Mathf.PingPong(Time.time, 3 * Time.deltaTime));
+                owner.GetComponent<SpriteRenderer>().color = Color.Lerp(owner.GetComponent<SpriteRenderer>().color, Color.red, Time.deltaTime/*Mathf.PingPong(Time.time, 3 * Time.deltaTime)*/);
+                //owner.GetComponent<SpriteRenderer>().material.
                 // turn on particle charge
                 owner.GetComponent<Charger>().GetComponent<GolemSucking>().StartSucking();
 
@@ -145,7 +145,7 @@ public class ChargerIdleState : State
             }
             else 
             {
-                owner.GetComponent<SpriteRenderer>().material.color = Color.Lerp(owner.GetComponent<SpriteRenderer>().material.color, Color.white, Mathf.PingPong(Time.time, 3 * Time.deltaTime));
+                owner.GetComponent<SpriteRenderer>().color = Color.Lerp(owner.GetComponent<SpriteRenderer>().color, Color.white, Time.deltaTime/* Mathf.PingPong(Time.time, 3 * Time.deltaTime)*/);
 
                 charge_start = Time.time;
 

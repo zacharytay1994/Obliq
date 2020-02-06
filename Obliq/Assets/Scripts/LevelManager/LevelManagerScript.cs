@@ -314,7 +314,7 @@ public class LevelManagerScript : MonoBehaviour
                     float indicator_color_r = o.GetComponent<Transform>().GetChild(0).GetComponent<SpriteRenderer>().color.r;
                     float indicator_color_g = o.GetComponent<Transform>().GetChild(0).GetComponent<SpriteRenderer>().color.g;
                     float indicator_color_b = o.GetComponent<Transform>().GetChild(0).GetComponent<SpriteRenderer>().color.b;
-                    float indicator_color_a = (255/indicator_fade_range * vector_from_indicator_to_target.magnitude) / 255;
+                    float indicator_color_a = (255 / indicator_fade_range * vector_from_indicator_to_target.magnitude) / 255;
 
                     o.GetComponent<Transform>().GetChild(0).GetComponent<SpriteRenderer>().color =
                         new Color(indicator_color_r, indicator_color_g, indicator_color_b, indicator_color_a);

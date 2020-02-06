@@ -11,12 +11,12 @@ public class ActivateObjectOnPlayerTrigger : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.CompareTag("MainPlayer"))
-        {
-            object_to_activate_.SetActive(true);
-            Destroy(this.gameObject);
-        }
-    }
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    if(collision.CompareTag("MainPlayer"))
+    //    {
+    //        object_to_activate_.SetActive(true);
+    //        Destroy(this.gameObject);
+    //    }
+    //}
 }
