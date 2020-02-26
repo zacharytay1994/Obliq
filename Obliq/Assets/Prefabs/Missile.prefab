@@ -99,6 +99,8 @@ MonoBehaviour:
   bullet_speed_: 10
   damage_: 2
   rotation_speed_: 350
+  explosion_effect_: {fileID: 8626776155738538174, guid: 54d03fc4ce7676641936769afe89b50b,
+    type: 3}
 --- !u!50 &5522028647058031581
 Rigidbody2D:
   serializedVersion: 4
@@ -133,7 +135,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.03977996, y: 0.056794807}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -144,7 +146,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.2, y: 1.7}
+  m_Size: {x: 0.847291, y: 0.83672094}
   m_EdgeRadius: 0
 --- !u!96 &5386473131320211940
 TrailRenderer:

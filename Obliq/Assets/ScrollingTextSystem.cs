@@ -62,7 +62,7 @@ public class ScrollingTextSystem : MonoBehaviour
             scroll_complete_ = true;
         }
 
-        if(Input.GetKeyDown(KeyCode.Z))
+        if(Input.GetKeyDown(KeyCode.Q))
         {
             if(UI_)
             {

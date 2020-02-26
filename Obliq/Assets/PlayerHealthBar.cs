@@ -6,6 +6,7 @@ public class PlayerHealthBar : MonoBehaviour
 {
     HealthComponent player_health_component_;
     [SerializeField] GameObject health_unit_;
+    [SerializeField] GameObject health_loss_effect_;
     [SerializeField] float display_size_;
     [SerializeField] float display_spacing_;
     int num_healthbar;   
@@ -37,7 +38,9 @@ public class PlayerHealthBar : MonoBehaviour
     void CheckForDamage()
     {
         if (player_health_component_.getCurrentHp() < num_healthbar && num_healthbar > 0 && transform.childCount > 0)
-        {           
+        {
+            GameObject temp = Instantiate(health_loss_effect_, transform.GetChild(num_healthbar - 1).gameObject.transform.position, Quaternion.identity);
+            temp.transform.SetParent(GameObject.Find("Player_UI").transform);
             Destroy(transform.GetChild(num_healthbar - 1).gameObject);
             num_healthbar--;
         }

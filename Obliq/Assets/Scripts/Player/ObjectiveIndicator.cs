@@ -4,30 +4,34 @@ using UnityEngine;
 
 public class ObjectiveIndicator : MonoBehaviour
 {
-    // Main Camera
-    [SerializeField]
-    Camera camera_;
-
     // Target to point to
+    GameObject objective_;
+
+    // How far the indicator is from the player
     [SerializeField]
-    public GameObject objective_;
+    public float offset_amount_;
 
     // Initialise some variables
-    Vector2 target_position_;
-    RectTransform pointer_rect_transform_;
+    Vector3 target_position_, player_position_;
     GameObject pointer_;
 
+    public GameObject GetObjective()
+    {
+        return objective_;
+    }
+
+    public void SetObjective(GameObject g)
+    {
+        objective_ = g;
+    }
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         // Pointer
         pointer_ = gameObject.transform.GetChild(0).gameObject;
 
-        // Get rect transform component of pointer
-        pointer_rect_transform_ = pointer_.GetComponent<RectTransform>();
-
-        // Camera
-        camera_ = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        // Offset amount
+        //offset_amount_ = 5;
     }
 
     // Update is called once per frame
@@ -36,20 +40,18 @@ public class ObjectiveIndicator : MonoBehaviour
         // If objective is not destroyed
         if (objective_ != null)
         {
-            // Position of target
-            target_position_ = objective_.GetComponent<Transform>().position;
-
-            // Border at the edges of the screen
-            float border_size_ = 15f;
-
-            Vector3 target_position_screen_point_ = Camera.main.WorldToScreenPoint(target_position_);
-
-            // Check if arrow is off-screen
-            bool is_off_screen_ = target_position_screen_point_.x <= 0 || target_position_screen_point_.x >= Screen.width ||
-                target_position_screen_point_.y <= 0 || target_position_screen_point_.y >= Screen.height;
-
-            // If target is off-screen, activate indicator
-            if (is_off_screen_)
+            if (objective_.name == "CapturePoint")
+            {
+                if (objective_.GetComponent<CapturePoint>().captured_)
+                {
+                    pointer_.SetActive(false);
+                }
+                else
+                {
+                    pointer_.SetActive(true);
+                }
+            }
+            else
             {
                 // If target is disabled, disable pointer. If target is enabled, activate indicator.
                 if (objective_.activeSelf == false)
@@ -60,31 +62,24 @@ public class ObjectiveIndicator : MonoBehaviour
                 {
                     pointer_.SetActive(true);
                 }
-
-                // Rotate indicator to target
-                RotateToTarget();
-
-                // Set indicator at edge of screen
-                Vector3 capped_target_screen_position_ = target_position_screen_point_;
-                if (capped_target_screen_position_.x <= border_size_)
-                    capped_target_screen_position_.x = border_size_;
-                if (capped_target_screen_position_.x >= Screen.width - border_size_)
-                    capped_target_screen_position_.x = Screen.width - border_size_;
-                if (capped_target_screen_position_.y <= border_size_)
-                    capped_target_screen_position_.y = border_size_;
-                if (capped_target_screen_position_.y >= Screen.height - border_size_)
-                    capped_target_screen_position_.y = Screen.height - border_size_;
-
-                Vector3 pointer_world_position_ = camera_.ScreenToWorldPoint(capped_target_screen_position_);
-                pointer_rect_transform_.position = pointer_world_position_;
-                pointer_rect_transform_.localPosition = new Vector3(pointer_rect_transform_.localPosition.x, pointer_rect_transform_.localPosition.y);
             }
 
-            // If target can be seen, disable indicator
-            else
-            {
-                pointer_.SetActive(false);
-            }
+            // Player position
+            player_position_ = GameObject.Find("Player").transform.position;
+
+            // Position of target
+            target_position_ = objective_.transform.position;
+
+            // Set pointer position to unit vector from player to objective
+            Vector3 position_offset = Vector3.Normalize(target_position_ - player_position_);
+            pointer_.transform.position = player_position_ + (position_offset * offset_amount_);
+
+            // Get direction to target
+            Vector2 direction = new Vector2
+                (target_position_.x - pointer_.transform.position.x, target_position_.y - pointer_.GetComponent<Transform>().position.y);
+
+            // Set direction to target
+            pointer_.GetComponent<Transform>().up = direction;
         }
 
         // If target is destroyed, disable pointer
@@ -92,16 +87,5 @@ public class ObjectiveIndicator : MonoBehaviour
         {
             pointer_.SetActive(false);
         }
-    }
-
-    // Rotate indicator to target
-    void RotateToTarget()
-    {
-        // Get direction to target
-        Vector2 direction = new Vector2
-            (target_position_.x - pointer_.GetComponent<Transform>().position.x, target_position_.y - pointer_.GetComponent<Transform>().position.y);
-
-        // Set direction to target
-        pointer_.GetComponent<Transform>().up = direction;
     }
 }

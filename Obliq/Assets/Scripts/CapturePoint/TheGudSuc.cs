@@ -68,25 +68,45 @@ public class TheGudSuc : MonoBehaviour
 
     void UpdateAllParticles()
     {
-        foreach (GameObject g in particle_list_)
+        for(int i = 0; i<particle_list_.Count;i++)
         {
             // make particle travel towards this object
             // get vector between particle and object
-            Vector2 direction = ((Vector2)gameObject.transform.position - (Vector2)g.gameObject.transform.position);
+            Vector2 direction = ((Vector2)gameObject.transform.position - (Vector2)particle_list_[i].gameObject.transform.position);
             // check if particle is within threshold
             if (direction.magnitude > reach_threshold_)
             {
                 // move
-                g.transform.position += (Vector3)(direction.normalized * particle_speed_);
+                particle_list_[i].transform.position += (Vector3)(direction.normalized * particle_speed_);
             }
             else
             {
                 // if reached threshold, remove from list and destroy
-                GameObject temp = g;
-                particle_list_.Remove(g);
-                GameObject.Destroy(g);
+                GameObject temp = particle_list_[i];
+                particle_list_.Remove(temp);
+                Destroy(temp);
             }
+
         }
+        //foreach (GameObject g in particle_list_)
+        //{
+        //    // make particle travel towards this object
+        //    // get vector between particle and object
+        //    Vector2 direction = ((Vector2)gameObject.transform.position - (Vector2)g.gameObject.transform.position);
+        //    // check if particle is within threshold
+        //    if (direction.magnitude > reach_threshold_)
+        //    {
+        //        // move
+        //        g.transform.position += (Vector3)(direction.normalized * particle_speed_);
+        //    }
+        //    else
+        //    {
+        //        // if reached threshold, remove from list and destroy
+        //        GameObject temp = g;
+        //        particle_list_.Remove(g);
+        //        GameObject.Destroy(g);
+        //    }
+        //}
     }
 
     public void Suc(bool b)

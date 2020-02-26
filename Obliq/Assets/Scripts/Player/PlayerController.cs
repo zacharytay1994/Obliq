@@ -49,7 +49,7 @@ public class PlayerController : MonoBehaviour
     float invuln_dash_counter_ = 0.0f;
     bool invuln_ = false;
     [SerializeField]
-    float dash_damage_ = 1.0f;
+    float dash_damage_ = 0f;
     [SerializeField]
     float dash_radius_ = 2.0f;
     float dash_cooldown_counter = 2.0f;
@@ -194,7 +194,7 @@ public class PlayerController : MonoBehaviour
             trail_active_time_ = Time.time + dash_duration_ / 3;
             GameObject temp = Instantiate(dash_particle_);
             temp.transform.position = transform.position;
-            GetComponent<ForceGruntsAway>().PushAllEnemies();
+            //GetComponent<ForceGruntsAway>().PushAllEnemies();
             invuln_ = true;
             // deactivate player (14) enemy (16) collision
             Physics2D.IgnoreLayerCollision(14, 16, true);
