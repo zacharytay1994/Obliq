@@ -50,6 +50,8 @@ public class BossHead : MonoBehaviour
     float laser_speed_;
     [SerializeField]
     GameObject laser_object_;
+    [SerializeField]
+    float laser_delay_time_;
 
     float overall_laser_timer_;
     float laser_timer_;
@@ -66,8 +68,12 @@ public class BossHead : MonoBehaviour
     
     [SerializeField]
     GameObject cone_lines_;
+
     float overall_cone_timer;
     float cone_timer;
+    GameObject laser_line_;
+    Vector3 laser_line_pos_;
+    
 
     bool is_attacking = false;
 
@@ -108,6 +114,12 @@ public class BossHead : MonoBehaviour
         cone_ = false;
         charging = true;
         hover_ = false;
+        laser_line_ = Instantiate(cone_lines_);
+        laser_line_.GetComponent<LineRenderer>().startWidth = 0.15f;
+        laser_line_.GetComponent<LineRenderer>().endWidth = 0.15f;
+        laser_line_.GetComponent<LineRenderer>().endColor = Color.clear;
+        laser_line_.GetComponent<LineRenderer>().startColor = Color.clear;
+
     }
 
     // Update is called once per frame
@@ -116,7 +128,6 @@ public class BossHead : MonoBehaviour
         if (activate_)
         {
             WalkToInitialPosition();
-            
             gameObject.transform.rotation = Quaternion.Lerp(transform.rotation,
             Quaternion.Euler(0.0f, 0.0f, GF.AngleBetween(new Vector2(0.0f, 1.0f), (Vector2)player_.transform.position - (Vector2)gameObject.transform.position)),
             Mathf.PingPong(Time.time,
@@ -380,28 +391,52 @@ public class BossHead : MonoBehaviour
     }
     public void FireLasers()
     {
+
         overall_laser_timer_ += Time.deltaTime;
         is_attacking = true;
-        if(overall_laser_timer_ <= overall_laser_attack_speed_)
+        
+        if (overall_laser_timer_ <= laser_delay_time_)//get_delay_time
         {
-            laser_timer_ += Time.deltaTime;
+            laser_line_.GetComponent<LineRenderer>().endColor = Color.white;
+            laser_line_.GetComponent<LineRenderer>().startColor = Color.white;
+            laser_line_.GetComponent<LineRenderer>().SetPosition(0, gameObject.transform.position);
+            laser_line_.GetComponent<LineRenderer>().SetPosition(1, Vector3.Lerp(gameObject.transform.position, player_.transform.position, overall_laser_timer_ / laser_delay_time_));
         }
-        gameObject.transform.rotation = Quaternion.Euler(0.0f, 0.0f, GF.AngleBetween(new Vector2(0.0f, 1.0f), (Vector2)player_.transform.position - (Vector2)gameObject.transform.position));
-        if (laser_timer_ > laser_attack_speed_)
+        else if (overall_laser_timer_ <= overall_laser_attack_speed_ - laser_delay_time_)
         {
+            laser_line_.GetComponent<LineRenderer>().SetPosition(0, gameObject.transform.position);
+            laser_line_.GetComponent<LineRenderer>().SetPosition(1, player_.transform.position);
+            if (overall_laser_timer_ <= overall_laser_attack_speed_)
+            {
+                laser_timer_ += Time.deltaTime;
+            }
+            gameObject.transform.rotation = Quaternion.Euler(0.0f, 0.0f, GF.AngleBetween(new Vector2(0.0f, 1.0f), (Vector2)player_.transform.position - (Vector2)gameObject.transform.position));
+            if (laser_timer_ > laser_attack_speed_)
+            {
+
+                GameObject bullet = Instantiate(laser_object_, (Vector2)gameObject.transform.position + ((gameObject.GetComponent<CircleCollider2D>().radius + 1f) *
+                ((Vector2)player_.transform.position - (Vector2)gameObject.transform.position).normalized), Quaternion.identity);
+                bullet.GetComponent<Rigidbody2D>().velocity = ((Vector2)player_.transform.position - (Vector2)gameObject.transform.position).normalized * laser_speed_;
+                laser_timer_ = 0;
+            }
+
            
-            GameObject bullet = Instantiate(laser_object_, (Vector2)gameObject.transform.position + ((gameObject.GetComponent<CircleCollider2D>().radius + 2.0f) *
-            ((Vector2)player_.transform.position - (Vector2)gameObject.transform.position).normalized), Quaternion.identity);
-            bullet.GetComponent<Rigidbody2D>().velocity = ((Vector2)player_.transform.position - (Vector2)gameObject.transform.position).normalized * laser_speed_;
-            laser_timer_ = 0;
         }
-
-        if (overall_laser_timer_ >= overall_laser_attack_speed_)
+        else
         {
-            is_attacking = false;
-            overall_laser_timer_ = 0;
-        }
-
+            Color temp = laser_line_.GetComponent<LineRenderer>().startColor;
+            laser_line_.GetComponent<LineRenderer>().endColor = new Color(temp.r, temp.g, temp.b, Mathf.Lerp(temp.a, 0, 0.1f));
+            laser_line_.GetComponent<LineRenderer>().startColor = new Color(temp.r, temp.g, temp.b, Mathf.Lerp(temp.a, 0, 0.1f));
+            laser_line_.GetComponent<LineRenderer>().SetPosition(0, gameObject.transform.position);
+            laser_line_.GetComponent<LineRenderer>().SetPosition(1, player_.transform.position);
+            //unlerp
+            if (overall_laser_timer_ >= overall_laser_attack_speed_)
+            {
+                is_attacking = false;
+                overall_laser_timer_ = 0;
+                
+            }
+        }        
     }
     public void ExecuteCharge()
     {

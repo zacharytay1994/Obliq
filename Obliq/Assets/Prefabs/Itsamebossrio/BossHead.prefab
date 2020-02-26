@@ -185,10 +185,11 @@ MonoBehaviour:
   charge_force_: 1500
   charge_duration_: 3
   laser_attack_speed_: 0.2
-  overall_laser_attack_speed_: 2
+  overall_laser_attack_speed_: 3
   laser_speed_: 30
   laser_object_: {fileID: 2143071876191568341, guid: a0333c45eadb2334abb726746173d237,
     type: 3}
+  laser_delay_time_: 0.5
   range_of_cone: 5
   cone_attack_speed: 0.1
   overall_cone_duration: 3
