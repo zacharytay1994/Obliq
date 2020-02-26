@@ -5,7 +5,7 @@ using UnityEngine;
 public class Portal : MonoBehaviour
 {
     // Bool check for making portal active
-    bool activate_portal_;
+    public bool activate_portal_;
 
     // Audio Manager
     string portal_sound_ = "Portal";
@@ -15,7 +15,7 @@ public class Portal : MonoBehaviour
     GameObject portal_;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         
         // Portal
@@ -28,13 +28,16 @@ public class Portal : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (activate_portal_ == false)
+        if (portal_ != null)
         {
-            portal_.SetActive(false);
-        }
-        else
-        {
-            portal_.SetActive(true);
+            if (activate_portal_ == false)
+            {
+                portal_.SetActive(false);
+            }
+            else
+            {
+                portal_.SetActive(true);
+            }
         }
     }
 

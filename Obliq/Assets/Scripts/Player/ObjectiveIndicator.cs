@@ -5,8 +5,7 @@ using UnityEngine;
 public class ObjectiveIndicator : MonoBehaviour
 {
     // Target to point to
-    [SerializeField]
-    public GameObject objective_;
+    GameObject objective_;
 
     // How far the indicator is from the player
     [SerializeField]
@@ -16,8 +15,17 @@ public class ObjectiveIndicator : MonoBehaviour
     Vector3 target_position_, player_position_;
     GameObject pointer_;
 
+    public GameObject GetObjective()
+    {
+        return objective_;
+    }
+
+    public void SetObjective(GameObject g)
+    {
+        objective_ = g;
+    }
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         // Pointer
         pointer_ = gameObject.transform.GetChild(0).gameObject;
@@ -32,14 +40,28 @@ public class ObjectiveIndicator : MonoBehaviour
         // If objective is not destroyed
         if (objective_ != null)
         {
-            // If target is disabled, disable pointer. If target is enabled, activate indicator.
-            if (objective_.activeSelf == false)
+            if (objective_.name == "CapturePoint")
             {
-                pointer_.SetActive(false);
+                if (objective_.GetComponent<CapturePoint>().captured_)
+                {
+                    pointer_.SetActive(false);
+                }
+                else
+                {
+                    pointer_.SetActive(true);
+                }
             }
-            else if (objective_.activeSelf == true)
+            else
             {
-                pointer_.SetActive(true);
+                // If target is disabled, disable pointer. If target is enabled, activate indicator.
+                if (objective_.activeSelf == false)
+                {
+                    pointer_.SetActive(false);
+                }
+                else if (objective_.activeSelf == true)
+                {
+                    pointer_.SetActive(true);
+                }
             }
 
             // Player position
