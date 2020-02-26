@@ -120,33 +120,30 @@ public class BossHead : MonoBehaviour
             gameObject.transform.rotation = Quaternion.Lerp(transform.rotation,
             Quaternion.Euler(0.0f, 0.0f, GF.AngleBetween(new Vector2(0.0f, 1.0f), (Vector2)player_.transform.position - (Vector2)gameObject.transform.position)),
             Mathf.PingPong(Time.time,
-            6 * Time.deltaTime));
-            
-            
-            
+            6 * Time.deltaTime));                               
+        }
+        else
+        {
+            gameObject.GetComponent<HealthComponent>().currentHp_ = gameObject.GetComponent<HealthComponent>().maxHp_;
         }
         if (!is_attacking)
         {
             int what_attack = Random.Range(1, 7);
             switch (what_attack) {
-                //case 1:
-                //case 2:
-                //case 3:
-                //    charging = true;
-                //    hover_ = false;
-                //    cone_ = false;
-                //    break;
-                //case 4:
-                //case 5:
-                //    charging = false;
-                //    hover_ = true;
-                //    cone_ = false;
-                //    break;
                 case 1:
                 case 2:
                 case 3:
+                    charging = true;
+                    hover_ = false;
+                    cone_ = false;
+                    break;
                 case 4:
                 case 5:
+                    charging = false;
+                    hover_ = true;
+                    cone_ = false;
+                    break;
+
                 case 6:
                     charging = false;
                     hover_ = false;

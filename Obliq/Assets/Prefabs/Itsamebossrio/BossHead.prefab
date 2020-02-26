@@ -207,11 +207,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3fa6ebddd80df7488df4618d9d3cf0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  particle_: {fileID: 334379398565654414, guid: 9af09b379afe3484c8998c904996e8c2,
+  particle_: {fileID: 334379398565654414, guid: 4088f03bf6cb1aa438285ea5eb386b3c,
     type: 3}
   sucking_duration_: 2
   radius_: 5
-  particle_amt_: 1
 --- !u!50 &297441759504680788
 Rigidbody2D:
   serializedVersion: 4
