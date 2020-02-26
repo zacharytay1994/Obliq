@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 5432335805968645032}
   - component: {fileID: 444605166024747844}
   - component: {fileID: -347582107535407799}
+  - component: {fileID: -7959511920686115377}
   m_Layer: 14
   m_Name: MockGrunt
   m_TagString: Enemy
@@ -302,3 +303,18 @@ MonoBehaviour:
   firing_timer_: 0.5
   pewpew_: {fileID: 3773918459123960786, guid: b52e24e32a949b84f8c5e4153059264e, type: 3}
   speed_: 650
+--- !u!114 &-7959511920686115377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2798105615834141751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83aff6189ea93744db5c224732ce4bee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprite_: {fileID: 21300000, guid: 60448f38bec91224e906f2fcbd53edc0, type: 3}
+  color_: {r: 0.20539808, g: 1, b: 0, a: 1}
+  scale_: 0.1

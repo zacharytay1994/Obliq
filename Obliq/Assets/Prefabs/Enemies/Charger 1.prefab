@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 8433824389621773196}
   - component: {fileID: 2530374232215806367}
   - component: {fileID: -3870448841454263238}
+  - component: {fileID: -7060465388113099359}
   m_Layer: 14
   m_Name: Charger 1
   m_TagString: Enemy
@@ -430,3 +431,18 @@ MonoBehaviour:
     m_Bits: 196608
   damaged_timer_: 0
   sound_timer_: 2
+--- !u!114 &-7060465388113099359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6214192152273230767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83aff6189ea93744db5c224732ce4bee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprite_: {fileID: 21300000, guid: ff22c2cde85be8a41b343c5d068c0739, type: 3}
+  color_: {r: 1, g: 0.08235294, b: 0, a: 1}
+  scale_: 0.2
