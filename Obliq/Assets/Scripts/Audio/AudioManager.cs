@@ -177,7 +177,11 @@ public class AudioManager : MonoBehaviour
         for(int i = 0; i<transform.childCount;i++)
         {
             AudioSource aus = transform.GetChild(i).GetComponent<AudioSource>();
-            aus.Stop();
+            if(!!aus)
+            {
+                aus.Stop();
+            }
+            
         }
     }
 
@@ -186,10 +190,14 @@ public class AudioManager : MonoBehaviour
         for (int i = 0; i < transform.childCount; i++)
         {
             AudioSource aus = transform.GetChild(i).GetComponent<AudioSource>();
-            if (!aus.isPlaying)
+            if(!!aus)
             {
-                Destroy(transform.GetChild(i).gameObject);
+                if (!aus.isPlaying)
+                {
+                    Destroy(transform.GetChild(i).gameObject);
+                }
             }
+
         }
     }
 
@@ -229,14 +237,18 @@ public class AudioManager : MonoBehaviour
         for (int i = 0; i < transform.childCount; i++)
         {
             AudioSource aus = transform.GetChild(i).GetComponent<AudioSource>();
-            if (sounds.Find(sound => sound.Clip == aus.clip).SoundType1)
+            if(!!aus)
             {
-                aus.volume = musicVolume * sounds.Find(sound => sound.Clip == aus.clip).Volume;
+                if (sounds.Find(sound => sound.Clip == aus.clip).SoundType1)
+                {
+                    aus.volume = musicVolume * sounds.Find(sound => sound.Clip == aus.clip).Volume;
+                }
+                else
+                {
+                    aus.volume = sfxVolume * sounds.Find(sound => sound.Clip == aus.clip).Volume;
+                }
             }
-            else
-            {
-                aus.volume = sfxVolume * sounds.Find(sound => sound.Clip == aus.clip).Volume;
-            }
+
         }
         //foreach (Sound s in sounds)
         //{

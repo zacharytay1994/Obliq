@@ -6,6 +6,7 @@ public class ButtonPress : MonoBehaviour
 {
     [SerializeField] GameObject spawnParticle;
     AudioManager _AM;
+    CursorManager _CM;
 
     [Space(10)]
     [SerializeField] Animator anim;
@@ -32,6 +33,7 @@ public class ButtonPress : MonoBehaviour
     void Start()
     {
         _AM = FindObjectOfType<AudioManager>();
+        _CM = FindObjectOfType<CursorManager>();
         STM_ = FindObjectOfType<SceneTransitionLoader>();
         isclicked = FindObjectOfType<IsButtonClicked>();
         internaltimer = pauseSecondsBeforeLoad;
@@ -89,6 +91,7 @@ public class ButtonPress : MonoBehaviour
         {
             if (anim.GetBool("IsClicked"))
             {
+                _CM.HideCursorFill();
                 if (pauseSecondsBeforeLoad <= 0)
                 {
                     if(LoadSceneAsynch)
@@ -115,6 +118,8 @@ public class ButtonPress : MonoBehaviour
             //If your mouse hovers over the GameObject with the script attached, output this message
             _AM.PlaySound("Wahh");
             isMouseOver = true;
+            //fill mouse
+            _CM.ShowCursorFill();
             anim.SetBool("IsHover", isMouseOver);
             
         }
@@ -127,6 +132,8 @@ public class ButtonPress : MonoBehaviour
         {
             //The mouse is no longer hovering over the GameObject so output this message each frame
             isMouseOver = false;
+            //unfill mouse
+            _CM.HideCursorFill();
             anim.SetBool("IsHover", isMouseOver);
             
         }
