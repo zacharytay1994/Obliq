@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: -353334419602199532}
   - component: {fileID: -1395983616304069071}
   - component: {fileID: 6336773067887796249}
+  - component: {fileID: 5936158579966155439}
   m_Layer: 14
   m_Name: TrainingGrunt
   m_TagString: Enemy
@@ -289,3 +290,18 @@ MonoBehaviour:
     m_Bits: 524288
   damaged_timer_: 0
   sound_timer_: 0
+--- !u!114 &5936158579966155439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2798105615834141751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83aff6189ea93744db5c224732ce4bee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprite_: {fileID: 21300000, guid: 60448f38bec91224e906f2fcbd53edc0, type: 3}
+  color_: {r: 1, g: 0, b: 0, a: 1}
+  scale_: 0.1

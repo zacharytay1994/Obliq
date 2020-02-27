@@ -104,6 +104,7 @@ GameObject:
   - component: {fileID: 8854787102229975486}
   - component: {fileID: 8854787102229975481}
   - component: {fileID: 8854787102229975480}
+  - component: {fileID: -5510707676724981173}
   m_Layer: 0
   m_Name: CapturePoint
   m_TagString: Enemy
@@ -196,3 +197,18 @@ MonoBehaviour:
   rotation_speed_: 15
   capture_particles_: {fileID: 3280040919189175650, guid: b61dee43bc520b24ea341661b2152c0c,
     type: 3}
+--- !u!114 &-5510707676724981173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8854787102229975483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83aff6189ea93744db5c224732ce4bee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprite_: {fileID: 21300000, guid: b9b1ba007846e5e4ab3a22c6f99c381b, type: 3}
+  color_: {r: 0.5170955, g: 1, b: 0.41509432, a: 1}
+  scale_: 0.2
