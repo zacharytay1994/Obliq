@@ -18,14 +18,20 @@ public class ZacsFindPath : MonoBehaviour
     
     [SerializeField]
     Vector2 path_update_delay = new Vector2(1.0f, 2.0f); // temporary fix
-    float path_update__delay_counter_ = 0.0f;
+    [HideInInspector]
+    public float path_update__delay_counter_ = 0.0f;
     float og_delay = 0.0f;
     bool move_ = true;
 
     GameObject player_ = null;
     Grid tilemap_grid_ = null;
 
-    bool outside_map_ = false; 
+    bool outside_map_ = false;
+
+    [HideInInspector]
+    public int state_ = 0; // 0 to player, 1 to rally, only for grunt
+    [HideInInspector]
+    public Vector3 rallying_position_ = Vector3.zero;
     // Start is called before the first frame update
     void Start()
     {
@@ -52,7 +58,16 @@ public class ZacsFindPath : MonoBehaviour
         }
         else
         {
-            if (!GetPathToPlayer())
+            bool check = false;
+            if (state_ == 0)
+            {
+                check = GetPathToPlayer();
+            }
+            else if (state_ == 1)
+            {
+                check = GetPathToLocation(rallying_position_);
+            }
+            if (!check)
             {
                 outside_map_ = true;
                 gameObject.GetComponent<CircleCollider2D>().enabled = false;
@@ -94,6 +109,18 @@ public class ZacsFindPath : MonoBehaviour
         //current_pos.y -= pathfinding_reference_.grid_offset_.y;
         //player_pos.x -= pathfinding_reference_.grid_offset_.x;
         //player_pos.y -= pathfinding_reference_.grid_offset_.y;
+        if (pathfinding_reference_.FindPath((Vector2Int)current_pos, (Vector2Int)player_pos, ref current_path_))
+        {
+            current_node_num_ = 0;
+            return true;
+        }
+        return false;
+    }
+
+    public bool GetPathToLocation(Vector3 position)
+    {
+        Vector3Int player_pos = tilemap_grid_.WorldToCell(position);
+        Vector3Int current_pos = tilemap_grid_.WorldToCell(transform.position);
         if (pathfinding_reference_.FindPath((Vector2Int)current_pos, (Vector2Int)player_pos, ref current_path_))
         {
             current_node_num_ = 0;

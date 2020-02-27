@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TempGrunt : MonoBehaviour
+public class Rallier : MonoBehaviour
 {
     [SerializeField]
     float in_range_ = 1.0f;
@@ -25,17 +25,27 @@ public class TempGrunt : MonoBehaviour
     int state_ = 0; // 0 for player, 1 for rallier
     GameObject rallier = null;
     // Start is called before the first frame update
+    [SerializeField]
+    GameObject heal_effect_ = null;
+
+    [SerializeField]
+    float heal_interval_ = 5.0f;
+    float heal_interval_counter_ = 0.0f;
+    [SerializeField]
+    int heal_amount = 1;
+    [SerializeField]
+    float heal_radius_ = 2.0f;
     void Start()
     {
         rb_ = GetComponent<Rigidbody2D>();
         health_ = GetComponent<HealthComponent>();
         target_ = GameObject.FindGameObjectWithTag("MainPlayer");
         point_manager_ = FindObjectOfType<PointManager>();
-        transform.localScale = new Vector3(0.1f, 0.1f, 1.0f);
         pf_ = GetComponent<ZacsFindPath>();
+        heal_radius_ = heal_radius_ * heal_radius_;
     }
 
-    public void AttachSpawner(SpawningScript spawner) 
+    public void AttachSpawner(SpawningScript spawner)
     {
         spawner_ = spawner;
     }
@@ -43,16 +53,6 @@ public class TempGrunt : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (transform.localScale.x < 1.0f && !grown_)
-        {
-            growth_ += grow_rate_ * Time.deltaTime;
-            transform.localScale = new Vector3(growth_, growth_, 1.0f);
-        }
-        else
-        {
-            grown_ = true;
-            transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-        }
         //if (target_ != null)
         //{
         //    Vector2 dir_vector = (Vector2)target_.transform.position - (Vector2)transform.position;
@@ -68,45 +68,34 @@ public class TempGrunt : MonoBehaviour
             {
                 spawner_.GruntDied();
             }
-           // point_manager_.AddKillPoints(100, 1);
+            // point_manager_.AddKillPoints(100, 1);
             Destroy(gameObject);
         }
-        // if less than certain hp but not rallying state
-        else if (health_.currentHp_ <= 1 && state_ != 1)
+        if (heal_interval_counter_ < heal_interval_)
         {
-            // get all rallying grunts
-            GameObject[] ralliers = GameObject.FindGameObjectsWithTag("Rallier");
-            if (ralliers.Length > 0)
+            heal_interval_counter_ += Time.deltaTime;
+        }
+        else
+        {
+            if (heal_effect_ != null)
             {
-                float closest = float.MaxValue;
-                float val = float.MaxValue;
-                // find closest rallying grunt
-                foreach(GameObject g in ralliers)
+                Instantiate(heal_effect_, transform.position, Quaternion.identity);
+                // get all grunts in a circle around
+                GameObject[] grunts = GameObject.FindGameObjectsWithTag("Grunt");
+                foreach(GameObject g in grunts)
                 {
-                    val = ((Vector2)g.transform.position - (Vector2)gameObject.transform.position).sqrMagnitude;
-                    if (val < closest)
+                    if (((Vector2)g.transform.position - (Vector2)gameObject.transform.position).sqrMagnitude > heal_radius_)
                     {
-                        closest = val;
-                        rallier = g;
+                        continue;
+                    }
+                    HealthComponent health = g.GetComponent<HealthComponent>();
+                    if (health.currentHp_ < health.maxHp_)
+                    {
+                        health.currentHp_ += heal_amount;
                     }
                 }
             }
-            // set state to rallying
-            state_ = 1;
-            pf_.path_update__delay_counter_ = 0.0f;
-        }
-        // if in rallying state send in transform information of rallier to pathfinding
-        if (rallier != null && state_ == 1)
-        {
-            pf_.rallying_position_ = rallier.transform.position;
-            pf_.state_ = state_;
-        }
-        // if healthy and in rallying state, switch back to attacking state
-        if (health_.currentHp_ == health_.maxHp_ && state_ == 1)
-        {
-            state_ = 0;
-            pf_.state_ = state_;
-            pf_.path_update__delay_counter_ = 0.0f;
+            heal_interval_counter_ = 0.0f;
         }
     }
 

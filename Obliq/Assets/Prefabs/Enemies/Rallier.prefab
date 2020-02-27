@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 2798105615834141747}
   - component: {fileID: 2798105615834141744}
   - component: {fileID: 2798105615834141745}
-  - component: {fileID: 2798105615834141750}
   - component: {fileID: -4854751461574285594}
   - component: {fileID: 2130145248728859981}
   - component: {fileID: 5331610652352403457}
@@ -24,9 +23,10 @@ GameObject:
   - component: {fileID: 444605166024747844}
   - component: {fileID: -347582107535407799}
   - component: {fileID: -7959511920686115377}
+  - component: {fileID: -5488026988661763109}
   m_Layer: 14
-  m_Name: MockGrunt
-  m_TagString: Grunt
+  m_Name: Rallier
+  m_TagString: Rallier
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -40,7 +40,7 @@ Transform:
   m_GameObject: {fileID: 2798105615834141751}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -131,22 +131,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2798105615834141750
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2798105615834141751}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c232fbf5eb89e6418e16aa275d06338, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  in_range_: 15
-  speed_: 160
-  grow_rate_: 1
-  heading_vector_: {x: 0, y: 0}
 --- !u!114 &-4854751461574285594
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -190,7 +174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b654a9ed45867894d8f8378d03d054a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp_: 2
+  maxHp_: 20
   currentHp_: 0
   invincibility_time_: 0
   damage_flash_duration_: 0.1
@@ -224,8 +208,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slack_: 1
-  random_speed_: {x: 140, y: 200}
+  random_speed_: {x: 20, y: 50}
   path_update_delay: {x: 2, y: 6}
+  path_update__delay_counter_: 0
   state_: 0
   rallying_position_: {x: 0, y: 0, z: 0}
 --- !u!114 &-353334419602199532
@@ -320,3 +305,24 @@ MonoBehaviour:
   sprite_: {fileID: 21300000, guid: 60448f38bec91224e906f2fcbd53edc0, type: 3}
   color_: {r: 0.20539808, g: 1, b: 0, a: 1}
   scale_: 0.1
+--- !u!114 &-5488026988661763109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2798105615834141751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cc24cdeceee3f54498c3070dedba354, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  in_range_: 1
+  speed_: 1
+  grow_rate_: 50
+  heading_vector_: {x: 0, y: 0}
+  heal_effect_: {fileID: 5588859061336279653, guid: 53df3b5ee04f6154bb895de07174884a,
+    type: 3}
+  heal_interval_: 3
+  heal_amount: 1
+  heal_radius_: 5
