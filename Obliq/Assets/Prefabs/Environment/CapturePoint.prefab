@@ -188,7 +188,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e54b7aab8bf0fbd4d991a141893c98d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  time_to_capture_: 10
+  time_to_capture_: 11
   captured_: 0
   capturing_: 0
   capture_radius_: 9
