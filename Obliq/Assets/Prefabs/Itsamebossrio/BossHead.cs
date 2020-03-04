@@ -65,7 +65,18 @@ public class BossHead : MonoBehaviour
     [SerializeField]
     float cone_delay_time;
     float cone_delay_timer;
+
+    Vector3 cone_pos_1;
+    Vector3 cone_pos_2;
+
+    GameObject cone_laser_line_1;
+    GameObject cone_laser_line_2;
+    Vector3 cone_dir_max;
+    Vector3 cone_dir_min;
     
+
+   
+
     [SerializeField]
     GameObject cone_lines_;
 
@@ -88,6 +99,10 @@ public class BossHead : MonoBehaviour
     bool hover_;
 
     float dotprod;
+    bool can_attack = false;
+    [SerializeField]
+    float attack_delay_time;
+    float attack_delay_timer;
    
 
     LineRenderer lr1;
@@ -114,99 +129,148 @@ public class BossHead : MonoBehaviour
         cone_ = false;
         charging = true;
         hover_ = false;
+
         laser_line_ = Instantiate(cone_lines_);
         laser_line_.GetComponent<LineRenderer>().startWidth = 0.15f;
         laser_line_.GetComponent<LineRenderer>().endWidth = 0.15f;
         laser_line_.GetComponent<LineRenderer>().endColor = Color.clear;
         laser_line_.GetComponent<LineRenderer>().startColor = Color.clear;
 
-    }
 
+        cone_laser_line_1 = Instantiate(cone_lines_);
+        cone_laser_line_1.GetComponent<LineRenderer>().startWidth = 0.15f;
+        cone_laser_line_1.GetComponent<LineRenderer>().endWidth = 0.15f;
+        cone_laser_line_1.GetComponent<LineRenderer>().endColor = Color.clear;
+        cone_laser_line_1.GetComponent<LineRenderer>().startColor = Color.clear;
+
+        cone_laser_line_2 = Instantiate(cone_lines_);
+        cone_laser_line_2.GetComponent<LineRenderer>().startWidth = 0.15f;
+        cone_laser_line_2.GetComponent<LineRenderer>().endWidth = 0.15f;
+        cone_laser_line_2.GetComponent<LineRenderer>().endColor = Color.clear;
+        cone_laser_line_2.GetComponent<LineRenderer>().startColor = Color.clear;
+
+    }
+    private void OnDestroy()
+    {
+        laser_line_.GetComponent<DestroyLine>().boss_dead_ = true;
+        cone_laser_line_1.GetComponent<DestroyLine>().boss_dead_ = true;
+        cone_laser_line_2.GetComponent<DestroyLine>().boss_dead_ = true;
+    }
     // Update is called once per frame
     void FixedUpdate()
     {
         if (activate_)
         {
             WalkToInitialPosition();
-            gameObject.transform.rotation = Quaternion.Lerp(transform.rotation,
-            Quaternion.Euler(0.0f, 0.0f, GF.AngleBetween(new Vector2(0.0f, 1.0f), (Vector2)player_.transform.position - (Vector2)gameObject.transform.position)),
-            Mathf.PingPong(Time.time,
-            6 * Time.deltaTime));                               
+            gameObject.GetComponent<CircleCollider2D>().enabled = true;
+            if (!cone_ || !can_attack)
+            {
+                gameObject.transform.rotation = Quaternion.Lerp(transform.rotation,
+                Quaternion.Euler(0.0f, 0.0f, GF.AngleBetween(new Vector2(0.0f, 1.0f), (Vector2)player_.transform.position - (Vector2)gameObject.transform.position)),
+                Mathf.PingPong(Time.time,
+                6 * Time.deltaTime));
+            }
         }
         else
         {
-            gameObject.GetComponent<HealthComponent>().currentHp_ = gameObject.GetComponent<HealthComponent>().maxHp_;
+            gameObject.GetComponent<CircleCollider2D>().enabled = false;
         }
-        if (!is_attacking)
+        if (can_attack)
         {
-            int what_attack = Random.Range(1, 7);
-            switch (what_attack) {
-                case 1:
-                case 2:
-                case 3:
-                    charging = true;
-                    hover_ = false;
-                    cone_ = false;
-                    break;
-                case 4:
-                case 5:
-                    charging = false;
-                    hover_ = true;
-                    cone_ = false;
-                    break;
-
-                case 6:
-                    charging = false;
-                    hover_ = false;
-                    cone_ = true;
-                    break;
-            }
-
-        }
-        if (charging)
-        {
-            can_get_pos = true;
-            if (inplace_charge_)
+            if (!is_attacking)
             {
-                ExecuteCharge();
-                Debug.Log("Charging");
-
-            }
-        }
-        else if (cone_)
-        {
-            //float angle = Mathf.Acos(dotprod / dirFromPlayerToBoss.magnitude * 
-            //    gameObject.transform.TransformDirection(Vector3.forward).magnitude);
-            //dotprod = dirFromPlayerToBoss.magnitude * gameObject.transform.TransformDirection(Vector3.forward).magnitude *
-            //     Mathf.Cos(angle);
-          
-            dotprod = Vector3.Dot(player_.transform.forward, gameObject.transform.forward);
-            Debug.Log(dotprod + "Dot");
-
-            if (dotprod > 0.9)
-            {
-               
-                if (inplace_ && activate_)
+                int what_attack = Random.Range(1, 10);
+                switch (what_attack)
                 {
-                    ConeAttack();
+                    case 1:
+                    case 2:
+                    case 3:
+                        charging = true;
+                        hover_ = false;
+                        cone_ = false;
+                        break;
+                    case 4:
+                    case 5:
+                    case 6:
+                        charging = false;
+                        hover_ = true;
+                        cone_ = false;
+                        break;
+                    case 7:
+                    case 8:
+                    case 9:
+                        charging = false;
+                        hover_ = false;
+                        cone_ = true;
+                        break;
+                }
+                
+
+            }
+            if (charging)
+            {
+                can_get_pos = true;
+                if (inplace_charge_)
+                {
+                    dotprod = Vector3.Dot(player_.transform.forward, gameObject.transform.forward);
+                    Debug.Log(dotprod + "Dot");
+
+                    if (dotprod > 0.9)
+                    {
+                        ExecuteCharge();
+                    }
+                    Debug.Log("Charging");
+
                 }
             }
-                     
-        }
-        else if (hover_)
-        {
-            can_get_pos = true;
-            if (inplace_)
+            else if (cone_)
             {
-                InplaceHover();
-                FireLasers();
-               
-                Debug.Log("Firing lasers");                
-            }
-            
-        }
-        
+                //float angle = Mathf.Acos(dotprod / dirFromPlayerToBoss.magnitude * 
+                //    gameObject.transform.TransformDirection(Vector3.forward).magnitude);
+                //dotprod = dirFromPlayerToBoss.magnitude * gameObject.transform.TransformDirection(Vector3.forward).magnitude *
+                //     Mathf.Cos(angle);
 
+                dotprod = Vector3.Dot(player_.transform.forward, gameObject.transform.forward);
+                Debug.Log(dotprod + "Dot");
+
+                if (dotprod > 0.99)
+                {
+
+                    if (inplace_ && activate_)
+                    {
+                        ConeAttack();
+                    }
+                }
+
+            }
+            else if (hover_)
+            {
+                can_get_pos = true;
+                if (inplace_)
+                {
+                    InplaceHover();
+                    dotprod = Vector3.Dot(player_.transform.forward, gameObject.transform.forward);
+                    Debug.Log(dotprod + "Dot");
+
+                    if (dotprod > 0.9)
+                    {
+                        FireLasers();
+                    }
+                    Debug.Log("Firing lasers");
+                }
+
+            }
+
+        }
+        else
+        {
+            attack_delay_timer += Time.fixedDeltaTime;
+            if(attack_delay_timer > attack_delay_time)
+            {
+                can_attack = true;
+                attack_delay_timer = 0;
+            }
+        }
          
         
         if (hc_.currentHp_ <= 0)
@@ -292,18 +356,38 @@ public class BossHead : MonoBehaviour
     }
     public void ConeAttack()
     {
-        cone_delay_timer += Time.deltaTime;
+        if (cone_delay_timer <= 0)
+        {
+            cone_laser_line_1.GetComponent<LineRenderer>().endColor = Color.white;
+            cone_laser_line_1.GetComponent<LineRenderer>().startColor = Color.white;
+
+            cone_laser_line_2.GetComponent<LineRenderer>().endColor = Color.white;
+            cone_laser_line_2.GetComponent<LineRenderer>().startColor = Color.white;
+
+            target_cone = player_.transform.position;
+            is_attacking = true;
+            cone_laser_line_1.GetComponent<LineRenderer>().SetPosition(0, gameObject.transform.position);
+            cone_laser_line_1.GetComponent<LineRenderer>().SetPosition(1, target_cone);
+
+            cone_laser_line_2.GetComponent<LineRenderer>().SetPosition(0, gameObject.transform.position);
+            cone_laser_line_2.GetComponent<LineRenderer>().SetPosition(1, target_cone);
+
+            cone_pos_1 = gameObject.transform.GetChild(0).position;
+            cone_pos_2 = gameObject.transform.GetChild(1).position;
+
+
+
+        }
+       
+        
         if (cone_delay_timer > cone_delay_time)
         {
-            if (overall_cone_timer <= 0)
-            {
-                target_cone = player_.transform.position;
-                is_attacking = true;
-            }
-           
-            overall_cone_timer += Time.deltaTime;
-            
+            Color temp = cone_laser_line_1.GetComponent<LineRenderer>().startColor;
+            cone_laser_line_1.GetComponent<LineRenderer>().endColor = new Color(temp.r, temp.g, temp.b, Mathf.Lerp(temp.a, 0, 0.2f));
+            cone_laser_line_1.GetComponent<LineRenderer>().startColor = new Color(temp.r, temp.g, temp.b, Mathf.Lerp(temp.a, 0, 0.2f));
 
+            cone_laser_line_2.GetComponent<LineRenderer>().endColor = new Color(temp.r, temp.g, temp.b, Mathf.Lerp(temp.a, 0, 0.2f));
+            cone_laser_line_2.GetComponent<LineRenderer>().startColor = new Color(temp.r, temp.g, temp.b, Mathf.Lerp(temp.a, 0, 0.2f));
             if (overall_cone_timer <= overall_cone_duration)
             {
                 cone_timer += Time.deltaTime;
@@ -312,26 +396,13 @@ public class BossHead : MonoBehaviour
             if (cone_timer > cone_attack_speed)
             {
                 Debug.Log("cone");
-
-                //gameObject.transform.rotation = Quaternion.Euler(0.0f, 0.0f, GF.AngleBetween(new Vector2(0.0f, 1.0f), (Vector2)player_.transform.position - (Vector2)gameObject.transform.position));
-                //DrawCone(gameObject.transform.position, new Vector2(player_.transform.position.x - 5, player_.transform.position.y -5), lr1);
-                //DrawCone(gameObject.transform.position, new Vector2(player_.transform.position.x + 5, player_.transform.position.y + 5), lr2);
-
-
-                //Vector2 target = new Vector2(direction.x + Random.Range(-range_of_cone, range_of_cone), direction.y + Random.Range(-range_of_cone, range_of_cone)).normalized;
-                // Vector2 target = new Vector2(direction.x , direction.y);
-                // Debug.Log(target + "Position");
-
-                GameObject bullet = Instantiate(laser_object_, (Vector2)gameObject.transform.position + ((gameObject.GetComponent<CircleCollider2D>().radius + 2.0f) *
+                GameObject bullet = Instantiate(laser_object_, (Vector2)gameObject.transform.position + ((gameObject.GetComponent<CircleCollider2D>().radius + 0.5f) *
                     ((Vector2)target_cone - (Vector2)gameObject.transform.position).normalized), Quaternion.identity);
-                Vector2 final_dir = new Vector2((target_cone.x - gameObject.transform.position.x) + Random.Range(-range_of_cone, range_of_cone),
-                    (target_cone.y - gameObject.transform.position.y) + Random.Range(-range_of_cone, range_of_cone));
-                //Vector2 max_dir = new Vector2((target_cone.x - gameObject.transform.position.x) + -range_of_cone,
-                //    (target_cone.y - gameObject.transform.position.y) + -range_of_cone);
-                //Vector2 min_dir = new Vector2((target_cone.x - gameObject.transform.position.x) + range_of_cone,
-                //    (target_cone.y - gameObject.transform.position.y) + range_of_cone);
-                //lr1.SetPosition(0, gameObject.transform.position);
-                //lr1.SetPosition(1, Vector3.Lerp(gameObject.transform.position, max_dir.normalized, 0.5f));    
+                Vector2 final_dir = (target_cone - (Vector2)gameObject.transform.position).normalized + new Vector2(Random.Range(-range_of_cone, range_of_cone), Random.Range(-range_of_cone, range_of_cone));
+                    
+                    //new Vector2((target_cone.x - gameObject.transform.position.x) + Random.Range(-range_of_cone, range_of_cone),
+                    //(target_cone.y - gameObject.transform.position.y) + Random.Range(-range_of_cone, range_of_cone));
+             
                 bullet.GetComponent<Rigidbody2D>().velocity = (final_dir).normalized * laser_speed_;
                 cone_timer = 0;
             }
@@ -342,8 +413,27 @@ public class BossHead : MonoBehaviour
                 is_attacking = false;
                 can_get_pos = true;
                 cone_delay_timer = 0;
+                can_attack = false;
 
             }
+
+            overall_cone_timer += Time.deltaTime;           
+        }
+        else
+        {
+            cone_laser_line_1.GetComponent<LineRenderer>().SetPosition(0, gameObject.transform.position);
+            cone_laser_line_1.GetComponent<LineRenderer>().SetPosition(1, Vector3.Lerp(cone_laser_line_1.GetComponent<LineRenderer>().GetPosition(1), cone_pos_1, cone_delay_timer / cone_delay_time));
+
+            cone_laser_line_2.GetComponent<LineRenderer>().SetPosition(0, gameObject.transform.position);
+            cone_laser_line_2.GetComponent<LineRenderer>().SetPosition(1, Vector3.Lerp(cone_laser_line_2.GetComponent<LineRenderer>().GetPosition(1), cone_pos_2, cone_delay_timer / cone_delay_time));
+
+            cone_laser_line_1.GetComponent<LineRenderer>().startColor = Color.Lerp(Color.white, Color.green, cone_delay_timer / (cone_delay_time * 2));
+            cone_laser_line_1.GetComponent<LineRenderer>().endColor = Color.Lerp(Color.white, Color.green, cone_delay_timer / (cone_delay_time * 2));
+
+            cone_laser_line_2.GetComponent<LineRenderer>().startColor = Color.Lerp(Color.white, Color.green, cone_delay_timer / (cone_delay_time * 2));
+            cone_laser_line_2.GetComponent<LineRenderer>().endColor = Color.Lerp(Color.white, Color.green, cone_delay_timer / (cone_delay_time * 2));
+
+            cone_delay_timer += Time.deltaTime;
         }
     }
     public void InplaceHover()
@@ -418,6 +508,7 @@ public class BossHead : MonoBehaviour
                 ((Vector2)player_.transform.position - (Vector2)gameObject.transform.position).normalized), Quaternion.identity);
                 bullet.GetComponent<Rigidbody2D>().velocity = ((Vector2)player_.transform.position - (Vector2)gameObject.transform.position).normalized * laser_speed_;
                 laser_timer_ = 0;
+                
             }
 
            
@@ -425,8 +516,8 @@ public class BossHead : MonoBehaviour
         else
         {
             Color temp = laser_line_.GetComponent<LineRenderer>().startColor;
-            laser_line_.GetComponent<LineRenderer>().endColor = new Color(temp.r, temp.g, temp.b, Mathf.Lerp(temp.a, 0, 0.1f));
-            laser_line_.GetComponent<LineRenderer>().startColor = new Color(temp.r, temp.g, temp.b, Mathf.Lerp(temp.a, 0, 0.1f));
+            laser_line_.GetComponent<LineRenderer>().endColor = new Color(temp.r, temp.g, temp.b, Mathf.Lerp(temp.a, 0, 0.2f));
+            laser_line_.GetComponent<LineRenderer>().startColor = new Color(temp.r, temp.g, temp.b, Mathf.Lerp(temp.a, 0, 0.2f));
             laser_line_.GetComponent<LineRenderer>().SetPosition(0, gameObject.transform.position);
             laser_line_.GetComponent<LineRenderer>().SetPosition(1, player_.transform.position);
             //unlerp
@@ -434,7 +525,8 @@ public class BossHead : MonoBehaviour
             {
                 is_attacking = false;
                 overall_laser_timer_ = 0;
-                
+                can_attack = false;
+
             }
         }        
     }
@@ -507,6 +599,7 @@ public class BossHead : MonoBehaviour
         charged_ = false;
         inplace_ = true;
         is_attacking = false;
+        can_attack = false;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

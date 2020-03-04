@@ -9,6 +9,7 @@ public class LineToPos
     public bool reached_;
     public Vector2 start_store_;
     public bool destroyed_ = false;
+    float line_draw_speed_ = 5.0f;
 
     public LineToPos() {}
 
@@ -21,6 +22,8 @@ public class LineToPos
             if (Vector2.Dot((to_pos_ - (Vector2)lr_.GetPosition(1)).normalized, ((Vector2)lr_.GetPosition(1) - (Vector2)lr_.GetPosition(0)).normalized) > 0.0f)
             {
                 lr_.SetPosition(1, lr_.GetPosition(1) + (Vector3)direction * speed);
+                lr_.startColor = Color.Lerp(lr_.startColor, Color.green, line_draw_speed_ / 8.0f * Time.deltaTime);
+                lr_.endColor = Color.Lerp(lr_.endColor, Color.green, line_draw_speed_ / 8.0f * Time.deltaTime);
             }
             else
             {
@@ -265,6 +268,7 @@ public class BossBody : MonoBehaviour
         lr.SetPosition(0, from);
         Vector2 direction = (to - from).normalized;
         lr.SetPosition(1, from + direction * 0.5f);
+        
         LineToPos ltp = new LineToPos();
         ltp.lr_ = lr;
         ltp.to_pos_ = to;

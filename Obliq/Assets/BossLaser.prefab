@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 2143071876191568341}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 23.500269, y: 11.416359, z: -12.2472725}
-  m_LocalScale: {x: 2, y: 3, z: 1}
+  m_LocalScale: {x: 0.07, y: 0.07, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -73,8 +73,8 @@ SpriteRenderer:
   m_SortingLayerID: -1352270105
   m_SortingLayer: 7
   m_SortingOrder: 0
-  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 0.096920624, g: 0.3464735, b: 0.9339623, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 00ce51834639ca047b80204879430a34, type: 3}
+  m_Color: {r: 0.34509805, g: 1, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -171,9 +171,9 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0, g: 0.075618744, b: 1, a: 1}
-      key1: {r: 0.2588235, g: 0.55915916, b: 1, a: 0.39215687}
-      key2: {r: 0.45098042, g: 0.94998264, b: 1, a: 0}
+      key0: {r: 0.65401405, g: 1, b: 0.4716981, a: 1}
+      key1: {r: 0.34509805, g: 1, b: 0, a: 0.39215687}
+      key2: {r: 0.845542, g: 1, b: 0.764151, a: 0}
       key3: {r: 0.9575472, g: 1, b: 0.99873275, a: 0}
       key4: {r: 1, g: 1, b: 1, a: 0}
       key5: {r: 1, g: 1, b: 1, a: 0}
@@ -257,3 +257,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   laser_damage_: 1
+  rotation_speed_: 1000
