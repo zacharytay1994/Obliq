@@ -324,16 +324,16 @@ MonoBehaviour:
     pitch: 1
     source: {fileID: 0}
     SoundType: 0
-  - name: 
-    clip: {fileID: 0}
-    volume: 0
-    pitch: 0
+  - name: fansound
+    clip: {fileID: 8300000, guid: 8fb7ceda2eb800640b9e539a5d58da2e, type: 3}
+    volume: 1
+    pitch: 1
     source: {fileID: 0}
     SoundType: 0
-  - name: 
-    clip: {fileID: 0}
-    volume: 0
-    pitch: 0
+  - name: bellding
+    clip: {fileID: 8300000, guid: 0e47ca4d2cdf01b46a5cbd0af5742627, type: 3}
+    volume: 1
+    pitch: 1
     source: {fileID: 0}
     SoundType: 0
   - name: 
@@ -938,7 +938,6 @@ MonoBehaviour:
   chain_scrolling_text_: 0
   prev_text_chain_: {fileID: 0}
   scroll_complete_: 0
-  playSound: 1
 --- !u!1001 &8469944877132240790
 PrefabInstance:
   m_ObjectHideFlags: 0

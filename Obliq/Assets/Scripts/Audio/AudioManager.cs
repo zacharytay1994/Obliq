@@ -164,9 +164,10 @@ public class AudioManager : MonoBehaviour
         for (int i = 0; i < transform.childCount; i++)
         {
             AudioSource aus = transform.GetChild(i).GetComponent<AudioSource>();
-            if (aus.clip = sounds.Find(sound => sound.Name == name).Clip)
+            if (aus.clip == sounds.Find(sound => sound.Name == name).Clip)
             {
                 aus.Stop();
+                Debug.Log("deleted");
             }
         }
 
