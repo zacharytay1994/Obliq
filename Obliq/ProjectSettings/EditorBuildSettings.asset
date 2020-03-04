@@ -48,7 +48,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Level 1/1-10.unity
     guid: 3c5b8fb7aff49ff4d906b0a435240b7a
   - enabled: 1
-    path: Assets/Scenes/Level 1/CPTest.unity
+    path: Assets/Scenes/Level 1/1-Boss.unity
     guid: 713445e51f1b3b64ca3f335baf46b83a
   - enabled: 0
     path: Assets/Scenes/Level 1/AustinScenes/AustinTest3.unity

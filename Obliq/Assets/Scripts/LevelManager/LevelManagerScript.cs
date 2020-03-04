@@ -204,46 +204,50 @@ public class LevelManagerScript : MonoBehaviour
         }
 
         //------------------------------ASSIGNING OBJECTIVE INDICATORS TO EACH TARGET------------------------------
-        // If level is a capture point level, create indicator for capture point (objective)
-        if (GameObject.FindGameObjectsWithTag("Objective").Length != 0)
+        // For levels except the boss level (do not create indicators in the boss level)
+        if (level_selector_ != LevelSelector.Boss)
         {
-            // Objective list
-            targets_list_ = GameObject.FindGameObjectsWithTag("Objective");
-        }
-        else
-        {
-            // Enemy list
-            targets_list_ = GameObject.FindGameObjectsWithTag("Enemy");
-        }
-
-        // Set how far the indicator is from the player based on the number of targets
-        target_count_ = targets_list_.Length;
-
-        if (target_count_ <= 6)
-        {
-            indicator_offset_ = 2;
-        }
-        else
-        {
-            indicator_offset_ = 5;
-        }
-
-        // Initialize an indicator for each target
-        foreach (GameObject target in targets_list_)
-        {
-            GameObject gameobject_temp = GameObject.Instantiate(objective_indicator_, objective_indicator_parent_.transform);
-            gameobject_temp.GetComponent<ObjectiveIndicator>().SetObjective(target);
-            gameobject_temp.GetComponent<ObjectiveIndicator>().offset_amount_ = indicator_offset_;
-        }
-
-        // Disable all enemies at the start
-        if (GameObject.FindGameObjectsWithTag("Objective").Length == 0)
-        {
-            foreach (GameObject enemy in targets_list_)
+            // If level is a capture point level, create indicator for capture point (objective)
+            if (GameObject.FindGameObjectsWithTag("Objective").Length != 0)
             {
-                if (enemy.name != "CapturePoint")
+                // Objective list
+                targets_list_ = GameObject.FindGameObjectsWithTag("Objective");
+            }
+            else
+            {
+                // Enemy list
+                targets_list_ = GameObject.FindGameObjectsWithTag("Enemy");
+            }
+
+            // Set how far the indicator is from the player based on the number of targets
+            target_count_ = targets_list_.Length;
+
+            if (target_count_ <= 6)
+            {
+                indicator_offset_ = 2;
+            }
+            else
+            {
+                indicator_offset_ = 5;
+            }
+
+            // Initialize an indicator for each target
+            foreach (GameObject target in targets_list_)
+            {
+                GameObject gameobject_temp = GameObject.Instantiate(objective_indicator_, objective_indicator_parent_.transform);
+                gameobject_temp.GetComponent<ObjectiveIndicator>().SetObjective(target);
+                gameobject_temp.GetComponent<ObjectiveIndicator>().offset_amount_ = indicator_offset_;
+            }
+
+            // Disable all enemies at the start
+            if (GameObject.FindGameObjectsWithTag("Objective").Length == 0)
+            {
+                foreach (GameObject enemy in targets_list_)
                 {
-                    enemy.SetActive(false);
+                    if (enemy.name != "CapturePoint")
+                    {
+                        enemy.SetActive(false);
+                    }
                 }
             }
         }
@@ -299,65 +303,69 @@ public class LevelManagerScript : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.F12))
         {
-            STM_.load_scene_Asynch("CPTest");
+            STM_.load_scene_Asynch("1-Boss");
         }
         //------------------------CHEAT CODE END DELETE DIS----------------------------------
 
-        // If level has no capture point (objective is to kill all enemies)
-        if (GameObject.FindGameObjectsWithTag("Objective").Length == 0)
+        // If level is not boss level
+        if (level_selector_ != LevelSelector.Boss)
         {
-            // If walk over trigger, make all enemies active
-            bool is_triggered_ = GameObject.Find("ActivateTriggerTilemap").GetComponent<ActivateEnemies>().activate_enemies_;
-
-            if (is_triggered_ && !stop_enemies_enable_)
+            // If level has no capture point (objective is to kill all enemies)
+            if (GameObject.FindGameObjectsWithTag("Objective").Length == 0)
             {
-                foreach (GameObject enemy in targets_list_)
-                {
-                    enemy.SetActive(true);
-                }
+                // If walk over trigger, make all enemies active
+                bool is_triggered_ = GameObject.Find("ActivateTriggerTilemap").GetComponent<ActivateEnemies>().activate_enemies_;
 
-                stop_enemies_enable_ = true;
+                if (is_triggered_ && !stop_enemies_enable_)
+                {
+                    foreach (GameObject enemy in targets_list_)
+                    {
+                        enemy.SetActive(true);
+                    }
+
+                    stop_enemies_enable_ = true;
+                }
+            }
+
+            // Change color if indicator's target is a charger
+            objective_indicator_list_ = GameObject.FindGameObjectsWithTag("ObjectiveIndicator");
+
+            foreach (GameObject o in objective_indicator_list_)
+            {
+                if (o.GetComponent<ObjectiveIndicator>() != null)
+                {
+                    if (o.GetComponent<ObjectiveIndicator>().GetObjective() != null)
+                    {
+                        // Change color if target is charger
+                        if (o.GetComponent<ObjectiveIndicator>().GetObjective().name.Contains("Charger"))
+                        {
+                            float charger_color_r = o.GetComponent<ObjectiveIndicator>().GetObjective().GetComponent<SpriteRenderer>().color.r;
+                            float charger_color_g = o.GetComponent<ObjectiveIndicator>().GetObjective().GetComponent<SpriteRenderer>().color.g;
+                            float charger_color_b = o.GetComponent<ObjectiveIndicator>().GetObjective().GetComponent<SpriteRenderer>().color.b;
+
+                            o.GetComponent<Transform>().GetChild(0).GetComponent<SpriteRenderer>().color =
+                                new Color(charger_color_r, charger_color_g, charger_color_b);
+                        }
+
+                        Vector2 vector_from_indicator_to_target = o.GetComponent<ObjectiveIndicator>().GetObjective().transform.position - o.transform.position;
+
+                        if (vector_from_indicator_to_target.magnitude <= indicator_fade_range)
+                        {
+                            float indicator_color_r = o.GetComponent<Transform>().GetChild(0).GetComponent<SpriteRenderer>().color.r;
+                            float indicator_color_g = o.GetComponent<Transform>().GetChild(0).GetComponent<SpriteRenderer>().color.g;
+                            float indicator_color_b = o.GetComponent<Transform>().GetChild(0).GetComponent<SpriteRenderer>().color.b;
+                            float indicator_color_a = (255 / indicator_fade_range * vector_from_indicator_to_target.magnitude) / 255;
+
+                            o.GetComponent<Transform>().GetChild(0).GetComponent<SpriteRenderer>().color =
+                                new Color(indicator_color_r, indicator_color_g, indicator_color_b, indicator_color_a);
+                        }
+                    }
+                }
             }
         }
         
-        // Change color if indicator's target is a charger
-        objective_indicator_list_ = GameObject.FindGameObjectsWithTag("ObjectiveIndicator");
-
-        foreach (GameObject o in objective_indicator_list_)
-        {
-            if (o.GetComponent<ObjectiveIndicator>() != null)
-            {
-                if (o.GetComponent<ObjectiveIndicator>().GetObjective() != null)
-                {
-                    // Change color if target is charger
-                    if (o.GetComponent<ObjectiveIndicator>().GetObjective().name.Contains("Charger"))
-                    {
-                        float charger_color_r = o.GetComponent<ObjectiveIndicator>().GetObjective().GetComponent<SpriteRenderer>().color.r;
-                        float charger_color_g = o.GetComponent<ObjectiveIndicator>().GetObjective().GetComponent<SpriteRenderer>().color.g;
-                        float charger_color_b = o.GetComponent<ObjectiveIndicator>().GetObjective().GetComponent<SpriteRenderer>().color.b;
-
-                        o.GetComponent<Transform>().GetChild(0).GetComponent<SpriteRenderer>().color =
-                            new Color(charger_color_r, charger_color_g, charger_color_b);
-                    }
-
-                    Vector2 vector_from_indicator_to_target = o.GetComponent<ObjectiveIndicator>().GetObjective().transform.position - o.transform.position;
-
-                    if (vector_from_indicator_to_target.magnitude <= indicator_fade_range)
-                    {
-                        float indicator_color_r = o.GetComponent<Transform>().GetChild(0).GetComponent<SpriteRenderer>().color.r;
-                        float indicator_color_g = o.GetComponent<Transform>().GetChild(0).GetComponent<SpriteRenderer>().color.g;
-                        float indicator_color_b = o.GetComponent<Transform>().GetChild(0).GetComponent<SpriteRenderer>().color.b;
-                        float indicator_color_a = (255 / indicator_fade_range * vector_from_indicator_to_target.magnitude) / 255;
-
-                        o.GetComponent<Transform>().GetChild(0).GetComponent<SpriteRenderer>().color =
-                            new Color(indicator_color_r, indicator_color_g, indicator_color_b, indicator_color_a);
-                    }
-                }
-            }
-        }
-
         // Capture Point Levels
-        if (GameObject.FindGameObjectsWithTag("Objective").Length != 0)
+        if (GameObject.FindGameObjectsWithTag("Objective").Length != 0 && level_selector_ != LevelSelector.Boss)
         {
             // Get status of capture point (captured/not captured)
             captured_ = capture_point_.GetComponent<CapturePoint>().captured_;
@@ -695,23 +703,35 @@ public class LevelManagerScript : MonoBehaviour
             }
         }
 
-        /* ===================================== STILL IN DEVELOPMENT ===================================================
         // Boss level
         else if (level_selector_ == LevelSelector.Boss)
         {
             // When chargers and sectopod are killed and spawners are destroyed, activate portal. When in range of portal, transport player to next level.
-            if (boss_ == null && activate_portal_ == false)
+            if (boss_.activeSelf == true && boss_.GetComponent<BossBody>().boss_defeated_ == true && portal_.activeSelf == false)
             {
                 portal_.SetActive(true);
+                boss_.SetActive(false);
+            }
+
+            // When portal is active, start timer for entering portal (time before player can enter portal)
+            if (portal_.activeSelf == true)
+            {
+                portal_timer_ += Time.deltaTime;
+            }
+
+            // When portal timer reaches defined time, player can enter portal
+            if (portal_timer_ >= portal_activation_time)
+            {
+                portal_timer_ = portal_activation_time;
+                can_enter_portal_ = true;
             }
 
             // Check distance between player and portal
             Vector2 dist_to_portal_ = player_.GetComponent<Transform>().position - portal_.GetComponent<Transform>().position;
-            if (dist_to_portal_.magnitude <= 3.0f && portal_.activeSelf == true)
+            if (dist_to_portal_.magnitude <= 3.0f && portal_.activeSelf == true && can_enter_portal_ == true)
             {
                 STM_.load_scene_Asynch("CreditScene");
             }
         }
-        ===================================== STILL IN DEVELOPMENT =================================================== */
     }
 }
