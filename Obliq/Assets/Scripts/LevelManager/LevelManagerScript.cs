@@ -16,7 +16,7 @@ public class LevelManagerScript : MonoBehaviour
     GameObject objective_indicator_;
     GameObject objective_indicator_parent_;
     GameObject[] objective_indicator_list_;
-    int enemy_count_;
+    int target_count_;
     float indicator_offset_;
     float indicator_fade_range = 20;
 
@@ -25,8 +25,10 @@ public class LevelManagerScript : MonoBehaviour
 
     // Portal
     GameObject portal_, portal_manager_;
-    Portal portal_script_;
-    bool activate_portal_ = false;
+    float portal_activation_time = 3.0f;
+    float portal_timer_ = 0.0f;
+    bool activate_portal_timer_ = false;
+    bool can_enter_portal_ = false;
 
     // Spawners
     GameObject spawner_1_, spawner_2_, spawner_3_, spawner_4_, spawner_5_, spawner_6_, spawner_7_, spawner_8_;
@@ -44,10 +46,10 @@ public class LevelManagerScript : MonoBehaviour
     GameObject capture_point_;
     bool captured_;
 
-    // List of enemies
-    GameObject[] enemies_list_;
+    // List of enemies / objectives (e.g. Spawners, Capture Points)
+    GameObject[] targets_list_;
 
-    // Check to stop enabling enemies
+    // Check to stop the enabling of enemies
     bool stop_enemies_enable_ = false;
 
     //----------------------Tutorial-----------------------------
@@ -58,14 +60,15 @@ public class LevelManagerScript : MonoBehaviour
     bool activate_training_grunts_ = false;
 
     // Timer after training grunt dies
-    float wait_time_ = 1.0f;
-    float timer_ = 0.0f;
-    bool activate_timer_ = false;
+    float traininggrunt_wait_time_ = 1.0f;
+    float traininggrunt_timer_ = 0.0f;
+    bool activate_traininggrunt_timer_ = false;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        //------------------------------INITIALIZING GENERAL GAME OBJECTS------------------------------
         // Initialize Scene Transition Loader
         STM_ = FindObjectOfType<SceneTransitionLoader>();
 
@@ -78,127 +81,145 @@ public class LevelManagerScript : MonoBehaviour
         // Initialize portal
         portal_ = GameObject.Find("Portal");
         portal_manager_ = GameObject.Find("PortalManager");
-        portal_script_ = portal_manager_.GetComponent<Portal>();
-
-        // 1-0
-        if (level_selector_ == LevelSelector.Tutorial)
-        {
-            // Initialize first training grunt
-            training_grunt_ = GameObject.Find("TrainingGrunt");
-
-            // Initialize second training grunt
-            training_grunt_2_ = GameObject.Find("TrainingGrunt 2");
-            training_grunt_2_health_component_ = training_grunt_2_.GetComponent<HealthComponent>();
-            training_grunt_2_max_hp_ = training_grunt_2_health_component_.getMaxHp();
-
-            // Initialize third training grunt
-            training_grunt_3_ = GameObject.Find("TrainingGrunt 3");
-            training_grunt_3_health_component_ = training_grunt_3_.GetComponent<HealthComponent>();
-            training_grunt_3_max_hp_ = training_grunt_3_health_component_.getMaxHp();
-        }
-
-        // 1-1
-        else if (level_selector_ == LevelSelector.One)
-        {
-            // Initialize spawners
-            spawner_1_ = GameObject.Find("Spawner");
-            spawner_2_ = GameObject.Find("Spawner 2");
-        }
-
-        // 1-2
-        else if (level_selector_ == LevelSelector.Two)
-        {
-            // Initialize spawners
-            spawner_1_ = GameObject.Find("Spawner");
-            spawner_2_ = GameObject.Find("Spawner 2");
-            spawner_3_ = GameObject.Find("Spawner 3");
-            spawner_4_ = GameObject.Find("Spawner 4");
-        }
-
-        // 1-3, 1-4 or 1-9
-        else if (level_selector_ == LevelSelector.Three || level_selector_ == LevelSelector.Four || level_selector_ == LevelSelector.Nine)
-        {
-            // Initialize capture point (Objective)
-            capture_point_ = GameObject.Find("CapturePoint");
-        }
-
-        // 1-5
-        else if (level_selector_ == LevelSelector.Five)
-        {
-            // Initialize charger
-            charger_1_ = GameObject.Find("Charger");
-        }
-
-        // 1-6
-        else if (level_selector_ == LevelSelector.Six)
-        {
-            // Initialize chargers
-            charger_1_ = GameObject.Find("Charger");
-            charger_2_ = GameObject.Find("Charger 2");
-            charger_3_ = GameObject.Find("Charger 3");
-        }
-
-        // 1-7
-        else if (level_selector_ == LevelSelector.Seven)
-        {
-            // Initialize chargers and spawners
-            charger_1_ = GameObject.Find("Charger");
-            charger_2_ = GameObject.Find("Charger 2");
-            spawner_1_ = GameObject.Find("Spawner");
-            spawner_2_ = GameObject.Find("Spawner 2");
-            spawner_3_ = GameObject.Find("Spawner 3");
-            spawner_4_ = GameObject.Find("Spawner 4");
-            spawner_5_ = GameObject.Find("Spawner 5");
-            spawner_6_ = GameObject.Find("Spawner 6");
-        }
-
-        // 1-8
-        else if (level_selector_ == LevelSelector.Eight)
-        {
-            // Initialize spawners and sectopod
-            spawner_1_ = GameObject.Find("Spawner");
-            spawner_2_ = GameObject.Find("Spawner 2");
-            spawner_3_ = GameObject.Find("Spawner 3");
-            spawner_4_ = GameObject.Find("Spawner 4");
-            spawner_5_ = GameObject.Find("Spawner 5");
-            spawner_6_ = GameObject.Find("Spawner 6");
-            sectopod_ = GameObject.Find("Sectopod");
-        }
-
-        // 1-10
-        else if (level_selector_ == LevelSelector.Ten)
-        {
-            // Initialize spawners, sectopod and chargers
-            spawner_1_ = GameObject.Find("Spawner");
-            spawner_2_ = GameObject.Find("Spawner 2");
-            spawner_3_ = GameObject.Find("Spawner 3");
-            spawner_4_ = GameObject.Find("Spawner 4");
-            spawner_5_ = GameObject.Find("Spawner 5");
-            spawner_6_ = GameObject.Find("Spawner 6");
-            spawner_7_ = GameObject.Find("Spawner 7");
-            spawner_8_ = GameObject.Find("Spawner 8");
-            sectopod_ = GameObject.Find("Sectopod");
-            charger_1_ = GameObject.Find("Charger");
-            charger_2_ = GameObject.Find("Charger 2");
-            charger_3_ = GameObject.Find("Charger 3");
-
-        }
-
-        // Boss level
-        else if (level_selector_ == LevelSelector.Boss)
-        {
-            // Initialize boss
-            boss_ = GameObject.Find("BossBody");
-        }
-
-        // Enemy list
-        enemies_list_ = GameObject.FindGameObjectsWithTag("Enemy");
-        enemy_count_ = enemies_list_.Length;
+        portal_.SetActive(false);
 
         // Spawn objecive indicators for each target
-        objective_indicator_parent_ = GameObject.Find("Player");
+        objective_indicator_parent_ = player_;
 
-        if (enemy_count_ <= 6)
+        //------------------------------INITIALIZING LEVEL-SPECIFIC GAME OBJECTS------------------------------
+        // If objective of the level is to capture the capture point, initialize the capture point.
+        // Else, initialize enemies.
+        // 1-3, 1-4 or 1-9
+        if (GameObject.FindGameObjectsWithTag("Objective").Length != 0)
+        {
+            // Initialize capture point (Objective) and set captured_ to false on start
+            capture_point_ = GameObject.Find("CapturePoint");
+            capture_point_.GetComponent<CapturePoint>().captured_ = false;
+        }
+        else
+        {
+            // 1-0
+            if (level_selector_ == LevelSelector.Tutorial)
+            {
+                // Initialize first training grunt
+                training_grunt_ = GameObject.Find("TrainingGrunt");
+
+                // Initialize second training grunt
+                training_grunt_2_ = GameObject.Find("TrainingGrunt 2");
+                training_grunt_2_health_component_ = training_grunt_2_.GetComponent<HealthComponent>();
+                training_grunt_2_max_hp_ = training_grunt_2_health_component_.getMaxHp();
+
+                // Initialize third training grunt
+                training_grunt_3_ = GameObject.Find("TrainingGrunt 3");
+                training_grunt_3_health_component_ = training_grunt_3_.GetComponent<HealthComponent>();
+                training_grunt_3_max_hp_ = training_grunt_3_health_component_.getMaxHp();
+            }
+
+            // 1-1
+            else if (level_selector_ == LevelSelector.One)
+            {
+                // Initialize spawners
+                spawner_1_ = GameObject.Find("Spawner");
+                spawner_2_ = GameObject.Find("Spawner 2");
+            }
+
+            // 1-2
+            else if (level_selector_ == LevelSelector.Two)
+            {
+                // Initialize spawners
+                spawner_1_ = GameObject.Find("Spawner");
+                spawner_2_ = GameObject.Find("Spawner 2");
+                spawner_3_ = GameObject.Find("Spawner 3");
+                spawner_4_ = GameObject.Find("Spawner 4");
+            }
+
+            // 1-5
+            else if (level_selector_ == LevelSelector.Five)
+            {
+                // Initialize charger
+                charger_1_ = GameObject.Find("Charger");
+            }
+
+            // 1-6
+            else if (level_selector_ == LevelSelector.Six)
+            {
+                // Initialize chargers
+                charger_1_ = GameObject.Find("Charger");
+                charger_2_ = GameObject.Find("Charger 2");
+                charger_3_ = GameObject.Find("Charger 3");
+            }
+
+            // 1-7
+            else if (level_selector_ == LevelSelector.Seven)
+            {
+                // Initialize chargers and spawners
+                charger_1_ = GameObject.Find("Charger");
+                charger_2_ = GameObject.Find("Charger 2");
+                spawner_1_ = GameObject.Find("Spawner");
+                spawner_2_ = GameObject.Find("Spawner 2");
+                spawner_3_ = GameObject.Find("Spawner 3");
+                spawner_4_ = GameObject.Find("Spawner 4");
+                spawner_5_ = GameObject.Find("Spawner 5");
+                spawner_6_ = GameObject.Find("Spawner 6");
+            }
+
+            // 1-8
+            else if (level_selector_ == LevelSelector.Eight)
+            {
+                // Initialize spawners and sectopod
+                spawner_1_ = GameObject.Find("Spawner");
+                spawner_2_ = GameObject.Find("Spawner 2");
+                spawner_3_ = GameObject.Find("Spawner 3");
+                spawner_4_ = GameObject.Find("Spawner 4");
+                spawner_5_ = GameObject.Find("Spawner 5");
+                spawner_6_ = GameObject.Find("Spawner 6");
+                sectopod_ = GameObject.Find("Sectopod");
+            }
+
+            // 1-10
+            else if (level_selector_ == LevelSelector.Ten)
+            {
+                // Initialize spawners, sectopod and chargers
+                spawner_1_ = GameObject.Find("Spawner");
+                spawner_2_ = GameObject.Find("Spawner 2");
+                spawner_3_ = GameObject.Find("Spawner 3");
+                spawner_4_ = GameObject.Find("Spawner 4");
+                spawner_5_ = GameObject.Find("Spawner 5");
+                spawner_6_ = GameObject.Find("Spawner 6");
+                spawner_7_ = GameObject.Find("Spawner 7");
+                spawner_8_ = GameObject.Find("Spawner 8");
+                sectopod_ = GameObject.Find("Sectopod");
+                charger_1_ = GameObject.Find("Charger");
+                charger_2_ = GameObject.Find("Charger 2");
+                charger_3_ = GameObject.Find("Charger 3");
+
+            }
+
+            // Boss level
+            else if (level_selector_ == LevelSelector.Boss)
+            {
+                // Initialize boss
+                boss_ = GameObject.Find("BossBody");
+            }
+        }
+
+        //------------------------------ASSIGNING OBJECTIVE INDICATORS TO EACH TARGET------------------------------
+        // If level is a capture point level, create indicator for capture point (objective)
+        if (GameObject.FindGameObjectsWithTag("Objective").Length != 0)
+        {
+            // Objective list
+            targets_list_ = GameObject.FindGameObjectsWithTag("Objective");
+        }
+        else
+        {
+            // Enemy list
+            targets_list_ = GameObject.FindGameObjectsWithTag("Enemy");
+        }
+
+        // Set how far the indicator is from the player based on the number of targets
+        target_count_ = targets_list_.Length;
+
+        if (target_count_ <= 6)
         {
             indicator_offset_ = 2;
         }
@@ -207,21 +228,23 @@ public class LevelManagerScript : MonoBehaviour
             indicator_offset_ = 5;
         }
 
-        foreach (GameObject enemy in enemies_list_)
+        // Initialize an indicator for each target
+        foreach (GameObject target in targets_list_)
         {
             GameObject gameobject_temp = GameObject.Instantiate(objective_indicator_, objective_indicator_parent_.transform);
-            gameobject_temp.GetComponent<ObjectiveIndicator>().SetObjective(enemy);
+            gameobject_temp.GetComponent<ObjectiveIndicator>().SetObjective(target);
             gameobject_temp.GetComponent<ObjectiveIndicator>().offset_amount_ = indicator_offset_;
         }
 
         // Disable all enemies at the start
-        //enemies_list_ = GameObject.FindGameObjectsWithTag("Enemy");
-
-        foreach (GameObject enemy in enemies_list_)
+        if (GameObject.FindGameObjectsWithTag("Objective").Length == 0)
         {
-            if (enemy.name != "CapturePoint")
+            foreach (GameObject enemy in targets_list_)
             {
-                enemy.SetActive(false);
+                if (enemy.name != "CapturePoint")
+                {
+                    enemy.SetActive(false);
+                }
             }
         }
     }
@@ -280,19 +303,24 @@ public class LevelManagerScript : MonoBehaviour
         }
         //------------------------CHEAT CODE END DELETE DIS----------------------------------
 
-        // If walk over trigger, make all enemies active
-        bool is_triggered_ = GameObject.Find("ActivateTriggerTilemap").GetComponent<ActivateEnemies>().activate_enemies_;
-
-        if (is_triggered_ && !stop_enemies_enable_)
+        // If level has no capture point (objective is to kill all enemies)
+        if (GameObject.FindGameObjectsWithTag("Objective").Length == 0)
         {
-            foreach (GameObject enemy in enemies_list_)
+            // If walk over trigger, make all enemies active
+            bool is_triggered_ = GameObject.Find("ActivateTriggerTilemap").GetComponent<ActivateEnemies>().activate_enemies_;
+
+            if (is_triggered_ && !stop_enemies_enable_)
             {
-                enemy.SetActive(true);
+                foreach (GameObject enemy in targets_list_)
+                {
+                    enemy.SetActive(true);
+                }
+
+                stop_enemies_enable_ = true;
             }
-
-            stop_enemies_enable_ = true;
         }
-
+        
+        // Change color if indicator's target is a charger
         objective_indicator_list_ = GameObject.FindGameObjectsWithTag("ObjectiveIndicator");
 
         foreach (GameObject o in objective_indicator_list_)
@@ -329,22 +357,33 @@ public class LevelManagerScript : MonoBehaviour
         }
 
         // Capture Point Levels
-        if (level_selector_ == LevelSelector.Three || level_selector_ == LevelSelector.Four || level_selector_ == LevelSelector.Nine)
+        if (GameObject.FindGameObjectsWithTag("Objective").Length != 0)
         {
-            // Check if capture point is captured
+            // Get status of capture point (captured/not captured)
             captured_ = capture_point_.GetComponent<CapturePoint>().captured_;
 
             // When capture point is captured, activate portal. When in range of portal, transport player to next level.
-            if (captured_ == true && activate_portal_ == false)
+            if (captured_ == true && portal_.activeSelf == false)
             {
-                // Activate portal
-                portal_script_.SetActivatePortal(true);
-                activate_portal_ = true;
+                portal_.SetActive(true);
+            }
+
+            // When portal is active, start timer for entering portal (time before player can enter portal)
+            if (portal_.activeSelf == true)
+            {
+                portal_timer_ += Time.deltaTime;
+            }
+
+            // When portal timer reaches defined time, player can enter portal
+            if (portal_timer_ >= portal_activation_time)
+            {
+                portal_timer_ = portal_activation_time;
+                can_enter_portal_ = true;
             }
 
             // Check distance between player and portal
             Vector2 dist_to_portal_ = player_.GetComponent<Transform>().position - portal_.GetComponent<Transform>().position;
-            if (dist_to_portal_.magnitude <= 3.0f && portal_.activeSelf == true)
+            if (dist_to_portal_.magnitude <= 3.0f && portal_.activeSelf == true && can_enter_portal_ == true)
             {
                 if (level_selector_ == LevelSelector.Three)
                     STM_.load_scene_Asynch("1-4");
@@ -358,7 +397,7 @@ public class LevelManagerScript : MonoBehaviour
         }
 
         // 1-0
-        if (level_selector_ == LevelSelector.Tutorial)
+        else if (level_selector_ == LevelSelector.Tutorial)
         {
             // Disable training grunts 2 & 3 on start
             if (!activate_training_grunts_)
@@ -371,21 +410,21 @@ public class LevelManagerScript : MonoBehaviour
             if (training_grunt_ == null)
             {
                 // Activate timer
-                activate_timer_ = true;
+                activate_traininggrunt_timer_ = true;
                 activate_training_grunts_ = true;
 
             }
 
             // Activate timer
-            if (activate_timer_ == true)
+            if (activate_traininggrunt_timer_ == true)
             {
-                timer_ += Time.deltaTime;
+                traininggrunt_timer_ += Time.deltaTime;
             }
 
             // After 1s
-            if (timer_ >= wait_time_)
+            if (traininggrunt_timer_ >= traininggrunt_wait_time_)
             {
-                timer_ = wait_time_;
+                traininggrunt_timer_ = traininggrunt_wait_time_;
 
                 // If not killed, set them to active
                 if (training_grunt_2_ != null && training_grunt_3_ != null && activate_training_grunts_ == true)
@@ -414,16 +453,28 @@ public class LevelManagerScript : MonoBehaviour
                 }
             }
 
-            // After both grunts are killed
-            else if (training_grunt_2_ == null && training_grunt_3_ == null && activate_portal_ == false)
+            // After both grunts are killed, activate portal. When in range of portal, transport player to next level.
+            else if (training_grunt_2_ == null && training_grunt_3_ == null && portal_.activeSelf == false)
             {
-                portal_script_.SetActivatePortal(true);
-                activate_portal_ = true;
+                portal_.SetActive(true);
+            }
+
+            // When portal is active, start timer for entering portal (time before player can enter portal)
+            if (portal_.activeSelf == true)
+            {
+                portal_timer_ += Time.deltaTime;
+            }
+
+            // When portal timer reaches defined time, player can enter portal
+            if (portal_timer_ >= portal_activation_time)
+            {
+                portal_timer_ = portal_activation_time;
+                can_enter_portal_ = true;
             }
 
             // Portal
             Vector2 dist_to_portal_ = (Vector2)player_.transform.position - (Vector2)portal_.transform.position;
-            if (dist_to_portal_.magnitude <= 3.0f && portal_.activeSelf == true)
+            if (dist_to_portal_.magnitude <= 3.0f && portal_.activeSelf == true && can_enter_portal_ == true)
             {
                 STM_.load_scene_Asynch("1-1");
             }
@@ -433,15 +484,27 @@ public class LevelManagerScript : MonoBehaviour
         else if (level_selector_ == LevelSelector.One)
         {
             // When the two top spawners are destroyed, activate portal. When in range of portal, transport player to next level.
-            if (spawner_1_ == null && spawner_2_ == null && activate_portal_ == false)
+            if (spawner_1_ == null && spawner_2_ == null && portal_.activeSelf == false)
             {
-                portal_script_.SetActivatePortal(true);
-                activate_portal_ = true;
+                portal_.SetActive(true);
+            }
+
+            // When portal is active, start timer for entering portal (time before player can enter portal)
+            if (portal_.activeSelf == true)
+            {
+                portal_timer_ += Time.deltaTime;
+            }
+
+            // When portal timer reaches defined time, player can enter portal
+            if (portal_timer_ >= portal_activation_time)
+            {
+                portal_timer_ = portal_activation_time;
+                can_enter_portal_ = true;
             }
 
             // Check distance between player and portal
             Vector2 dist_to_portal_ = player_.GetComponent<Transform>().position - portal_.GetComponent<Transform>().position;
-            if (dist_to_portal_.magnitude <= 3.0f && portal_.activeInHierarchy == true)
+            if (dist_to_portal_.magnitude <= 3.0f && portal_.activeSelf == true && can_enter_portal_ == true)
             {
                 STM_.load_scene_Asynch("1-2");
             }
@@ -451,15 +514,27 @@ public class LevelManagerScript : MonoBehaviour
         else if (level_selector_ == LevelSelector.Two)
         {
             // When the four top spawners are destroyed, activate portal. When in range of portal, transport player to next level.
-            if (spawner_1_ == null && spawner_2_ == null && spawner_3_ == null && spawner_4_ == null && activate_portal_ == false)
+            if (spawner_1_ == null && spawner_2_ == null && spawner_3_ == null && spawner_4_ == null && portal_.activeSelf == false)
             {
-                portal_script_.SetActivatePortal(true);
-                activate_portal_ = true;
+                portal_.SetActive(true);
+            }
+
+            // When portal is active, start timer for entering portal (time before player can enter portal)
+            if (portal_.activeSelf == true)
+            {
+                portal_timer_ += Time.deltaTime;
+            }
+
+            // When portal timer reaches defined time, player can enter portal
+            if (portal_timer_ >= portal_activation_time)
+            {
+                portal_timer_ = portal_activation_time;
+                can_enter_portal_ = true;
             }
 
             // Check distance between player and portal
             Vector2 dist_to_portal_ = player_.GetComponent<Transform>().position - portal_.GetComponent<Transform>().position;
-            if (dist_to_portal_.magnitude <= 3.0f && portal_.activeSelf == true)
+            if (dist_to_portal_.magnitude <= 3.0f && portal_.activeSelf == true && can_enter_portal_ == true)
             {
                 STM_.load_scene_Asynch("1-3");
             }
@@ -469,16 +544,27 @@ public class LevelManagerScript : MonoBehaviour
         else if (level_selector_ == LevelSelector.Five)
         {
             // When charger is killed, activate portal. When in range of portal, transport player to next level.
-            if (charger_1_ == null && activate_portal_ == false)
+            if (charger_1_ == null && portal_.activeSelf == false)
             {
-                // Activate portal
-                portal_script_.SetActivatePortal(true);
-                activate_portal_ = true;
+                portal_.SetActive(true);
+            }
+
+            // When portal is active, start timer for entering portal (time before player can enter portal)
+            if (portal_.activeSelf == true)
+            {
+                portal_timer_ += Time.deltaTime;
+            }
+
+            // When portal timer reaches defined time, player can enter portal
+            if (portal_timer_ >= portal_activation_time)
+            {
+                portal_timer_ = portal_activation_time;
+                can_enter_portal_ = true;
             }
 
             // Check distance between player and portal
             Vector2 dist_to_portal_ = player_.GetComponent<Transform>().position - portal_.GetComponent<Transform>().position;
-            if (dist_to_portal_.magnitude <= 3.0f && portal_.activeSelf == true)
+            if (dist_to_portal_.magnitude <= 3.0f && portal_.activeSelf == true && can_enter_portal_ == true)
             {
                 STM_.load_scene_Asynch("1-6");
             }
@@ -488,16 +574,27 @@ public class LevelManagerScript : MonoBehaviour
         else if (level_selector_ == LevelSelector.Six)
         {
             // When all chargers are killed, activate portal. When in range of portal, transport player to next level.
-            if (charger_1_ == null && charger_2_ == null && charger_3_ == null && activate_portal_ == false)
+            if (charger_1_ == null && charger_2_ == null && charger_3_ == null && portal_.activeSelf == false)
             {
-                // Activate portal
-                portal_script_.SetActivatePortal(true);
-                activate_portal_ = true;
+                portal_.SetActive(true);
+            }
+
+            // When portal is active, start timer for entering portal (time before player can enter portal)
+            if (portal_.activeSelf == true)
+            {
+                portal_timer_ += Time.deltaTime;
+            }
+
+            // When portal timer reaches defined time, player can enter portal
+            if (portal_timer_ >= portal_activation_time)
+            {
+                portal_timer_ = portal_activation_time;
+                can_enter_portal_ = true;
             }
 
             // Check distance between player and portal
             Vector2 dist_to_portal_ = player_.GetComponent<Transform>().position - portal_.GetComponent<Transform>().position;
-            if (dist_to_portal_.magnitude <= 3.0f && portal_.activeSelf == true)
+            if (dist_to_portal_.magnitude <= 3.0f && portal_.activeSelf == true && can_enter_portal_ == true)
             {
                 STM_.load_scene_Asynch("1-7");
             }
@@ -508,16 +605,27 @@ public class LevelManagerScript : MonoBehaviour
         {
             // When chargers are killed and spawners are destroyed, activate portal. When in range of portal, transport player to next level.
             if (charger_1_ == null && charger_2_ == null && spawner_1_ == null && spawner_2_ == null && spawner_3_ == null && spawner_4_ == null 
-                && spawner_5_ == null && spawner_6_ == null && activate_portal_ == false)
+                && spawner_5_ == null && spawner_6_ == null && portal_.activeSelf == false)
             {
-                // Activate portal
-                portal_script_.SetActivatePortal(true);
-                activate_portal_ = true;
+                portal_.SetActive(true);
+            }
+
+            // When portal is active, start timer for entering portal (time before player can enter portal)
+            if (portal_.activeSelf == true)
+            {
+                portal_timer_ += Time.deltaTime;
+            }
+
+            // When portal timer reaches defined time, player can enter portal
+            if (portal_timer_ >= portal_activation_time)
+            {
+                portal_timer_ = portal_activation_time;
+                can_enter_portal_ = true;
             }
 
             // Check distance between player and portal
             Vector2 dist_to_portal_ = player_.GetComponent<Transform>().position - portal_.GetComponent<Transform>().position;
-            if (dist_to_portal_.magnitude <= 3.0f && portal_.activeSelf == true)
+            if (dist_to_portal_.magnitude <= 3.0f && portal_.activeSelf == true && can_enter_portal_ == true)
             {
                 STM_.load_scene_Asynch("1-8");
             }
@@ -528,16 +636,27 @@ public class LevelManagerScript : MonoBehaviour
         {
             // When chargers are killed and spawners are destroyed, activate portal. When in range of portal, transport player to next level.
             if (spawner_1_ == null && spawner_2_ == null && spawner_3_ == null && spawner_4_ == null && spawner_5_ == null 
-                && spawner_6_ == null && sectopod_ == null && activate_portal_ == false)
+                && spawner_6_ == null && sectopod_ == null && portal_.activeSelf == false)
             {
-                // Activate portal
-                portal_script_.SetActivatePortal(true);
-                activate_portal_ = true;
+                portal_.SetActive(true);
+            }
+
+            // When portal is active, start timer for entering portal (time before player can enter portal)
+            if (portal_.activeSelf == true)
+            {
+                portal_timer_ += Time.deltaTime;
+            }
+
+            // When portal timer reaches defined time, player can enter portal
+            if (portal_timer_ >= portal_activation_time)
+            {
+                portal_timer_ = portal_activation_time;
+                can_enter_portal_ = true;
             }
 
             // Check distance between player and portal
             Vector2 dist_to_portal_ = player_.GetComponent<Transform>().position - portal_.GetComponent<Transform>().position;
-            if (dist_to_portal_.magnitude <= 3.0f && portal_.activeSelf == true)
+            if (dist_to_portal_.magnitude <= 3.0f && portal_.activeSelf == true && can_enter_portal_ == true)
             {
                 STM_.load_scene_Asynch("1-9");
             }
@@ -549,16 +668,27 @@ public class LevelManagerScript : MonoBehaviour
             // When chargers and sectopod are killed and spawners are destroyed, activate portal. When in range of portal, transport player to next level.
             if (spawner_1_ == null && spawner_2_ == null && spawner_3_ == null && spawner_4_ == null && spawner_5_ == null
                 && spawner_6_ == null && spawner_7_ == null && spawner_8_ == null && sectopod_ == null
-                &&charger_1_ == null && charger_2_ == null && charger_3_ == null && activate_portal_ == false)
+                &&charger_1_ == null && charger_2_ == null && charger_3_ == null && portal_.activeSelf == false)
             {
-                // Activate portal
-                portal_script_.SetActivatePortal(true);
-                activate_portal_ = true;
+                portal_.SetActive(true);
+            }
+
+            // When portal is active, start timer for entering portal (time before player can enter portal)
+            if (portal_.activeSelf == true)
+            {
+                portal_timer_ += Time.deltaTime;
+            }
+
+            // When portal timer reaches defined time, player can enter portal
+            if (portal_timer_ >= portal_activation_time)
+            {
+                portal_timer_ = portal_activation_time;
+                can_enter_portal_ = true;
             }
 
             // Check distance between player and portal
             Vector2 dist_to_portal_ = player_.GetComponent<Transform>().position - portal_.GetComponent<Transform>().position;
-            if (dist_to_portal_.magnitude <= 3.0f && portal_.activeSelf == true)
+            if (dist_to_portal_.magnitude <= 3.0f && portal_.activeSelf == true && can_enter_portal_ == true)
             {
                 //STM_.load_scene_Asynch("1-Boss");
                 STM_.load_scene_Asynch("CreditScene");
@@ -572,9 +702,7 @@ public class LevelManagerScript : MonoBehaviour
             // When chargers and sectopod are killed and spawners are destroyed, activate portal. When in range of portal, transport player to next level.
             if (boss_ == null && activate_portal_ == false)
             {
-                // Activate portal
-                portal_script_.SetActivatePortal(true);
-                activate_portal_ = true;
+                portal_.SetActive(true);
             }
 
             // Check distance between player and portal

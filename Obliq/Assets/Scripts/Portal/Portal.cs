@@ -10,17 +10,17 @@ public class Portal : MonoBehaviour
     // Audio Manager
     string portal_sound_ = "Portal";
     AudioManager am_;
+    bool sound_played_ = false;
 
     // Portal GameObject
     GameObject portal_;
 
-    // Start is called before the first frame update
+    // Awake is called before the first frame update
     void Awake()
     {
-        
         // Portal
-        activate_portal_ = false;
         portal_ = GameObject.Find("Portal");
+
         // Audio Manager
         am_ = FindObjectOfType<AudioManager>();
     }
@@ -28,24 +28,11 @@ public class Portal : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (portal_ != null)
+        if (portal_.activeSelf == true && sound_played_ == false)
         {
-            if (activate_portal_ == false)
-            {
-                portal_.SetActive(false);
-            }
-            else
-            {
-                portal_.SetActive(true);
-            }
+            Debug.Log("Portal Sound");
+            am_.PlaySound(portal_sound_);
+            sound_played_ = true;
         }
-    }
-
-    public void SetActivatePortal(bool set_portal_active_)
-    {
-        Debug.Log("Portal Sound");
-        am_.PlaySound(portal_sound_);
-        activate_portal_ = set_portal_active_;
-        
     }
 }

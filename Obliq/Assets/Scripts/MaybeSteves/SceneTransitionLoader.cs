@@ -15,7 +15,7 @@ public class SceneTransitionLoader : MonoBehaviour
 
     [Range(0.0f,1.0f)]
     public float load_bar_speed;
-    public TextMeshProUGUI tmp_text;
+    public TextMeshProUGUI tmp_text, nextlevel_text;
 
     public bool scene_loading;
     public bool scene_loaded;
@@ -71,14 +71,18 @@ public class SceneTransitionLoader : MonoBehaviour
         load_progress = 0;
         loading_bar.value = load_progress;
         displayed_load_progress = load_progress;
-        UpdateProgressText();
+        nextlevel_text.text = "";
+        UpdateProgressText(SceneName);
         
         scene_loading = true;
         scene_loaded = false;
         
         FadeToBlack();
-
+        
         yield return new WaitForSeconds(white_to_black_length);
+
+        nextlevel_text.text = "Initializing" + '\n' + SceneName;
+        ScrollingTextSystem stc = ScrollingTextSystem.CreateComponent(GameObject.Find("NextLevelText (TMP)"), true, 0.03f, GameObject.Find("NextLevelText (TMP)").GetComponent<TextMeshProUGUI>());
 
         AsyncOperation async = SceneManager.LoadSceneAsync(SceneName);
 
@@ -97,24 +101,23 @@ public class SceneTransitionLoader : MonoBehaviour
 
             loading_bar.value = displayed_load_progress;
 
-            UpdateProgressText();
+            UpdateProgressText(SceneName);
             //Debug.Log("Load progress: " + load_progress * 100 + "%");
             yield return null;
         }
-
-        yield return new WaitForSeconds(0.1f);
+        
+        yield return new WaitForSeconds(0.4f);
 
         scene_loading = false;
         scene_loaded = true;
         FadeFromBlack();
-
+        Destroy(stc);
     }
 
     public void FadeToBlack()
     {
         Animator.SetBool("scene_loading", true);
         Animator.SetBool("scene_loaded", false);
-
     }
 
     public void FadeFromBlack()
@@ -136,12 +139,11 @@ public class SceneTransitionLoader : MonoBehaviour
                 case "WhiteToBlack":
                     white_to_black_length = clip.length;
                     break;
-                
             }
         }
     }
 
-    public void UpdateProgressText()
+    public void UpdateProgressText(string SceneName)
     {
         tmp_text.text = Mathf.Floor(displayed_load_progress * 100) + "%";
     }
