@@ -17,6 +17,9 @@ TagManager:
   - Wall
   - LevelManager
   - ObjectiveIndicator
+  - PortalIndicator
+  - Rallier
+  - Grunt
   layers:
   - Default
   - TransparentFX

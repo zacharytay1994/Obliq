@@ -1017,9 +1017,9 @@ public class ImAProjectile : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        Instantiate(collideEffect, transform.position, Quaternion.identity);
         if (layer_to_collide_ == (layer_to_collide_ | (1 << collision.gameObject.layer)))
         {
-            Instantiate(collideEffect, transform.position, Quaternion.identity);
             collided_ = true;
         }
         if (on_collide_mask_ == (on_collide_mask_ | (1 << collision.gameObject.layer)))
