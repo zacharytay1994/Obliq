@@ -99,6 +99,8 @@ public class BossBody : MonoBehaviour
 
     float phase_ = 0;
 
+    public bool boss_defeated_ = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -123,6 +125,11 @@ public class BossBody : MonoBehaviour
         if (ready_to_attack_)
         {
             LockPlayerIn();
+        }
+
+        if (bh1_ == null && bh2_ == null && bh3_ == null)
+        {
+            boss_defeated_ = true;
         }
     }
 
