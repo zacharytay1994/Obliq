@@ -5,11 +5,11 @@ using TMPro;
 
 public class ScrollingTextSystem : MonoBehaviour
 {
-    [SerializeField] bool UI_;
+    [SerializeField] public bool UI_;
     TextMeshPro current_text_mesh_;
-    TextMeshProUGUI current_text_mesh_UI_;
+    public TextMeshProUGUI current_text_mesh_UI_;
     string current_text_;
-    [SerializeField] float scroll_delay_;
+    [SerializeField] public float scroll_delay_;
     float scroll_delay_timer_;
     AudioManager am_;
     [Space(10)]
@@ -23,7 +23,7 @@ public class ScrollingTextSystem : MonoBehaviour
     void Start()
     {
         am_ = FindObjectOfType<AudioManager>();
-        if(UI_)
+        if (UI_)
         {
             current_text_mesh_UI_ = GetComponent<TextMeshProUGUI>();
             current_text_ = current_text_mesh_UI_.text;
@@ -36,7 +36,7 @@ public class ScrollingTextSystem : MonoBehaviour
             current_text_ = current_text_mesh_.text;
             current_text_mesh_.text = "";
         }
-        
+
 
 
         scroll_delay_timer_ = scroll_delay_;
@@ -62,9 +62,9 @@ public class ScrollingTextSystem : MonoBehaviour
             scroll_complete_ = true;
         }
 
-        if(Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
-            if(UI_)
+            if (UI_)
             {
                 current_text_mesh_UI_.text += current_text_;
                 current_text_ = "";
@@ -88,13 +88,13 @@ public class ScrollingTextSystem : MonoBehaviour
 
 
             char c = current_text_[0];
-            if (c != '>' && c != '.' && c!= '<')
+            if (c != '>' && c != '.' && c != '<')
             {
-                if(flicker_audio_)
+                if (flicker_audio_)
                 {
                     am_.PlaySound(typing_sound_[random_sound]);
                 }
-               
+
             }
             current_text_ = current_text_.Remove(0, 1);
             if (isUI)
@@ -109,5 +109,14 @@ public class ScrollingTextSystem : MonoBehaviour
 
             flicker_audio_ = !flicker_audio_;
         }
+    }
+
+    public static ScrollingTextSystem CreateComponent(GameObject baseGameObject, bool isUI, float scrollDelay, TextMeshProUGUI current_text_mesh_UI_)
+    {
+        ScrollingTextSystem stc = baseGameObject.AddComponent<ScrollingTextSystem>();
+        stc.UI_ = isUI;
+        stc.scroll_delay_ = scrollDelay;
+        stc.current_text_mesh_UI_ = current_text_mesh_UI_;
+        return stc;
     }
 }

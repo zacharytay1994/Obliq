@@ -5,6 +5,10 @@ using UnityEditor;
 
 public class ImAProjectile : MonoBehaviour
 {
+
+    [SerializeField]
+    GameObject collideEffect;
+
     // Projectile variables basic
     [SerializeField]
     float speed_ = 5.0f;
@@ -252,6 +256,7 @@ public class ImAProjectile : MonoBehaviour
 
     bool paused_ = false;
     bool pausable_ = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -1012,6 +1017,7 @@ public class ImAProjectile : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        Instantiate(collideEffect, transform.position, Quaternion.identity);
         if (layer_to_collide_ == (layer_to_collide_ | (1 << collision.gameObject.layer)))
         {
             collided_ = true;

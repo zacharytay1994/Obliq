@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: -5510707676724981173}
   m_Layer: 0
   m_Name: CapturePoint
-  m_TagString: Enemy
+  m_TagString: Objective
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -188,7 +188,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e54b7aab8bf0fbd4d991a141893c98d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  time_to_capture_: 10
+  time_to_capture_: 11
   captured_: 0
   capturing_: 0
   capture_radius_: 9

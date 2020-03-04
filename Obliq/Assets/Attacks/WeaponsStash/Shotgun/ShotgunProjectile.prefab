@@ -48,6 +48,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eeb0363ec7ff550499b9f85ee039a8db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  collideEffect: {fileID: 971680436990082550, guid: 23303f9ad3f9bc246a2da2c111258a5b,
+    type: 3}
   speed_: 70
   acceleration_: 10
   max_speed_: 10

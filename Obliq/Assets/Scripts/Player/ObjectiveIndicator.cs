@@ -24,7 +24,7 @@ public class ObjectiveIndicator : MonoBehaviour
     {
         objective_ = g;
     }
-    // Start is called before the first frame update
+    // Awake is called before the first frame update
     void Awake()
     {
         // Pointer
