@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class BossHead : MonoBehaviour
 {
+    [SerializeField]
+    GameObject death_effect_;
+
     GameObject player_;
 
     BossBody bb_;
@@ -275,6 +278,7 @@ public class BossHead : MonoBehaviour
         
         if (hc_.currentHp_ <= 0)
         {
+            Instantiate(death_effect_, transform.position, Quaternion.identity);
             bb_.SetPhase(2);
             GameObject.Destroy(gameObject);
         }
