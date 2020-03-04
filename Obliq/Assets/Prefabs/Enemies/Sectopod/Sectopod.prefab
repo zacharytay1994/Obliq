@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: -1078255289399383984}
   - component: {fileID: 8532518073056544977}
   - component: {fileID: -7590505609151203536}
+  - component: {fileID: -6448643015224644516}
   m_Layer: 14
   m_Name: Sectopod
   m_TagString: Enemy
@@ -61,7 +62,7 @@ MonoBehaviour:
   sectopod_missile_: {fileID: 5522028647058031579, guid: 3a5c4e2bc5213b847ab937122018965f,
     type: 3}
   bullet_speed_: 30
-  missile_attack_speed: 1
+  missile_attack_speed: 2
   player_: {fileID: 0}
 --- !u!114 &9041656220963992287
 MonoBehaviour:
@@ -394,3 +395,18 @@ MonoBehaviour:
   currentHp_: 0
   invincibility_time_: 0
   damage_flash_duration_: 0
+--- !u!114 &-6448643015224644516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9041656220963992277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83aff6189ea93744db5c224732ce4bee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprite_: {fileID: 21300000, guid: 8a5532c08f6d70145aca71fdae052462, type: 3}
+  color_: {r: 0, g: 1, b: 0.92587686, a: 1}
+  scale_: 0.3

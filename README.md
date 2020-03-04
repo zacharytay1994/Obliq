@@ -4,3 +4,6 @@ A final year 3 project from Ngee Ann Polytechnic.
 Members: Austin, Jedidiah, Ryan, Steven, Tristan, Zachary
 
 A 2D Game being made in Unity2D. Turn-based Rogue-like.
+
+## Finished Demo Video
+https://www.youtube.com/watch?v=hEdAn0nYAGk&feature=youtu.be

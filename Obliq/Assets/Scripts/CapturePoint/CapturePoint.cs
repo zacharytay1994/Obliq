@@ -9,10 +9,11 @@ public class CapturePoint : MonoBehaviour
     float time_to_capture_;
     float capture_time_elapsed_;
     public bool captured_;
+    public bool capturing_;
     bool played_effect_;
 
     [SerializeField]
-    float capture_radius_;
+    public float capture_radius_;
     float capture_rate_;
     [SerializeField]
     float max_capture_rate_;
@@ -36,6 +37,7 @@ public class CapturePoint : MonoBehaviour
         capture_time_elapsed_ = Time.deltaTime;
         capture_rate_ = 1;
         captured_ = false;
+        capturing_ = false;
         played_effect_ = false;
         player = GameObject.Find("Player");
     }
@@ -56,6 +58,7 @@ public class CapturePoint : MonoBehaviour
 
         if (((Vector2)transform.position - (Vector2)player.transform.position).magnitude <= capture_radius_ && !captured_)
         {
+            capturing_ = true;
             capture_rate_ += 2;
             player.GetComponent<TheGudSuc>().Suc(true);
 
@@ -71,6 +74,7 @@ public class CapturePoint : MonoBehaviour
         }
         else
         {
+            capturing_ = false;
             capture_rate_ -= 2;
             player.GetComponent<TheGudSuc>().Suc(false);
 

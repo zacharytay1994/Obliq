@@ -20,6 +20,10 @@ public class TempGrunt : MonoBehaviour
     bool grown_ = false;
     float growth_ = 0.1f;
     public Vector2 heading_vector_ = new Vector2(0.0f, 0.0f);
+
+    ZacsFindPath pf_;
+    int state_ = 0; // 0 for player, 1 for rallier
+    GameObject rallier = null;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,6 +32,7 @@ public class TempGrunt : MonoBehaviour
         target_ = GameObject.FindGameObjectWithTag("MainPlayer");
         point_manager_ = FindObjectOfType<PointManager>();
         transform.localScale = new Vector3(0.1f, 0.1f, 1.0f);
+        pf_ = GetComponent<ZacsFindPath>();
     }
 
     public void AttachSpawner(SpawningScript spawner) 
@@ -65,6 +70,43 @@ public class TempGrunt : MonoBehaviour
             }
            // point_manager_.AddKillPoints(100, 1);
             Destroy(gameObject);
+        }
+        // if less than certain hp but not rallying state
+        else if (health_.currentHp_ <= 1 && state_ != 1)
+        {
+            // get all rallying grunts
+            GameObject[] ralliers = GameObject.FindGameObjectsWithTag("Rallier");
+            if (ralliers.Length > 0)
+            {
+                float closest = float.MaxValue;
+                float val = float.MaxValue;
+                // find closest rallying grunt
+                foreach(GameObject g in ralliers)
+                {
+                    val = ((Vector2)g.transform.position - (Vector2)gameObject.transform.position).sqrMagnitude;
+                    if (val < closest)
+                    {
+                        closest = val;
+                        rallier = g;
+                    }
+                }
+            }
+            // set state to rallying
+            state_ = 1;
+            pf_.path_update__delay_counter_ = 0.0f;
+        }
+        // if in rallying state send in transform information of rallier to pathfinding
+        if (rallier != null && state_ == 1)
+        {
+            pf_.rallying_position_ = rallier.transform.position;
+            pf_.state_ = state_;
+        }
+        // if healthy and in rallying state, switch back to attacking state
+        if (health_.currentHp_ == health_.maxHp_ && state_ == 1)
+        {
+            state_ = 0;
+            pf_.state_ = state_;
+            pf_.path_update__delay_counter_ = 0.0f;
         }
     }
 

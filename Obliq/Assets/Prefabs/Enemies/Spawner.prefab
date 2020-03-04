@@ -4770,6 +4770,7 @@ GameObject:
   - component: {fileID: 4863398212447123227}
   - component: {fileID: 8305134896097840506}
   - component: {fileID: 8033678033718259255}
+  - component: {fileID: 836134794186859472}
   m_Layer: 23
   m_Name: Spawner
   m_TagString: Enemy
@@ -4962,6 +4963,21 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
+--- !u!114 &836134794186859472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7862674349831162025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83aff6189ea93744db5c224732ce4bee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprite_: {fileID: 21300000, guid: 8cd939fe4432b63498a67936f851835e, type: 3}
+  color_: {r: 0, g: 0.09229469, b: 1, a: 1}
+  scale_: 0.3
 --- !u!1 &8480211433841937416
 GameObject:
   m_ObjectHideFlags: 0

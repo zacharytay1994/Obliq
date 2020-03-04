@@ -29,6 +29,7 @@ public class WeaponScript : MonoBehaviour
     float fixed_rate_ = 1.0f;
     float fixed_rate_counter_ = 0.0f;
     bool rate_reset_ = true;
+    bool firing_ = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -66,6 +67,7 @@ public class WeaponScript : MonoBehaviour
                 weapon_instance_.GetComponent<ImAProjectile>().InitProj();
                 // turn on recoil
                 recoil_start_ = true;
+                //firing_ = true;
             }
             if (Input.GetKeyUp(trigger_) || (Input.GetMouseButtonUp(0) && use_mouse_))
             {
@@ -84,6 +86,20 @@ public class WeaponScript : MonoBehaviour
             if (has_recoil_)
             {
                 Recoil();
+            }
+        }
+
+        // weapon fix
+        if (firing_ == true && !Input.GetKey(trigger_))
+        {
+            // key is up and weapon is firing
+            firing_ = false;
+            if (weapon_instance_ != null)
+            {
+                Destroy(weapon_instance_);
+                // turn off recoil
+                recoil_start_ = false;
+                ResetRecoil();
             }
         }
     }
