@@ -336,10 +336,10 @@ MonoBehaviour:
     pitch: 1
     source: {fileID: 0}
     SoundType: 0
-  - name: 
-    clip: {fileID: 0}
-    volume: 0
-    pitch: 0
+  - name: gruntPunch
+    clip: {fileID: 8300000, guid: 1b8ec13097cb3e64a9a03df0781abb87, type: 3}
+    volume: 1
+    pitch: 1
     source: {fileID: 0}
     SoundType: 0
   - name: 
