@@ -33,6 +33,7 @@ public class Portal : MonoBehaviour
             Debug.Log("Portal Sound");
             am_.PlaySound(portal_sound_);
             sound_played_ = true;
+            activate_portal_ = true;
         }
     }
 }
