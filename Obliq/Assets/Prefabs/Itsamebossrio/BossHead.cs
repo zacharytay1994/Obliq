@@ -609,4 +609,12 @@ public class BossHead : MonoBehaviour
             player_.GetComponent<HealthComponent>().TakeDamage(gameObject.GetComponent<DamageEnemy>().damage_);
         }
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.layer == 19)
+        {
+            Destroy(collision.gameObject);
+        }
+    }
+
 }
