@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class CapturePoint : MonoBehaviour
 {
+    AudioManager am_;
     [SerializeField]
     float time_to_capture_;
     float capture_time_elapsed_;
@@ -30,6 +31,9 @@ public class CapturePoint : MonoBehaviour
 
     Color original_color_;
 
+    bool capture_sound_played_once_;
+    bool capture_sound_was_played_;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -40,11 +44,15 @@ public class CapturePoint : MonoBehaviour
         capturing_ = false;
         played_effect_ = false;
         player = GameObject.Find("Player");
+        am_ = FindObjectOfType<AudioManager>();
+        capture_sound_played_once_ = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        
+
         if (capture_time_elapsed_ >= time_to_capture_)
         {
             captured_ = true;
@@ -53,11 +61,13 @@ public class CapturePoint : MonoBehaviour
         if (captured_ && !played_effect_)
         {
             Instantiate(capture_particles_, transform.position, Quaternion.identity);
+            am_.PlaySound("bellding");
             played_effect_ = true;
         }
 
         if (((Vector2)transform.position - (Vector2)player.transform.position).magnitude <= capture_radius_ && !captured_)
         {
+            capture_sound_played_once_ = true;
             capturing_ = true;
             capture_rate_ += 2;
             player.GetComponent<TheGudSuc>().Suc(true);
@@ -74,6 +84,8 @@ public class CapturePoint : MonoBehaviour
         }
         else
         {
+            am_.StopSound("fansound");
+            capture_sound_played_once_ = false;
             capturing_ = false;
             capture_rate_ -= 2;
             player.GetComponent<TheGudSuc>().Suc(false);
@@ -96,7 +108,14 @@ public class CapturePoint : MonoBehaviour
             capture_time_elapsed_ = 0;
         }
 
+        if(capture_sound_played_once_ && !capture_sound_was_played_)
+        {
+            am_.PlaySound("fansound");
+        }
+
         z_rotate_ += Time.deltaTime * (rotation_speed_ + capture_rate_);
         transform.rotation = Quaternion.Euler(0, 0, z_rotate_);
+
+        capture_sound_was_played_ = capture_sound_played_once_;
     }
 }

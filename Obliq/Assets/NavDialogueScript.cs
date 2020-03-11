@@ -6,6 +6,7 @@ public class NavDialogueScript : MonoBehaviour
 {
     [SerializeField] List<GameObject> objects_to_destroy_;
     [SerializeField] GameObject nav_dialogue_;
+    [SerializeField] GameObject prev_nav_dialogue_;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,6 +31,7 @@ public class NavDialogueScript : MonoBehaviour
         if(collision.CompareTag("MainPlayer") && objects_to_destroy_.Count<=0)
         {
             nav_dialogue_.SetActive(true);
+            prev_nav_dialogue_.SetActive(false);
         }
     }
 }

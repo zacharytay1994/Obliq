@@ -260,6 +260,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc904e6cbde61fb44ab91a2bbcfbd144, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  death_effect_: {fileID: 3192301815928137622, guid: 5246bf2e919cb6b4e926e3243b1bd392,
+    type: 3}
   move_speed_: 5
   hover_speed_: 5
   hover_distance_: 2

@@ -5,6 +5,7 @@ using UnityEngine;
 public class NavDialogueCapPointTrigger : MonoBehaviour
 {
     [SerializeField] GameObject nav_dialogue_;
+    [SerializeField] GameObject prev_nav_dialogue_;
     [SerializeField] GameObject portal_;
     Portal portal_script_;
     // Start is called before the first frame update
@@ -19,6 +20,9 @@ public class NavDialogueCapPointTrigger : MonoBehaviour
         if(portal_script_.activate_portal_)
         {
             nav_dialogue_.SetActive(true);
+
+                prev_nav_dialogue_.SetActive(false);
+            
         }
     }
 }

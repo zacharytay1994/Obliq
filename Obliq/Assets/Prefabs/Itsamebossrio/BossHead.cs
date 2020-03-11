@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class BossHead : MonoBehaviour
 {
+    [SerializeField]
+    GameObject death_effect_;
+
     GameObject player_;
 
     BossBody bb_;
@@ -109,9 +112,12 @@ public class BossHead : MonoBehaviour
     LineRenderer lr2;
 
     HealthComponent hc_;
+
+    AudioManager am_;
     // Start is called before the first frame update
     void Start()
     {
+        am_ = FindObjectOfType<AudioManager>();
         player_ = GameObject.Find("Player");
         rb_ = GetComponent<Rigidbody2D>();
         hc_ = GetComponent<HealthComponent>();
@@ -275,6 +281,7 @@ public class BossHead : MonoBehaviour
         
         if (hc_.currentHp_ <= 0)
         {
+            Instantiate(death_effect_, transform.position, Quaternion.identity);
             bb_.SetPhase(2);
             GameObject.Destroy(gameObject);
         }
@@ -398,6 +405,7 @@ public class BossHead : MonoBehaviour
                 Debug.Log("cone");
                 GameObject bullet = Instantiate(laser_object_, (Vector2)gameObject.transform.position + ((gameObject.GetComponent<CircleCollider2D>().radius + 0.5f) *
                     ((Vector2)target_cone - (Vector2)gameObject.transform.position).normalized), Quaternion.identity);
+                am_.PlaySound("gruntPunch");
                 Vector2 final_dir = (target_cone - (Vector2)gameObject.transform.position).normalized + new Vector2(Random.Range(-range_of_cone, range_of_cone), Random.Range(-range_of_cone, range_of_cone));
                     
                     //new Vector2((target_cone.x - gameObject.transform.position.x) + Random.Range(-range_of_cone, range_of_cone),
@@ -506,6 +514,7 @@ public class BossHead : MonoBehaviour
 
                 GameObject bullet = Instantiate(laser_object_, (Vector2)gameObject.transform.position + ((gameObject.GetComponent<CircleCollider2D>().radius + 1f) *
                 ((Vector2)player_.transform.position - (Vector2)gameObject.transform.position).normalized), Quaternion.identity);
+                am_.PlaySound("Rocket_Launch");
                 bullet.GetComponent<Rigidbody2D>().velocity = ((Vector2)player_.transform.position - (Vector2)gameObject.transform.position).normalized * laser_speed_;
                 laser_timer_ = 0;
                 
@@ -545,6 +554,8 @@ public class BossHead : MonoBehaviour
         else if (!charged_)
         {
             charged_ = true;
+            am_.PlaySound("fansound");
+            am_.PlaySound("Dash");
             // boost to player
             inplace_ = false;
             charge_count++;

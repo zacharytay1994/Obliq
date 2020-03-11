@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GruntPunch : MonoBehaviour
 {
+    AudioManager am_;
     [SerializeField]
     GameObject grunt_punch_;
     Animator animator_ = null;
@@ -20,6 +21,7 @@ public class GruntPunch : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        am_ = FindObjectOfType<AudioManager>();
         // instantatiate grunt_punch
         if (grunt_punch_ != null)
         {
@@ -57,6 +59,7 @@ public class GruntPunch : MonoBehaviour
                     // fire a particle
                     if (pewpew_ != null)
                     {
+                        am_.PlaySound("gruntPunch");
                         GameObject temp = Instantiate(pewpew_);
                         temp.transform.position = transform.position;
                         temp.GetComponent<Rigidbody2D>().velocity = punching_distance_.normalized * speed_ * Time.deltaTime;
